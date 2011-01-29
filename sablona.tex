@@ -8,9 +8,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{fancyhdr}
-\usepackage[colorlinks=false]{hyperref}
+\usepackage{hyperref}
 \usepackage{multirow}
-\newcommand{\rok}{2011}
 \usepackage{tocloft}
 \usepackage{textcase}
 \usepackage{ifthen}
@@ -18,6 +17,11 @@
 \usepackage{ccaption}
 \usepackage{sectsty}
 \usepackage[srcstyle=leftnumhang,linenumbersep={\ }]{examplep}
+% ************************ NASTAVENÍ AUTORA A NÁZVU DOKUMENTU ************************
+\newcommand{\rok}{2011}
+\newcommand{\jmeno}{Martin Zajíc}
+\newcommand{\typprace}{Bakalářská práce	}
+\newcommand{\predmet}{Tvorba distribuce OS Linux}
 % ************************ NASTAVENÍ TISKOVÉHO ZRCADLA ************************
 \textheight=248mm
 \textwidth=155mm
@@ -39,6 +43,20 @@
 \marginparsep=0mm
 
 \pagestyle{fancy}
+% ****************** NASTAVENÍ HYPERPREF (BAREV ODKAZŮ, PDF DOKUMENTU) **************
+\hypersetup{
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdftitle={\typprace~-~\predmet },    % title
+    pdfauthor={\jmeno},     % author
+    pdfsubject={\predmet},   % subject of the document
+    pdfcreator={\jmeno},   % creator of the document
+    colorlinks=false,       % false: boxed links; true: colored links
+    %linkcolor=red,          % color of internal links
+    %citecolor=green,        % color of links to bibliography
+    %filecolor=magenta,      % color of file links
+    %urlcolor=cyan           % color of external links
+}
 
 % ****************** NASTAVENÍ PÍSMA, ODSTAVCE, ROVNIC, POZNÁMEK **************
 \parindent=0em
@@ -47,9 +65,9 @@
 \setlength{\parskip}{3pt}		% vertikální mezera mezi nadpisy
 % ****************************** VLASTNÍ DEFINICE *****************************
 \def\refname{\clearpage\uppercase{Seznam použité literatury}}
-\renewcommand*{\listfigurename}{\uppercase{Seznam obrázků}}
-\renewcommand{\contentsname}{\uppercase{Obsah}}
-\renewcommand*{\listtablename}{\uppercase{Seznam tabulek}}
+\renewcommand*{\listfigurename}{\texorpdfstring{\uppercase{Seznam obrázků}}{Seznam obrázků}}
+\renewcommand{\contentsname}{\texorpdfstring{\uppercase{Obsah}}{Obsah}}
+\renewcommand*{\listtablename}{\texorpdfstring{\uppercase{Seznam tabulek}}{Seznam tabulek}}
 \renewcommand*{\figurename}{Obr.}
 \renewcommand*{\tablename}{Tab.}
 
@@ -57,17 +75,11 @@
 \setcounter{tocdepth}{3} % do obsahu se ukládají pouze první dvě úrovně kapitol
 
 % *************************** UŽIVATELSKÉ STYLY *******************************
-\def\nn#1{\clearpage\section*{\uppercase{#1}}\addcontentsline{toc}{section}{\uppercase{#1}}}% styl nn = nečíslovaný nadpis (je vysázený v obsahu)
-\def\nm#1{\clearpage\section*{\uppercase{#1}}}	% definujeme styl nm = nečíslovaný nadpis (není vysázený v obsahu)
-\def\nns#1{\section*{\uppercase{#1}}}		% definujeme styl ns = nečíslovaný nadpis na stejné stránce (není vysázený v obsahu)
-\def\n#1#2{					% definujeme styl n{ur}{nadp} pro nadpisy, kde ur je číslo úrovně a nadpis je text nadpisu
-	\ifthenelse{#1=1}{\clearpage\section{\MakeTextUppercase{#2}}}{
-		\ifthenelse{#1=2}{\subsection{#2}}{
-			\ifthenelse{#1=3}{\subsubsection{#2}}{\paragraph{\itshape\bfseries{#2}}
-			}
-		}
-	}
-}
+\newcommand{\nn}[1]{\clearpage\section*{\uppercase{#1}}\addcontentsline{toc}{section}{\uppercase{#1}}}% styl nn = nečíslovaný nadpis (je vysázený v obsahu)
+\newcommand{\nm}[1]{\clearpage\section*{\uppercase{#1}}}	% definujeme styl nm = nečíslovaný nadpis (není vysázený v obsahu)
+\newcommand{\nmm}[1]{\section*{#1}} % definujeme styl nmm = nečíslovaný nadpis (není vysázený v obsahu) malými písmeny
+\newcommand{\nns}[1]{\section*{\uppercase{#1}}}		% definujeme styl ns = nečíslovaný nadpis na stejné stránce (není vysázený v obsahu)
+\newcommand{\sectionV}[1]{\section{\uppercase{#1}}}	%nadpis1 (section) velkým
 
 \def\obr#1#2#3{% styl \obr pro obrázky
 	\begin{figure}[h]
@@ -109,22 +121,20 @@
 	\end{equation}
 	}
 	
-\def\seznamobr{% příkaz \seznamobr pro vysázení seznamu obrázkù
+\def\seznamobr{% příkaz \seznamobr pro vysázení seznamu obrázků
 	\clearpage
 	\listoffigures
-	\addcontentsline{toc}{section}{\uppercase{Seznam obrázků}}
 	\clearpage
 	}
 
 \def\seznamtab{% příkaz \seznamtab pro vysázení seznamu obrázků
 	\clearpage
 	\listoftables
-	\addcontentsline{toc}{section}{\uppercase{Seznam tabulek}}
 	\clearpage
 	}
 	
 \newcommand{\seznamlit}[1]{% příkaz \seznamlit pro vysázení seznamu literatury
-	\addcontentsline{toc}{section}{\uppercase{Seznam použité literatury}}
+	\nn{Seznam použité literatury}
 	\begin{thebibliography}{10}
 	#1
 	\end{thebibliography}}
@@ -133,11 +143,7 @@
 	\nn{Seznam použitých symbolů a zkratek}
 	}
 	
-\def\cast#1{% příkaz \cast jako alternativa k \part
-	\part{#1}
-	}
-	
-\def\obsah{% \obsah vysází obsah v daném místì
+\def\obsah{% \obsah vysází obsah v daném místě
 	\clearpage
 	\thispagestyle{empty}
 	\tableofcontents
@@ -145,9 +151,7 @@
 	\pagestyle{fancy}
 	}
 
-\def\b#1{% zkrácení stylu \textbf na \b
-	\textbf{#1}
-	}
+\def\b#1{\textbf{#1}} % \b = tučně
 \newcommand{\bi}[1]{\textbf{\textit{#1}}}	% \bi = tučná kurzíva
 \renewcommand{\it}[1]{\textit{#1}}		% \it = kurzíva
 	
@@ -158,9 +162,8 @@
 \def\listofappendices{%
 	\newpage
 	\setcounter{section}{0}
-	\addcontentsline{toc}{section}{SEZNAM PŘÍLOH}
+	\nn{Seznam příloh}
 	\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn\fi
-\section*{SEZNAM PŘÍLOH}
 	\@mkboth{LIST OF APPENDICES}{LIST OF APPENDICES}
 	\@starttoc{loa}\if@restonecol\twocolumn\fi
 	\pagestyle{empty}
@@ -170,82 +173,70 @@
 \def\ext@appendix{loa}
 \def\tocname{loa}
 
-% definice pøíkazu \priloha{nazev prilohy} pro vlo¾ení nové pøílohy
+% definice příkazu \priloha{nazev prilohy} pro vložení nové přílohy
 \newcommand{\priloha}[1]{
-\clearpage
-\refstepcounter{section}
-\addtocontents{loa}{\protect\makebox[1.5cm][l]{P \@Roman\c@section.} #1\newline}
-{\bf PŘÍLOHA P \@Roman\c@section. \uppercase{#1}}
-\par
-}
+	\clearpage
+	\refstepcounter{section}
+	\addtocontents{loa}{\protect\makebox[1.5cm][l]{P \@Roman\c@section.} #1\newline}
+{\bf PŘÍLOHA P \@Roman\c@section. \uppercase{#1}}\par}
 
 % v obsahu nastavím VELKÉ PÍSMENA pro styl část
-\def\@part[#1]#2{%
-	\ifnum \c@secnumdepth >\m@ne
-	\refstepcounter{part}%
-	\addcontentsline{toc}{section}{\protect\makebox[1cm][l]{\thepart}\MakeTextUppercase{#1}}%
-\else
-	\addcontentsline{toc}{section}{\MakeTextUppercase{#1}}%
-\fi
-	{\parindent \z@ \raggedright
-	\interlinepenalty \@M
+\newcommand{\cast}[1]{
+	\refstepcounter{part}
+	\addcontentsline{toc}{section}{\thepart~~\uppercase{#1}}%
 \clearpage
 \normalfont
-     \ifnum \c@secnumdepth >\m@ne
-       \Large\bfseries
-\nobreak \fi
 	\vspace*{9cm}
-	\center\huge \bfseries\thepart. \MakeTextUppercase{#2}%
-	\markboth{}{}\par}%
+	\begin{center}\huge \bfseries\thepart. \uppercase{#1}\end{center}%
+	\markboth{}{}\par
 \nobreak
-\clearpage
-    \@afterheading
+\clearpage	
 }
 
-% *************** NASTAVENÍ FORMÁTU ÈÍSLOVÁNÍ OBRÁZKÙ A TABULEK ***************
-\def\thefigure{\arabic{figure}}      % èíslování obrázkù typu (y)
-\def\thetable{\arabic{table}}        % èíslování tabulek typu (y)
-\captiondelim{. } % zmìníme dvouteèku za Obr/Tab za teèku
+% *************** NASTAVENÍ FORMÁTU ČÍSLOVÁNÍ OBRÁZKŮ A TABULEK ***************
+\def\thefigure{\arabic{figure}}      % číslování obrázků typu (y)
+\def\thetable{\arabic{table}}        % číslování tabulek typu (y)
+\captiondelim{. } % změníme dvoutečku za Obr/Tab za tečku
 
-% ***************************** VYNULOVÁNÍ ÈÍTAÈÙ *****************************
-\@addtoreset{table}{section}    % vynulování èítaèe
-\@addtoreset{figure}{section}   % vynulování èítaèe
-\@addtoreset{footnote}{section} % vynulování èítaèe
+% ***************************** VYNULOVÁNÍ ČÍTAČŮ *****************************
+\@addtoreset{table}{section}    % vynulování čítače
+\@addtoreset{figure}{section}   % vynulování čítače
+\@addtoreset{footnote}{section} % vynulování čítače
 	
-\makeatother % a to je ukonèení \makeatletter
+\makeatother % a to je ukončení \makeatletter
 
 % ************* ÚPRAVA VZHLEDU OBSAHU, SEZNAMU OBRÁZKÙ A TABULEK **************
-% nastavení vertikální mezery pøed stylem èást, nadpis 1--3
+% nastavení vertikální mezery před stylem část, nadpis 1--3
 \setlength{\cftbeforepartskip}{3pt}
 \setlength{\cftbeforesecskip}{3pt}
 \setlength{\cftbeforesubsecskip}{3pt}
 \setlength{\cftbeforesubsubsecskip}{0cm}
-% odsazení zleva pro styl èást, nadpis 1--3
+% odsazení zleva pro styl část, nadpis 1--3
 \setlength{\cftpartindent}{0cm}
 \setlength{\cftsecindent}{0cm}
 \setlength{\cftsubsecindent}{0cm}
 \setlength{\cftsubsubsecindent}{0cm}
-% nastavení fontu pro styl èást, nadpis 1--3
+% nastavení fontu pro styl část, nadpis 1--3
 \renewcommand{\cftpartfont}{\small\bfseries}
 \renewcommand{\cftsecfont}{\small\bfseries}
 \renewcommand{\cftsubsecfont}{\scshape}
 \renewcommand{\cftsubsubsecfont}{}
-% odsazení èísla a textu titulku pro styl èást, nadpis 1--3
+% odsazení čísla a textu titulku pro styl část, nadpis 1--3
 \cftsetindents{part}{0cm}{1cm}
 \cftsetindents{sec}{0cm}{1cm}
 \cftsetindents{subsec}{1cm}{1.5cm}
 \cftsetindents{subsubsec}{1.2cm}{1.7cm}
 \cftsetindents{fig}{0cm}{1.5cm}
 \cftsetindents{tab}{0cm}{1.5cm}
-% nastavení vodící èáry pro styl èást, nadpis 1--3, obrázky a tabulky
-\renewcommand{\cftdot}{\ensuremath{.}} % tímto pøíkazem lze zmìnit vodící teèky v obsahu na jiný znak
+% nastavení vodící čáry pro styl část, nadpis 1--3, obrázky a tabulky
+\renewcommand{\cftdot}{\ensuremath{.}} % tímto příkazem lze změnit vodící tečky v obsahu na jiný znak
 \renewcommand{\cftpartleader}{\cftdotfill{0.3}}
 \renewcommand{\cftsecleader}{\cftdotfill{0.3}}
 \renewcommand{\cftsubsecleader}{\cftdotfill{0.3}}
 \renewcommand{\cftsubsubsecleader}{\cftdotfill{0.3}}
 \renewcommand{\cftfigleader}{\cftdotfill{0.3}}
 \renewcommand{\cfttableader}{\cftdotfill{0.3}}
-% zmìna fontu pro text "Obsah", "Seznam obrázkù" a "Seznam tabulek"
+% změna fontu pro text "Obsah", "Seznam obrázků" a "Seznam tabulek"
 \renewcommand{\cfttoctitlefont}{\normalsize\bfseries\thispagestyle{empty}}
 \renewcommand{\cftloftitlefont}{\normalsize\bfseries\thispagestyle{fancy}}
 \renewcommand{\cftlottitlefont}{\normalsize\bfseries\thispagestyle{fancy}}
@@ -259,7 +250,7 @@
 \subsectionfont{\normalsize\bfseries}
 \subsubsectionfont{\small\bfseries}
 \paragraphfont{\small\bf}
-% definice nového stylu \comment -- komentáø k ¹ablonì
+% definice nového stylu \comment -- komentář k šabloně
 \newcommand{\comment}[1]{\color{red}#1\color{black}}
 
 % ****************************** KONEC PREAMBULE ******************************
@@ -273,11 +264,11 @@
 \setlength{\unitlength}{1mm}
 \begin{picture}(-10,8)
 \put(0,-50){\makebox(170,50){}}
-\put(0,-100){\makebox(170,50){\fontsize{24}{1}\b{Tvorba distribuce OS Linux}}}
-\put(0,-135){\makebox(170,25){\fontsize{20}{1}\b{Martin Zajíc}}}
+\put(0,-100){\makebox(170,50){\fontsize{24}{1}\b{\predmet}}}
+\put(0,-135){\makebox(170,25){\fontsize{20}{1}\b{\jmeno}}}
 \put(82.2,-223.3){\makebox(84,16.4){\includegraphics[width=84mm]{fai_logo_cz.png}}}
 \put(0,-205){\linethickness{1pt}\line(1,0){170}}
-\put(4,-215){\makebox(69.5,4.5)[l]{\noindent\fontsize{16}{1}\b{Bakalářská práce}}}
+\put(4,-215){\makebox(69.5,4.5)[l]{\noindent\fontsize{16}{1}\b{\typprace}}}
 \put(4,-220){\makebox(69.5,4.5)[l]{\noindent\fontsize{16}{1}\b{\rok}}}
 \put(0,-225){\linethickness{1pt}\line(1,0){170}}
 \put(75,-223.3){\linethickness{1pt}\line(0,1){16.4}}
@@ -308,12 +299,10 @@
 poděkování, motto, úryvky knih, básní atp.
 \clearpage
 \thispagestyle{empty}
-\nm{Prohlašuji, že}
-%\vspace{-0.5cm}
-\begin{itemize}
-%  \setlength{\itemsep}{0pt}
-%  \setlength{\parskip}{0pt}
-%  \setlength{\parsep}{0pt}
+\clearpage
+\nmm{Prohlašuji, že}
+\begin{itemize}\fontsize{10}{1}
+\normalsize
 \item beru na vědomí, že odevzdáním bakalářské práce souhlasím se zveřejněním své práce podle zákona č. 111/1998 Sb. o vysokých školách a o změně a doplnění dalších zákonů (zákon o vysokých školách), ve znění pozdějších právních předpisů, bez ohledu na výsledek obhajoby;
 \item beru na vědomí, že bakalářská práce bude uložena v elektronické podobě v univerzitním informačním systému dostupná k prezenčnímu nahlédnutí, že jeden výtisk bakalářské práce bude uložen v příruční knihovně Fakulty aplikované informatiky Univerzity Tomáše Bati ve Zlíně a jeden výtisk bude uložen u vedoucího práce; 
 \item byl/a jsem seznámen/a s tím, že na moji bakalářskou práci se plně vztahuje zákon č. 121/2000 Sb. o právu autorském, o právech souvisejících s právem autorským a o změně některých zákonů (autorský zákon) ve znění pozdějších právních předpisů, zejm. § 35 odst. 3;
@@ -326,17 +315,13 @@ využití), nelze výsledky bakalářské práce využít ke komerčním
 účelům;
 \item beru na vědomí, že pokud je výstupem bakalářské práce jakýkoliv softwarový produkt, považují se za součást práce rovněž i zdrojové kódy, popř. soubory, ze kterých se projekt skládá. Neodevzdání této součásti může být důvodem k neobhájení práce.
 \end{itemize}
-%\vspace{-0.5cm}
-\nm{Prohlašuji,}
-%\vspace{-0.5cm}
+\nmm{Prohlašuji,}
 \begin{itemize}
-%  \setlength{\itemsep}{0pt}
-%  \setlength{\parskip}{0pt}
-%  \setlength{\parsep}{0pt}
+ \normalsize
 \item že jsem na bakalářské práci pracoval samostatně a použitou literaturu jsem citoval. V případě publikace výsledků budu uveden jako spoluautor.
 \item že odevzdaná verze bakalářské práce a verze elektronická nahraná do IS/STAG jsou totožné.
 \end{itemize}
-%\vspace{-0.5cm}
+\vspace{1cm}
 \begin{tabular}{lc}
 Ve Zlíně &\hspace{9cm} .......................\\
 ~ &\hspace{9cm} podpis diplomanta
@@ -348,34 +333,36 @@ text
 
 \cast{Teoretická část}
 
-\n{1}{Nadpis}
+\sectionV{Nadpis}
 text
 
-\n{1}{Nadpis}
+\section{\uppercase{Nadpis}}
 
-\n{2}{Podnadpis}
+\subsection{Podnadpis}
 text~\cite{chmel}
 
-\n{3}{Podpodnadpis}
+\subsubsection{Podpodnadpis}
 text
 
-\n{3}{Podpodnadpis}
+\subsubsection{Podpodnadpis}
 text
 
 \cast{Analytická část}
-\n{1}{Nadpis}
-\n{2}{Podnadpis}
+\sectionV{Nadpis}
+\subsection{Podnadpis}
 
 \cast{Projektová část}
 
-\n{1}{Nadpis}
-\n{2}{Podnadpis}
+\sectionV{Nadpis}
+\subsection{Podnadpis}
 
 \nn{Závěr}
 text
 
 \seznamlit{
 \bibitem{chmel}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
+\bibitem{chmel1}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
+\bibitem{chmel2}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
 }
 
 \seznamzkr
