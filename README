@@ -1,4 +1,5 @@
 Šablona pro bakalářskou práci na FAI UTB v XeLaTeX a moje bakalářská práce.
 
 překlad:
+(pro vygenerování obsahu apd,... je třeba spustit překlad 2x )
 xelatex sablona.tex
