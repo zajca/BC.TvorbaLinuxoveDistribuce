@@ -64,11 +64,10 @@
 \onehalfspacing % nastavím řádkování tímto způsobem nebo \renewcommand{\baselinestretch}{1.5} ??
 \setlength{\parskip}{3pt}		% vertikální mezera mezi nadpisy
 % ****************************** VLASTNÍ DEFINICE *****************************
-\def\refname{\clearpage\uppercase{Seznam použité literatury}}
+\renewcommand{\refname}{Seznam použité literatury}
 \renewcommand*{\listfigurename}{\texorpdfstring{\uppercase{Seznam obrázků}}{Seznam obrázků}}
-\renewcommand{\contentsname}{\texorpdfstring{\uppercase{Obsah}}{Obsah}}
+\renewcommand{\contentsname}{\texorpdfstring{\uppercase{OBSAH}}{OBSAH}}
 \renewcommand*{\listtablename}{\texorpdfstring{\uppercase{Seznam tabulek}}{Seznam tabulek}}
-\renewcommand*{\figurename}{Obr.}
 \renewcommand*{\tablename}{Tab.}
 
 % *************************** NASTAVENÍ ČÍTAČŮ	 ********************************
@@ -81,11 +80,9 @@
 \newcommand{\nns}[1]{\section*{\uppercase{#1}}}		% definujeme styl ns = nečíslovaný nadpis na stejné stránce (není vysázený v obsahu)
 \newcommand{\sectionV}[1]{\section{\uppercase{#1}}}	%nadpis1 (section) velkým
 
-\def\obr#1#2#3{% styl \obr pro obrázky
+\newcommand{\obr}[3]{% styl \obr pro obrázky
 	\begin{figure}[h]
-	\center\includegraphics[width=#2\linewidth]{#1}
-	\captionwidth{#2\linewidth}
-	\changecaptionwidth
+	\center\includegraphics[scale=#2]{#1}
 	\caption{#3}
 	\end{figure}
 	}
@@ -122,19 +119,21 @@
 	}
 	
 \def\seznamobr{% příkaz \seznamobr pro vysázení seznamu obrázků
+	\addcontentsline{toc}{section}{\listfigurename}
 	\clearpage
 	\listoffigures
 	\clearpage
 	}
 
 \def\seznamtab{% příkaz \seznamtab pro vysázení seznamu obrázků
+	\addcontentsline{toc}{section}{\listtablename}
 	\clearpage
 	\listoftables
 	\clearpage
 	}
 	
 \newcommand{\seznamlit}[1]{% příkaz \seznamlit pro vysázení seznamu literatury
-	\nn{Seznam použité literatury}
+	\addcontentsline{toc}{section}{\refname}
 	\begin{thebibliography}{10}
 	#1
 	\end{thebibliography}}
@@ -248,13 +247,22 @@
 % ************************ NASTAVENÍ FONTU PRO NADPISY ************************
 \sectionfont{\normalsize}
 \subsectionfont{\normalsize\bfseries}
-\subsubsectionfont{\small\bfseries}
+\subsubsectionfont{\normalsize\bfseries}
 \paragraphfont{\small\bf}
 % definice nového stylu \comment -- komentář k šabloně
 \newcommand{\comment}[1]{\color{red}#1\color{black}}
 
 % ****************************** KONEC PREAMBULE ******************************
 \begin{document}
+% ****************************** Vlastní definice ******************************
+% ********* musí být na začátku dokumnetu v preambuli nefungují ****************
+\renewcommand{\refname}{\texorpdfstring{\uppercase{Seznam použité literatury}}{Seznam použité literatury}}
+\renewcommand*{\listfigurename}{\texorpdfstring{\uppercase{Seznam obrázků}}{Seznam obrázků}}
+\renewcommand{\contentsname}{\texorpdfstring{\uppercase{Obsah}}{Obsah}}
+\renewcommand*{\listtablename}{\texorpdfstring{\uppercase{Seznam tabulek}}{Seznam tabulek}}
+\renewcommand*{\tablename}{Tab.}
+\renewcommand\figurename{Obr.}
+%********************************* Hlavička ************************************
 \lhead{\b{UTB ve Zlíně, Fakulta aplikované informatiky}}
 
 \thispagestyle{empty}
@@ -277,6 +285,7 @@
 \thispagestyle{empty}
 \voffset=-1.61cm\evensidemargin=0.96cm\oddsidemargin=0.96cm\headsep=1cm\headheight=0.5cm\setlength{\parskip}{3pt}\textheight=248mm\textwidth=155mm
 ***nascannované zadání s. 1***
+\obr{fai_logo_cz.png}{1}{logo}
 \clearpage
 \thispagestyle{empty}
 ***nascannované zadání s. 2***
