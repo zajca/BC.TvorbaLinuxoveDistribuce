@@ -45,13 +45,13 @@
 \pagestyle{fancy}
 % ****************** NASTAVENÍ HYPERPREF (BAREV ODKAZŮ, PDF DOKUMENTU) **************
 \hypersetup{
-    colorlinks=true,       % false: boxed links; true: colored links
     pdftoolbar=true,        % show Acrobat’s toolbar?
     pdfmenubar=true,        % show Acrobat’s menu?
     pdftitle={\typprace~-~\predmet },    % title
     pdfauthor={\jmeno},     % author
     pdfsubject={\predmet},   % subject of the document
     pdfcreator={\jmeno},   % creator of the document
+    colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=black,          % color of internal links
     citecolor=black,        % color of links to bibliography
     filecolor=black,      % color of file links
@@ -63,18 +63,11 @@
 \def\thefootnote{\arabic{footnote})}	% poznámka pod čarou se závorkou
 \onehalfspacing % nastavím řádkování tímto způsobem nebo \renewcommand{\baselinestretch}{1.5} ??
 \setlength{\parskip}{3pt}		% vertikální mezera mezi nadpisy
-% ****************************** VLASTNÍ DEFINICE *****************************
-\renewcommand{\refname}{Seznam použité literatury}
-\renewcommand*{\listfigurename}{\texorpdfstring{\uppercase{Seznam obrázků}}{Seznam obrázků}}
-\renewcommand{\contentsname}{\texorpdfstring{\uppercase{OBSAH}}{OBSAH}}
-\renewcommand*{\listtablename}{\texorpdfstring{\uppercase{Seznam tabulek}}{Seznam tabulek}}
-\renewcommand*{\tablename}{Tab.}
-
 % *************************** NASTAVENÍ ČÍTAČŮ	 ********************************
 \setcounter{tocdepth}{3} % do obsahu se ukládají pouze první dvě úrovně kapitol
 
 % *************************** UŽIVATELSKÉ STYLY *******************************
-\newcommand{\nn}[1]{\clearpage\section*{\uppercase{#1}}\addcontentsline{toc}{section}{\uppercase{#1}}}% styl nn = nečíslovaný nadpis (je vysázený v obsahu)
+\newcommand{\nn}[1]{\clearpage\section*{\texorpdfstring{\uppercase{#1}}{#1}}\addcontentsline{toc}{section}{\uppercase{#1}}}% styl nn = nečíslovaný nadpis (je vysázený v obsahu)
 \newcommand{\nm}[1]{\clearpage\section*{\uppercase{#1}}}	% definujeme styl nm = nečíslovaný nadpis (není vysázený v obsahu)
 \newcommand{\nmm}[1]{\section*{#1}} % definujeme styl nmm = nečíslovaný nadpis (není vysázený v obsahu) malými písmeny bez clearpage
 \newcommand{\nns}[1]{\section*{\uppercase{#1}}}		% definujeme styl ns = nečíslovaný nadpis na stejné stránce (není vysázený v obsahu)
@@ -87,7 +80,7 @@
 	\end{figure}
 	}
 
-\def\tab#1#2#3{% styl \tab pro tabulky
+\newcommand{\tab}[3]{% styl \tab pro tabulky
 	\begin{table}[h]
 	\caption{#1}
 	\begin{center}
@@ -97,8 +90,8 @@
 	\end{center}
 	\end{table}
 	}
-	
-\def\tabpri#1#2#3{% styl \tabpri pro tabulky v příloze
+
+\newcommand{\tabpri}[3]{% styl \tabpri pro tabulky v příloze
 	\begin{table}[h]
 	\begin{center}
 	#1
@@ -118,14 +111,14 @@
 	\end{equation}
 	}
 	
-\def\seznamobr{% příkaz \seznamobr pro vysázení seznamu obrázků
+\newcommand{\seznamobr}{% příkaz \seznamobr pro vysázení seznamu obrázků
 	\addcontentsline{toc}{section}{\listfigurename}
 	\clearpage
 	\listoffigures
 	\clearpage
 	}
 
-\def\seznamtab{% příkaz \seznamtab pro vysázení seznamu obrázků
+\newcommand{\seznamtab}{% příkaz \seznamtab pro vysázení seznamu obrázků
 	\addcontentsline{toc}{section}{\listtablename}
 	\clearpage
 	\listoftables
@@ -142,7 +135,7 @@
 	\nn{Seznam použitých symbolů a zkratek}
 	}
 	
-\def\obsah{% \obsah vysází obsah v daném místě
+\newcommand{\obsah}{% \obsah vysází obsah v daném místě
 	\clearpage
 	\thispagestyle{empty}
 	\tableofcontents
@@ -150,7 +143,7 @@
 	\pagestyle{fancy}
 	}
 
-\def\b#1{\textbf{#1}} % \b = tučně
+\renewcommand{\b}[1]{\textbf{#1}} % \b = tučně
 \newcommand{\bi}[1]{\textbf{\textit{#1}}}	% \bi = tučná kurzíva
 \renewcommand{\it}[1]{\textit{#1}}		% \it = kurzíva
 	
@@ -158,7 +151,7 @@
 \makeatletter % tímto příkazem dávám najevo, že budu editovat přímo příkazy ze šablony
 
 % definice seznamu příloh - příkaz \listofappendices
-\def\listofappendices{%
+\newcommand{\listofappendices}{%
 	\newpage
 	\setcounter{section}{0}
 	\nn{Seznam příloh}
@@ -180,7 +173,7 @@
 {\bf PŘÍLOHA P \@Roman\c@section. \uppercase{#1}}\par}
 
 % v obsahu nastavím VELKÉ PÍSMENA pro styl část
-\newcommand{\cast}[1]{
+\renewcommand{\part}[1]{
 	\refstepcounter{part}
 	\addcontentsline{toc}{section}{\thepart~~\uppercase{#1}}%
 \clearpage
@@ -268,7 +261,7 @@
 \thispagestyle{empty}
 \voffset=-2.01cm\evensidemargin=0pt\oddsidemargin=0cm\parindent=0pt\headsep=0pt\headheight=0pt\parskip=0pt\textheight=272mm\textwidth=200mm
 \renewcommand{\baselinestretch}{0}
-% Úvodní stránka s logem fakulty
+%********************************* Úvodní stránka s logem fakulty ********************
 \setlength{\unitlength}{1mm}
 \begin{picture}(-10,8)
 \put(0,-50){\makebox(170,50){}}
@@ -281,6 +274,7 @@
 \put(0,-225){\linethickness{1pt}\line(1,0){170}}
 \put(75,-223.3){\linethickness{1pt}\line(0,1){16.4}}
 \end{picture}
+%********************************* nascanované zadání ************************************
 \clearpage
 \thispagestyle{empty}
 \voffset=-1.61cm\evensidemargin=0.96cm\oddsidemargin=0.96cm\headsep=1cm\headheight=0.5cm\setlength{\parskip}{3pt}\textheight=248mm\textwidth=155mm
@@ -289,6 +283,8 @@
 \clearpage
 \thispagestyle{empty}
 ***nascannované zadání s. 2***
+\obr{fai_logo_cz.png}{1}{logo}
+%********************************* Abstrakt ************************************
 \clearpage
 \thispagestyle{empty}
 \nm{\uppercase{Abstrakt}}
@@ -303,9 +299,11 @@
 \vspace{1cm}
 
 \emph{Keywords:}
+%********************************* poděkování, motto, úryvky knih, básní atp. ************************************
 \clearpage
 \thispagestyle{empty}
 poděkování, motto, úryvky knih, básní atp.
+%********************************* Prohlášení ************************************
 \clearpage
 \thispagestyle{empty}
 \clearpage
@@ -336,11 +334,22 @@ Ve Zlíně &\hspace{9cm} .......................\\
 ~ &\hspace{9cm} podpis diplomanta
 \end{tabular}
 
+% obrázky \obr{soubor.png}{scale}{popisek}
+% tabulky \tab{popisek}{nastaveni}{obsah}
+% tabulky v příloze \tabpri{vrch tabulky}{nastaveni}{obsah}
+% rovnice \rov{popisek}{obsah}
+% tučně \b{tučné}
+% tučná kurzíva \bi{tučná kurzíva}
+% kurzíva \it{kurzíva}
+%********************************* Generování obsahu ************************************
 \obsah
+%********************************* úvod ************************************
 \nn{Úvod}
 text
 
-\cast{Teoretická část}
+%********************************* Vlastní obsah ************************************
+%********************************* Teoretická část ************************************
+\part{Teoretická část}
 
 \sectionV{Nadpis}
 text
@@ -355,35 +364,36 @@ text
 
 \subsubsection{Podpodnadpis}
 text
+%********************************* Analytická část ************************************
+\part{Analytická část}
+\sectionV{Nadpis}
+\subsection{Podnadpis}
+%********************************* Projektová část ************************************
+\part{Projektová část}
 
-\cast{Analytická část}
 \sectionV{Nadpis}
 \subsection{Podnadpis}
 
-\cast{Projektová část}
-
-\sectionV{Nadpis}
-\subsection{Podnadpis}
-
+%********************************* Závěr ************************************
 \nn{Závěr}
 text
-
+%********************************* Seznam Literatury ************************************
 \seznamlit{
 \bibitem{chmel}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
 \bibitem{chmel1}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
 \bibitem{chmel2}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
 }
-
+%********************************* Seznam zkratek ************************************
 \seznamzkr
 
 \begin{tabular}{ll}
 ABC & Význam zkratky \\
 \end{tabular}
-
+%********************************* Seznam obrázků ************************************
 \seznamobr
-
+%********************************* Seznam tabulek ************************************
 \seznamtab
-
+%********************************* Seznam příloh ************************************
 \listofappendices
 
 \priloha{Název přílohy}
