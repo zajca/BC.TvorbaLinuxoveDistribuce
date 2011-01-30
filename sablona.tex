@@ -45,17 +45,17 @@
 \pagestyle{fancy}
 % ****************** NASTAVENÍ HYPERPREF (BAREV ODKAZŮ, PDF DOKUMENTU) **************
 \hypersetup{
+    colorlinks=true,       % false: boxed links; true: colored links
     pdftoolbar=true,        % show Acrobat’s toolbar?
     pdfmenubar=true,        % show Acrobat’s menu?
     pdftitle={\typprace~-~\predmet },    % title
     pdfauthor={\jmeno},     % author
     pdfsubject={\predmet},   % subject of the document
     pdfcreator={\jmeno},   % creator of the document
-    colorlinks=false,       % false: boxed links; true: colored links
-    %linkcolor=red,          % color of internal links
-    %citecolor=green,        % color of links to bibliography
-    %filecolor=magenta,      % color of file links
-    %urlcolor=cyan           % color of external links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
 }
 
 % ****************** NASTAVENÍ PÍSMA, ODSTAVCE, ROVNIC, POZNÁMEK **************
@@ -76,7 +76,7 @@
 % *************************** UŽIVATELSKÉ STYLY *******************************
 \newcommand{\nn}[1]{\clearpage\section*{\uppercase{#1}}\addcontentsline{toc}{section}{\uppercase{#1}}}% styl nn = nečíslovaný nadpis (je vysázený v obsahu)
 \newcommand{\nm}[1]{\clearpage\section*{\uppercase{#1}}}	% definujeme styl nm = nečíslovaný nadpis (není vysázený v obsahu)
-\newcommand{\nmm}[1]{\section*{#1}} % definujeme styl nmm = nečíslovaný nadpis (není vysázený v obsahu) malými písmeny
+\newcommand{\nmm}[1]{\section*{#1}} % definujeme styl nmm = nečíslovaný nadpis (není vysázený v obsahu) malými písmeny bez clearpage
 \newcommand{\nns}[1]{\section*{\uppercase{#1}}}		% definujeme styl ns = nečíslovaný nadpis na stejné stránce (není vysázený v obsahu)
 \newcommand{\sectionV}[1]{\section{\uppercase{#1}}}	%nadpis1 (section) velkým
 
