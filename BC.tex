@@ -360,12 +360,69 @@ text
 
 \sectionV{Úvod do problematiky}
 \subsection{OS Linux}
+Linux je v~informatice označení pro unixový operační systém (původně pouze jeho jádro). Linux je šířen v~podobě distribucí, které je snadné nainstalovat nebo přímo používat (tzv.~LiveCD). Zároveň se díky použitým licencím jedná o~volně šiřitelný software, takže je možné ho nejen volně používat, ale~i~dále upravovat a~distribuovat (kopírovat,~sdílet). Tím se odlišuje od proprietárních systémů (např.~Microsoft Windows či Mac OS X), za které je nutné platit a~dodržovat omezující licence.~\cite{WLinux}
+
+\subsubsection{Dnešní použití OS Linux}
+V soucasnosti je Linux součástí trhu se stolními počítači. Zpočátku se vývojáři Linuxu zaměřovali nasíťové systémy a~služby, kancelářské aplikace predstavovaly poslední bariéru, kterou bylo nutno překonat. Neradi priznáváme, že tomuto trhu dominuje Microsoft, proto v~posledních několika letech vznikala spousta alternativních projektů, jejichž cílem je nabídnout Linux jako vhodnou volbu na pracovní stanice. V~ránci těchto projektů vznikají snadno použitelná uživatelská rozhraní i~kancelářské aplikace, jako textové editory, tabulkové procesory a~podobně, kopatibilní s aplikacemi Microsoft Office.\\
+Co se týče použití na serverech, má Linux pověst stabilní a spolehlivé platformy, na které běží databázové a~další služby takových společností jako je Amazon, americká pošta, německá armáda, Google, Facebook a další. Velmi oblíbený je Linux u poskytovatelů internetoveho přístupu a služeb, kde se používá jako firewall, proxy server nebo webový server. Počítač s Linuxem najdete i~u každého správce některého UNIXového systému, který jej používá jako pohodlnou administrativní stanici. Clustery linuxových počítačů se podílely na vzniku filmů jako Titanic nebo Shrek. Na poštách slouží jako centrály řídící směrování zásilek, velké vyhledávací stroje pomocí nich prohledávají Internet. To je jen ukázka několika z~mnoha tisíc náročných úkolů, které dnes Linux na celém světě vykonávajá.\\
+Stojí také za zmínku, že moderní Linux běží nejen na pracovních stanicích, středně a~velkých serverech, ale i~na "hračkách", jako jsou PDA či mobilní telefony, ve spoustě zařízení spotřební elektroniky, a~dokonce i~v~experimentálních náramkových hodinkách, Linux je jediný OS na světě, který pokrývá takto širokou škálu HW.~\cite{LDP}
 \subsection{Distribuce Linux from scratch}
+LFS je projekt poskytující návod, který vás provede krok za krokem sestavením vlastní Linuxové distribuce ze zdrojových kódů.~\cite{LFSwMAIN}
+%Linux From Scratch (LFS) is a project that provides you with step-by-step instructions for building your own customized Linux system entirely from source
+\subsubsection{Užití Linux From Scratch}
+Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když je možné si jednoduše stáhnout už sestavenou distribuci Linuxu. Avšak i~přes některé obtíže jenž sestavování LFS skýtá, má tento proces své výhody.~\cite{LFS}
+%Many wonder why they should go through the hassle of building a Linux system from scratch when they could just download an existing Linux distribution. However, there are several benefits of building LFS. Consider the following:
+\begin{itemize}
+ \item LFS učí uživatele jak Linux funguje uvnitř.
+%LFS teaches people how a Linux system works internally
+ \item Sestavování LFS učí o~všem co v~systemu běží, jak jednotlivé pracují a~závisí jedna na druhé. A~jak upravit systém podle chuti.
+%Building LFS teaches you about all that makes Linux tick, how things work together and depend on each other. And most importantly, how to customize it to your own tastes and needs.
+ \item Sestavením LFS získáme velice kompaktní Linuxový systém
+%Building LFS produces a very compact Linux system
+ \item Pokud instalujete běznou Linuxovou distribuci, nainstalujete i množství programů, které pravděpodobně nikdy nepoužijete. LFS jde sestavit i~ve velikosti nepřesahující 100MB
+%When you install a regular distribution, you often end up installing a lot of programs that you would probably never use. They're just sitting there taking up (precious) disk space. It's not hard to get an LFS system installed under 100 MB. Does that still sound like a lot? A few of us have been working on creating a very small embedded LFS system. We installed a system that was just enough to run the Apache web server; total disk space usage was approximately 8 MB. With further stripping, that can be brought down to 5 MB or less. Try that with a regular distribution.
+\item LFS je extrémě flexibilní. Máte moc systém sestavit přesně podle vašich potřeb.
+%LFS is extremely flexible
+%Building LFS could be compared to a finished house. LFS will give you the skeleton of a house, but it's up to you to install plumbing, electrical outlets, kitchen, bath, wallpaper, etc. You have the ability to turn it into whatever type of system you need it to be, customized completely for you.
+\item LFS můžete zabezpečit na míru. Nemusíte čekat, jako u binárních distribucí, až někdo sestaví balíček s~bezpečtnostním patchem, který potřebujete. Můžete se si zkompilovat SW s~patchem sami.
+%LFS offers you added security
+%You will compile the entire system from source, thus allowing you to audit everything, if you wish to do so, and apply all the security patches you want or need to apply. You don't have to wait for someone else to provide a new binary package that (hopefully) fixes a security hole. Often, you never truly know whether a security hole is fixed or not unless you do it yourself.
+\end{itemize}
+
 \subsection{Scriptování v jazyce BASH}
 
 \sectionV{Kompilace zdrojových kódů}
+\subsection{Překladač (kompilátor)}
+Překladač (též kompilátor, anglicky compiler z~to compile – sestavit, zpracovat) je v~nejčastějším smyslu slova nástrojem používaným programátory pro vývoj softwaru. Kompilátor slouží pro překlad algoritmů zapsaných ve vyšším programovacím jazyce do jazyka strojového, či spíše do strojového kódu. Z širšího obecného hlediska je kompilátor stroj, respektive program, provádějící překlad z nějakého vstupního jazyka do jazyka výstupního. Z~matematického hlediska je kompilátor funkce, která mapuje jeden nebo více zdrojových kódů podle překladových parametrů na kód ve výstupním jazyce.~\cite{Wkom}
 \subsection{Důležité soubory}
-\subsection{Configure, make a jiné}
+Zdrojové kódy programů jsou uloženy souborech rozličných formátu podle účelu a~jazyka v~němž je program napsán. Ale každý program by měl obsahovat i~další soubory, které mají význam pro uživatele, kteří chtějí program zkompilovat nebo ho dále upravovat. Tyto soubory jsou,ale spíše dobrým mravem a~záleží na programátorovy jestly je jeho projekt bude obsahovat.
+\subsubsection{LICENSE (COPYING)}
+Soubor obsahující licenci pod kterou je program vydán. Licence je důležitá, protože určuje jak smí uživatel s programem nakládat. U~programů s~otevřeným zdrojovým kódem se neastěji používají licence GNU GPL a BSD.\\ \b{GPL} v jednoduchosti říká, že můžete s programem libovolně nakládat, avšak pokud provedete jakékoliv modifikace, musíte zdrojové kódy opět uvolnit pod stejnou licencí \it{(jedná se o licenci tzv. virovou)}. Anglický originál licence je lze možno nalézt na \href{http://www.opensource.org/licenses/gpl-3.0}{opensource.org} Pod touto licencí je šířeno Linuxové jádro i~sada nástrojů projektu GNU, které Linuxové jádro standartně distribuováno.\\ \b{BSD} Umožňuje volné šíření licencovaného obsahu, přičemž vyžaduje pouze uvedení autora a~informace o~licenci, spolu s~upozorněním na zřeknutí se odpovědnosti za dílo.~\cite{BSDL} Anglický originál licence je lze možno nalézt na \href{http://www.opensource.org/licenses/bsd-license.php}{opensource.org}. Pod touto licencí šířeno např. jádro stejnojmeného operačního systému BSD nebo operační systém HAIKU.\\
+Často bývá licence uvedena jako součást souboru README.
+\subsubsection{INSTALL}
+Soubor INSTALL obsahuje instalační informace pro uživatele. Obsahuje informace o~tom jak program zkompilovat a~informace o~jeho nastavení. U~menších projektů bývají často tyto informace součástí souboru README, naopak u velkých projektů se často tyto informce přesunují na internet.
+\subsubsection{Dokumnetace}
+Dokumentace obsahuje informace o~používání programů a~je velmi důležitá především u~knihoven, protože obsahuje popis funkcí, které danná knihovna poskytuje. Většina distribucí poskytuje dokumentaci v samostatných balíčcích, protože spousta uživatelů dokumentaci nijak nevyužije a~ušetří se tím místo v uživatelově počítači a~především se tím sníží zatížení a množství přenesených dat z repozitářů distribucí.
+\subsubsection{README}
+Soubor obsahuje základní informace o~programu. Může, a~často i~obsahuje informace ze všech výše uvedených souborů. Avšak někdy není vůbec, protože je vše uvedeno ve výše uvedených souborech.
+\subsubsection{Configure}
+Soubor s nasteveními pro překlad. Jedná se v~zásadě o~BASH script, kterým můžete nastavit co a~jak se má v programu kompilovat. Různými volbami, které jsou uvedeny v~INSTALL,README, nebo v~nějaké online dokumentaci, můžete nastavit \it{např. cesty kam se mám program nebo jeho části nainstalovat nebo také které části programu se mají přeložit}. Configure je scriptem BASHe a proto je také tak volána, výsledekem configure je vygenerovaní souboru, které řídí překlad.
+\subsubsection{Další soubory a alternativy některých souborů}
+
+\subsection{Kompilace}
+Samotná kompilace sestává s~prostudování nejčastěji souborů INSTALL nebo README a~postupem podle návodu v nich. Ale obecně ji lze zahrnout do posloupnosti tří ``příkazů''.
+\begin{verbatim}
+ ./configure [options]
+\end{verbatim}
+vygeneruje soubory potřebné pro překlad
+\begin{verbatim}
+ make
+\end{verbatim}
+zkompiluje zdrojové kódy
+\begin{verbatim}
+ make install
+\end{verbatim} 
+nahraje soubory do systému všechny potřebné soubory
 
 \sectionV{Linuxové distribuce}
 \subsection{Hlavní odlišnosti}
@@ -396,15 +453,32 @@ text
 text
 %********************************* Seznam Literatury ************************************
 \seznamlit{
-\bibitem{chmel}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
-\bibitem{chmel1}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
-\bibitem{chmel2}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
+\bibitem{BASHen}COOPER, Mendel. {\it{Advanced Bash-Scripting Guide}} [online]. Revision 6.2. [s.l.] : [s.n.], 17 March 2010, Dostupné z~WWW: \href{http://www.tldp.org/LDP/abs/html/index.html}{http://www.tldp.org/LDP/abs/html/index.html}. [e-kniha] 
+\bibitem{BASHcz}MILAR, Bohdan. {\it{Bash očima Bohdana Milara}} [online]. [s.l.] : LinuxExpres, 2008. Dostupné z~WWW: \href{http://www.root.cz/knihy/bash-ocima-bohdana-milara/}{http://www.root.cz/knihy/bash-ocima-bohdana-milara/}. [e-kniha] 
+\bibitem{LFS}BEEKMANS, Gerard. {\it{Linux From Scratch}} [online]. 6.7. [s.l.] : [s.n.], 1999, 2010. Dostupné z~WWW: \href{http://www.linuxfromscratch.org/lfs/view/stable/}{http://www.linuxfromscratch.org/lfs/view/stable/}. [e-kniha] 
+\bibitem{KERNEL}KROAH-HARTMAN, Greg. {\it{Linux kernel in a nutshell}} [online]. [s.l.] : O Reilly Media, Inc., 2006. Dostupné z~WWW: \href{http://www.root.cz/knihy/linux-kernel-in-a-nutshell/}{http://www.root.cz/knihy/linux-kernel-in-a-nutshell/}. [e-kniha] 
+\bibitem{LDP}KOLEKTIV, Autorů, et al. {\it{Linux: Dokumentační projekt}} [online]. 4. vyd. Brno : Computer Press, 2008. Dostupné z~WWW: \href{http://www.root.cz/knihy/linux-dokumentacni-projekt-4-vydani/}{http://www.root.cz/knihy/linux-dokumentacni-projekt-4-vydani/}. ISBN 978-80-251-1525-1. [e-kniha]
+\bibitem{WLinux}{\it{Linux. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, 29. 12. 2002, last modified on 3. 2. 2011 [cit. 2011-02-04]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/Linux}{http://cs.wikipedia.org/wiki/Linux}.
+\bibitem{LFSwMAIN}BEEKMANS, Gerard. {\it{Linux From Scratch}} [online]. 1998 [cit. 2011-02-04]. Linux From Scratch. Dostupné z~WWW:\href{http://www.linuxfromscratch.org/lfs/}{http://www.linuxfromscratch.org/lfs/}.
+\bibitem{Wkom}{\it{Překladač. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-04]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/P\%C5\%99eklada\%C4\%8D}{http://cs.wikipedia.org/wiki/P\%C5\%99eklada\%C4\%8D}.
+\bibitem{BSDL}{\it{BSD licence. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-04]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/BSD\_licence}{http://cs.wikipedia.org/wiki/BSD\_licence}.
+%\bibitem{chmel}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
+%\bibitem{chmel1}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
+%\bibitem{chmel2}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
 }
 %********************************* Seznam zkratek ************************************
 \seznamzkr
 
 \begin{tabular}{ll}
-ABC & Význam zkratky \\
+LFS & Linux From Scratch \\
+OS & Operační systém\\
+HW & Hardware\\
+SW & Sogtware\\
+GPL & General Public License\\
+BSD & Berkeley Software Distribution\\
+EULA & End-User-License-Agreement\\
+
+
 \end{tabular}
 %********************************* Seznam obrázků ************************************
 \seznamobr
