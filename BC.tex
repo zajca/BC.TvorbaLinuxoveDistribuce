@@ -26,8 +26,9 @@
 % ************************ NASTAVENÍ AUTORA A NÁZVU DOKUMENTU ************************
 \newcommand{\rok}{2011}
 \newcommand{\jmeno}{Martin Zajíc}
-\newcommand{\typprace}{Bakalářská práce	}
+\newcommand{\typprace}{Bakalářská práce}
 \newcommand{\predmet}{Tvorba distribuce OS Linux}
+\newcommand{\predmeten}{Building Linux distribution}
 % ************************ NASTAVENÍ TISKOVÉHO ZRCADLA ************************
 \textheight=248mm
 \textwidth=155mm
@@ -271,12 +272,19 @@
 \setlength{\unitlength}{1mm}
 \begin{picture}(-10,8)
 \put(0,-50){\makebox(170,50){}}
-\put(0,-100){\makebox(170,50){\fontsize{24}{1}\b{\predmet}}}
-\put(0,-135){\makebox(170,25){\fontsize{20}{1}\b{\jmeno}}}
+%*******************************Uvodni stranka z nazvem prace na dva radky*********
+%\put(0,-100){\makebox(170,50){\fontsize{24}{1}\b{\textsf{Zálohovací server založený na}}}}
+%\put(0,-110){\makebox(170,50){\fontsize{24}{1}\b{\textsf{GNU/Linux Debian}}}}
+%\put(0,-130){\makebox(170,50){\fontsize{20}{1}\b{\textsf{Backup server based on GNU/Linux Debian}}}}
+%\put(0,-150){\makebox(170,25){\fontsize{20}{1}\b{\textsf{\jmeno}}}}
+%*******************************konec uvodni stranka na dva radky***********************
+\put(0,-115){\makebox(170,50){\fontsize{24}{1}\b{\textsf{\predmet}}}}
+\put(0,-130){\makebox(170,50){\fontsize{22}{1}\b{\textsf{\predmeten}}}}
+\put(0,-150){\makebox(170,25){\fontsize{20}{1}\b{\textsf{\jmeno}}}}
 \put(82.2,-223.3){\makebox(84,16.4){\includegraphics[width=84mm]{fai_logo_cz.png}}}
 \put(0,-205){\linethickness{1pt}\line(1,0){170}}
-\put(4,-215){\makebox(69.5,4.5)[l]{\noindent\fontsize{16}{1}\b{\typprace}}}
-\put(4,-220){\makebox(69.5,4.5)[l]{\noindent\fontsize{16}{1}\b{\rok}}}
+\put(4,-215){\makebox(69.5,4.5)[l]{\noindent\fontsize{16}{1}\b{\textsf{\typprace}}}}
+\put(4,-220){\makebox(69.5,4.5)[l]{\noindent\fontsize{16}{1}\b{\textsf{\rok}}}}
 \put(0,-225){\linethickness{1pt}\line(1,0){170}}
 \put(75,-223.3){\linethickness{1pt}\line(0,1){16.4}}
 \end{picture}
@@ -390,6 +398,10 @@ Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když j
 \end{itemize}
 
 \subsection{Scriptování v jazyce BASH}
+%##########
+%###TODO###
+%##########
+
 
 \sectionV{Kompilace zdrojových kódů}
 \subsection{Překladač (kompilátor)}
