@@ -22,7 +22,7 @@
 \usepackage{setspace}
 \usepackage{ccaption}
 \usepackage{sectsty}
-\usepackage[srcstyle=leftnumhang,linenumbersep={\ }]{examplep}
+%\usepackage[srcstyle=leftnumhang,linenumbersep={\ }]{examplep}
 % ************************ NASTAVENÍ AUTORA A NÁZVU DOKUMENTU ************************
 \newcommand{\rok}{2011}
 \newcommand{\jmeno}{Martin Zajíc}
@@ -430,15 +430,83 @@ vygeneruje soubory potřebné pro překlad
 \begin{verbatim}
  make
 \end{verbatim}
-zkompiluje zdrojové kódy
+zkompiluje zdrojové kódy \footnote{make neslouží pouze ke kompilaci zdrojových kódů programů, ale i~jako univerzální utilita pro překlad projektů. LFS jej například používá pro generování PDF,HTML,… verze knihy z XML souborů}
 \begin{verbatim}
  make install
 \end{verbatim} 
 nahraje soubory do systému všechny potřebné soubory
 
 \sectionV{Linuxové distribuce}
+Linuxová distribuce je v~informatice označení pro snadno použitelný Linuxový systém, přičemž název je odvozen od jádra Linuxu, které je základní součástí každé distribuce. Distribuce jsou vytvářeny proto, aby uživatel nemusel jádro a~doplňující software sám náročným způsobem skládat do funkčního celku. Obsažený software je volně dostupný na Internetu (typicky open source software). Pro odlišení jsou distribuce pojmenovány (např. Ubuntu, Fedora, …), přičemž každá je jinak zaměřena (pro nezkušeného uživatele, pro vývojáře, výuku atp.).\cite{WDIST}
+
 \subsection{Hlavní odlišnosti}
+Linuxové distribuce se liší v~mnoha více či méně zásadních ohledech ohledech. Nejvýraznějšími rozdíly, které dělají distribuce distrbucemi jsou: Cyklus vydání, balíčkovací systém, základní SW výbava, nasazení,…
+\subsubsection{Cyklus vydání}
+V zásadě rozlišujeme 3vydávací cykly:
+\begin{itemize}
+ \item Dlouhý cyklus vydání
+\end{itemize}
+Tento cyklus vydání je delší než jeden rok. Používají ho distribuce, které nezakládají na aktuálnosti SW, ale na jeho stabilitě. Předevší pak \b{Debian (stable)} a~\b{Red Hat Enterprise Linux} (dále pouze RHEL). Vývojáři Debianu před nedávnem (7. 2009) rozhodli o~tom, že bude Debian vydáván v pravidelných intervalech a~to tak, že na konci každého lichého roku dojde k zmrazení větve \it{testing}, ta je následně nějaký čas testována aby byly odstraněny všechny bugy, po jejich odstranění je prohlášena za stabilní a~balíčky v~ní obsažené jsou přesunuty do větve \it{stable}\footnote{časový odstup mezi vydáním verze 5 lenny a aktuální 6 squeeze byl 2 roky. Nejdelší odstup mezi vydáními byl 3 roky a~to mezi vydáním 3.0 woody a~3.1 sarge}. RHEL vychází v nepravidelných cyklech (cca 2-3roky) a~v~mezičase vychází updaty. \footnote{časový odstup mezi verzí 5 a~6, byl 3.5roku a~v~mezičase vyšlo 5 update verzí.}
+\begin{itemize}
+ \item Krátký cyklus vydání
+\end{itemize}
+Tipicky půl roku až rok. Používá ho většina desktopových distribucí. Tento vydávací cyklus je kompromisem mezi stabilitou a~aktuálností SW. Např. \b{Ubuntu}\footnote{\b{Ubuntu}: cyklus vydání je půl roku, u~jeho derivátů pak zpravidla o~něco málo delší. Vydaní probíhá pravidelně v dubnu a říjnu, přičemž každé dva roky vyjde LTS verze s podporou na dva roky. Poslední verze: 11.04}, \b{Mandriva} \footnote{\b{Mandriva}: cyklus dlouhý půl roku, vychází verze s~číslem roku a~verze spring. Poslední verze: 2010 Spring}(dříve Mandrake), \b{Fedora} \footnote{\b{Fedora}: cyklus vydání každého půl roku. Poslední verze: 14},…
+
+\begin{itemize}
+ \item Průbězné aktualizace (rolling-updates)
+\end{itemize}
+Distribuce používající rolling-updates se vyznačují především aktuálností SW, většinou udržují větev pro uživatele a~testovací větev kde je SW podroben krátkému testovaní, než se přesune do uživatelské větve. Tyto distribuce většinou vydávají jednou za čas instalační liveCD aby bylo možné je nainstalovat i~na aktuální HW. \b{Gentoo}, \b{Arch Linux}, \b{Debian sid (experimental)}\footnote{testovací větev debianu, která se jmenuje Sid používá právě rolling-updates, po otestování SW obsažený ve větvy putuje do větve \it{testing}},…
+
+\subsubsection{Balíčkovací systémy}
+\begin{itemize}
+ \item DPKG
+\end{itemize}
+\begin{itemize}
+ \item PACMAN
+\end{itemize}
+\begin{itemize}
+ \item APT
+\end{itemize}
+\begin{itemize}
+ \item RPM
+\end{itemize}
+\begin{itemize}
+ \item Portage
+\end{itemize}
+\begin{itemize}
+ \item Další,…
+\end{itemize}
+
+\subsubsection{Nasazení}
+\begin{itemize}
+ \item Desktop
+\end{itemize}
+
+\begin{itemize}
+ \item Server
+\end{itemize}
+
+\begin{itemize}
+ \item Router
+\end{itemize}
+
+\begin{itemize}
+ \item embedded
+\end{itemize}
+
+\begin{itemize}
+ \item další,…
+\end{itemize}
+
+\subsubsection{SW výbava}
+
+\subsubsection{Architektury}
+
+\subsubsection{Další rozdíly}
+
 \subsection{Možnosti tvorby distribuce}
+\subsubsection{Vytvoření ze zdrojových kódů}
+\subsubsection{Derivát stávající distribuce}
 
 \sectionV{Zabezpečení Linuxového systému}
 \subsection{Mechanismy a správa hesel}
@@ -474,6 +542,7 @@ text
 \bibitem{LFSwMAIN}BEEKMANS, Gerard. {\it{Linux From Scratch}} [online]. 1998 [cit. 2011-02-04]. Linux From Scratch. Dostupné z~WWW:\href{http://www.linuxfromscratch.org/lfs/}{http://www.linuxfromscratch.org/lfs/}.
 \bibitem{Wkom}{\it{Překladač. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-04]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/P\%C5\%99eklada\%C4\%8D}{http://cs.wikipedia.org/wiki/P\%C5\%99eklada\%C4\%8D}.
 \bibitem{BSDL}{\it{BSD licence. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-04]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/BSD\_licence}{http://cs.wikipedia.org/wiki/BSD\_licence}.
+\bibitem{WDIST}{\it{Linuxové distribuce. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-23]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/Linuxov\%C3\%A1\_distribuce}{http://cs.wikipedia.org/wiki/Linuxové\_distribuce}.
 %\bibitem{chmel}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
 %\bibitem{chmel1}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
 %\bibitem{chmel2}{\it{Český chmel: atlas odrůd}} [online]. [cit. 2004-10-15]. Dostupný z~WWW: \href{http://www.beer.cz/humulus/}{http://www.beer.cz/humulus/}.
@@ -489,7 +558,8 @@ SW & Sogtware\\
 GPL & General Public License\\
 BSD & Berkeley Software Distribution\\
 EULA & End-User-License-Agreement\\
-
+RHEL & Red Hat Enterprise Linux\\
+Např & například\\
 
 \end{tabular}
 %********************************* Seznam obrázků ************************************
