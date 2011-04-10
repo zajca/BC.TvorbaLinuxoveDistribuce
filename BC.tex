@@ -470,7 +470,7 @@ Balíčkovací systémy jsou standartní součástí nejen Linuxových distribuc
  \item \b{DPKG} \it{Debian package management system} Jedná se o~základní ``nízko úrovňový`` balíčkovací systém pro debian, umožňuje pouze instalaci mazání a~výpis balíčků (balíčky jsou vždy s~příponou deb).\\
 Nejčastěji se používají programy, které mají rozšířenou funkcionalitu, jsou založené a~volají dpkg. Nejznámějším je \b{APT} \it{(Advanced Packaging Tool)}\cite{DPKG}, od apt se upouští a doporučuje se používat jeho frontend \b{Aptitude}, protože aptitude dokáže lépe řešit konflikty balíčků, poskytuje jednotné rozhraní pro správu balíčků
 \footnote{APT je několik aplikací (apt-cache, apt-get,…), které každý poskytují jinou funkci} a~GUI založené na ncurses Pro tento balíčkovací systém existuje i~velké množství GUI: synaptic (GTK), Ubuntu Software Center (GTK),KPackage (Qt),…\\
-Tento balíčkovací systém používájí kromě již zmíněného debianu i~jeho deriváty jako je Ubuntu, ale i~další distribuce a~OS. Existuje port pro MacOSX nebo Opensolaris\cite{APT}.
+Tento balíčkovací systém používájí kromě již zmíněného debianu i~jeho deriváty jako je Ubuntu, ale i~další distribuce a~OS. Existuje port pro MacOSX nebo Opensolaris\cite{DPKG}.
  \item \b{RPM} \it{Red Hat Package Manager} Druhý nejčastěji používaný balíčkovací systém. Je používán množstvím velkých distribucí včele s RHEL (Red Hat Enterprise Linux), také je používán distribucemi Fedora, Mandriva, SUSE,ArkLinux,...\\
 RPM označuje jak název základního balíčkovacího systému tak i~název balíčků samotných (vždy s~příponou rpm). RPM se především vyznačuje nepřenosností z jedné distribuce na druhou (narozdíl od deb balíčků kde to více méně funguje). Proto se lze často setkat s názorem,že rmp neumí pořádně řešit závislosti,tímto názorem se většinou vyznačují lidé, kteří kombinují repozitáře různých distribucí založaných na RPM.\\
 RPM se často vyznačuje ještě jedním specifikem a~to tím, že na rozdíl od DPKG kde se nejčastěji používají obrovské repositáře s~obrovským množstvím balížků se u RPM používá velké množství repositářů s už ne tak velkým množstvím software. Např. Debian používá jeden repozitář pro každou jeho verzi (Stable,Testing,Unstable) kdyžto u RPM distribucí se setkáme s repozitáři zvláš pro multimedia a core system apd...\\
@@ -514,7 +514,16 @@ Velký rozdíl zavádí do linuxových ditribucí GoboLinux. Tato distribuce př
 %
 
 \subsection{Možnosti tvorby distribuce}
+Linuxovou distribuci lze vytvořit více způsoby, nejběžnějším způsobem je sestavení ze zdrojových kódů. Je třeba dávat pozor na licenční ujednání a dle GNU/GPL licence (pod kterou je distribuováno linuxové jádro) musí autor uvolnit zdrojové kódy. U linuxoveho jádra to zahrnuje většinou použité patche.
 \subsubsection{Vytvoření ze zdrojových kódů}
+Vytvoření ze zdrojových kódů reprezentuje například použitá "distribuce" Linux From Scratch. Postup se obecně skládá z několik částí, které jsou více rozepsány v projektové části. % TODO doplnit konkrétní umístění a odkaz
+\begin{enumerate}
+ \item Prve je třeba oddělit systém a vytvořit toolchain, který slouží k sestavení nové distribuce nezávislé na předchozím hostovském systému.
+\item sestavení vlastní sady základních nástrojů pro pouzití systému. Sada obsahuje překladače, nástroje pro práci se soubory a jiné potřebné programove vybavení.
+\item nastavení bootovacího procesu systému.
+\item vytvoření tabulky souborových systémů, kompilace jádra systému, nastavení bootloaderu
+\end{enumerate}
+
 \subsubsection{Derivát stávající distribuce}
 \subsubsection{Online sestavení}
 
@@ -549,14 +558,13 @@ text
 \bibitem{LFS}BEEKMANS, Gerard. {\it{Linux From Scratch}} [online]. 6.7. [s.l.] : [s.n.], 1999, 2010. Dostupné z~WWW: \href{http://www.linuxfromscratch.org/lfs/view/stable/}{http://www.linuxfromscratch.org/lfs/view/stable/}. [e-kniha] 
 \bibitem{KERNEL}KROAH-HARTMAN, Greg. {\it{Linux kernel in a nutshell}} [online]. [s.l.] : O Reilly Media, Inc., 2006. Dostupné z~WWW: \href{http://www.root.cz/knihy/linux-kernel-in-a-nutshell/}{http://www.root.cz/knihy/linux-kernel-in-a-nutshell/}. [e-kniha] 
 \bibitem{LDP}KOLEKTIV, Autorů, et al. {\it{Linux: Dokumentační projekt}} [online]. 4. vyd. Brno : Computer Press, 2008. Dostupné z~WWW: \href{http://www.root.cz/knihy/linux-dokumentacni-projekt-4-vydani/}{http://www.root.cz/knihy/linux-dokumentacni-projekt-4-vydani/}. ISBN 978-80-251-1525-1. [e-kniha]
-\bibitem{WLinux}{\it{Linux. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, 29. 12. 2002, last modified on 3. 2. 2011 [cit. 2011-02-04]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/Linux}{http://cs.wikipedia.org/wiki/Linux}.
+\bibitem{WLinux}LITERÁK, Leoš. {\it{Co je to Linux. AbcLinuxu.cz}} [online]. 17.1.2006, [cit. 2011-03-30]. Dostupné z~WWW: \href{http://www.abclinuxu.cz/ucebnice/uvod/co-je-to-linux}{http://www.abclinuxu.cz/ucebnice/uvod/co-je-to-linux}.
 \bibitem{LFSwMAIN}BEEKMANS, Gerard. {\it{Linux From Scratch}} [online]. 1998 [cit. 2011-02-04]. Linux From Scratch. Dostupné z~WWW:\href{http://www.linuxfromscratch.org/lfs/}{http://www.linuxfromscratch.org/lfs/}.
-\bibitem{Wkom}{\it{Překladač. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-04]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/P\%C5\%99eklada\%C4\%8D}{http://cs.wikipedia.org/wiki/P\%C5\%99eklada\%C4\%8D}.
-\bibitem{BSDL}{\it{BSD licence. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-04]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/BSD\_licence}{http://cs.wikipedia.org/wiki/BSD\_licence}.
+\bibitem{Wkom}MARTINEK, David. {\it{Fakulta Informačních Technologií VUT}} [online]. 23. září 2010 [cit. 2011-03-30]. Překlad programu. Dostupné z WWW: \href{http://www.fit.vutbr.cz/~martinek/clang/gcc.html}{http://www.fit.vutbr.cz/~martinek/clang/gcc.html}.
+\bibitem{BSDL}{\it{Nette Framework}} [online]. 2011 [cit. 2011-03-30]. Český překlad nové BSD licence. Dostupné z WWW: \href{http://nette.org/cs/licence/newbsd}{http://nette.org/cs/licence/newbsd}.
 \bibitem{WDIST}{\it{Linuxové distribuce. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-23]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/Linuxov\%C3\%A1\_distribuce}{http://cs.wikipedia.org/wiki/Linuxové\_distribuce}.
-\bibitem{DPKG}{\it{Dpkg. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-26]. Dostupné z~WWW: \href{http://en.wikipedia.org/wiki/Dpkg}{http://en.wikipedia.org/wiki/Dpkg}.
-\bibitem{APT}{\it{Advanced Packaging Tool. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-26]. Dostupné z~WWW: \href{http://en.wikipedia.org/wiki/Advanced\_Packaging\_Tool}{http://en.wikipedia.org/wiki/Advanced\_Packaging\_Tool}
-\bibitem{Portage}{\it{Portage. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-26]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/Portage}{http://cs.wikipedia.org/wiki/Portage}.
+\bibitem{DPKG}{\it{The Debian GNU/Linux FAQ}} [online]. 2009 [cit. 2011-03-30]. Dostupné z~WWW: \href{http://www.debian.org/doc/FAQ/ch-pkgtools.en.html}{http://www.debian.org/doc/FAQ/ch-pkgtools.en.html}.
+\bibitem{Portage}{\it{Dokumentace Gentoo Linuxu}} [online]. 2006 [cit. 2011-03-30]. Dostupné z~WWW: \href{http://www.gentoo.org/doc/cs/handbook/handbook-x86.xml?part=2\&chap=1}{http://www.gentoo.org/doc/cs/handbook/handbook-x86.xml?part=2\&chap=1}.
 }
 %********************************* Seznam zkratek ************************************
 \seznamzkr
