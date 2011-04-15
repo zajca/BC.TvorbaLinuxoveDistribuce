@@ -7,13 +7,17 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{xltxtra}
 \usepackage[czech]{babel}
+\usepackage{listings}
 \usepackage{indentfirst}
 \usepackage{color}
+\usepackage[svgnames]{xcolor} 
 \usepackage{colortbl}
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{fancyhdr}
+\usepackage{fancyvrb}
+\usepackage{fancybox,calc} 
 \usepackage{hyperref}
 \usepackage{multirow}
 \usepackage{tocloft}
@@ -80,6 +84,12 @@
 \newcommand{\nmm}[1]{\section*{#1}} % definujeme styl nmm = nečíslovaný nadpis (není vysázený v obsahu) malými písmeny bez clearpage
 \newcommand{\nns}[1]{\section*{\uppercase{#1}}}		% definujeme styl ns = nečíslovaný nadpis na stejné stránce (není vysázený v obsahu)
 \newcommand{\sectionV}[1]{\section{\uppercase{#1}}}	%nadpis1 (section) velkým
+
+\newcommand{\nadpis}[1]{%nadpis pod kterym je vertikalni mezera
+	\vspace{4 mm}
+	\textbf{#1}\\
+	\vspace{4 mm}
+	}
 
 \newcommand{\obr}[3]{% styl \obr pro obrázky
 	\begin{figure}[h]
@@ -192,6 +202,20 @@
 \nobreak
 \clearpage	
 }
+% *******************Barevný code *******************
+\definecolor{seda}{gray}{0.8} % 10% 
+\newenvironment{colframe}{% 
+  \begin{Sbox} 
+    \begin{minipage} 
+      {\columnwidth-\leftmargin-\rightmargin-2\fboxsep-2\fboxrule-4pt} 
+}{% 
+
+  \end{minipage} 
+  \end{Sbox} 
+  \begin{center} 
+    \fcolorbox{black}{seda}{\TheSbox} 
+  \end{center} 
+} 
 
 % *************** NASTAVENÍ FORMÁTU ČÍSLOVÁNÍ OBRÁZKŮ A TABULEK ***************
 \def\thefigure{\arabic{figure}}      % číslování obrázků typu (y)
@@ -251,7 +275,7 @@
 \subsubsectionfont{\normalsize\bfseries}
 \paragraphfont{\small\bf}
 % definice nového stylu \comment -- komentář k šabloně
-\newcommand{\comment}[1]{\color{red}#1\color{black}}
+%\newcommand{\comment}[1]{\color{red}#1\color{black}}
 
 % ****************************** KONEC PREAMBULE ******************************
 \begin{document}
@@ -406,9 +430,96 @@ Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když j
 \end{itemize}
 
 \subsection{Scriptování v jazyce BASH}
+\b{B}ourne \b{A}gain \b{SH}ell je standardní interpret příkazů v Linuxu založený na Bourne shell. Funguje jako rozhraní mezi uživatelem a systémem
 %##########
 %###TODO###
 %##########
+\subsubsection{Základní informace a příklady}
+\nadpis{Komentáře}\\
+Komentáře jsou v bashi jako v jiných jazycích značeny znakem \# (sharp)
+    \begin{colframe} 
+      \begin{Verbatim}{frame=single} 
+   # cokoliv za tímto znakem je komentář
+\end{Verbatim} 
+    \end{colframe}
+\nadpis{Výpis na terminál}\\ 
+K výpisu na terminál slouží příkaz `echo`
+    \begin{colframe} 
+      \begin{Verbatim}{frame=single} 
+  echo hello world
+\end{Verbatim} 
+    \end{colframe}
+echo dokáže vypisovat také proměnné 
+    \begin{colframe} 
+      \begin{Verbatim}{frame=single} 
+  echo $PS1
+\end{Verbatim} 
+    \end{colframe}
+více v manuálových stránkách \b{man echo}\\
+
+\nadpis{Roury a přesměrování}\\
+Opravdu důležitým prvkem jsou roury a přesměrování. Roura se značí pomocí operátoru | a připojuje výstup jednoho procesu na vstup druhého procesu.
+    \begin{colframe} 
+      \begin{Verbatim}{frame=single} 
+  cat /var/log/auth.log | grep ssh
+\end{Verbatim} 
+    \end{colframe}
+
+Pro přesměrování slouží operátory:
+    \begin{colframe} 
+      \begin{Verbatim}{frame=single} 
+ >  #přesměrování standardního výstupu do souboru,
+     jestliže soubor existuje bude přepsán
+ >>  #jako předchozí, ale data přídá na konec souboru
+ <  #přesměrování standardního vstupu do souboru
+ <<text  #jako předchozí, ale při výskytu řetězce text zašle
+	  znak konce souboru
+\end{Verbatim} 
+    \end{colframe}
+\nadpis{Deskriptor souboru}\\
+BASH rozlišuje 3 deskriptory souboru
+\begin{description}
+ \item[0] standardní vstup
+ \item[1] standardní výstup
+ \item[2] standardní chybový výstup
+ \end{description}
+    \begin{colframe} 
+      \begin{Verbatim}{frame=single}
+ {
+  #funkce a různé procedury
+ } 2>&1 | tee $BUILD_DIR/LOG_$PROGRAM.log
+\end{Verbatim} 
+    \end{colframe}
+\nadpis{Závorky}\\
+    \begin{colframe} 
+      \begin{Verbatim}{frame=single}
+{} () [] [[]]
+\end{Verbatim} 
+    \end{colframe}
+
+\nadpis{Základní příkazy}
+ \begin{description}
+  \item[cp] kopíruje soubory
+  \item[rm] ruší soubory
+  \item[mkdir] vytváří adresáře
+  \item[rmdir] ruší prázdné adresáře
+  \item[ln] vytvoří odkazy na soubory
+  \item[chmod] změní přístupová práva k souborům
+  \item[ls, dir, vdir] vypíše obsah adresářů
+  \item[find] vyhledávání souborů
+  \item[which] zobrazí absolutní cestu k programu
+  \item[df] vypisuje informace o připojených FS
+  \item[ps] informace o spuštěných procesech
+  \item[cat, less] výpis souboru na obrazovku
+  \item[xargs] spustí zadaný příkaz a zbylé argumenty čte ze standardního vstupu
+  \item[grep] tiskne řádky, které odpovídají zadanému vzoru
+  \item[wc] vypíše počet písmen, slov a řádků
+  \item[sort] setřídí řádky
+ \end{description}
+
+\subsubsection{Smičky podmínky apd,...}
+\subsubsection{Funkce a pole}
+\subsubsection{Spojení s OS linux}
 
 
 \sectionV{Kompilace zdrojových kódů}
@@ -431,18 +542,26 @@ Soubor s nasteveními pro překlad. Jedná se v~zásadě o~BASH script, kterým 
 
 \subsection{Kompilace}
 Samotná kompilace sestává s~prostudování nejčastěji souborů INSTALL nebo README a~postupem podle návodu v nich. Ale obecně ji lze zahrnout do posloupnosti tří ``příkazů''.
-\begin{verbatim}
- ./configure [options]
-\end{verbatim}
+
+    \begin{colframe} 
+      \begin{Verbatim}{frame=single} 
+   ./configure [options]
+\end{Verbatim} 
+    \end{colframe} 
+
 vygeneruje soubory potřebné pro překlad
-\begin{verbatim}
- make
-\end{verbatim}
+    \begin{colframe} 
+      \begin{Verbatim}{frame=single} 
+   make
+\end{Verbatim} 
+    \end{colframe} 
 zkompiluje zdrojové kódy 
 \footnote{make neslouží pouze ke kompilaci zdrojových kódů programů, ale i~jako univerzální utilita pro překlad projektů. LFS jej například používá pro generování PDF,HTML,… verze knihy z XML souborů}
-\begin{verbatim}
- make install
-\end{verbatim} 
+    \begin{colframe} 
+      \begin{Verbatim}{frame=single} 
+   make install
+\end{Verbatim} 
+    \end{colframe} 
 nahraje soubory do systému všechny potřebné soubory
 
 \sectionV{Linuxové distribuce}
@@ -526,7 +645,6 @@ Vytvoření ze zdrojových kódů reprezentuje například použitá "distribuce
 
 \subsubsection{Derivát stávající distribuce}
 \subsubsection{Online sestavení}
-
 
 \sectionV{Zabezpečení Linuxového systému}
 \subsection{Mechanismy a správa hesel}
