@@ -203,8 +203,8 @@
 \clearpage	
 }
 % *******************Barevný code *******************
-\definecolor{seda}{gray}{0.8} % 10% 
-\newenvironment{colframe}{% 
+\definecolor{codeback}{gray}{0.8} % 10% 
+\newenvironment{codeframe}{% 
   \begin{Sbox} 
     \begin{minipage} 
       {\columnwidth-\leftmargin-\rightmargin-2\fboxsep-2\fboxrule-4pt} 
@@ -213,7 +213,7 @@
   \end{minipage} 
   \end{Sbox} 
   \begin{center} 
-    \fcolorbox{black}{seda}{\TheSbox} 
+    \fcolorbox{black}{codeback}{\TheSbox} 
   \end{center} 
 } 
 
@@ -437,36 +437,36 @@ Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když j
 \subsubsection{Základní informace a příklady}
 \nadpis{Komentáře}\\
 Komentáře jsou v bashi jako v jiných jazycích značeny znakem \# (sharp)
-    \begin{colframe} 
+    \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
    # cokoliv za tímto znakem je komentář
 \end{Verbatim} 
-    \end{colframe}
+    \end{codeframe}
 \nadpis{Výpis na terminál}\\ 
 K výpisu na terminál slouží příkaz `echo`
-    \begin{colframe} 
+    \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
   echo hello world
 \end{Verbatim} 
-    \end{colframe}
+    \end{codeframe}
 echo dokáže vypisovat také proměnné 
-    \begin{colframe} 
+    \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
   echo $PS1
 \end{Verbatim} 
-    \end{colframe}
+    \end{codeframe}
 více v manuálových stránkách \b{man echo}\\
 
 \nadpis{Roury a přesměrování}\\
 Opravdu důležitým prvkem jsou roury a přesměrování. Roura se značí pomocí operátoru | a připojuje výstup jednoho procesu na vstup druhého procesu.
-    \begin{colframe} 
+    \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
   cat /var/log/auth.log | grep ssh
 \end{Verbatim} 
-    \end{colframe}
+    \end{codeframe}
 
 Pro přesměrování slouží operátory:
-    \begin{colframe} 
+    \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
  >  #přesměrování standardního výstupu do souboru,
      jestliže soubor existuje bude přepsán
@@ -475,7 +475,7 @@ Pro přesměrování slouží operátory:
  <<text  #jako předchozí, ale při výskytu řetězce text zašle
 	  znak konce souboru
 \end{Verbatim} 
-    \end{colframe}
+    \end{codeframe}
 \nadpis{Deskriptor souboru}\\
 BASH rozlišuje 3 deskriptory souboru
 \begin{description}
@@ -483,19 +483,13 @@ BASH rozlišuje 3 deskriptory souboru
  \item[1] standardní výstup
  \item[2] standardní chybový výstup
  \end{description}
-    \begin{colframe} 
+    \begin{codeframe} 
       \begin{Verbatim}{frame=single}
  {
   #funkce a různé procedury
  } 2>&1 | tee $BUILD_DIR/LOG_$PROGRAM.log
 \end{Verbatim} 
-    \end{colframe}
-\nadpis{Závorky}\\
-    \begin{colframe} 
-      \begin{Verbatim}{frame=single}
-{} () [] [[]]
-\end{Verbatim} 
-    \end{colframe}
+    \end{codeframe}
 
 \nadpis{Základní příkazy}
  \begin{description}
@@ -517,7 +511,7 @@ BASH rozlišuje 3 deskriptory souboru
   \item[sort] setřídí řádky
  \end{description}
 
-\subsubsection{Smičky podmínky apd,...}
+\subsubsection{Podmínky a cykly}
 \subsubsection{Funkce a pole}
 \subsubsection{Spojení s OS linux}
 
@@ -543,25 +537,25 @@ Soubor s nasteveními pro překlad. Jedná se v~zásadě o~BASH script, kterým 
 \subsection{Kompilace}
 Samotná kompilace sestává s~prostudování nejčastěji souborů INSTALL nebo README a~postupem podle návodu v nich. Ale obecně ji lze zahrnout do posloupnosti tří ``příkazů''.
 
-    \begin{colframe} 
+    \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
    ./configure [options]
 \end{Verbatim} 
-    \end{colframe} 
+    \end{codeframe} 
 
 vygeneruje soubory potřebné pro překlad
-    \begin{colframe} 
+    \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
    make
 \end{Verbatim} 
-    \end{colframe} 
+    \end{codeframe} 
 zkompiluje zdrojové kódy 
 \footnote{make neslouží pouze ke kompilaci zdrojových kódů programů, ale i~jako univerzální utilita pro překlad projektů. LFS jej například používá pro generování PDF,HTML,… verze knihy z XML souborů}
-    \begin{colframe} 
-      \begin{Verbatim}{frame=single} 
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
    make install
 \end{Verbatim} 
-    \end{colframe} 
+    \end{codeframe} 
 nahraje soubory do systému všechny potřebné soubory
 
 \sectionV{Linuxové distribuce}
