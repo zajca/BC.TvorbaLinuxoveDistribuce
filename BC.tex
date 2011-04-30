@@ -896,9 +896,39 @@ Vytvoření ze zdrojových kódů reprezentuje například použitá "distribuce
 \item vytvoření tabulky souborových systémů, kompilace jádra systému, nastavení bootloaderu
 \end{enumerate}
 
-\subsubsection{Derivát stávající distribuce}
-Velmi populární se v posledních letech staly nesčetné deriváty distribuce Ubuntu. K tomuto slouží jednoduchý nástroj \b{Reconstructor}.
-\subsubsection{Online sestavení}
+\subsubsection{Sestavení ze stávající linuxové distribuce}
+Existuje hned několik nástrojů na sestavení tzv. derivátu Linuxové distribuce. Většinou jsou používány pro sestavení instalačního ISO obrazu na míru potřeb uživatele. To zahrnuje balíčky použité při instalaci, různé nastavení, grafická témata, písma apd,… Populární se staly především deriváty distribuce Ubuntu, pro Ubuntu existuje i nejvíce těchto nástrojů. K dispozici jsou nástroje jak pro desktop s bězným GUI nebo CLI,tak i nástroje webové, které sestaví distribuci v cloudu a uživatel stáhne jenom hotový obraz.
+
+\nadpis{Remastersys}\\
+%This tool has a newbie-proof GUI and works on both Ubuntu and Debian distros and any of their derivatives.
+%Remastersys works by transferring the distro you're running into an ISO image. You can choose to include your settings and personal data too, which makes it ideal for backups.
+\nadpis{UCK}\\
+%The Ubuntu Customisation Kit – which is tastefully shortened to UCK – works with the ISO of any of the four Ubuntu flavours (the GNOME based original Ubuntu, KDE-based Kubuntu, Xfce-based Xubuntu and education-targeted Edubuntu) and lets you add or remove any apps to the stock.
+%This tool is ideal for advanced users because during the customisation process it places you in a chrooted environment of the Live CD, enabling you to tweak any aspect of the distro.
+\nadpis{Reconstructor}\\
+%As the name suggests, this tool is a comprehensive suite for creating your own custom Ubuntu and Debian distros from an existing ISO image. It lets you tweak the wallpaper, themes, icons, applications, and more.
+%The browser-based tool requires no installation, but you'll need to pay a small fee before you can use all of its features.
+\nadpis{Revisor}\\
+%Unlike the three tools above, this app is for the RPM-based distro Fedora. Revisor has both a GUI and a command-line interface, and it can create USB Live media as well as install-only CDs and DVDs.
+%Instead of using ISO images, Revisor downloads packages from the internet, so it may take some time to compile depending on your connection speed and customised package selection.
+\nadpis{SUSE Studio}\\
+%Novell's SUSE Studio is taking the world by storm. It lets you select packages, set various configurations (including network detection, firewall settings and so on) and select a logo, background and more.
+
+%The most impressive part is that all this functionality is accessed from within a browser. You can even test-drive your new distro – again from within the browser – before downloading the ISO image to share with the world.
+\nadpis{Pungi}\\
+%This is the tool that the Fedora developers use to spin the official releases. It's a command-line tool written in Python.
+%Like Revisor, the tool gathers packages directly from the internet and then automatically splits them and creates CD-sized installable ISO images.
+\nadpis{Builder}\\
+%Builder is a series of bash scripts that are used by the gNewSense developers to create their distro. Along with the tool they've also written a handy nine-step guide to creating a customised distro from Ubuntu Hardy. The guide is available on their site.
+\nadpis{Linux-Live}\\
+%If you want a truly distro-agnostic way of customising your favourite Linux distribution, you need the Linux-Live set of scripts. The scripts work on any installed Linux distro and can create a Live system that you can boot from optical media or USB drives.
+%The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
+\nadpis{MySlax Creator}\\
+%Here's a Slackware customisation script with a unique twist. The tool creates customised versions of the Slackware-based Slax distro we mentioned above, but unlike the other tools we talk about here, MySlax Creator installs and work from within Windows!
+%It works with Slax ISO images and lets you add data to your own custom spins.
+\nadpis{NimbleX}\\
+\nadpis{LinuxCOE}\\
+\nadpis{Instalinux}\\
 
 \sectionV{Zabezpečení Linuxového systému}
 \subsection{Mechanismy a správa hesel}
