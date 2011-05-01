@@ -900,36 +900,144 @@ Vytvoření ze zdrojových kódů reprezentuje například použitá "distribuce
 Existuje hned několik nástrojů na sestavení tzv. derivátu Linuxové distribuce. Většinou jsou používány pro sestavení instalačního ISO obrazu na míru potřeb uživatele. To zahrnuje balíčky použité při instalaci, různé nastavení, grafická témata, písma apd,… Populární se staly především deriváty distribuce Ubuntu, pro Ubuntu existuje i nejvíce těchto nástrojů. K dispozici jsou nástroje jak pro desktop s bězným GUI nebo CLI,tak i nástroje webové, které sestaví distribuci v cloudu a uživatel stáhne jenom hotový obraz.
 
 \nadpis{Remastersys}\\
+Remastersys je jednoduchý grafický nástroj určený pro Ubuntu, Debian a všechny jejich deriváty. Remastersys dokáže převést aktuální běžící distribuci na vašem počítači do ISO obrazu. Je výborným nástojem pro zálohování dat systému, protože uloží všechny vaše uživatelská data a nastavení.\cite{Linux_Build}
+
+Výpis možností použití Remastersys: Jedná se opravdu o jednoduchý program.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+$ remastersys
+Usage of remastersys 2.0.18-1 is as follows:
+   sudo remastersys backup|clean|dist [cdfs|iso] [filename.iso]
+Examples:
+   sudo remastersys backup custom.iso
+    (to make a livecd/dvd backup and call the iso custom.iso)
+   sudo remastersys clean
+    (to clean up temporary files of remastersys)
+   sudo remastersys dist
+    (to make a distributable livecd/dvd of your system)
+   sudo remastersys dist cdfs
+    (to make a distributable livecd/dvd filesystem only)
+   sudo remastersys dist iso custom.iso
+    (to make a distributable iso named custom.iso but only
+                              if the cdfs is already present)
+\end{Verbatim} 
+    \end{codeframe} 
+\begin{center}
+\obr{./img/screens/remastersys.png}{0.5}{Grafické rozhraní programu Remastersys}
+ % remastersys.png: 625x388 pixel, 96dpi, 16.53x10.26 cm, bb=0 0 469 291
+\end{center}
 %This tool has a newbie-proof GUI and works on both Ubuntu and Debian distros and any of their derivatives.
 %Remastersys works by transferring the distro you're running into an ISO image. You can choose to include your settings and personal data too, which makes it ideal for backups.
-\nadpis{UCK}\\
+\nadpis{The Ubuntu Customisation Kit (UCK)}\\
+Program je určen pro Ubuntu a všechny jeho deriváty. Dovoluje odebrat nebo přidat jakékoliv aplikace na instalačním CD. UCK je určeno spíše pokročilejším uživatelům, protože po vytvoření LiveCD, do něj přihlásí uživatele prostřednictvím chroot a dovolí mu tak změnit prakticky cokoliv. Aplikace má jednoduché grafické rozhraní se spoustou dialogů, které vás provedou vytvořením LiveCD.\cite{Linux_Build}
 %The Ubuntu Customisation Kit – which is tastefully shortened to UCK – works with the ISO of any of the four Ubuntu flavours (the GNOME based original Ubuntu, KDE-based Kubuntu, Xfce-based Xubuntu and education-targeted Edubuntu) and lets you add or remove any apps to the stock.
 %This tool is ideal for advanced users because during the customisation process it places you in a chrooted environment of the Live CD, enabling you to tweak any aspect of the distro.
+
 \nadpis{Reconstructor}\\
+Jedinou placenou aplikací je program Reconstructor. Je určen pro vytvoření vlastního instalačního CD ze stávajícího ISO obrazu. Umožňuje změnit wallpaper, témata, icony, aplikace a mnoho jiného.
+Jedná se o webovou aplikaci a její cena je 5\$.\cite{Linux_Build}
+\begin{center}
+\obr{./img/screens/reconstructor.jpg}{0.5}{Webové rozhraní Reconstructoru}
+\end{center}
 %As the name suggests, this tool is a comprehensive suite for creating your own custom Ubuntu and Debian distros from an existing ISO image. It lets you tweak the wallpaper, themes, icons, applications, and more.
 %The browser-based tool requires no installation, but you'll need to pay a small fee before you can use all of its features.
+\newpage
 \nadpis{Revisor}\\
+Revisor je aplikace pro vytvoření vlastního instalčního CD/DVD/USB založeném na distribuci Fedora. Má jak grafické rozhraní tak CLI. Další rozdíl je také to, že Revisor nevytváří instalační medium z existujícího obrazu, ale stahuje vše z internetu, takže rychlost vytvoření média je také závislá na rychlosti vašeho připojení.\cite{Linux_Build}
+\begin{center}
+\obr{./img/screens/revisor.jpg}{0.7}{Grafické rozhraní programu Revisor}
+\end{center}
 %Unlike the three tools above, this app is for the RPM-based distro Fedora. Revisor has both a GUI and a command-line interface, and it can create USB Live media as well as install-only CDs and DVDs.
 %Instead of using ISO images, Revisor downloads packages from the internet, so it may take some time to compile depending on your connection speed and customised package selection.
 \nadpis{SUSE Studio}\\
-%Novell's SUSE Studio is taking the world by storm. It lets you select packages, set various configurations (including network detection, firewall settings and so on) and select a logo, background and more.
+Asi nejzajímavějším programem je webová aplikace od společnosti Novell, SUSE Studio. Nejenomže umí nakonfigurovat velké množství nastavení. Ale velice dobrou vlastností je testování systému přímo v prohlížeči. Výborná je také galerie, která obsahuje obrazy vytvořené ostatními uživateli, lze tak bez práce najít už funkční obraz dle potřeb uživatele a případně si již vytvořený obraz upravit.
 
-%The most impressive part is that all this functionality is accessed from within a browser. You can even test-drive your new distro – again from within the browser – before downloading the ISO image to share with the world.
+\obr{./img/screens/suse1.png}{0.7}{Webové stránka s výběrem již existujích sestavení}
+\begin{figure}[h]
+\begin{center}$
+\begin{array}{cc}
+\includegraphics[width=3in]{./img/screens/suse2.png} &
+\includegraphics[width=3in]{./img/screens/suse3.png}
+\end{array}$
+\end{center}
+\caption{Webové rozhraní s nastavením systému, v levo výběr základního rozhraní, v pravo podrobnější nastavení}
+\end{figure}
+
+%\begin{center}
+%\obr{./img/screens/suse1.png}{0.5}{Grafické rozhraní programu Revisor}
+%\end{center}
+%\begin{center}
+%\obr{./img/screens/suse2.png}{0.5}{Grafické rozhraní programu Revisor}
+%\end{center}
+%\begin{center}
+%\obr{./img/screens/suse3.png}{0.5}{Grafické rozhraní programu Revisor}
+%\end{center}
+\newpage
 \nadpis{Pungi}\\
+Pungi je nástrojem, který používají vývojári Fedory pro sestavení oficiálních vydání. Jedná se o program bez grafického rozhraní napsaný v pythonu a stejně jako Revisor stahuje balíčky z internetu a sestavuje z nich instalační médium.\cite{Linux_Build}
 %This is the tool that the Fedora developers use to spin the official releases. It's a command-line tool written in Python.
 %Like Revisor, the tool gathers packages directly from the internet and then automatically splits them and creates CD-sized installable ISO images.
+
 \nadpis{Builder}\\
+Builder je série scriptů napsaných v BASHi, které používají vývojáři derivátu distribuce Ubuntu ''gNewSense`` na sestavení jejich distribuce. Ke scriptům je také napsaný přehledný manuál jak je používat, který je dostupný online \cite{Linux_Build}.\\ \href{http://www.gnewsense.org/Builder/HowToCreateYourOwnGNULinuxDistribution}{http://www.gnewsense.org/Builder/HowToCreateYourOwnGNULinuxDistribution}
 %Builder is a series of bash scripts that are used by the gNewSense developers to create their distro. Along with the tool they've also written a handy nine-step guide to creating a customised distro from Ubuntu Hardy. The guide is available on their site.
+
 \nadpis{Linux-Live}\\
+Linux-Live je sada scriptů, která není závislá na distribuci, ale lze ji použít na jekémkoliv linuxu. Prakticky stačí stáhnou scripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Scripty už pak samy vytvoří Live system, který je možné nabootovat z CD nebo USB.
 %If you want a truly distro-agnostic way of customising your favourite Linux distribution, you need the Linux-Live set of scripts. The scripts work on any installed Linux distro and can create a Live system that you can boot from optical media or USB drives.
 %The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
+
 \nadpis{MySlax Creator}\\
+MySlax Creator jsou scripty určné k úpravě distribuce Slackware, především tedy k vytvoření vlastního obrazu odvozené distribuce SLAX. Jejich odlišnost je v tom že fungují přímo z Windows.
 %Here's a Slackware customisation script with a unique twist. The tool creates customised versions of the Slackware-based Slax distro we mentioned above, but unlike the other tools we talk about here, MySlax Creator installs and work from within Windows!
 %It works with Slax ISO images and lets you add data to your own custom spins.
-\nadpis{NimbleX}\\
-\nadpis{LinuxCOE}\\
-\nadpis{Instalinux}\\
 
+\nadpis{NimbleX}\\
+Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního derivátu NimbleX. Umožňuje vytvořit vlastní obraz několik jednoduchými kroky, na výběr je stáhnutí minimální obrazu nebo sestavení vlastního obrazu. U vlastního obrazu si uživatel vybere aplikace přehledně rozdělné do kategorií, wallpaper, nastavení zvuku, nastavení uživatelů a jazyk systému. Pak už jen počká na vygenerování obrazu, který je následujících 12hodin ke stažení.
+\begin{figure}[h]
+\begin{center}$
+\begin{array}{cc}
+\includegraphics[width=2in]{./img/screens/nible1.png} &
+\includegraphics[width=2in]{./img/screens/nible2.png}
+\end{array}$
+\end{center}
+\caption{Webové rozhraní s nastavením NimbleX, v levo výběr míry nastavení, v pravo nastavení programů v sekci office}
+\end{figure}
+\begin{figure}[h]
+\begin{center}$
+\begin{array}{cc}
+\includegraphics[width=2in]{./img/screens/nible3.png} &
+\includegraphics[width=2in]{./img/screens/nible4.png}
+\end{array}$
+\end{center}
+\caption{Webové rozhraní s nastavením NimbleX, v levo výběr wallpaperu, v pravo nastavení zvuku}
+\end{figure}
+
+%\nadpis{LinuxCOE}\\
+
+\nadpis{Instalinux}\\
+Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat z několika distribucí (Debian, Ubuntu, CentOS, Fedora, OpenSUSE, Scientific) a v dalších krocích základní nastavení systému a výběr aplikací. Výsledkem je ISO obraz, kterým nemusí mít ani 30MB. Pro podrobnější nastavení exituje Designer Pro, který umožňuje nastavit mnohem více. Výbornou vlastností je uložení profilu, který je možné použít znovu a upravit si jej.
+
+%This is a simple, easy way to install Linux. You follow the steps in the System Designer to choose from a bunch of different distributions and versions of Linux, and to choose what software you want included. The final product will be a fairly small ISO image (30 MB or less) that you can burn to a CD and boot from. It will automatically build your system for you, pulling what it needs from the network mirror you selected, while you sit back and relax.
+\begin{figure}[h]
+\begin{center}$
+\begin{array}{cc}
+\includegraphics[scale=0.5]{./img/screens/instalinux1.png} &
+\includegraphics[scale=0.5]{./img/screens/instalinux2.png}
+\end{array}$
+\end{center}
+\caption{Webové rozhraní Instalinux, v levo výběr distribuce, v pravo nastavení jazyka a časové zóny}
+\end{figure}
+\begin{figure}[h]
+\begin{center}$
+\begin{array}{cc}
+\includegraphics[scale=0.5]{./img/screens/instalinux3.png} &
+\includegraphics[scale=0.5]{./img/screens/instalinux4.png}
+\end{array}$
+\end{center}
+\caption{Webové rozhraní Instalinux, v levo výběr aplikací, v pravo nastavení uživatelů}
+\end{figure}
+Můj obraz vytvořený touto aplikací měl 8.2MB!
 \sectionV{Zabezpečení Linuxového systému}
 \subsection{Mechanismy a správa hesel}
 \subsection{Internetové zabezpečení}
@@ -969,6 +1077,7 @@ text
 \bibitem{Portage}{\it{Dokumentace Gentoo Linuxu}} [online]. 2006 [cit. 2011-03-30]. Dostupné z~WWW: \href{http://www.gentoo.org/doc/cs/handbook/handbook-x86.xml?part=2\&chap=1}{http://www.gentoo.org/doc/cs/handbook/handbook-x86.xml?part=2\&chap=1}.
 \bibitem{ABCBASH}{\it{ABCLinuxu}} [online]. 13.11.2010 [cit. 2011-04-29]. Bash. Dostupné z WWW: \href{http://www.abclinuxu.cz/software/programovani/jazyky/bash}{http://www.abclinuxu.cz/software/programovani/jazyky/bash}.
 \bibitem{ABC_SBASH}{\it{FUCHS, Jan. ABCLinuxu}} [online]. 2003 [cit. 2011-04-30]. Seriál: BASH. Dostupné z WWW: \href{http://www.abclinuxu.cz/serialy/bash}{http://www.abclinuxu.cz/serialy/bash}.
+\bibitem{Linux_Build}{\it{SHARMA, Mayank. TechRadar UK}} [online]. 2010-1-24 [cit. 2011-05-01]. 10 scripts to create your own Linux distribution. Dostupné z WWW: \href{http://www.techradar.com/news/software/operating-systems/10-scripts-to-create-your-own-linux-distribution-665247}{http://www.techradar.com/news/software/operating-systems/10-scripts-to-create-your-own-linux-distribution-665247}.
 }
 %********************************* Seznam zkratek ************************************
 \seznamzkr
