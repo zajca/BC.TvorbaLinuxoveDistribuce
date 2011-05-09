@@ -84,6 +84,8 @@
 \newcommand{\nmm}[1]{\section*{#1}} % definujeme styl nmm = nečíslovaný nadpis (není vysázený v obsahu) malými písmeny bez clearpage
 \newcommand{\nns}[1]{\section*{\uppercase{#1}}}		% definujeme styl ns = nečíslovaný nadpis na stejné stránce (není vysázený v obsahu)
 \newcommand{\sectionV}[1]{\section{\uppercase{#1}}}	%nadpis1 (section) velkým
+%\renewcommand{\section}[1]{\section{\uppercase{#1}}}
+\newcommand{\upc}[1]{\uppercase{#1}}
 
 \newcommand{\nadpis}[1]{%nadpis pod kterym je vertikalni mezera
 	\vspace{4 mm}
@@ -203,7 +205,8 @@
 \clearpage	
 }
 % *******************Barevný code *******************
-\definecolor{codeback}{gray}{0.8} % 10% 
+\definecolor{codeback}{gray}{0.8} %barva pozadi
+
 \newenvironment{codeframe}{% 
   \begin{Sbox} 
     \begin{minipage} 
@@ -391,27 +394,101 @@ text
 %********************************* Teoretická část ************************************
 \part{Teoretická část}
 
-\sectionV{Úvod do problematiky}
+\section{\upc{Linux a svět kolem něj}}
 \subsection{OS Linux}
 Linux je v~informatice označení pro unixový operační systém (původně pouze jeho jádro). Linux je šířen v~podobě distribucí, které je snadné nainstalovat nebo přímo používat (tzv.~LiveCD). Zároveň se díky použitým licencím jedná o~volně šiřitelný software, takže je možné ho nejen volně používat, ale~i~dále upravovat a~distribuovat (kopírovat,~sdílet). Tím se odlišuje od proprietárních systémů (např.~Microsoft Windows či Mac OS X), za které je nutné platit a~dodržovat omezující licence.~\cite{WLinux}
 \obr{./img/Linux_logo.png}{0.3}{Typický obrázek tučnáka spojovaný s linuxem}
 
-\subsubsection{Dnešní použití OS Linux}
-V soucasnosti je Linux součástí trhu se stolními počítači. Zpočátku se vývojáři Linuxu zaměřovali nasíťové systémy a~služby, kancelářské aplikace predstavovaly poslední bariéru, kterou bylo nutno překonat. Neradi priznáváme, že tomuto trhu dominuje Microsoft, proto v~posledních několika letech vznikala spousta alternativních projektů, jejichž cílem je nabídnout Linux jako vhodnou volbu na pracovní stanice. V~ránci těchto projektů vznikají snadno použitelná uživatelská rozhraní i~kancelářské aplikace, jako textové editory, tabulkové procesory a~podobně, kopatibilní s aplikacemi Microsoft Office.\\
-Co se týče použití na serverech, má Linux pověst stabilní a spolehlivé platformy, na které běží databázové a~další služby takových společností jako je Amazon, americká pošta, německá armáda, Google, Facebook a další. Velmi oblíbený je Linux u poskytovatelů internetoveho přístupu a služeb, kde se používá jako firewall, proxy server nebo webový server. Počítač s Linuxem najdete i~u každého správce některého UNIXového systému, který jej používá jako pohodlnou administrativní stanici. Clustery linuxových počítačů se podílely na vzniku filmů jako Titanic nebo Shrek. Na poštách slouží jako centrály řídící směrování zásilek, velké vyhledávací stroje pomocí nich prohledávají Internet. To je jen ukázka několika z~mnoha tisíc náročných úkolů, které dnes Linux na celém světě vykonávajá.\\
+\subsection{Dnešní použití OS Linux}
+V současnosti je Linux součástí trhu se stolními počítači. Zpočátku se vývojáři Linuxu zaměřovali na síťové systémy a~služby, kancelářské aplikace predstavovaly poslední bariéru, kterou bylo nutno překonat. V tomto trhu dominuje Microsoft, proto v~posledních několika letech vznikala spousta alternativních projektů, jejichž cílem je nabídnout Linux jako vhodnou volbu na pracovní stanice. V~rámci těchto projektů vznikají snadno použitelná uživatelská rozhraní i~kancelářské aplikace (textové editory, tabulkové procesory,…), kopatibilní s aplikacemi Microsoft Office (LibreOffice, Koffice, AbiWord,…)~\cite{LDP}.\\
+Co se týče použití na serverech, má Linux pověst stabilní a spolehlivé platformy, na které běží databázové a~další služby takových společností jako je Amazon, americká pošta~\cite{AmericanPostLinux}, německá armáda~\cite{GermanArmyNoLinux}, Google, Facebook a další. Velmi oblíbený je Linux u poskytovatelů internetoveho přístupu a služeb, kde se používá jako firewall, proxy server nebo webový server. Počítač s Linuxem najdete i~u každého správce některého UNIXového systému, který jej používá jako pohodlnou administrativní stanici. Clustery linuxových počítačů se podílely na vzniku filmů jako Titanic nebo Shrek. Na poštách slouží jako centrály řídící směrování zásilek, velké vyhledávací stroje pomocí nich prohledávají Internet. To je jen ukázka několika z~mnoha tisíc náročných úkolů, které dnes Linux na celém světě vykonávajá~\cite{LDP}.\\
 Stojí také za zmínku, že moderní Linux běží nejen na pracovních stanicích, středně a~velkých serverech, ale i~na "hračkách", jako jsou PDA či mobilní telefony, ve spoustě zařízení spotřební elektroniky, a~dokonce i~v~experimentálních náramkových hodinkách, Linux je jediný OS na světě, který pokrývá takto širokou škálu HW.~\cite{LDP}
 
-\newpage
+\subsection{Co je to distribuce}
+Distribuce, pokud je řeč o~distribucích operačňího systému, je balíkem jádra operačního systému~a doplňujícího SW. Distribuce nejsou jenom záležitostí Linuxu ikdyž jsou často milně spojovány pouze s Linuxem. Kromě Linuxových distribucí existují například distribuce s jádrem BSD (OpenBSD, NetBSD, FreeBSD,…), HURD (ArchHurd), XNU (PureDarwin) a~mnoho jiných. Přídávný SW distribuce je čistě volbou autora distribuce, může se tak jednat například o~SW projektu GNU (nejvýznamějšími komponenty jsou GCC, glibc, Emacs nebo GNOME)~\cite{GNUweb}, SW projektu BSD, proprietální (uzavřený) SW nebo jakýkoliv jiný SW jehož licence dovoluje použití v distribuci.
 
-\subsection{Distribuce Linux from scratch}
+\subsection{GNU a Linux} 
+Rekurzivní akronym pro GNU is Not Unix, kde GNU znamená GNU is Not Unix,…
+Projekt založený v roce 1984 Richardem Stallmanem a společností Free Software Foundation na vytvoření svobodného a otevřeného operačního systému (dále jen OS) na základě OS UNIX. Zpočátku soubor systémových programů, kterým chyběla hlavní součást - jádro (kernel). Později se jako jádro použil projekt Linuse Torvaldse Linux. V mínění veřejnosti se společný OS GNU/Linux přejmenoval pouze na Linux podle jádra. Jedna z mála distribucí, které dodržují správné pojmenování tohoto OS, je Debian GNU/Linux.
+GNU obsahuje příkazy každodenní potřeby jako tar, awk, top, dd, ale třeba i Samba, xfig apod. De facto veškerý software vydavaný v rámci projektu GNU je licencován GNU General public license (GPL). Dodnes je vyvýjeno původní microkernel jádro GNU/HURD, avšak ani za 21let vývoje jej vývojáři nedokázali dovést ke stabilnímu vydání.~\cite{GNUABCLinuxu}~\cite{GNUweb}~\cite{ROOT_HURD}
+
+
+\section{\upc{Linuxové distribuce}}
+Linuxová distribuce je v~informatice označení pro snadno použitelný Linuxový systém, přičemž název je odvozen od jádra Linuxu, které je základní součástí každé distribuce. Distribuce jsou vytvářeny proto, aby uživatel nemusel jádro a~doplňující software sám náročným způsobem skládat do funkčního celku. Obsažený software je volně dostupný na Internetu (typicky open source software). Pro odlišení jsou distribuce pojmenovány (např. Ubuntu, Fedora, …), přičemž každá je jinak zaměřena (pro nezkušeného uživatele, pro vývojáře, výuku atp.).\cite{WDIST}
+
+\subsection{Hlavní odlišnosti}
+Linuxové distribuce se liší v~mnoha více či méně zásadních ohledech ohledech. Nejvýraznějšími rozdíly, které dělají distribuce distrbucemi jsou: Cyklus vydání, balíčkovací systém, základní SW výbava, nasazení,…
+\subsubsection{Cyklus vydání}
+V zásadě rozlišujeme 3 vydávací cykly:
+\begin{description}
+ \item[Dlouhý cyklus vydání] Tento cyklus vydání je delší než jeden rok. Používají ho distribuce, které nezakládají na aktuálnosti SW, ale na jeho stabilitě. Předevší pak \b{Debian (stable)} a~\b{Red Hat Enterprise Linux} (dále pouze RHEL). Vývojáři Debianu před nedávnem (7. 2009) rozhodli o~tom, že bude Debian vydáván v pravidelných intervalech a~to tak, že na konci každého lichého roku dojde k zmrazení větve \it{testing}, ta je následně nějaký čas testována aby byly odstraněny všechny bugy, po jejich odstranění je prohlášena za stabilní a~balíčky v~ní obsažené jsou přesunuty do větve \it{stable}
+\footnote{časový odstup mezi vydáním verze 5 lenny a aktuální 6 squeeze byl 2 roky. Nejdelší odstup mezi vydáními byl 3 roky a~to mezi vydáním 3.0 woody a~3.1 sarge}. RHEL vychází v nepravidelných cyklech (cca 2-3roky) a~v~mezičase vychází updaty. 
+\footnote{časový odstup mezi verzí 5 a~6, byl 3.5roku a~v~mezičase vyšlo 5 update verzí.}
+ \item[Krátký cyklus vydání] Typicky půl roku až rok. Používá ho většina desktopových distribucí. Tento vydávací cyklus je kompromisem mezi stabilitou a~aktuálností SW. Např. \b{Ubuntu}
+\footnote{\b{Ubuntu}: cyklus vydání je půl roku, u~jeho derivátů pak zpravidla o~něco málo delší. Vydaní probíhá pravidelně v dubnu a říjnu, přičemž každé dva roky vyjde LTS verze s podporou na dva roky. Poslední verze: 11.04}, \b{Mandriva} 
+\footnote{\b{Mandriva}: cyklus dlouhý půl roku, vychází verze s~číslem roku a~verze spring. Poslední verze: 2010 Spring}(dříve Mandrake), \b{Fedora} 
+\footnote{\b{Fedora}: cyklus vydání každého půl roku. Poslední verze: 14},…
+ \item[Průbězné aktualizace (rolling-updates)] Distribuce používající rolling-updates se vyznačují především aktuálností SW, většinou udržují větev pro uživatele a~testovací větev kde je SW podroben krátkému testovaní, než se přesune do uživatelské větve. Tyto distribuce většinou vydávají jednou za čas instalační liveCD aby bylo možné je nainstalovat i~na aktuální HW. \b{Gentoo}, \b{Arch Linux}, \b{Debian sid (experimental)}
+\footnote{testovací větev debianu, která se jmenuje Sid používá právě rolling-updates, po otestování SW obsažený ve větvy putuje do větve \it{testing}},…
+ \end{description}
+
+\subsubsection{Balíčkovací systémy}
+Balíčkovací systémy jsou standartní součástí nejen Linuxových distribucí. Balíčkovacím systémem je i~systém aktualizací MS Windows nebo oblíbené úložiště aplikací (markety) ve smartphonech (Android market, BlackBerry App World, Ovi Store, Windows Marketplace,…).
+\begin{description}
+ \item[DPKG] \it{Debian package management system} Jedná se o~základní ``nízko úrovňový`` balíčkovací systém pro debian, umožňuje pouze instalaci mazání a~výpis balíčků (balíčky jsou vždy s~příponou deb).\\
+Nejčastěji se používají programy, které mají rozšířenou funkcionalitu, jsou založené a~volají dpkg. Nejznámějším je \b{APT} \it{(Advanced Packaging Tool)}\cite{DPKG}, od apt se upouští a doporučuje se používat jeho frontend \b{Aptitude}, protože aptitude dokáže lépe řešit konflikty balíčků, poskytuje jednotné rozhraní pro správu balíčků
+\footnote{APT je několik aplikací (apt-cache, apt-get,…), které každý poskytují jinou funkci} a~GUI založené na ncurses Pro tento balíčkovací systém existuje i~velké množství GUI: synaptic (GTK), Ubuntu Software Center (GTK),KPackage (Qt),…\\
+Tento balíčkovací systém používájí kromě již zmíněného debianu i~jeho deriváty jako je Ubuntu, ale i~další distribuce a~OS. Existuje port pro MacOSX nebo Opensolaris\cite{DPKG}.
+ \item[RPM] \it{Red Hat Package Manager} Druhý nejčastěji používaný balíčkovací systém. Je používán množstvím velkých distribucí včele s RHEL (Red Hat Enterprise Linux), také je používán distribucemi Fedora, Mandriva, SUSE,ArkLinux,...\\
+RPM označuje jak název základního balíčkovacího systému tak i~název balíčků samotných (vždy s~příponou rpm). RPM se především vyznačuje nepřenosností z jedné distribuce na druhou (narozdíl od deb balíčků kde to více méně funguje). Proto se lze často setkat s názorem,že rmp neumí pořádně řešit závislosti,tímto názorem se většinou vyznačují lidé, kteří kombinují repozitáře různých distribucí založaných na RPM.\\
+RPM se často vyznačuje ještě jedním specifikem a~to tím, že na rozdíl od DPKG kde se nejčastěji používají obrovské repositáře s~obrovským množstvím balížků se u RPM používá velké množství repositářů s už ne tak velkým množstvím software. Např. Debian používá jeden repozitář pro každou jeho verzi (Stable,Testing,Unstable) kdyžto u RPM distribucí se setkáme s repozitáři zvláš pro multimedia a core system apd...\\
+ \item[PACMAN] Jedná se pravděpodobně o~jeden s~nejrychlejších balíčkovacích systémů a~je součástí distribuce ArchLinux jejích derivátů larch, FaunOS, Archie, Chakra a~je také používán v distribuci DeLi Linux a~Frugalware Linux (ve Frugalware linux byl vytvořen fork a~jeho vývoj probíhá odděleně). Pacman má výhodu proti jiným balíčkovacím systémům nejen v rychlosti, ale také v tvoření balíčků. Na rozdíl od DPKG, kde existují rozsáhlé návody jak vytvořit balíček stačí u~Pacmana vytvořit podle jasných pravidel script s názvem PKGBUILD, který obsahuje všechno od licencí, závislostí, zdrojů kontrolních součtů až po návod jak postupovat při sestavení balíčku, poté stačí napsat makepkg a~balíček se sám vytvoří bez jakéhokoliv zásahu.\\
+Na tomto principu fungují jak source repoziráře v~ArchLinuxu zvané ABS tak i~uživatelské repozitáře AUR.\\
+Pro pacman existuje velké množství wrapperů
+\footnote{wrapper je program, který funguje pouze s jinym programem a rozšiřuje jeho funkcionalitu} pacman-color (přidává do výstupu barvy). Defaultní Pacman také neumí pracovat uživatelským repozitáři AUR proto vzniklo několik wrapperů, které přidávají podporu vyhledávání a~instalace balíčků z~AUR např. Clyde nebo yaourt. Jiné wrappery zase přidávají podporu stahování z více zdrojů naráz aby byl balíčet stáhnut co nejdříve např. PowerPill nebo Bauerbill.\\
+Všechny tyto programy pracují s~repozitáři a~balíčky stejně jsou tedy kompatibilní a~mají dokonce i stejnou syntaxi.\\
+Existují i~GUI pro pacman, nejznámější je asi shaman (Qt).
+ \item[Portage] Portage je balíčkovací systém GNU/Linuxové distribuce Gentoo Linux, který je podobný systému portů z FreeBSD. Portage je napsán v programovacím jazyce Python. Hlavním příkazem je zde příkaz emerge. Tento balíčkovací systém využívá balíčky ebuild, které zajistí zkompilovaní podle nastavených systémových proměnných jako jsou například USE, CFLAGS, CHOST a LINGUAS. Portage automaticky dohledá závislosti, stáhne požadované balíčky a program nainstaluje.\\
+Existují různé grafické nadstavby, např. Kuroo (Qt) nebo Porthole (GTK).
+ \item[Další,…] Další balíčkovací systémy je např. \b{slapt-get} (balíčkovací systém,který používá nejstarší dodnes vyvíjená distribuce Slackware a~její deriváty (BackTrack, VectorLinux,Slax,...) balíčkovací systém používá obyčejné Tar balíčky komprimované Gzipem), \b{Equo}, \b{Smart Package Manager},…
+ \end{description}
+
+\subsubsection{Nasazení}
+Linuxové distribuce se dále liší podle druhu zařízení na, které jsou určena. Nejčastěji je to server nebo desktop, ale existují i~jiné druhy zařízení na, kterých linux běží.
+\begin{description}
+ \item[User choise (volba uživatele)] Některé distribuce si nedělají starosti s určením na, kterém druhu zařízení budou použity. Poskytují pouze základní sadu nástrojů (programů), které uživatel doplňuje podle svých požadavků. Toto je typická vlastnost Debianu (u debianu už dnes existují přímo různé konfigurace distribuce jako server, desktop nebo laptop), Archlinuxu, LFS nebo Gentoo.\\
+Tyto distribuce je možné většinou nasadit, na vsechny níže zmíněné zařízení.
+ \item[Desktop] Dalšími zařízeními na které je linux určen jsou desktopové (personální) počítače. Tyto distribuce poskytují grafické programy pro bězné použití např. v kanceláři. Typicky např. Ubuntu (desktop), Fedora, Mandriva,…
+ \item[Server] Serverové distribuce obsahují základní nástroje pro nasazení na serverových počítačích a~neobsahují narozdíl desktopových distribucí grafický server Xorg, ale obsahují serverové nástroje jako je např. webový server apache. Typicky serverovou distribucí je např. Ubuntu (server), CentOS, RHEL,…
+ \item[Enterprise] Enterprise distribuce jsou distribuce určené pro podnikové nasazení a~na rozdíl od bězných distribucí mají placenou podporu ze strany dodavatele a~delší testovací dobu např. SLED (SUSE Linux Enterprise Desktop) nebo RHEL.
+ \item[Embedded] Jedná se o~distribuce směrované na určité zařízení. Nejznámější je např. openwrt což je distribuce určená pro síťové nasazení, např, routery, gatewaye apd,…\\
+Linux, ale najde i~v~embedded zařízeních jako jsou settopboxy, televize, IP kamery, pračky, mikrovlnky, ledničky a~jiné jednoúčelové zařízení,…
+ \item[Mobilní] Asi nejnovějším prostředí ve, kterém momentálně již dominuje systém linux jsou mobilní telefony. Zde snad ani není třeba zmiňovat momentálně nejprodávanější OS pro mobilní telefony od společnosti Google, Android. Existují, ale i~další distribuce pro mobilní telefony jako je OpenMoko používaný v~mobilu Neo FreeRunner nebo Bada od společnosti Samsung.
+ \item[další,…] 
+ \end{description}
+
+\subsubsection{Architektury}
+Linuxové distribuce jsou také směřovány na různé procesorové architektury, většinou distribuce nesměřují jenom na jednu architekturu, ale na více architektur současně. Příkladem za všechny je distribuce Debian, která je známá také podporou pro největší množství architektur. Např. MS Windows 7 je dostupný pouze pro architektury x86 a x86\_64 (x64), zatímco Debian podporuje oficiálně 10 architektur a~neoficiálně 16 architektur. Nejčastěji však většina distribucí podporuje architektury x86 a x86\_64 a~v~poslední době také ARM.
+
+\subsubsection{Další rozdíly}
+Rozdíly ikdyž ne tak zásadní jsou v softwarové výbavě, ta sice jde ruku v~ruce s~nasazením linuxu, ale ve světě desktopů a~hlavně distribuce Ubuntu se v posledních několika letech oběvují distribuce, které se odlišují pouze v~základním uživatelském prostředí. Oficiálně  společnost Canonical (tvůrce Ubuntu) vytváří 4 distribuce, které se odlišují od Ubuntu pouze v~základním uživatelském prostředí a~další 4 distribuce, které se liší v softwarove výbavě.
+%
+% TODO dopsat distribuce
+%
+\\
+Velký rozdíl zavádí do linuxových ditribucí GoboLinux. Tato distribuce překopává základní rozdělení Linuxového filesystému na více intuitivní a~uživatelsky příznivější.
+%
+% TODO rozepsat
+%
+
+\section{\upc{Distribuce Linux from scratch}}
 LFS je projekt poskytující návod, který vás provede krok za krokem sestavením vlastní Linuxové distribuce ze zdrojových kódů.~\cite{LFSwMAIN}
 %Linux From Scratch (LFS) is a project that provides you with step-by-step instructions for building your own customized Linux system entirely from source
 \obr{./img/lfs-logo.png}{1}{Logo Linux From Scratch}
 
-\subsubsection{Užití Linux From Scratch}
+\subsection{Užití Linux From Scratch}
 Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když je možné si jednoduše stáhnout už sestavenou distribuci Linuxu. Avšak i~přes některé obtíže jenž sestavování LFS skýtá, má tento proces své výhody.~\cite{LFS}
 %Many wonder why they should go through the hassle of building a Linux system from scratch when they could just download an existing Linux distribution. However, there are several benefits of building LFS. Consider the following:
-
 \begin{itemize}
  \item LFS učí uživatele jak Linux funguje uvnitř.
 %LFS teaches people how a Linux system works internally
@@ -429,15 +506,29 @@ Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když j
 %You will compile the entire system from source, thus allowing you to audit everything, if you wish to do so, and apply all the security patches you want or need to apply. You don't have to wait for someone else to provide a new binary package that (hopefully) fixes a security hole. Often, you never truly know whether a security hole is fixed or not unless you do it yourself.
 \end{itemize}
 
-\subsection{Scriptování v jazyce BASH}
+\subsection{Další projekty LFS}
+\begin{description}
+ \item[BLFS] Beyond Linux From Scratch - projekt jehož cílem je vytvořit návod pro rozšíření základního sestavení LFS a umožnit tak uživateli co nejjednodušeji dotvořit vlastní distribuci.
+ \item[ALFS] Automated Linux From Scratch - cílem prjektu je vytvořit nástroje pro autmatické sestavování LFS a BLFS
+ \item[CLFS] Cross Linux From Scratch - jak už název napovídá, projekt umozňuje cross-compilaci, tedy sestavení LFS na mnoha jiných typech systémů a archytektur.
+ \item[HLFS] Hardened Linux From Scratch - se snaží o~vytvoření maximálně bezpečného sestavení LFS, odolného proti hrozbám hackerů a~jiným bezpečnostním hrozbám.
+ \item[Hints] jedná se o~kolekci dokumnetů, které popisují jak vylepšit vaše sestavení LFS jinak než je popsáno v LFS a BLFS.
+ \item[LiveCD] projekt jehož hlavním cílem je vytovřit LiveCD vhodné jako hostotitelský systém pro sestavení LFS.
+ \end{description}
+%BLFS :: Beyond Linux From Scratch helps you extend your finished LFS installation into a more customized and usable system.
+%ALFS :: Automated Linux From Scratch provides tools for automating and managing LFS and BLFS builds.
+%CLFS :: Cross Linux From Scratch provides the means to cross-compile an LFS system on many types of systems.
+%LFS :: Hardened Linux From Scratch focuses on building an LFS system with heightened security.
+%ints :: The Hints project is a collection of documents that explain how to enhance your LFS system in ways that are not included in the LFS or BLFS books.
+%iveCD :: The LiveCD project provides a CD that is useful as an LFS build host or as a general rescue CD.
+%Patches :: The Patches project serves as a central repository for all patches useful to an LFS user.
+
+\section{\upc{Scriptování v jazyce BASH}}
 (\b{B}ourne \b{A}gain \b{SH}ell)\\
 Interpretovaný, neobjektový jazyk, určený především pro administraci a automatizaci *nix operačních systémů. Skripty obvykle většinu požadované činnosti vykonávají voláním systémových utilit. Podpora syntaxe Bashe je u textových editorů obvyklá. Bash je nainstalován prakticky na každém desktopovém Linuxu a na mnoha dalších *nix systémech.\cite{ABCBASH}
 
-%##########
-%###TODO###
-%##########
-\subsubsection{Základní informace a příklady}
-\nadpis{Komentáře}\\
+\subsection{Základní informace a příklady}
+\subsubsection{Komentáře}
 Komentáře jsou v bashi jako v jiných jazycích značeny znakem \# (sharp)
     \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
@@ -458,7 +549,7 @@ $ echo "/bin/sh -> `readlink -f /bin/sh`"
 \end{Verbatim} 
     \end{codeframe}
 
-\nadpis{Výpis na terminál}\\ 
+\subsubsection{Výpis na terminál}
 K výpisu na terminál slouží příkaz `echo`
     \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
@@ -473,7 +564,7 @@ echo dokáže vypisovat také proměnné
     \end{codeframe}
 více v manuálových stránkách \b{man echo}\\
 
-\nadpis{Proměnné}\\
+\subsubsection{Proměnné}
 Celý linuxový systém využívá proměnných a funkcí uložených přímo v BASHi. Vypsat všechny proměnné a funkce známé aktuálnímu interpretu příkazů můžeme příkazem \it{set}\cite{ABC_SBASH}.\\
 Mezi základní proměnné v systému patří např.
     \begin{codeframe} 
@@ -510,7 +601,7 @@ Nová hodnota
 $ unset TRI
 \end{Verbatim} 
     \end{codeframe}
-\nadpis{Roury a přesměrování}\\
+\subsubsection{Roury a přesměrování}
 Opravdu důležitým prvkem jsou roury a přesměrování. Roura se značí pomocí operátoru | a připojuje výstup jednoho procesu na vstup druhého procesu.
     \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
@@ -529,7 +620,7 @@ Pro přesměrování slouží operátory:
 	  znak konce souboru
 \end{Verbatim} 
     \end{codeframe}
-\nadpis{Deskriptor souboru}\\
+\subsubsection{Deskriptor souboru}
 BASH rozlišuje 3 deskriptory souboru
 \begin{description}
  \item[0] standardní vstup
@@ -544,7 +635,7 @@ BASH rozlišuje 3 deskriptory souboru
 \end{Verbatim} 
     \end{codeframe}
 
-\nadpis{Základní příkazy}
+\subsubsection{Základní příkazy}
  \begin{description}
   \item[cp] kopíruje soubory
   \item[rm] ruší soubory
@@ -564,8 +655,8 @@ BASH rozlišuje 3 deskriptory souboru
   \item[sort] setřídí řádky
  \end{description}
 
-\subsubsection{Podmínky a cykly}
-\nadpis{IF}\\
+\subsection{Podmínky a cykly}
+\subsubsection{IF}
 Obecná struktura:
     \begin{codeframe} 
       \begin{Verbatim}{frame=single}
@@ -646,7 +737,7 @@ Operátory testování souborů:
 [ -x výraz ] - soubor je spustitelný
 \end{Verbatim} 
     \end{codeframe}
-\nadpis{CASE}\\
+\subsubsection{CASE}
 Obecná struktura:
     \begin{codeframe} 
       \begin{Verbatim}{frame=single}
@@ -669,7 +760,7 @@ case $1 in
 esac
 \end{Verbatim} 
     \end{codeframe}
-\nadpis{FOR}\\
+\subsubsection{FOR}
 příkaz for funguje stejně jako v jiných programovacích jazycích, ale jeho syntaxe je trochu jiná.
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
@@ -681,7 +772,7 @@ for cislo in 10 20 30 40 50 60 70 80 90 100; do
 done
 \end{Verbatim} 
     \end{codeframe}
-\nadpis{WHILE}\\
+\subsubsection{WHILE}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 cislo=0
@@ -692,7 +783,7 @@ while [ "$cislo" -ne 100 ]; do
 done
 \end{Verbatim} 
     \end{codeframe}
-\nadpis{UNTIL}\\
+\subsubsection{UNTIL}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 cislo=0
@@ -704,8 +795,8 @@ done
 \end{Verbatim} 
     \end{codeframe}
 
-\subsubsection{Funkce,pole příkazy}
-\nadpis{Speciální proměnné}\\
+\subsection{Funkce,pole příkazy}
+\subsubsection{Speciální proměnné}
 Informace o názvu skriptu, počtu předaných argumentů a argumenty samotné jsou uloženy ve speciálních proměnných. Tyto proměnné se používájí stejným způsobem ve scriptech i ve funkcích\cite{ABC_SBASH}.
 \begin{description}
  \item[\$0] název skriptu
@@ -716,7 +807,7 @@ Informace o názvu skriptu, počtu předaných argumentů a argumenty samotné j
  \item[\$*] obsahuje všechny argumenty oddělené prvním znakem z \$IFS
  \item[\$@] jako předchozí, ale k oddělení se nepoužívá první znak z \$IFS
  \end{description}
-\nadpis{Funkce}\\
+\subsubsection{Funkce}
 Provádění funkcí je mnohem rychlejší než provádění skriptů, protože funkce si shell udržuje trvale předzpracované v paměti. Funkce musí být 
 definována dříve než bude použita. Příkaz export lze použít i pro funkce, ale musí být zapnutý mód allexport\cite{ABC_SBASH}.
     \begin{codeframe}
@@ -754,7 +845,7 @@ echo $jedna
 echo $dva
 \end{Verbatim} 
     \end{codeframe}
-\nadpis{Příkazy}\\
+\subsubsection{Příkazy}
 Příkazy můžeme rozdělit na zabudované a normální. Zabudované příkazy nemůžeme spustit jako externí programy, ale většinou mají své ekvivalenty ve formě externích programů. Normální příkazy jsou externí programy a jejich vykonání je pomalejší než u zabudovaných příkazů\cite{ABC_SBASH}.
 \begin{description}
  \item[break] vyskočí z cyklu
@@ -770,12 +861,16 @@ Příkazy můžeme rozdělit na zabudované a normální. Zabudované příkazy 
  \item[printf] není dostupný ve starých shellech a při vytváření formátovaného výstupu byste mu měli dávat přednost před příkazem echo podle specifikace X/Open
  \end{description}
 
-
+%
+%
+%TODO dopiš pole!,... vole
+%
+%
 
 %\subsubsection{Spojení s OS linux}
 
 
-\sectionV{Kompilace zdrojových kódů}
+\section{\upc{Kompilace zdrojových kódů}}
 \subsection{Překladač (kompilátor)}
 Překladač (též kompilátor, anglicky compiler z~to compile – sestavit, zpracovat) je v~nejčastějším smyslu slova nástrojem používaným programátory pro vývoj softwaru. Kompilátor slouží pro překlad algoritmů zapsaných ve vyšším programovacím jazyce do jazyka strojového, či spíše do strojového kódu. Z širšího obecného hlediska je kompilátor stroj, respektive program, provádějící překlad z nějakého vstupního jazyka do jazyka výstupního. Z~matematického hlediska je kompilátor funkce, která mapuje jeden nebo více zdrojových kódů podle překladových parametrů na kód ve výstupním jazyce.~\cite{Wkom}
 \subsection{Důležité soubory}
@@ -816,74 +911,6 @@ zkompiluje zdrojové kódy
 \end{Verbatim} 
     \end{codeframe} 
 nahraje soubory do systému všechny potřebné soubory
-
-\sectionV{Linuxové distribuce}
-Linuxová distribuce je v~informatice označení pro snadno použitelný Linuxový systém, přičemž název je odvozen od jádra Linuxu, které je základní součástí každé distribuce. Distribuce jsou vytvářeny proto, aby uživatel nemusel jádro a~doplňující software sám náročným způsobem skládat do funkčního celku. Obsažený software je volně dostupný na Internetu (typicky open source software). Pro odlišení jsou distribuce pojmenovány (např. Ubuntu, Fedora, …), přičemž každá je jinak zaměřena (pro nezkušeného uživatele, pro vývojáře, výuku atp.).\cite{WDIST}
-
-\subsection{Hlavní odlišnosti}
-Linuxové distribuce se liší v~mnoha více či méně zásadních ohledech ohledech. Nejvýraznějšími rozdíly, které dělají distribuce distrbucemi jsou: Cyklus vydání, balíčkovací systém, základní SW výbava, nasazení,…
-\subsubsection{Cyklus vydání}
-V zásadě rozlišujeme 3 vydávací cykly:
-\begin{description}
- \item[Dlouhý cyklus vydání] Tento cyklus vydání je delší než jeden rok. Používají ho distribuce, které nezakládají na aktuálnosti SW, ale na jeho stabilitě. Předevší pak \b{Debian (stable)} a~\b{Red Hat Enterprise Linux} (dále pouze RHEL). Vývojáři Debianu před nedávnem (7. 2009) rozhodli o~tom, že bude Debian vydáván v pravidelných intervalech a~to tak, že na konci každého lichého roku dojde k zmrazení větve \it{testing}, ta je následně nějaký čas testována aby byly odstraněny všechny bugy, po jejich odstranění je prohlášena za stabilní a~balíčky v~ní obsažené jsou přesunuty do větve \it{stable}
-\footnote{časový odstup mezi vydáním verze 5 lenny a aktuální 6 squeeze byl 2 roky. Nejdelší odstup mezi vydáními byl 3 roky a~to mezi vydáním 3.0 woody a~3.1 sarge}. RHEL vychází v nepravidelných cyklech (cca 2-3roky) a~v~mezičase vychází updaty. 
-\footnote{časový odstup mezi verzí 5 a~6, byl 3.5roku a~v~mezičase vyšlo 5 update verzí.}
- \item[Krátký cyklus vydání] Tipicky půl roku až rok. Používá ho většina desktopových distribucí. Tento vydávací cyklus je kompromisem mezi stabilitou a~aktuálností SW. Např. \b{Ubuntu}
-\footnote{\b{Ubuntu}: cyklus vydání je půl roku, u~jeho derivátů pak zpravidla o~něco málo delší. Vydaní probíhá pravidelně v dubnu a říjnu, přičemž každé dva roky vyjde LTS verze s podporou na dva roky. Poslední verze: 11.04}, \b{Mandriva} 
-\footnote{\b{Mandriva}: cyklus dlouhý půl roku, vychází verze s~číslem roku a~verze spring. Poslední verze: 2010 Spring}(dříve Mandrake), \b{Fedora} 
-\footnote{\b{Fedora}: cyklus vydání každého půl roku. Poslední verze: 14},…
- \item[Průbězné aktualizace (rolling-updates)] Distribuce používající rolling-updates se vyznačují především aktuálností SW, většinou udržují větev pro uživatele a~testovací větev kde je SW podroben krátkému testovaní, než se přesune do uživatelské větve. Tyto distribuce většinou vydávají jednou za čas instalační liveCD aby bylo možné je nainstalovat i~na aktuální HW. \b{Gentoo}, \b{Arch Linux}, \b{Debian sid (experimental)}
-\footnote{testovací větev debianu, která se jmenuje Sid používá právě rolling-updates, po otestování SW obsažený ve větvy putuje do větve \it{testing}},…
- \end{description}
-
-\subsubsection{Balíčkovací systémy}
-Balíčkovací systémy jsou standartní součástí nejen Linuxových distribucí. Balíčkovacím systémem je i~systém aktualizací MS Windows nebo oblíbené úložiště aplikací (markety) ve smartphonech (Android market, BlackBerry App World, Ovi Store, Windows Marketplace,…).
-\begin{description}
- \item[DPKG] \it{Debian package management system} Jedná se o~základní ``nízko úrovňový`` balíčkovací systém pro debian, umožňuje pouze instalaci mazání a~výpis balíčků (balíčky jsou vždy s~příponou deb).\\
-Nejčastěji se používají programy, které mají rozšířenou funkcionalitu, jsou založené a~volají dpkg. Nejznámějším je \b{APT} \it{(Advanced Packaging Tool)}\cite{DPKG}, od apt se upouští a doporučuje se používat jeho frontend \b{Aptitude}, protože aptitude dokáže lépe řešit konflikty balíčků, poskytuje jednotné rozhraní pro správu balíčků
-\footnote{APT je několik aplikací (apt-cache, apt-get,…), které každý poskytují jinou funkci} a~GUI založené na ncurses Pro tento balíčkovací systém existuje i~velké množství GUI: synaptic (GTK), Ubuntu Software Center (GTK),KPackage (Qt),…\\
-Tento balíčkovací systém používájí kromě již zmíněného debianu i~jeho deriváty jako je Ubuntu, ale i~další distribuce a~OS. Existuje port pro MacOSX nebo Opensolaris\cite{DPKG}.
- \item[RPM] \it{Red Hat Package Manager} Druhý nejčastěji používaný balíčkovací systém. Je používán množstvím velkých distribucí včele s RHEL (Red Hat Enterprise Linux), také je používán distribucemi Fedora, Mandriva, SUSE,ArkLinux,...\\
-RPM označuje jak název základního balíčkovacího systému tak i~název balíčků samotných (vždy s~příponou rpm). RPM se především vyznačuje nepřenosností z jedné distribuce na druhou (narozdíl od deb balíčků kde to více méně funguje). Proto se lze často setkat s názorem,že rmp neumí pořádně řešit závislosti,tímto názorem se většinou vyznačují lidé, kteří kombinují repozitáře různých distribucí založaných na RPM.\\
-RPM se často vyznačuje ještě jedním specifikem a~to tím, že na rozdíl od DPKG kde se nejčastěji používají obrovské repositáře s~obrovským množstvím balížků se u RPM používá velké množství repositářů s už ne tak velkým množstvím software. Např. Debian používá jeden repozitář pro každou jeho verzi (Stable,Testing,Unstable) kdyžto u RPM distribucí se setkáme s repozitáři zvláš pro multimedia a core system apd...\\
- \item[PACMAN] Jedná se pravděpodobně o~jeden s~nejrychlejších balíčkovacích systémů a~je součástí distribuce ArchLinux jejích derivátů larch, FaunOS, Archie, Chakra a~je také používám v distribuci DeLi Linux a~Frugalware Linux (ve Frugalware linux byl pacman forknut a~jeho vývoj probíhá odděleně). Pacman má výhodu proti jiným balíčkovacím systémům nejen v rychlosti, ale také v tvoření balíčků. Na rozdíl od DPKG, kde existují rozsáhlé návody jak vytvořit balíček stačí u~Pacmana vytvořit podle jasných pravidel script s názvem PKGBUILD, který obsahuje všechno od licencí, závislostí, zdrojů kontrolních součtů až po návod jak postupovat při sestavení balíčku, poté stačí napsat makepkg a~balíček se sám vytvoří bez jakéhokoliv zásahu.\\
-Na tomto principu fungují jak source repoziráře v~ArchLinuxu zvané ABS tak i~uživatelské repozitáře AUR.\\
-Pro pacman existuje velké množství wrapperů
-\footnote{wrapper je program, který funguje pouze s jinym programem a rozšiřuje jeho funkcionalitu} pacman-color (přidává do výstupu barvy). Defaultní Pacman také neumí pracovat s~AURem proto vzniklo několik wrapperů, které přidávají podporu vyhledávání a~instalace balíčků z~AUR např. Clyde nebo yaourt. Jiné wrappery zase přidávají podporu stahování z více zdrojů naráz aby byl balíčet stáhnut co nejdříve např. PowerPill nebo Bauerbill.\\
-Všechny tyto programy pracují s~repozitáři a~balíčky stejně jsou tedy kompatibilní a~mají dokonce i stejnou syntaxi.\\
-Existují i~GUI pro pacman, nejznámější je asi shaman (Qt).
- \item[Portage] Portage je balíčkovací systém GNU/Linuxové distribuce Gentoo Linux, který je podobný systému portů z FreeBSD. Portage je napsán v programovacím jazyce Python. Hlavním příkazem je zde příkaz emerge. Tento balíčkovací systém využívá balíčky ebuild, které zajistí zkompilovaní podle nastavených systémových proměnných jako jsou například USE, CFLAGS, CHOST a LINGUAS. Portage automaticky dohledá závislosti, stáhne požadované balíčky a program nainstaluje.\\
-Existují různé grafické nadstavby, např. Kuroo (Qt) nebo Porthole (GTK).
- \item[Další,…] Další balíčkovací systémy je např. \b{slapt-get} (balíčkovací systém,který používá nejstarší dodnes vyvíjená distribuce Slackware a~její deriváty (BackTrack, VectorLinux,Slax,...) balíčkovací systém používá obyčejné Tar balíčky komprimované Gzipem), \b{Equo}, \b{Smart Package Manager},…
- \end{description}
-
-\subsubsection{Nasazení}
-Linuxové distribuce se dále liší podle druhu zařízení na, které jsou určena. Nejčastěji je to server nebo desktop, ale existují i~jiné druhy zařízení na, kterých linux běží.
-\begin{description}
- \item[User choise (volba uživatele)] Některé distribuce si nedělají starosti s určením na, kterém druhu zařízení budou použity. Poskytují pouze základní sadu nástrojů (programů), které uživatel doplňuje podle svých požadavků. Toto je typická vlastnost Debianu, Archlinuxu, LFS nebo Gentoo.\\
-Tyto distribuce je možné většinou nasadit, na vsechny níže zmíněné zařízení.
- \item[Desktop] Dalšími zařízeními na které je linux určen jsou desktopové (personální) počítače. Tyto distribuce poskytují grafické programy pro bězné použití např. v kanceláři. Tipicky např. Ubuntu (desktop), Fedora, Mandriva,…
- \item[Server] Serverové distribuce obsahují základní nástroje pro nasazení na serverových počítačích a~neobsahují narozdíl desktopových distribucí grafický server Xorg, ale obsahují serverové nástroje jako je např. webový server apache. Tipicky serverovou distribucí je např. Ubuntu (server), CentOS, RHEL,…
- \item[Enterprise] Enterprise distribuce jsou distribuce určené pro podnikové nasazení a~na rozdíl od bězných distribucí mají placenou podporu ze strany dodavatele a~delší testovací dobu např. SLED (SUSE Linux Enterprise Desktop) nebo RHEL.
- \item[Embedded] Jedná se o~distribuce směrované na určité zařízení. Nejznámější je např. openwrt což je distribuce určená pro síťové nasazení, např, routery, gatewaye apd,…\\
-Linux, ale najde i~v~embedded zařízeních jako jsou settopboxy, televize, IP kamery, pračky, mikrovlnky, ledničky a~jiné jednoúčelové zařízení,…
- \item[Mobilní] Asi nejnovějším prostředí ve, kterém momentálně již dominuje systém linux jsou mobilní telefony. Zde snad ani není třeba zmiňovat momentálně nejprodávanější OS pro mobilní telefony od společnosti Google, Android. Existují, ale i~další distribuce pro mobilní telefony jako je OpenMoko používaný v~mobilu Neo FreeRunner nebo Bada od společnosti Samsung.
- \item[další,…] 
- \end{description}
-
-\subsubsection{Architektury}
-Linuxové distribuce jsou také směřovány na různé procesorové architektury, většinou distribuce nesměřují jenom na jednu architekturu, ale na více architektur současně. Příkladem za všechny je distribuce Debian, která je známá také podporou pro největší množství architektur. Např. MS Windows 7 je dostupný pouze pro architektury x86 a x86\_64 (x64), zatímco Debian podporuje oficiálně 10 architektur a~neoficiálně 16 architektur. Nejčastěji však většina distribucí podporuje architektury x86 a x86\_64 a~v~poslední době také ARM.
-
-\subsubsection{Další rozdíly}
-Rozdíly ikdyž ne tak zásadní jsou v softwarové výbavě, ta sice jde ruku v~ruce s~nasazením linuxu, ale ve světě desktopů a~hlavně distribuce Ubuntu se v posledních několika letech oběvují distribuce, které se odlišují pouze v~základním uživatelském prostředí. Oficiálně  společnost Canonical (tvůrce Ubuntu) vytváří 4 distribuce, které se odlišují od Ubuntu pouze v~základním uživatelském prostředí a~další 4 distribuce, které se liší v softwarove výbavě.
-%
-% TODO dopsat distribuce
-%
-\\
-Velký rozdíl zavádí do linuxových ditribucí GoboLinux. Tato distribuce překopává základní rozdělení Linuxového filesystému na více intuitivní a~uživatelsky příznivější.
-%
-% TODO rozepsat
-%
 
 \subsection{Možnosti tvorby distribuce}
 Linuxovou distribuci lze vytvořit více způsoby, nejběžnějším způsobem je sestavení ze zdrojových kódů. Je třeba dávat pozor na licenční ujednání a dle GNU/GPL licence (pod kterou je distribuováno linuxové jádro) musí autor uvolnit zdrojové kódy. U linuxoveho jádra to zahrnuje většinou použité patche.
@@ -935,7 +962,7 @@ Program je určen pro Ubuntu a všechny jeho deriváty. Dovoluje odebrat nebo p�
 
 \nadpis{Reconstructor}\\
 Jedinou placenou aplikací je program Reconstructor. Je určen pro vytvoření vlastního instalačního CD ze stávajícího ISO obrazu. Umožňuje změnit wallpaper, témata, icony, aplikace a mnoho jiného.
-Jedná se o webovou aplikaci a její cena je 5\$.\cite{Linux_Build}
+Jedná se o webovou aplikaci a její cena je \$5.\cite{Linux_Build}
 \begin{center}
 \obr{./img/screens/reconstructor.jpg}{0.5}{Webové rozhraní Reconstructoru}
 \end{center}
@@ -1037,12 +1064,13 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 \end{center}
 \caption{Webové rozhraní Instalinux, v levo výběr aplikací, v pravo nastavení uživatelů}
 \end{figure}
-Můj obraz vytvořený touto aplikací měl 8.2MB!
-\sectionV{Zabezpečení Linuxového systému}
+Takto vytvořená distribuce může mít 8MB!
+\section{\upc{Zabezpečení Linuxového systému}}
 \subsection{Mechanismy a správa hesel}
 \subsection{Internetové zabezpečení}
 
-\sectionV{Tvorba LiveCD}
+\section{\upc{Tvorba LiveCD}}
+
 \subsection{Výhody/nevýhody LiveCD}
 \subsection{Možnosti tvorby LiveCD}
 
@@ -1054,7 +1082,7 @@ Můj obraz vytvořený touto aplikací měl 8.2MB!
 %\subsection{Podnadpis}
 %********************************* Projektová část ************************************
 \part{Projektová část}
-\sectionV{LFS by bash scripts}
+\section{\upc{LFS by bash scripts}}
 \subsection{Struktura a použití}
 \subsection{Návod pro sestavení}
 
@@ -1076,8 +1104,13 @@ text
 \bibitem{DPKG}{\it{The Debian GNU/Linux FAQ}} [online]. 2009 [cit. 2011-03-30]. Dostupné z~WWW: \href{http://www.debian.org/doc/FAQ/ch-pkgtools.en.html}{http://www.debian.org/doc/FAQ/ch-pkgtools.en.html}.
 \bibitem{Portage}{\it{Dokumentace Gentoo Linuxu}} [online]. 2006 [cit. 2011-03-30]. Dostupné z~WWW: \href{http://www.gentoo.org/doc/cs/handbook/handbook-x86.xml?part=2\&chap=1}{http://www.gentoo.org/doc/cs/handbook/handbook-x86.xml?part=2\&chap=1}.
 \bibitem{ABCBASH}{\it{ABCLinuxu}} [online]. 13.11.2010 [cit. 2011-04-29]. Bash. Dostupné z WWW: \href{http://www.abclinuxu.cz/software/programovani/jazyky/bash}{http://www.abclinuxu.cz/software/programovani/jazyky/bash}.
-\bibitem{ABC_SBASH}{\it{FUCHS, Jan. ABCLinuxu}} [online]. 2003 [cit. 2011-04-30]. Seriál: BASH. Dostupné z WWW: \href{http://www.abclinuxu.cz/serialy/bash}{http://www.abclinuxu.cz/serialy/bash}.
-\bibitem{Linux_Build}{\it{SHARMA, Mayank. TechRadar UK}} [online]. 2010-1-24 [cit. 2011-05-01]. 10 scripts to create your own Linux distribution. Dostupné z WWW: \href{http://www.techradar.com/news/software/operating-systems/10-scripts-to-create-your-own-linux-distribution-665247}{http://www.techradar.com/news/software/operating-systems/10-scripts-to-create-your-own-linux-distribution-665247}.
+\bibitem{ABC_SBASH}FUCHS, Jan. {\it{ABCLinuxu}} [online]. 2003 [cit. 2011-04-30]. Seriál: BASH. Dostupné z WWW: \href{http://www.abclinuxu.cz/serialy/bash}{http://www.abclinuxu.cz/serialy/bash}.
+\bibitem{Linux_Build}SHARMA, Mayank. {\it{TechRadar UK}} [online]. 2010-1-24 [cit. 2011-05-01]. 10 scripts to create your own Linux distribution. Dostupné z WWW: \href{http://www.techradar.com/news/software/operating-systems/10-scripts-to-create-your-own-linux-distribution-665247}{http://www.techradar.com/news/software/operating-systems/10-scripts-to-create-your-own-linux-distribution-665247}.
+\bibitem{GermanArmyNoLinux}{\it{InternetNews}} [online]. March 19, 2001 [cit. 2011-05-08]. German Army No Longer Uses Microsoft Programs. Dostupné z WWW: \href{http://www.internetnews.com/bus-news/article.php/716871/Report-German-Army-No-Longer-Uses-Microsoft-Programs.htm}{http://www.internetnews.com/bus-news/article.php/716871/Report-German-Army-No-Longer-Uses-Microsoft-Programs.htm}.
+\bibitem{AmericanPostLinux} HOCHMUTH, Phil. {\it{Network world}} [online]. January 19, 2004 [cit. 2011-05-08]. Linux delivers for U.S. Postal Service. Dostupné z WWW: \href{http://www.networkworld.com/techinsider/2004/0119linuxcase.html}{http://www.networkworld.com/techinsider/2004/0119linuxcase.html}.
+\bibitem{GNUweb}Free Software Foundation. {\it{GNU Operating System}} [online]. 1996 [cit. 2011-05-09]. Dostupné z WWW: \href{http://www.gnu.org/}{http://www.gnu.org/}.
+\bibitem{GNUABCLinuxu}{\it{ABCLinuxu}} [online]. 2004, 2009 [cit. 2011-05-09]. Gnu - výkladový slovník. Dostupné z WWW: \href{http://www.abclinuxu.cz/slovnik/gnu}{http://www.abclinuxu.cz/slovnik/gnu}.
+\bibitem{ROOT_HURD}KRČMÁŘ, Petr.{\it{ Root.cz}} [online]. 2011-05-09 [cit. 2011-05-09]. Proč není Hurd ani po dvaceti letech hotový?. Dostupné z WWW: \href{http://www.root.cz/clanky/proc-neni-hurd-ani-po-dvaceti-letech-hotovy/}{http://www.root.cz/clanky/proc-neni-hurd-ani-po-dvaceti-letech-hotovy/}.
 }
 %********************************* Seznam zkratek ************************************
 \seznamzkr
@@ -1097,6 +1130,7 @@ APT & Advanced Packaging Tool\\
 DPKG & Debian package management system\\
 GUI & Graphic user interface\\
 RPM & Red Hat Package Manager\\
+GNU & GNU is Not Unix\\
 \end{tabular}
 %********************************* Seznam obrázků ************************************
 \seznamobr
