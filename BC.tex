@@ -85,7 +85,7 @@
 \newcommand{\nns}[1]{\section*{\uppercase{#1}}}		% definujeme styl ns = nečíslovaný nadpis na stejné stránce (není vysázený v obsahu)
 \newcommand{\sectionV}[1]{\section{\uppercase{#1}}}	%nadpis1 (section) velkým
 %\renewcommand{\section}[1]{\section{\uppercase{#1}}}
-\newcommand{\upc}[1]{\uppercase{#1}}
+\newcommand{\upc}[1]{\uppercase{#1}} %zjednodušení pro velká písmena
 
 \newcommand{\nadpis}[1]{%nadpis pod kterym je vertikalni mezera
 	\vspace{4 mm}
@@ -565,7 +565,7 @@ echo dokáže vypisovat také proměnné
 více v manuálových stránkách \b{man echo}\\
 
 \subsubsection{Proměnné}
-Celý linuxový systém využívá proměnných a funkcí uložených přímo v BASHi. Vypsat všechny proměnné a funkce známé aktuálnímu interpretu příkazů můžeme příkazem \it{set}\cite{ABC_SBASH}.\\
+Celý linuxový systém využívá proměnných a funkcí uložených přímo v BASHi. Vypsat všechny proměnné a funkce známé aktuálnímu interpretu příkazů je možno příkazem \it{set}\cite{ABC_SBASH}.\\
 Mezi základní proměnné v systému patří např.
     \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
@@ -682,7 +682,7 @@ fi
     \end{codeframe}
 \b{POZOR!!!} za znakem [\textvisiblespace musí být mezera! Jedná se o program a za mezerou jsou jeho argumenty.\\
 
-Místo [ můžete používat \it{test}. Jsou to stejné programy svázané pevným odkazem.\\
+Místo [ je možno použít \it{test}. Jsou to stejné programy svázané pevným odkazem.\\
 Stejná ukázka s použitím programu \it{test}\cite{ABC_SBASH}:
     \begin{codeframe} 
       \begin{Verbatim}{frame=single}
@@ -695,7 +695,7 @@ else
 fi
 \end{Verbatim} 
     \end{codeframe}
-Podmínky samozřejmě můžete spojovat pomocí operátorů \&\& (a zároveň platí) a || (nebo platí). Operátor || má velké využití ve scriptech pro testování jestly funkce skončila úspěšně\cite{ABC_SBASH}.
+Podmínky je samozřejmě možno spojovat pomocí operátorů \&\& (a zároveň platí) a || (nebo platí). Operátor || má velké využití ve scriptech pro testování jestly funkce skončila úspěšně\cite{ABC_SBASH}.
     \begin{codeframe} 
       \begin{Verbatim}{frame=single}
 #testujeme dvě podmínky
@@ -1009,11 +1009,6 @@ Pungi je nástrojem, který používají vývojári Fedory pro sestavení ofici�
 Builder je série scriptů napsaných v BASHi, které používají vývojáři derivátu distribuce Ubuntu ''gNewSense`` na sestavení jejich distribuce. Ke scriptům je také napsaný přehledný manuál jak je používat, který je dostupný online \cite{Linux_Build}.\\ \href{http://www.gnewsense.org/Builder/HowToCreateYourOwnGNULinuxDistribution}{http://www.gnewsense.org/Builder/HowToCreateYourOwnGNULinuxDistribution}
 %Builder is a series of bash scripts that are used by the gNewSense developers to create their distro. Along with the tool they've also written a handy nine-step guide to creating a customised distro from Ubuntu Hardy. The guide is available on their site.
 
-\nadpis{Linux-Live}\\
-Linux-Live je sada scriptů, která není závislá na distribuci, ale lze ji použít na jekémkoliv linuxu. Prakticky stačí stáhnou scripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Scripty už pak samy vytvoří Live system, který je možné nabootovat z CD nebo USB.
-%If you want a truly distro-agnostic way of customising your favourite Linux distribution, you need the Linux-Live set of scripts. The scripts work on any installed Linux distro and can create a Live system that you can boot from optical media or USB drives.
-%The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
-
 \nadpis{MySlax Creator}\\
 MySlax Creator jsou scripty určné k úpravě distribuce Slackware, především tedy k vytvoření vlastního obrazu odvozené distribuce SLAX. Jejich odlišnost je v tom že fungují přímo z Windows.
 %Here's a Slackware customisation script with a unique twist. The tool creates customised versions of the Slackware-based Slax distro we mentioned above, but unlike the other tools we talk about here, MySlax Creator installs and work from within Windows!
@@ -1066,14 +1061,30 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 \end{figure}
 Takto vytvořená distribuce může mít 8MB!
 \section{\upc{Zabezpečení Linuxového systému}}
-\subsection{Mechanismy a správa hesel}
+
+\subsection{Access Control}
+\subsubsection{Discretionary Access Control (DAC)}
+\subsubsection{Mandatory Access Control (MAC)}
+\subsubsection{Role-based Access Control (RBAC)}
+\subsubsection{Práva souborů a uživatelů v Linuxu}
+\subsubsection{Rozšíření zabezpečení}
+
 \subsection{Internetové zabezpečení}
+\subsubsection{Firewall}
+\subsubsection{Antivirus}
+\subsubsection{další}
+
+\subsection{Hypotetické bezpečnostní hrozby v linuxu}
 
 \section{\upc{Tvorba LiveCD}}
 
 \subsection{Výhody/nevýhody LiveCD}
 \subsection{Možnosti tvorby LiveCD}
-
+\subsubsection{Obecný postup}
+\subsubsection{Linux-Live}
+Linux-Live je sada scriptů, která není závislá na distribuci, ale lze ji použít na jekémkoliv linuxu. Prakticky stačí stáhnou scripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Scripty už pak samy vytvoří Live system, který je možné nabootovat z CD nebo USB.
+%If you want a truly distro-agnostic way of customising your favourite Linux distribution, you need the Linux-Live set of scripts. The scripts work on any installed Linux distro and can create a Live system that you can boot from optical media or USB drives.
+%The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
 %\subsubsection{Podpodnadpis}
 
 %********************************* Analytická část ************************************
