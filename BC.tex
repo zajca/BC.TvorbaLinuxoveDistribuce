@@ -86,7 +86,8 @@
 \newcommand{\sectionV}[1]{\section{\uppercase{#1}}}	%nadpis1 (section) velkým
 %\renewcommand{\section}[1]{\section{\uppercase{#1}}}
 \newcommand{\upc}[1]{\uppercase{#1}} %zjednodušení pro velká písmena
-
+\newcommand{\odkazNaKapitolu}[1]{(viz.~kapitola~\ref{#1}/s\pageref{#1})}
+\newcommand{\odkazNaObrazek}[1]{(viz.~obr.~\ref{#1}/s\pageref{#1})}
 \newcommand{\nadpis}[1]{%nadpis pod kterym je vertikalni mezera
 	\vspace{4 mm}
 	\textbf{#1}\\
@@ -968,7 +969,7 @@ Jedná se o webovou aplikaci a její cena je \$5.\cite{Linux_Build}
 \end{center}
 %As the name suggests, this tool is a comprehensive suite for creating your own custom Ubuntu and Debian distros from an existing ISO image. It lets you tweak the wallpaper, themes, icons, applications, and more.
 %The browser-based tool requires no installation, but you'll need to pay a small fee before you can use all of its features.
-\newpage
+
 \nadpis{Revisor}\\
 Revisor je aplikace pro vytvoření vlastního instalčního CD/DVD/USB založeném na distribuci Fedora. Má jak grafické rozhraní tak CLI. Další rozdíl je také to, že Revisor nevytváří instalační medium z existujícího obrazu, ale stahuje vše z internetu, takže rychlost vytvoření média je také závislá na rychlosti vašeho připojení.\cite{Linux_Build}
 \begin{center}
@@ -1063,15 +1064,198 @@ Takto vytvořená distribuce může mít 8MB!
 \section{\upc{Zabezpečení Linuxového systému}}
 
 \subsection{Access Control}
-\subsubsection{Discretionary Access Control (DAC)}
-\subsubsection{Mandatory Access Control (MAC)}
-\subsubsection{Role-based Access Control (RBAC)}
-\subsubsection{Práva souborů a uživatelů v Linuxu}
-\subsubsection{Rozšíření zabezpečení}
+
+\subsubsection{DAC vs. MAC vs. RBAC}
+%TODO dopiš informace o RBAC
+Bezpečnostní model využívaný většinou mainstreamových operačních systému je založen na \b{Discretionary Access Control (DAC)}, který je založen na bezpečnosti vlastnictvím. Pokud uživatel vlastní soubor, může nastavovat práva pro čtení, zápis a~spoštění (r+w+x), pro tento soubor. V~tomto modelu uživatel kontroluje data dle vlastního uvážení. Vlastník systému\footnote{Vlastník systému (anglicky system owner nebo také administrátor) je určen při instalaci OS, oproti účtu uživatele root nemá právo měnit např. práva systémových souborů, ale má právo měnit přístupová práva široké škály uživatelů a~uživatelé nemají možnost tyto ustanovení měnit.\cite{SystemOwner}}
+%The desktop interface implements the concept of a ``system owner''. When you install the operating system, a user is designated as the owner. Any user name (except those already reserved by the system, such as uucp and bin) can be assigned as the system owner. The system owner is given the necessary permissions to do the day-to-day system administration tasks available through the SCOadmin interface. These special authorizations, and the ability to assign additional system owners, are described in ``Assigning authorizations''.
+ nemá totální kontorlu nad systémem, tu má uživatel.~\cite{Linux_com_MACvsDAC}
+
+%The security model used by most mainstream operating systems is based on Discretionary Access Control (DAC), which enforces security by ownership. If a user owns a file, he is allowed to set the read, write, and execute permissions for that file. In this model, users control the data at their discretion. The owner of the system does not have total control over the system; the users do.
+
+Avšak největší hrozba v~Linuxovém modelu je reprezentována účtem uživatele root. Tento super-uzivatel může kontorlovat všechny soubory a procesy. Pokud je účet uživatele root nebo proces s~takto vysokými přístupovými právy kompromitovám, útoční získává kontorolu nad celým systémem a~nad daty v~něm.~\cite{Linux_com_MACvsDAC}
+ 
+%However, the biggest concern with the Linux model is the danger presented by the root account. This super-user has the power to control all files and processes. If the root account, or a process that runs with its privileges, is compromised, an attacker can take control of the system and its data.
+
+Bezpečnějším přístupem je omezit nebo přímo eliminovat účet uživatele root a~přesunout tak práva z uživatelských účtů na na vlastníka systému\footnotemark[1]. Tento přístup se nazývá \b{Mandatory Access Control (MAC)}~\cite{Linux_com_MACvsDAC}
+%A more secure approach would limit or even eliminate the need for a root account, and shift the power from the user accounts to the owner of the system. This is MAC's approach.
+
+MAC prosazuje bezpečnostní pravidla povinně (mandatory) narozdíl od DAC, který pravidla prosazuje volitelně (discretionary). Bezpečnostní pravidla můze nastavit vlastník systému a implementovat systémový nebo bezpečnostní administrátor. Jakmile jsou pravidla jednou stanovena, žádný uživatel nemůže tyto pravidla měnit, ikdyby měl práva uživatele root. S bezpečnostní přístupem MAC je ochrana souborů a procesů nezávislá na na jejich vlastníkovy.~\cite{Linux_com_MACvsDAC}
+%MAC makes the enforcement of security policies mandatory instead of discretionary, as you might imagine from the name Mandatory Access Control. Security policies can be set by the system owner and implemented by a system or security administrator. Once these policies are in place, users cannot override them, even if they have root privileges. With MAC, file and process protection is independent of owners.
+
+
+%Discretionary Access Control: The Discretionary Access Control Policy is enforced on processes running on behalf of users as subjects and file system objects as well as IPC objects. This mechanism allows only administrators and object owners to modify the access control attributes of named objects. Access Control Lists (ACLs) can be used for a more fine grained control for file system objects.
+
+%Mandatory Access Control: The Mandatory Access Control Policy is enforced on processes running on behalf of users as subjects and all objects known to the system. This mechanism allows only administrators to modify the access control attributes. Access is determined based on labels maintained for subjects and objects according to the Bell-LaPadula model. Labeled networking as well as labeled printing is also provided.
+
+%Role-based Access Control: The Role-based Access Control Policy is enforced on processes running on behalf of users as subjects and file system objects as well as IPC objects. This mechanism allows only administrators and object owners to modify the access control attributes of named objects.
+
+
+%Každé z výše uvedených kritérií, je požadováno pro splnění požadavků amerického 'Department of Defense' (Ministerstva obrany, DOD) pro "důvěryhodný" Operační systém. Všechny požadavky pro "důvěryhodný" Operační systém byly vydány v publikaci "Trusted Computer System Evaluation Criteria (TCSEC)" známé taky jako Orange Book\footnote{Orange Book: obsahuje mnoho kritérií pro OS a určuje úrovně certifikace od D (Minimal protection) po A (Verified protection)} (Oranžová kniha). 
+%All of the above are requirements to meet the Department of Defense criteria for "trusted" operating systems. These criteria are laid out in the DOD publication "Trusted Computer System Evaluation Criteria," otherwise known as the Orange Book (due to the color of its cover). By one day gaining Orange Book B1-level certification, Linux can be more widely used in government.
+
+%\subsubsection{Discretionary Access Control (DAC)}
+%\subsubsection{Mandatory Access Control (MAC)}
+%\subsubsection{Role-based Access Control (RBAC)}
+%\subsubsection{Práva souborů a uživatelů v Linuxu}
+\subsubsection{Security-Enhanced Linux, SElinux}
+\subsubsection{AppArmor}
+\subsubsection{grsecurity}
+\subsubsection{TOMOYO}
+\subsection{Hodnocní bezpečnosti OS a SW}
+Tak jako ve spoustě jiných odvětvích se i~v~bezpečnosti určují standardy a~udělují certifikace bezpečnosti.
+\subsubsection{Trusted Computer System Evaluation Criteria, TCSEC} \label{sec:TCSEC}
+Asi nejznáměší kniha popisující požadavky pro "důvěryhodný" operační systém, vydaná v roce 1985 americkým ministrestvem obrany (Department of Defense, DoD) a je známa také jako oranžová kniha (Orange book) pro svůj orančový přebal. Dnes se tyto hodnotící kritéria již nepoužívají, původně měla být nahrazena Federal Criteries (FC), ale tento soubor kritérií nebyl nikdy nasazen a zůstal pouze ve fázi draft\footnote{\b{Draft} se používá jako označení pro návrh}, protože jej v roce 2005 nahradil soubor Common Criteria (CC) \odkazNaKapitolu{sec:cc}\\
+
+\vspace{4 mm}
+TCSEC, hodnotí míru splnění požadavků ve třech oblastech informační bezpečnosti~\cite{PrezentaceBIS}
+\begin{description}
+ \item[Zásady (Policy)] metody řízení přístupu, označení stupně utajení
+ \item[Odpovědnost (Accountability)] zjištění identity uživatele, monitoring činnosti uživatele
+ \item[Záruky (Assurance)] požadavky na nezávislé hodnocení a průběžné provádění bezpečnostních funkcí
+ \end{description}
+\b{Seznam tříd bezpečnosti operačního systému podle TCSEC:}
+\begin{description}
+\item[Třída D] minimální ochrana - systémy nevyhovující vyšším třídám
+\item[Třída C] výběrová ochrana (Discretionary Protection) prosazuje výběrové řízení přístupu
+\begin{description}
+\item[Podtřída C1] ochrana s výběrovým přístupem - základní oddělení uživatelů a dat chrání citlivá data před náhodným zneužitím
+\item[Podtřída C2] ochrana  s řízeným přístupem - detailnější řízení přístupu a audit činností
+\end{description}
+\item[Třída B] povinná ochrana (Mandatory Protection)
+\begin{description}
+\item[Podtřída B1] ochrana bezpečnosti návěštím - přidělení stupně utajení (neformální model)
+\item[Podtřída B2] strukturovaná ochrana - existence poloformálního modelu, oddělení citlivých a necitlivých částí systému (odolnost proti napadení)
+\item[Podtřída B3] bezpečnostní domény - modulární architektura systému (vysoká odolnost proti napadení)
+\end{description}
+\item[Třída A] verifikovaná ochrana (Verified Protection)
+\begin{description}
+\item[Podtřída A1] verifikovaný návrh funkčně stejně jako B3, rozšíření míry formální specifikace a verifikace při návrhu a testování 
+\end{description}
+\end{description}
+Systémy třídy A se mezi komerčně dostupnými produkty nevyskytují\\
+Systémy s dostatečnou bezpečností pro běžný provoz se považují systémy minimálně třídy C2~\cite{PrezentaceBIS}\\
+Většina Linuxových distribucí dosahuje Třídy C2~\cite{LinuxDictionary}
+
+\subsubsection{IT Security Evaluation Criteria,ITSEC}\label{sec:ITSEC}
+Evroská kritéria vytvořená v roce 1990 dnes již nahrazena krytérii Common Criteries (CC)~\odkazNaKapitolu{sec:cc}.
+
+rozdělení požadavků kladených na
+\begin{itemize}
+ \item Předmět hodnocení
+ \item Míru záruk a funkčnost
+\end{itemize}
+Třídy záruk za správnost (E0-E6) a~efektivnost odolat možným útokům~\cite{PrezentaceBIS}
+\begin{description}
+ \item[E0] požadavky ITSEC nesplněny
+ \item[E1] požadavek na neformální zadání bezpečnosti a popis návrhu a důkazní testy
+ \item[E2] požadavek na neformální popis detailního návrhu, nezávislé testy
+ \item[E3] jako třída E2 a hodnocení zdrojového kódu (SW) nebo obvodových schémat (HW)
+ \item[E4] formální model bezpečnostního návrhu a provedení analýzy zranitelnosti
+ \item[E5] požadavek na specifikaci návaznosti detailního návrhu a zdrojových kódů (schémat)
+ \item[E6] jako třída E5 a formální popis návrhu a doložení jeho konzistence s matematickým modelem. 
+\end{description}
+
+Třídy funkčnosti~\cite{PrezentaceBIS}
+\begin{description}
+\item[F-C1 až F-B3] podle TCSEC 
+\item[F-IN] vysoké nároky na integritu
+\item[F-AV] vysoké nároky na dostupnost
+\item[F-DI] vysoké nároky na integritu při přenosu
+\item[F-DC] vysoké nároky na důvěrnost při přenosu
+\item[F-DX] vysoké nároky na důvěrnost a integritu při přenosu
+\end{description}
+
+\subsubsection{Canadian Trusted Computer Product Evaluation Criteria, CTCPEC}\label{sec:CTCPEC}
+Kanadský soubor kriterií, který je dnes již také nahrazen Common Criteries (CC)~\odkazNaKapitolu{sec:cc}.\\
+
+Hodnocený systém je chápán jako soubor bezpečnostních funkcí s úrovní záruk~\cite{PrezentaceBIS}\\
+
+Funkce - rozdělení do skupin, v každé skupině pro každou funkci je stanoveno několik úrovní~\cite{PrezentaceBIS}
+\begin{description}
+ \item[Skupina C - "Důvěrnost"] 4 funkce, ochrana proti úniku informace 
+ \item[Skupina I - "Integrita"] 7 funkcí pro udržení konsistence dat a systému 
+ \item[Skupina A - "Dostupnost"] 4 funkce pro udržení dosažitelnosti služeb 
+ \item[Skupina W - "Odpovědnost"] 3 funkce pro zajištění odpovědnosti uživatelů 
+\end{description}
+
+\subsubsection[Common Criteria, CC]{Common Criteria for Information Technology Security Evaluation, CC}\label{sec:cc}
+V České republice je dobře známa norma ISO/IEC 15408-1:1999, která je totožná s~textem, zveřejněným Organizacemi sponzorujícími projekt Společná kritéria, pod názvem “Common Criteria for Information Technology Security Evaluation”, verze 2.1. Tato kritéria jsou obvykle nazývána pouze “Common Criteria” a~pro jejich označení se hojně používá zkratky “CC”. Zkratka “CC”
+je ponechána i~v~českém překladu normy.\cite{NBUHodnoceniBezpecnostiSW}
+
+V současné době se používá verze 3.0.
+
+CC vznikla na základě již dříve používaných kritérií hodnocení, zejména amerických TCSEC~\odkazNaKapitolu{sec:TCSEC} a~Federal Criteria, evropských ITSEC~\odkazNaKapitolu{sec:ITSEC} a~kanadských CTCPEC~\odkazNaKapitolu{sec:CTCPEC}. Na vývoji CC se podílely národní organizace, působící v~oblasti bezpečnosti a~standardizace, z~šesti států světa, jmenovitě Kanady, Francie, Německa, Holandska, Velké Británie a~Spojených států amerických a~jsou posledním výsledkem úsilí o~vytvoření společného standardu v~oblasti hodnocení bezpečnosti informačních technologií. V~uvedených státech lze nalézt většinu z~uznávaných laboratoří, které prováděly hodnocení bezpečnosti produktů v~oblasti informačních technologií podle dříve široce akceptovaných kritérií TCSEC nebo ITSEC a~v~současné době již přešly výhradně na hodnocení podle CC.\cite{NBUHodnoceniBezpecnostiSW}
+
+Jako formální základ pro vzájemné uznávání hodnocení uzavřely Kanada, Francie, Německo, Velká Británie a Spojené státy americké v roce 1998 dohodu “Arrangement on the Recognition of
+Common Criteria Certificates in the field of Information Technology Security”, zkráceně nazývanou CCRA (CC Recognition Arrangement).\cite{NBUHodnoceniBezpecnostiSW}
+
+Důležité je stanovení předdefinované vzestupné stupnice pro úroveň hodnocení. CC poskytuje 7 předdefinovaných balíků pro záruky (assurance package), známých jako Evaluation Assurance Levels (EAL), v~českém překladu míry záruky hodnocení. Jsou dobře promyšlené a~vyvážené, obecně aplikovatelné. Analogii lze nalézt v~třídách E1 až E6 v~kritériích ITSEC. Veškerá hodnocení IT podle CC se dnes provádějí na úrovni některé z~EAL, převážně do úrovně EAL4.
+
+Stručně lze jednotlivé úrovně popsat následujícím způsobem:
+\begin{description}
+\item[EAL1] je vhodná, pokud je vyžadována určitá základní důvěra ve správnost fungování
+hodnoceného PP, ST nebo TOE, avšak hrozby nejsou považovány za vážné. Důvěry se dosahuje
+nezávislým testováním shody hodnoceného PP, ST nebo TOE s neformální funkční specifikací a
+zkoumáním předložených příruček pro uživatele.
+\item[EAL2] již vyžaduje spolupráci vývojáře, který musí v podstatě dodat funkční specifikace,
+určité informace o návrhu bezpečnostních funkcí (na úrovni globálního návrhu, high-level design) a
+výsledky testování, avšak vývoj si nevyžaduje více úsilí nežli je potřebné pro dodržování dobré
+komerční praxe, a v podstatě nepřináší zvýšení nákladů. Poskytuje nízkou až střední nezávisle
+ověřenou bezpečnost v případě, že není dostupná kompletní informace z fáze vývoje. Důvěry se
+dosahuje analýzou vyžadované dokumentace, ověřením výsledků některých testů, analýzou síly
+funkcí a analýzou zřejmých zranitelností. Pro TOE musí být sestaven seznam konfigurace a
+vypracovány procedura pro bezpečnou instalaci, generování a spouštění.
+\item[EAL3] je možno ještě dosáhnout bez podstatných změn základních existujících vývojářských
+praktik. Je aplikovatelná v případě, že se vyžaduje střední úroveň nezávisle ověřené bezpečnosti a je
+opřena o důkladné zkoumání TOE (ST, PP). Navíc oproti EAL2 se vyžaduje rozsáhlejší testování,
+kontroly vývojového prostředí a zajištění správy konfigurace.
+\item[EAL4] stále umožňuje pohybovat se v rámci dobré komerční vývojářské praxe. Jakkoliv přísné
+jsou tyto praktiky, nevyžadují podstatné specializované znalosti, dovednosti a jiné zdroje. EAL4 je
+nejvyšší úrovní záruk, kterou lze dosáhnout (za rozumné náklady) zpětně pro již existující produkt.
+Poskytuje střední až vysokou úroveň záruky nezávisle ověřené bezpečnosti pro běžnou komoditu
+produktů a vyžaduje ze strany vývojáře nebo uživatelů připravenost k pokrytí dodatečných
+specifických nákladů spjatých s bezpečnostním inženýrstvím. Navíc oproti EAL3 se již vyžaduje také
+detailní návrh (low-level design) TOE, neformální model bezpečnostní politiky TOE a dodání určité
+podmnožiny implementace (např. část zdrojového kódu bezpečnostních funkcí). Nezávislá analýza
+zranitelností musí demonstrovat odolnost vůči průniku útočníků s nízkým potenciálem pro útok.
+Kontroly vývojového prostředí jsou doplněny modelem životního cyklu, stanovením nástrojů a
+automatizovanou správou konfigurace.
+\item[EAL5]vyžaduje kromě přísného uplatnění dobré komerční vývojářské praxe
+aplikaci
+speciálních technik bezpečnostního inženýrství ve středním rozsahu. Dané TOE bude pravděpodobně
+již navrženo a vyvíjeno s cílem dosáhnout úrovně záruk EAL5. Nepředpokládá se nicméně velké
+zvýšení nákladů oproti EAL4. EAL5 je tak vhodná v případech, kdy se vyžaduje vysoká úroveň
+záruky nezávisle ověřené bezpečnosti aniž by náklady na specializované techniky byly nerozumně
+vysoké. Navíc oproti EAL4 je vyžadováno dodání kompletní implementace TOE, formální model
+bezpečnostní politiky TOE, poloformální presentace funkčních specifikací, poloformální globální
+návrh (high-level design) a poloformální demonstrace korespondence. Nezávislá analýza zranitelností
+musí demonstrovat odolnost vůči průniku útočníků se středním potenciálem pro útok. Vyžaduje se
+také analýza skrytých kanálů a modularita návrhu.
+\item[EAL6] vyžaduje aplikaci technik bezpečnostního inženýrství do přísného vývojového prostředí a
+je určena pro vývoj TOE sloužícího pro ochranu vysoce hodnotných aktiv proti význačným rizikům,
+kdy lze odůvodnit dodatečné náklady. Navíc oproti EAL5 se vyžaduje poloformální detailní návrh,
+rozsáhlejší testování, návrh TOE musí být modulární a zvrstvený, prezentace implementace
+strukturovaná. Nezávislá analýza zranitelností musí demonstrovat odolnost vůči průniku útočníků
+s vysokým potenciálem pro útok. Analýza skrytých kanálů musí být systematická. Vyšší nároky jsou
+kladeny na správu konfigurace a kontroly vývojového prostředí.
+\item[EAL7] je použitelná pro vývoj produktů určených do extrémně rizikového prostředí a/nebo kde
+vysoká hodnota aktiv ospravedlňuje vyšší náklady. Praktické použití EAL7 je v současnosti
+omezeno na TOE a úzce vymezenou bezpečnostní funkčností, kde lze provést formální analýzu
+v požadované míře. Vyžaduje se plná formalizace, formální model bezpečnostní politiky, formální
+presentace funkčních specifikací and high-level návrhu, poloformální detailní návrh, formální a
+poloformální demonstrace korespondence. Testování se vyžaduje na úrovni bílé skříňky (white-box)
+a musí být dosaženo úplného nezávislého potvrzení výsledků všech předložených testů. Složitost
+návrhu musí být minimalizována.
+\end{description}
+Operační systém Linux dosahuje úrovně EAL4.~\cite{CCredhat}~\cite{CCsuse}
+
+
 
 \subsection{Internetové zabezpečení}
 \subsubsection{Firewall}
 \subsubsection{Antivirus}
+\subsubsection{SSH}
 \subsubsection{další}
 
 \subsection{Hypotetické bezpečnostní hrozby v linuxu}
@@ -1114,15 +1298,23 @@ text
 \bibitem{WDIST}{\it{Linuxové distribuce. In Wikipedia : the free encyclopedia}} [online]. St. Petersburg (Florida) : Wikipedia Foundation, [cit. 2011-02-23]. Dostupné z~WWW: \href{http://cs.wikipedia.org/wiki/Linuxov\%C3\%A1\_distribuce}{http://cs.wikipedia.org/wiki/Linuxové\_distribuce}.
 \bibitem{DPKG}{\it{The Debian GNU/Linux FAQ}} [online]. 2009 [cit. 2011-03-30]. Dostupné z~WWW: \href{http://www.debian.org/doc/FAQ/ch-pkgtools.en.html}{http://www.debian.org/doc/FAQ/ch-pkgtools.en.html}.
 \bibitem{Portage}{\it{Dokumentace Gentoo Linuxu}} [online]. 2006 [cit. 2011-03-30]. Dostupné z~WWW: \href{http://www.gentoo.org/doc/cs/handbook/handbook-x86.xml?part=2\&chap=1}{http://www.gentoo.org/doc/cs/handbook/handbook-x86.xml?part=2\&chap=1}.
-\bibitem{ABCBASH}{\it{ABCLinuxu}} [online]. 13.11.2010 [cit. 2011-04-29]. Bash. Dostupné z WWW: \href{http://www.abclinuxu.cz/software/programovani/jazyky/bash}{http://www.abclinuxu.cz/software/programovani/jazyky/bash}.
-\bibitem{ABC_SBASH}FUCHS, Jan. {\it{ABCLinuxu}} [online]. 2003 [cit. 2011-04-30]. Seriál: BASH. Dostupné z WWW: \href{http://www.abclinuxu.cz/serialy/bash}{http://www.abclinuxu.cz/serialy/bash}.
-\bibitem{Linux_Build}SHARMA, Mayank. {\it{TechRadar UK}} [online]. 2010-1-24 [cit. 2011-05-01]. 10 scripts to create your own Linux distribution. Dostupné z WWW: \href{http://www.techradar.com/news/software/operating-systems/10-scripts-to-create-your-own-linux-distribution-665247}{http://www.techradar.com/news/software/operating-systems/10-scripts-to-create-your-own-linux-distribution-665247}.
-\bibitem{GermanArmyNoLinux}{\it{InternetNews}} [online]. March 19, 2001 [cit. 2011-05-08]. German Army No Longer Uses Microsoft Programs. Dostupné z WWW: \href{http://www.internetnews.com/bus-news/article.php/716871/Report-German-Army-No-Longer-Uses-Microsoft-Programs.htm}{http://www.internetnews.com/bus-news/article.php/716871/Report-German-Army-No-Longer-Uses-Microsoft-Programs.htm}.
-\bibitem{AmericanPostLinux} HOCHMUTH, Phil. {\it{Network world}} [online]. January 19, 2004 [cit. 2011-05-08]. Linux delivers for U.S. Postal Service. Dostupné z WWW: \href{http://www.networkworld.com/techinsider/2004/0119linuxcase.html}{http://www.networkworld.com/techinsider/2004/0119linuxcase.html}.
-\bibitem{GNUweb}Free Software Foundation. {\it{GNU Operating System}} [online]. 1996 [cit. 2011-05-09]. Dostupné z WWW: \href{http://www.gnu.org/}{http://www.gnu.org/}.
-\bibitem{GNUABCLinuxu}{\it{ABCLinuxu}} [online]. 2004, 2009 [cit. 2011-05-09]. Gnu - výkladový slovník. Dostupné z WWW: \href{http://www.abclinuxu.cz/slovnik/gnu}{http://www.abclinuxu.cz/slovnik/gnu}.
-\bibitem{ROOT_HURD}KRČMÁŘ, Petr.{\it{ Root.cz}} [online]. 2011-05-09 [cit. 2011-05-09]. Proč není Hurd ani po dvaceti letech hotový?. Dostupné z WWW: \href{http://www.root.cz/clanky/proc-neni-hurd-ani-po-dvaceti-letech-hotovy/}{http://www.root.cz/clanky/proc-neni-hurd-ani-po-dvaceti-letech-hotovy/}.
+\bibitem{ABCBASH}{\it{ABCLinuxu}} [online]. 13.11.2010 [cit. 2011-04-29]. Bash. Dostupné z~WWW: \href{http://www.abclinuxu.cz/software/programovani/jazyky/bash}{http://www.abclinuxu.cz/software/programovani/jazyky/bash}.
+\bibitem{ABC_SBASH}FUCHS, Jan. {\it{ABCLinuxu}} [online]. 2003 [cit. 2011-04-30]. Seriál: BASH. Dostupné z~WWW: \href{http://www.abclinuxu.cz/serialy/bash}{http://www.abclinuxu.cz/serialy/bash}.
+\bibitem{Linux_Build}SHARMA, Mayank. {\it{TechRadar UK}} [online]. 2010-1-24 [cit. 2011-05-01]. 10 scripts to create your own Linux distribution. Dostupné z~WWW: \href{http://www.techradar.com/news/software/operating-systems/10-scripts-to-create-your-own-linux-distribution-665247}{http://www.techradar.com/news/software/operating-systems/10-scripts-to-create-your-own-linux-distribution-665247}.
+\bibitem{GermanArmyNoLinux}{\it{InternetNews}} [online]. March 19, 2001 [cit. 2011-05-08]. German Army No Longer Uses Microsoft Programs. Dostupné z ~WWW: \href{http://www.internetnews.com/bus-news/article.php/716871/Report-German-Army-No-Longer-Uses-Microsoft-Programs.htm}{http://www.internetnews.com/bus-news/article.php/716871/Report-German-Army-No-Longer-Uses-Microsoft-Programs.htm}.
+\bibitem{AmericanPostLinux} HOCHMUTH, Phil. {\it{Network world}} [online]. January 19, 2004 [cit. 2011-05-08]. Linux delivers for U.S. Postal Service. Dostupné z~WWW: \href{http://www.networkworld.com/techinsider/2004/0119linuxcase.html}{http://www.networkworld.com/techinsider/2004/0119linuxcase.html}.
+\bibitem{GNUweb}Free Software Foundation. {\it{GNU Operating System}} [online]. 1996 [cit. 2011-05-09]. Dostupné z~WWW: \href{http://www.gnu.org/}{http://www.gnu.org/}.
+\bibitem{GNUABCLinuxu}{\it{ABCLinuxu}} [online]. 2004, 2009 [cit. 2011-05-09]. Gnu - výkladový slovník. Dostupné z~WWW: \href{http://www.abclinuxu.cz/slovnik/gnu}{http://www.abclinuxu.cz/slovnik/gnu}.
+\bibitem{ROOT_HURD}KRČMÁŘ, Petr.{\it{ Root.cz}} [online]. 2011-05-09 [cit. 2011-05-09]. Proč není Hurd ani po dvaceti letech hotový?. Dostupné z~WWW: \href{http://www.root.cz/clanky/proc-neni-hurd-ani-po-dvaceti-letech-hotovy/}{http://www.root.cz/clanky/proc-neni-hurd-ani-po-dvaceti-letech-hotovy/}.
+\bibitem{Linux_com_MACvsDAC}VIRIJEVICH, Paul. {\it{Linux.com}} [online]. February 15, 2005 [cit. 2011-05-10]. Securing Linux with Mandatory Access Controls. Dostupné z~WWW: \href{http://www.linux.com/archive/feature/113941}{http://www.linux.com/archive/feature/113941}.
+\bibitem{SystemOwner}The SCO Group, Inc. {\it{The SCO group, inc.}} [online]. 22 April 2004 [cit. 2011-05-10]. The root account and system owner. Dostupné z~WWW: \href{http://uw714doc.sco.com/en/HANDBOOK/saN.superuser.html}{http://uw714doc.sco.com/en/HANDBOOK/saN.superuser.html}.
+\bibitem{PrezentaceBIS}KUNDEROVÁ, Ludmila. {\it{Hodnocení informační bezpečnosti}} [online prezentace]. Brno : Ústav informatiky, PEF MZLU, [cit. 2011-05-14]. Dostupný z~WWW: \href{https://akela.mendelu.cz/~lidak/share/snimky-bis/prednaska5.ppt}{https://akela.mendelu.cz/~lidak/share/snimky-bis/prednaska5.ppt}.
+\bibitem{LinuxDictionary}{\it{Linux Documentation Project}} [online]. 2004-08-16 [cit. 2011-05-14]. Linux dictionary. Dostupné z~WWW: \href{http://www.tldp.org/LDP/Linux-Dictionary/html/t.html}{http://www.tldp.org/LDP/Linux-Dictionary/html/t.html}.
+\bibitem{NBUHodnoceniBezpecnostiSW}Narodní bezpečnostní úřad. {\it{INFORMACE O HODNOCENÍ BEZPEČNOSTI INFORMAČNÍCH TECHNOLOGIÍ}} [online]. Praha : NBÚ, 2005 [cit. 2011-05-14]. Dostupné z~WWW: \href{http://www.nbu.cz/\_downloads/bezpecnost-informacnich-systemu/container-nodeid-748/infoobit.pdf}{http://www.nbu.cz/\_downloads/bezpecnost-informacnich-systemu/container-nodeid-748/infoobit.pdf}.
+\bibitem{CCredhat}{\it{NIAP CCEVS}} [online]. 2007 [cit. 2011-05-14]. Validated Product - Red Hat Enterprise Linux Version 5 running on IBM Hardware. Dostupné z~WWW: \href{http://www.niap-ccevs.org/cc-scheme/st/?vid=10125}{http://www.niap-ccevs.org/cc-scheme/st/?vid=10125}.
+\bibitem{CCsuse}{\it{NIAP CCEVS}} [online]. 2007 [cit. 2011-05-14]. Validated Product - SUSE Linux Enterprise Server 10 SP1. Dostupné z~WWW: \href{http://www.niap-ccevs.org/st/vid10271/}{http://www.niap-ccevs.org/st/vid10271/}
 }
+
 %********************************* Seznam zkratek ************************************
 \seznamzkr
 
@@ -1142,6 +1334,17 @@ DPKG & Debian package management system\\
 GUI & Graphic user interface\\
 RPM & Red Hat Package Manager\\
 GNU & GNU is Not Unix\\
+MAC & Mandatory Access Control\\
+DAC & Discretionary Access Control\\
+RBAC & Role-Based Access Control\\
+TCSEC & Trusted Computer System Evaluation Criteria\\
+ITSEC & IT Security Evaluation Criteria\\
+CTCPEC & Canadian Trusted Computer Product Evaluation Criteria\\
+CC & Common Criteria for Information Technology Security Evaluation\\
+FC & Federal Criteries\\
+CCRA & Common Criteria Recognition Arrangement\\
+EAL & Evaluation Assurance Levels\\
+SElinux & Security-Enhanced Linux\\
 \end{tabular}
 %********************************* Seznam obrázků ************************************
 \seznamobr
