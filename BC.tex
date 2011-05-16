@@ -1060,12 +1060,13 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 \end{center}
 \caption{Webové rozhraní Instalinux, v levo výběr aplikací, v pravo nastavení uživatelů}
 \end{figure}
-Takto vytvořená distribuce může mít 8MB!
+Takto vytvořená distribuce může mít i~8MB!
 \section{\upc{Zabezpečení Linuxového systému}}
-
+Zabezpečení OS je velice rozsáhlým a~komplexním odvětvím, které se navíc velmi rychle vyvíjí a~rozšiřuje. Jeho plné popsání by vadalo na několik desítek bakalářských prací, proto jen základní informace o~vnitřním zabezpečení systému, nástrojích jež toto zabezpečení rozšiřují a~také o~zabezpečení proti vnějšímu útoku a~bezpečném přenosu informací.
 \subsection{Access Control}
-
-\subsubsection{DAC vs. MAC vs. RBAC}
+Kontrola přístupu uvnitř systému je jedno z~nejdůležitějších zabezpeční v~OS vůbec. Určuje, který proces nebo uživatel má k čemu oprávnění. Existuje několik obecných modelů tohoto zabezpečení, v~Linuxu se konkrétně využívá dvou modelů: \b{Discretionary Access Control (DAC)} a \b{Mandatory Access Control (MAC)}. Model zabezpečení DAC je bežnou součástí linuxového jádra a~využívá jej defaultně většina distribucí. Model MAC je pak v~linuxu dostupný díky různým rozšířením, jež nejčastěji využívají \b{Linux Security Modules (LSM)}, které zajišťující implementaci MAC v jádře.
+\subsubsection{DAC vs. MAC}
+%\subsubsection{DAC vs. MAC vs. RBAC}
 %TODO dopiš informace o RBAC
 Bezpečnostní model využívaný většinou mainstreamových operačních systému je založen na \b{Discretionary Access Control (DAC)}, který je založen na bezpečnosti vlastnictvím. Pokud uživatel vlastní soubor, může nastavovat práva pro čtení, zápis a~spoštění (r+w+x), pro tento soubor. V~tomto modelu uživatel kontroluje data dle vlastního uvážení. Vlastník systému\footnote{Vlastník systému (anglicky system owner nebo také administrátor) je určen při instalaci OS, oproti účtu uživatele root nemá právo měnit např. práva systémových souborů, ale má právo měnit přístupová práva široké škály uživatelů a~uživatelé nemají možnost tyto ustanovení měnit.\cite{SystemOwner}}
 %The desktop interface implements the concept of a ``system owner''. When you install the operating system, a user is designated as the owner. Any user name (except those already reserved by the system, such as uucp and bin) can be assigned as the system owner. The system owner is given the necessary permissions to do the day-to-day system administration tasks available through the SCOadmin interface. These special authorizations, and the ability to assign additional system owners, are described in ``Assigning authorizations''.
@@ -1098,10 +1099,84 @@ MAC prosazuje bezpečnostní pravidla povinně (mandatory) narozdíl od DAC, kte
 %\subsubsection{Mandatory Access Control (MAC)}
 %\subsubsection{Role-based Access Control (RBAC)}
 %\subsubsection{Práva souborů a uživatelů v Linuxu}
+%\subsubsection{Linux Security Modules, LSM}
+
 \subsubsection{Security-Enhanced Linux, SElinux}
+
+SELinux je bezpečnostní vylepšení pro Linux, které dává uživatelům a správcům větší kontrolu nad tím, který uživatele nebo aplikace může přistupovat k jakým prostředkům. Standardní Linuxová kontrola přístupu jako je oprávnění pro soubor (-rwxr-xr-x) je modifikovatelné uživatelem nebo aplikací, kterou uživatel spustí. Oproti tomu, kontrola přístupu v~SELinuxu je určena pravidly v~systému a~neopatrný uživatel nebo nesprávná aplikace je nemůže nijak změnit.
+
+SELinux také přidává mnoho možností pro řízení přístupu. Místo klasického určení, kdo může číst, psát nebo spustit soubor, např. SELinux umožňuje určit, kdo může vytvářet a~rušit odkazy, přesouvat soubory a~mnoho dalšího. SELinux umožňuje určit přístup k mnoha jiných zdrojů než jenom k souborům, např. přístum k~síťovým zdrojům nebo k~meziprocesové komunikaci (IPC).\cite{SElinuxWiki}
+
+%SELinux is a security enhancement to Linux that allows users and administrators more control over which users and applications can access which resources, such as files. Standard Linux access controls, such as file modes (-rwxr-xr-x) are modifiable by the user and applications that the user runs whereas SELinux access controls are determined by a policy loaded on the system and not changeable by careless users or misbehaving applications.
+%SELinux also adds finer granularity to access controls. Instead of only being able to specify who can read, write or execute a file, for example, SELinux lets you specify who can unlink, append only, move a file and so on. SELinux allows you to specify access to many resources other than files as well, such as network resources and interprocess communication (IPC).
+
 \subsubsection{AppArmor}
-\subsubsection{grsecurity}
+AppArmor je efektivní a~snadno použitelná Linuxová bezpečnostní aplikace. AppArmor aktivně chrání operační systém a~aplikace před vnějšími nebo vnitřními bezpečnostními hrozbami a~díky prosazování dobrého chování a~prevence od neznámých, nebezpečných nebo vadných aplikací dokáže chránit systém i~od tzv. zero-day útoků\footnote{zero-day atack je útok na vývojářům neznámou zranitelnost~v systému. Zero-day je také nazýván, protože se objeví dříve než vývojáři dokáží chybu záplatovat.}. V bezpečnostních pravidlech AppArmor lze definovat, k~jakým systémovým zdrojům můžou jednotlivé aplikace přistupovat a~jak s nimi mohou nakládat. Mnoho výchozích bezpečnostních pravidel je součástí AppArmor a~pomocí kombinace vyspělé statické analýzy a~learning-based nástrojů, je možné bezpečnostní pravidla AppArmor i~pro velmi složité aplikace úspěšně nasadit během několika hodin.\cite{AppArmorWikiMain}
+
+AppArmor se převším oproti SElinuxu vyznačuje mnohem jednoduším nastavením.
+%AppArmor is an effective and easy-to-use Linux application security system. AppArmor proactively protects the operating system and applications from external or internal threats, even zero-day attacks, by enforcing good behavior and preventing even unknown application flaws from being exploited. AppArmor security policies completely define what system resources individual applications can access, and with what privileges. A number of default policies are included with AppArmor, and using a combination of advanced static analysis and learning-based tools, AppArmor policies for even very complex applications can be deployed successfully in a matter of hours.
+
 \subsubsection{TOMOYO}
+Tomoyo Linux je Mandatory Access Control (MAC) implementace pro Linux, díky které lze zvýšit zabezpečení systému a~nebo můze být pouze nástrojem systémové analýzy. Jeho vývoj byl zahájem v~březnu 2003 a je sponzorován NTT Data Corporation, Japonsko.
+
+Tomoyo Linux se zaměřuje na chování systému. Každý proces je vytvořen za dosažením uřcitého cíle a~jako imigrační pracovník, Tomoyo Linux umožňuje každému procesu určit si zdroje potřebné k~dosažení svého cíle. Pokud je povolena ochrana, Tomoyo Linux funguje jako hlídací pes a~omezuje každý proces tak jak má povoleno správcem.\cite{TOMOYOLinuxHOME}
+
+Mezi hlavní přednosti Tomoyo Linux patří:
+\begin{itemize}
+ \item Systémová analýza
+ \item Zvýšená bezpečnost díky Mandatory Access Control (MAC)
+ \item Nástroje na podporu generování bezpečnostních pravidel
+ \item Jednoduché syntaxe
+ \item Snadné použití
+ \item Velmi málo závislostí
+ \item Nevyžaduje žádné úpravy stávajících spustitelných souborů.
+\end{itemize}
+
+%TOMOYO Linux is a Mandatory Access Control (MAC) implementation for Linux that can be used to increase the security of a system, while also being useful purely as a system analysis tool. It was launched in March 2003 and is sponsored by NTT DATA Corporation, Japan.
+
+%TOMOYO Linux focuses on the behaviour of a system. Every process is created to achieve a purpose, and like an immigration officer, TOMOYO Linux allows each process to declare behaviours and resources needed to achieve their purpose. When protection is enabled, TOMOYO Linux acts like an operation watchdog, restricting each process to only the behaviours and resources allowed by the administrator.
+
+%The main features of TOMOYO Linux include:
+%System analysis
+%Increased security through Mandatory Access Control
+%Tools to aid in policy generation
+%Simple syntax
+%Easy to use
+%Very few dependencies
+%Requires no modification of existing binaries
+
+\subsubsection{grsecurity}
+grsecurity je inovativní přístup k~zabezpečení, využívající multi-layered (vícevrstvou) detekci, prevenci a omezení modelu. Je vyvíjen pod licencí GNU GPL.~\cite{Grsecurity}
+
+Nabízí mnoho funkcí:
+\begin{itemize}
+ \item inteligentní a robustní Role-Based Access Control (RBAC) systém, který může generovat bezpečnotstní pravidla pro celý systém bez jakékoliv konfigurace
+ \item Rozsáhlé kontroly
+ \item Prevence nežádoucího kódu, bez ohledu na použité techniky (stack smashing, heap corruption, atd…)
+ \item Prevence spuštění libovolného kódu v jádře
+ \item Randomizaci zásobníku a knihoven
+ \item Ochrana proti využitelným chybám null-pointer dereference~\cite{Null-pointerDereference} v jádře
+ \item Snížení rizika úniku citlivých informací díky chybám v jádra
+ \item Omezení, která umožňuje uživateli zobrazit pouze své procesy
+ \item Výstrahy zabezpečení a audity, které obsahují IP adresu osoby, která způsobila záznam
+\end{itemize}
+
+
+%grsecurity is an innovative approach to security utilizing a multi-layered detection, prevention, and containment model. It is licensed under the GNU GPL.
+%It offers among many other features:
+%An intelligent and robust Role-Based Access Control (RBAC) system that can generate least privilege policies for your entire system with no configuration
+%Change root (chroot) hardening
+%/tmp race prevention
+%Extensive auditing
+%Prevention of arbitrary code execution, regardless of the technique used (stack smashing, heap corruption, etc)
+%Prevention of arbitrary code execution in the kernel
+%Randomization of the stack, library, and heap bases
+%Kernel stack base randomization
+%Protection against exploitable null-pointer dereference bugs in the kernel
+%Reduction of the risk of sensitive information being leaked by arbitrary-read kernel bugs
+%A restriction that allows a user to only view his/her processes
+%Security alerts and audits that contain the IP address of the person causing the alert
+
 \subsection{Hodnocní bezpečnosti OS a SW}
 Tak jako ve spoustě jiných odvětvích se i~v~bezpečnosti určují standardy a~udělují certifikace bezpečnosti.
 \subsubsection{Trusted Computer System Evaluation Criteria, TCSEC} \label{sec:TCSEC}
@@ -1250,15 +1325,47 @@ návrhu musí být minimalizována.
 \end{description}
 Operační systém Linux dosahuje úrovně EAL4.~\cite{CCredhat}~\cite{CCsuse}
 
-
-
 \subsection{Internetové zabezpečení}
-\subsubsection{Firewall}
-\subsubsection{Antivirus}
+
+\subsubsection{Firewall v Linuxu}
+Firewall v Linuxu je tvořen projektem \b{Netfilter}, který pracuje na úrovni jádra a umožňuje filtrovat pakety na základě mnoha kritérií. Základním nástrojem pro nastavení paketového filtru je známý řádkový nástroj \b{iptables}.~\cite{FirewallNetfilter}
+
+IPtables jsou, ale nástrojem velice složitým a~proto vzniklo několik projektů, které se snaží nastavení Firewallu usnadnit. Nástrojem určným pro běžné uživatele je např. grafický program \b{Firestarter}. Přístup Firestarteru je však vhodný spíše pro osobní počítače, pro větší síť a~nastavení více firewallů, je vhodným řešením nástroj ve které si uživatel vytvoří nastavení v~grafického nebo textového rozhraní a~výslednou konfiguraci firewallu pak přenese na server. Takovým nástrojem je např. \b{FirewallBuilder}, \b{FireHOL} oblíbená sada scriptů pro konfiguraci Netfilteru \b{Shorewall}.
+
+Jak už je v~linuxu dobrým zvykem vše je často přehledně a~pouzitelně zabaleno v~distribucích. V prostředí firewallů existuje velké množství distribucí, které nenabízejí většinou v~základu jen firewall, ale jsou určiny i~pro routery a~jiná síťová zařízení (PROXY server, gateway, VPN, IPSEC, Anti-virus, www server,…). Asi nejpoužívanější distribucí je \b{IPCop} což je derivát distribuce \b{Smoothwall}. Oblíbenou distribucí pro firewally je také router distribuce \b{OpenWRT} a~několik projektů na ní založených např. \b{FreeWRT} nebo \b{DD-WRT}.
+
+\subsubsection{Antivirus}\label{sec:antivirus}
+Antivirus a~viry obecně jsou velmi diskutovaným tématem v~linuxovém prostředí. V dnešní době je nebezpečí virů na linuxu stále mizivé a~vše naznačuje, že to tak ještě nějakou dobu potrvá. Hlavním argumentem proč na linuxu neexistují viry je často jeho malá rozšířenost, což není tak úplně pravda, protože většina průzkumů rozšířenosti OS se zaměřuje na desktopové počítače, kde dle statistik linux drží 1\%~\cite{StatistikaOS}, ale co se týče především www serverů dosahuje linuxový webový server Apache podílu přes 70\%~\cite{StatLinuxWebServer}. Linux je před viry a malwarem chráněn především díky jeho balíčkovacím systémům, protože software není jako u windows instalován z~různých pochybných webů a~jiných zdrojů, ale přímo od tvůrců distribuce a~jejich repozitářů. Dalším stupněm ochrany jsou pak oddělené uživatelské účty a~oddělený účet administrátora, které zabraňují šíření viru v~systému a~jeho další napadení.~\cite{LinuxCZviry}
+
+Samozřejmě pro linux existuje množštví antivirových programů, které spousta neznalých uživatelů považuje za důkaz virů v~linuxu, což není pravda, protože antivirové programy v~Linuxu slouží především k~ochraně windowsových stanic. Většina serverových řešení je totiž postavena právě na linuxu a~je třeba chránit klienty, kteří fungují na windows. Nejznámější antivirovým programem pro linux je zřejmě \b{ClamAV}, jedná se o OpenSource program, který slouží především ke scanování e-mailové komunikace a~ochraně windowsových stanic~\cite{ClamAV}. Samozřejmě existuje i~množství komerčních antivirových programů od firem jako ESETs nebo AVG a~je jen na uživateli, které řešení použije.
+
 \subsubsection{SSH}
-\subsubsection{další}
+Secure Shell neboli ssh je nástroj pro bezpečné připojení v nedůvěryhodné síti. Poskytuje šifrované terminálové spojení se bezpečným systémem autentizace, jak na straně serveru tak straně klienta, pomocí veřejných kryptografických klíčů.
+
+Hlavní výhody:
+\begin{itemize}
+ \item Množství autentizačních metod
+ \item tunelování libovolné TCP spojení přes SSH, chrání obvykle nešifrované protokoly, jako je IMAP a umožňuje bezpečný průchod přes firewally
+ \item automatické přeposílání spojení X windows
+ \item secure file transfers (bezpečné přenášení souborů)
+\end{itemize}
 
 \subsection{Hypotetické bezpečnostní hrozby v linuxu}
+Virové hrozby byli probrány~\odkazNaKapitolu{sec:antivirus} v~souvislosti s~viry a~malwarem se, ale v~linuxu mluví o~hrozbě jménem \b{sudo}, sudo je nástroj přes který si uživatel nebo aplikace může požádat o~vyší oprávnění než jsou jí určeny, k~samotnému přidělení opravnění je třeba aby uživatel zadal heslo pro uživatele root, což zdánlivě celou situaci řeší, ale zde vstupuje nejzranitelnější část celého systému a~tou je uživatel. Neznalý uživatel zadá bez rozmyslu svoje heslo a~aplikace má plný přístup nad systémem. Samozřejmě jedná se o faktor, který vývojář nevyřeší, ale hrozba číhá i~někde jinde, celkem jednoduše jde vytovořit alias\footnote{alias je jak název napovídá taková přezdívka, uživatel si může pod řetězec uložit složitějsí příkaz, např. alias ls='ls -hF --color=always'} na program sudo a~tak spustit při zadání příkazu sudo nebezpečný kód pod oprávněním uživatele root. např. 
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+alias sudo='sudo rm -rf /'
+\end{Verbatim} 
+    \end{codeframe} 
+při takovém aliasu my si uživatel smazal disk. Samozřejmě takový kód je jen na ukázku, ale demostruje možnosti tohoto "útoku", daleko pravděpodobnější by bylo spuštění útočníkova scriptu a následné přepsání konfiguračních souborů, tak aby získal útočník kontrolu nad počítačem. Tomuto se dá zabránit aplikování MAC, ale využití podobného rozšíření zabezpečení, není v~linuxu vůbec samozřejmostí.
+
+Lidský faktor přispívá ve zranitelnosti jakéhokoliv systému, ukázkou může být chyba vývojáře debianu, která způsobila, že autentizační mechanizmus u~ssh generoval předvídatelné textové řetězce, které mohl zneužít útočník pro napadení systému. Tato chyba se navíc vyskytovala v~debianu po dlouhou dobu než se na ni přišlo.~\cite{DebianSSHFail}
+
+Další hrozbou jsou pak chyby v~kódu jádra. Naštěstí je, díky otevřenému kódu, kolem linuxu obrovská skupina vývojářů, která chyby téměř okamžitě záplatuje a~eliminuje tak zero-day útoky.
+
+Repozitáře s~falešným nebo upraveným SW. Další z reálných hrozeb v~linuxu avšak uživatel je opět ten, který si přidá takovýto repozitář. Této možnosti útoku zabraňuje podepisování balíčků a~repozitářů.~\cite{ArchWikiPodepisovaniBalicku}
+
+Existuje ještě mnoho hrozeb, ale většinu neovlivňuje linux samotný, ale různé aplikace třetích stran a~chyby v~nich obsažené.
 
 \section{\upc{Tvorba LiveCD}}
 
@@ -1313,6 +1420,19 @@ text
 \bibitem{NBUHodnoceniBezpecnostiSW}Narodní bezpečnostní úřad. {\it{INFORMACE O HODNOCENÍ BEZPEČNOSTI INFORMAČNÍCH TECHNOLOGIÍ}} [online]. Praha : NBÚ, 2005 [cit. 2011-05-14]. Dostupné z~WWW: \href{http://www.nbu.cz/\_downloads/bezpecnost-informacnich-systemu/container-nodeid-748/infoobit.pdf}{http://www.nbu.cz/\_downloads/bezpecnost-informacnich-systemu/container-nodeid-748/infoobit.pdf}.
 \bibitem{CCredhat}{\it{NIAP CCEVS}} [online]. 2007 [cit. 2011-05-14]. Validated Product - Red Hat Enterprise Linux Version 5 running on IBM Hardware. Dostupné z~WWW: \href{http://www.niap-ccevs.org/cc-scheme/st/?vid=10125}{http://www.niap-ccevs.org/cc-scheme/st/?vid=10125}.
 \bibitem{CCsuse}{\it{NIAP CCEVS}} [online]. 2007 [cit. 2011-05-14]. Validated Product - SUSE Linux Enterprise Server 10 SP1. Dostupné z~WWW: \href{http://www.niap-ccevs.org/st/vid10271/}{http://www.niap-ccevs.org/st/vid10271/}
+\bibitem{SElinuxWiki}{\it{SElinux Wiki}} [online]. 2007 [cit. 2011-05-16]. Main Page. Dostupné z~WWW: \href{http://selinuxproject.org/page/Main\_Page}{http://selinuxproject.org/page/Main\_Page}.
+\bibitem{AppArmorWikiMain}{\it{AppArmor}} [online]. 2006 [cit. 2011-05-16]. Main Page. Dostupné z~WWW: \href{http://wiki.apparmor.net/index.php/Main\_Page}{http://wiki.apparmor.net/index.php/Main\_Page}.
+\bibitem{TOMOYOLinuxHOME}NTT DATA Corporation. {\it{TOMOYO Linux Home Page}} [online]. 2006 [cit. 2011-05-16]. TOMOYO Linux. Dostupné z~WWW: \href{http://tomoyo.sourceforge.jp/}{http://tomoyo.sourceforge.jp/}.
+\bibitem{Null-pointerDereference}WILLIAMS, Jeff. {\it{OWASP}} [online]. 2006 [cit. 2011-05-16]. Null-pointer dereference. Dostupné z~WWW: \href{https://www.owasp.org/index.php/Null-pointer\_dereference}{https://www.owasp.org/index.php/Null-pointer\_dereference}.
+\bibitem{Grsecurity}{\it{Grsecurity}} [online]. 2004 [cit. 2011-05-16]. Grsecurity. Dostupné z~WWW: \href{http://grsecurity.net/}{http://grsecurity.net/}.
+\bibitem{FirewallNetfilter}{\it{The netfilter.org project}} [online]. 1999 [cit. 2011-05-16]. Netfilternetfilter/iptables project homepage. Dostupné z~WWW: \href{http://www.netfilter.org/}{http://www.netfilter.org/}.
+\bibitem{StatistikaOS}StatCounter. {\it{StatCounter Global Stats}} [online]. 1999 [cit. 2011-05-16]. Browser, OS, Search Engine including Mobile Market Share. Dostupné z~WWW: \href{http://gs.statcounter.com/\#os-ww-monthly-201004-201104-bar}{http://gs.statcounter.com/\#os-ww-monthly-201004-201104-bar}
+\bibitem{StatLinuxWebServer}E-Soft Inc. {\it{Web Server Survey}} [online]. 1998, 2010-05-01 [cit. 2011-05-16]. SecuritySpace. Dostupné z~WWW: \href{http://www.securityspace.com/s\_survey/data/201004/index.html}{http://www.securityspace.com/s\_survey/data/201004/index.html}.
+\bibitem{ClamAV}ClamAV. {\it{Clam Antivirus}} [online]. 2002 [cit. 2011-05-16]. Clam Antivirus. Dostupné z~WWW: \href{http://www.clamav.net/lang/en/}{http://www.clamav.net/lang/en/}.
+\bibitem{LinuxCZviry}OHNESORG, Dan. {\it{Linux.cz}} [online]. 2007 [cit. 2011-05-16]. Linux a viry. Dostupné z~WWW: \href{http://www.linux.cz/viry.html}{http://www.linux.cz/viry.html}.
+\bibitem{SSHguide}BARRETT, PH. D., Daniel J.; SILVERMAN, Richard E.; BYRNES, Robert G. {\it{SSH: The Secure Shell}} [online]. 2001, 2010 [cit. 2011-05-16]. The Definitive Guide. Dostupné z~WWW: \href{http://www.snailbook.com/index.html}{http://www.snailbook.com/index.html}.
+\bibitem{DebianSSHFail}WEIMER, Florian. {\it{Debian}} [online]. 2008-05-13 [cit. 2011-05-16]. [SECURITY] [DSA 1571-1] New openssl packages fix predictable random number generator. Dostupné z~WWW: \href{http://lists.debian.org/debian-security-announce/2008/msg00152.html}{http://lists.debian.org/debian-security-announce/2008/msg00152.html}.
+\bibitem{ArchWikiPodepisovaniBalicku}{\it{ArchWiki}} [online]. 2009-06-03 [cit. 2011-05-16]. Pacman package signing. Dostupné z~WWW: \href{https://wiki.archlinux.org/index.php/Pacman\_package\_signing}{https://wiki.archlinux.org/index.php/Pacman\_package\_signing}.
 }
 
 %********************************* Seznam zkratek ************************************
@@ -1345,6 +1465,9 @@ FC & Federal Criteries\\
 CCRA & Common Criteria Recognition Arrangement\\
 EAL & Evaluation Assurance Levels\\
 SElinux & Security-Enhanced Linux\\
+LSM & Linux Security Modules\\
+IPC & interprocess communication\\
+SSH & Secure Shell\\
 \end{tabular}
 %********************************* Seznam obrázků ************************************
 \seznamobr
