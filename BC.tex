@@ -1676,6 +1676,15 @@ git clone git://github.com/zajca/LFS---by-bash-scripts.git
 \end{Verbatim} 
     \end{codeframe}
 
+a~ještě překopírovat soubory užvatele lfs do jeho domovského adresáře
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+# cp $LFS/scripts/lfsuser/{.bash_profile,.bashrc} /home/lfs/
+# chown -R LFS /home/LFS
+\end{Verbatim} 
+    \end{codeframe}
+
+
 nyní je třeba přenastavit práva tak aby uživatel lfs mohl zapisovat do složky /mnt/LFS
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
