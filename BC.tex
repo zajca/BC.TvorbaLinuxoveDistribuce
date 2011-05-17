@@ -88,6 +88,7 @@
 \newcommand{\upc}[1]{\uppercase{#1}} %zjednodušení pro velká písmena
 \newcommand{\odkazNaKapitolu}[1]{(viz.~kapitola~\ref{#1}/s\pageref{#1})}
 \newcommand{\odkazNaObrazek}[1]{(viz.~obr.~\ref{#1}/s\pageref{#1})}
+
 \newcommand{\nadpis}[1]{%nadpis pod kterym je vertikalni mezera
 	\vspace{4 mm}
 	\textbf{#1}\\
@@ -524,7 +525,7 @@ Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když j
 %iveCD :: The LiveCD project provides a CD that is useful as an LFS build host or as a general rescue CD.
 %Patches :: The Patches project serves as a central repository for all patches useful to an LFS user.
 
-\section{\upc{Scriptování v jazyce BASH}}
+\section{\upc{Scriptování v jazyce BASH}}\label{sec:BASH-MAIN}
 (\b{B}ourne \b{A}gain \b{SH}ell)\\
 Interpretovaný, neobjektový jazyk, určený především pro administraci a automatizaci *nix operačních systémů. Skripty obvykle většinu požadované činnosti vykonávají voláním systémových utilit. Podpora syntaxe Bashe je u textových editorů obvyklá. Bash je nainstalován prakticky na každém desktopovém Linuxu a na mnoha dalších *nix systémech.\cite{ABCBASH}
 
@@ -1385,9 +1386,310 @@ Linux-Live je sada scriptů, která není závislá na distribuci, ale lze ji po
 %********************************* Projektová část ************************************
 \part{Projektová část}
 \section{\upc{LFS by bash scripts}}
-\subsection{Struktura a použití}
-\subsection{Návod pro sestavení}
+Účelem LFS by bash scripts je sestavení distribuce LFS za pomocí jednoduchých a~přehledných scriptů napsaných v~interpretovaném jazyce BASH \odkazNaKapitolu{sec:BASH-MAIN}. Jejich struktura je velice jednoduchá a~přehledná, tak aby ji kdokoliv mohl libovolně upravovat bez velkého zkoumání kódu.
 
+\subsection{Struktura a použití}
+V~git repozitáři LFS---by-bash-scripts je k~nalezení několik souborů a~složek.\\
+
+\subsubsection{Adesářová struktura}
+\begin{description}
+ \item[chap5] Obsahuje scripty pro sestavení toolchainu dle kapitoly 5 v~oficiálním návodu.
+ \item[chap6] Obsahuje scripty pro sestavení systémových programů v prostředí chroot dle kapitoly 6 v~oficiálním návodu.
+ \item[FAIL\_Logs] Složka, která slouží pouze pro ukládání chybových záznamů pokud některá část kompilace selže.
+ \item[include] Adresář s~funkcemi, jazykovou složkou a~verzemi programů
+ \item[lfsuser] Pro usnadnění práce tento adresář obsahuje soubory potřébné pro uživatelský profil LFS
+ \item[linker.1.test/linker.1.test64] dva soubory, které slouží pro test funkcnosti při oddělení toolchainu.
+ \item[makeall] hlavní spouštěcí script, který spuští vše potřebné až do konce kapitoly 5.
+ \item[prepare] script, který se stará o~kontrolu existence potřebných složek a~symbolických odkazů.
+ \item[README.markdown] README soubor ve~snačkovacím jazyce markdown
+ \item[sources] Pozůstatek složky pro stahování zdrojových kódů před instalací. Už řešeno přímo před kompilací jednotlivě
+ \item[version-check.sh] Oficiální script LFS pro test potřebných nástrojů v~systému
+ \end{description}
+Velmi důležitou je pak složka include, která obsahuje verze programů a~funkce využívané při kompilaci
+\b{LFS---by-bash-scripts/include}
+\begin{description}
+ \item[functions] script se všemi funkcemi
+ \item[ver] script s~poly, které obsahují informace o balíčcích
+ \item[l10n-EN] už téměř nepoužívaný script, který měl sloužit pro lokalizaci do jiných jazyků, byl zavrhnut, protože znamenal velkém množství porměnných
+ \end{description}
+
+\subsubsection{Důležité proměnné}
+LFS samotná obsahuje několik proměnných, které jsou důležité pro sestavení toolchainu a~LFS by bash scripts obsahuje další proměnné důležité pro funkčnost scriptů.\\
+
+\b{jsou to především:}
+\begin{description}
+ \item[TOOLS\_STRIP=0] proměnná nastavuje zda se mají odstranit některé nepotřebné soubory v~toolchainu, vhodné pro malý diskový oddíl
+ \item[WAIT=1] proměnná nastavuje zda se má v~každém kroku čekat na uživatelskou interakci. Doporučena hodnota 1 (čekat)
+ \item[MAKEFLAGS='-j 3'] tato proměnná nastavuje počet jader procesoru.
+ \item[ROOT=/mnt/LFS] cesta na které je připojem disk
+ \item[SOURCES\_DIR=\$ROOT/sources] cesta na které jsou umístěny stažené balíčky
+ \item[BUILD\_DIR=\$ROOT/build] cesta do adresáře kde probíhá kompilace
+ \item[TOOLS\_DIR=\$ROOT/tools] cesta do adresáře kde je instalován toolchain
+ \item[SCRIPTS\_DIR=\$ROOT/scripts] cesta do adresáře kde jsou umístěny scripty
+ \end{description}
+
+Každý script ke kompilaci programu navíc obsahuje interní proměnné, do kterých se ukládají názvy programů jejich adresy ke stažení a~jiné informace z~polí, uložených v~souboru includes/ver. Tyto proměnné se pak většinou předávají jako parametry funkcím definovaným v souboru includes/funtions.\\
+
+\b{malá ukázka ze scriptu chap5/glibc:}
+\begin{description}
+ \item[NAME=]\$\{glibc[0]\} do proměnné se ukládá název programu z~první položky pole (glibc)
+ \item[PROGRAM=]\$\{glibc[3]\} do proměnné se ukládá název programu i~s~jeho verzí, slouží především k~určování adresy po rozbalení programu. (glibc-2.13)
+ \item[FILE=]\$\{glibc[2]\} do proměnné se ukládá název archivu s~programem (glibc-2.13.tar.bz2)
+ \item[EXT=]\$\{glibc[4]\} do proměnné se ukládá druh archivu, který rozhoduje ve funkci unpack() \odkazNaKapitolu{func:unpack} o~tom jak se má rozbalit. (glibc-2.13.tar.bz2)
+ \item[DLINK=]\$\{glibc[1]\} do proměnné se ukládá odkaz na stažení archivu využívaný funkcí download() \odkazNaKapitolu{func:dlink} (http://… ftp://…)
+ \item[MD5=]\$\{glibc[5]\} do proměnné se ukládá kontrolní součet staženého souboru pro test správnosti stažení, využívaný funkcí check \odkazNaKapitolu{func:md5} (38808215a7…)
+ \item[pDLINK/pMD5/pPatch] pro patche jsou proměnné podobné, jen pole obsahuje pouze 3 položky a~proměnná pole začíná písmenem "p". položka[0] obsahuje link pro stažení, položka[1] obsahuje název souboru s~patchem, položka[2] obsahuje kontrolní součet.
+ \end{description}
+
+\subsubsection{functions}
+script functions slouží pro automatizování stále se opakujících procedur pomocí BASH funkcí. Každá funkce obsahuje jednoduchý komentář s~popisem funkcí a~jejich parametrů v~angličtině. Pro ukázku několik funkcí z~tohoto scriptu.\\
+
+Pro barevný výstup jsou definovány barvy, které je třeba pro použití ve funkcích nastavovat přes program \b{tput}
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+DEF="$(tput sgr0)"
+BOLD="$(tput bold)"
+B="${BOLD}$(tput setaf 4)"
+G="${BOLD}$(tput setaf 2)"
+R="${BOLD}$(tput setaf 1)"
+Y="${BOLD}$(tput setaf 3)"
+C="${BOLD}$(tput setaf 6)"
+M="${BOLD}$(tput setaf 5)"
+\end{Verbatim} 
+    \end{codeframe}
+
+unpack() je jednoduchá funkce, která pouze na základě předaného paramatru z~proměnné \$EXT volá funkce pro rozbalení.
+\label{func:unpack}
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+unpack(){
+if [ $1 == bzip ]; then
+      unpackBzip
+  elif [ $1 == gzip ]; then
+      unpackGzip
+  else
+    echo "$R somethink went wrong with archive unpack $DEF";
+fi
+}
+export -f unpack
+\end{Verbatim} 
+    \end{codeframe}
+
+unpackBzip() a unpackGzip() jsou prakticky stejné funkce, které rozbalují stažené archivy, jejich rozdíl je pouze v~parametrech programu tar.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+unpackGzip (){
+	echo "$Y Starting build script $PROGRAM $DEF";
+
+	if [ -d $BUILD_DIR/$PROGRAM ]; then
+	  echo "$C Directory with source already exist $G [REMOVING] $DEF"
+	  echo "$G rm -rf $BUILD_DIR/$PROGRAM $DEF"
+	  rm -rf $BUILD_DIR/$PROGRAM
+	  echo "$C Source directory $G [UNPACKING] $DEF"
+	  echo "$G tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/ $DEF"
+	  tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/
+	else
+	  echo "$C Source directory $G [UNPACKING] $DEF"
+	  echo "$G tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/ $DEF"
+	  tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/
+	fi
+}
+export -f unpackGzip
+\end{Verbatim} 
+    \end{codeframe}
+
+SepBuild() vytváří složku pro oddělený build. Některé programy není dobré kompilovat ve složce se zdrojovými kódy a~proto jsou kompilovány v~separované složce.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+SepBuild (){
+	echo "$Y Preparing for separate build $PROGRAM $DEF";
+
+	if [ -d $BUILD_DIR/$PROGRAM-BUILD ]; then
+	  echo "$C Build directory already exist $G [REMOVING] $DEF"
+	  echo "$G rm -rf $BUILD_DIR/$PROGRAM-BUILD $DEF"
+	  rm -rf $BUILD_DIR/$PROGRAM-BUILD
+	else
+	  echo "$M.$DEF"
+	fi
+
+	echo "$C Making directory for separate build $DEF"
+	echo "$G mkdir $BUILD_DIR/$PROGRAM-BUILD $DEF"
+	mkdir $BUILD_DIR/$PROGRAM-BUILD
+}
+export -f SepBuild
+\end{Verbatim} 
+    \end{codeframe}
+
+testSimLink() je funkcí pro testování existence symbolického odkazu. první parametr \$1 je testováný odkaz a~pokud neexistuje je vytvořen symbolický odkaz parametru \$2 na adresu v~parametru \$3
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+testSimLink (){ 
+	if [ -L $1 ]; then
+	  echo "$C Symbolic link $1 exist $DEF"
+	else
+	  echo "$C Symbolic link $G $1 $C not exist $DEF"
+	  echo "Making symbolic link $G $1 $DEF"
+	  echo "$G ln -s $2 $3 $DEF"
+	  ln -s $2 $3
+	fi
+}
+export -f testSimLink
+\end{Verbatim} 
+    \end{codeframe}
+
+Funkce addPatch() využívá programu \b{patch}, pro aplikování patche. A~jejím jediným paramatrem je název souboru patche, který je větsinou v~proměnné \$pPatch.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+addPatch (){
+	echo "$C Adding patch $DEF"
+	echo "$G patch -Np1 -i $SOURCES_DIR/$1 $DEF"
+	patch -Np1 -i $SOURCES_DIR/$1
+}
+export -f addPatch
+\end{Verbatim} 
+    \end{codeframe}
+
+Funkce compareFiles() porovnává dva soubory pomocí programu \b{cmp}. Je vytvořena pro účely testování správnosti oddělení toolchainu a~pokud se soubory neshodují, ukončuje scripty.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+compareFiles (){
+if cmp $1 $2 &> /dev/null
+	then
+	  echo "$C Files are matching [OK] $DEF"
+	else
+	  echo "$R Linker test [FAIL] $DEF"
+	  exit 1
+    fi
+}
+export -f compareFiles
+\end{Verbatim} 
+    \end{codeframe}
+
+Funkce waitUser() na základě proměnné \$WAIT pozastavuje vykonávání scriptu, dokud uživatel nezmáčkne klavesu enter. Podobnou funkcí je pak fuknce waitUserAl(), která pozastaví scripty vždy.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+waitUser (){
+  if [ $WAIT == 1 ]; then
+    echo "for continue pres enter"
+    read > /dev/null
+  fi
+}
+export -f waitUser
+\end{Verbatim} 
+    \end{codeframe}
+
+Již zmíněná funkce download() stahuje z~internetu všechny potřebné soubory a~využívá k~tomu programu wget
+\label{func:dlink}
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+download (){
+ wget -c ${1} -P ${SOURCES_DIR}/
+}
+
+export -f download
+\end{Verbatim} 
+    \end{codeframe}
+
+Funkce check() uloží do proměnné \$md5test kontrolní součet souboru, předaného v~parametru \$1 a~porovná jej s kontrolním součtem předaným v~parametru \$2.
+\label{func:md5}
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+check(){
+  echo "$C Checking md5 checksum for file ${1} $DEF"
+  md5test=$(md5sum $SOURCES_DIR/${1} | awk '{ print $1 }')
+  if [ ${2} == ${md5test} ]; then
+    echo "$G [OK] $DEF";
+  else
+    echo "$R [FAIL] $DEF";
+  fi
+}
+\end{Verbatim} 
+    \end{codeframe}
+
+functions obsahuje také funkce pro kompilaci, ale předávání parametrů pomocí \$\@ se ukázalo jako nešťastné řešení, způsobující mno chyb při kompilaci.
+
+\subsection{Návod pro sestavení}
+Sestavení je díky scriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskovy oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musejí být provedeny pod účtem uživatele root)
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+# mkdir /mnt/LFS
+# export LFS=/mnt/LFS
+# mount /dev/sda7 $LFS
+\end{Verbatim} 
+    \end{codeframe}
+
+poté je potřebné vytvořit složku pro toolchain a~symbolický odkaz na adresu /tools
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+# mkdir -v $LFS/tools
+# ln -sv $LFS/tools /
+\end{Verbatim} 
+    \end{codeframe}
+
+Dalším krokem je vytvoření uživatele a~skupiny lfs.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+# groupadd lfs
+# useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+# passwd lfs #nastavení hesla
+\end{Verbatim} 
+    \end{codeframe}
+nyní je dobré stáhnout a~překopírovat scripty LFS by bash scripts. Nejjednoduším způsobem je stáhnutí scriptů pomocí verzovacího systému git.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+cd ~/
+git clone git://github.com/zajca/LFS---by-bash-scripts.git
+# mkdir $LFS/scripts
+# cp -R ~/LFS---by-bash-scripts/* $LFS/scripts/
+\end{Verbatim} 
+    \end{codeframe}
+
+nyní je třeba přenastavit práva tak aby uživatel lfs mohl zapisovat do složky /mnt/LFS
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+# chown -R lfs $LFS
+\end{Verbatim} 
+    \end{codeframe}
+
+po těchto krocích je už třeba jen přihlásit se jako uživatel lfs a~spustit script makeall
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+su - lfs
+cd $LFS
+sh ./scripts/makeall
+\end{Verbatim} 
+    \end{codeframe}
+
+script makeall ověří správnost nastavení a~vytvoří toolchain, který je potřebný pro další sestavení systému. Jakmile je toolchain sestaven je třeba změnit práva pro adresář /mnt/LFS/tools
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+chown -R root:root $LFS/tools
+\end{Verbatim} 
+    \end{codeframe}
+
+nyní je třeba spustit script prepareChap6, který vytvoří potřebné složky a~virtuální souborové systému.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+# sh ./scripts/prepareChap6
+\end{Verbatim} 
+    \end{codeframe}
+
+nyní je třeba se chrootnout do systému, tedy se přihlásit do námi vytvořného toolchainu
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+chroot "$LFS" /tools/bin/env -i \
+    HOME=/root TERM="$TERM" PS1='\u:\w\$ ' \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \
+    /tools/bin/bash --login +h
+\end{Verbatim} 
+    \end{codeframe}
+
+a spustit script chrootMakeall
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+../scripts/chrootMakeall
+\end{Verbatim} 
+    \end{codeframe}
 %********************************* Závěr ************************************
 \nn{Závěr}
 text
