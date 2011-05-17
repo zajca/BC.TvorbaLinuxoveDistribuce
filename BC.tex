@@ -474,14 +474,9 @@ Linuxové distribuce jsou také směřovány na různé procesorové architektur
 
 \subsubsection{Další rozdíly}
 Rozdíly ikdyž ne tak zásadní jsou v softwarové výbavě, ta sice jde ruku v~ruce s~nasazením linuxu, ale ve světě desktopů a~hlavně distribuce Ubuntu se v posledních několika letech oběvují distribuce, které se odlišují pouze v~základním uživatelském prostředí. Oficiálně  společnost Canonical (tvůrce Ubuntu) vytváří 4 distribuce, které se odlišují od Ubuntu pouze v~základním uživatelském prostředí a~další 4 distribuce, které se liší v softwarove výbavě.
-%
-% TODO dopsat distribuce
-%
-\\
-Velký rozdíl zavádí do linuxových ditribucí GoboLinux. Tato distribuce překopává základní rozdělení Linuxového filesystému na více intuitivní a~uživatelsky příznivější.
-%
-% TODO rozepsat
-%
+\b{Ubuntu, Kubuntu, Edubuntu, Xubuntu, Gobuntu, Lubuntu, Fluxbuntu, Ubuntu Netbook Edition}\\
+
+Velký rozdíl zavádí do linuxových ditribucí \textbf{GoboLinux}. Tato distribuce mění základní rozdělení Linuxového filesystému na více intuitivní a~uživatelsky příznivější.V rootu distribuce GoboLinux lze nalézt pouze složky \b{Programs, Users, System, Files, Mount, Depot}. Programs je velice zajímavá složka, protože v~GoboLinuxu obsahuje všechny programy a~jejich soubory a~díky promyšlené struktuře je možné provozovat v~GoboLinuxu hned několik verzí stejného programu. Programs také zajišťuje databázi balíčkovacího systému, která je řešena pomocí složek programů. Chytrost tohoto řešení je však trochu degradována řešením zpětné kompatibility s~Linuxovým standardem, která je řešena přes velké množství symbolických adres.~\cite{GoboLinuxFilesystem}~\cite{GoboLinuxMain}
 
 \section{\upc{Distribuce Linux from scratch}}
 LFS je projekt poskytující návod, který vás provede krok za krokem sestavením vlastní Linuxové distribuce ze zdrojových kódů.~\cite{LFSwMAIN}
@@ -863,12 +858,20 @@ Příkazy můžeme rozdělit na zabudované a normální. Zabudované příkazy 
  \item[printf] není dostupný ve starých shellech a při vytváření formátovaného výstupu byste mu měli dávat přednost před příkazem echo podle specifikace X/Open
  \end{description}
 
-%
-%
-%TODO dopiš pole!,... vole
-%
-%
-
+\subsubsection{Pole}
+Pole se v BASHi definují do kulatých závorek a~položky se odělují mezerou. Vyvolat položky lze pak jednoduše jako jiné proměnné, ale s~indexem v~hranatých závorkách.~\cite{BASHen}
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+packagename=(name dlink archivename foldername extension md5)
+echo $packagename[0]
+\end{Verbatim} 
+    \end{codeframe}
+Ukládat položky pole do proměnných lze také velmi jednoduše:
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+promenna = ${packagename[0]}
+\end{Verbatim} 
+    \end{codeframe}
 %\subsubsection{Spojení s OS linux}
 
 
@@ -917,7 +920,7 @@ nahraje soubory do systému všechny potřebné soubory
 \subsection{Možnosti tvorby distribuce}
 Linuxovou distribuci lze vytvořit více způsoby, nejběžnějším způsobem je sestavení ze zdrojových kódů. Je třeba dávat pozor na licenční ujednání a dle GNU/GPL licence (pod kterou je distribuováno linuxové jádro) musí autor uvolnit zdrojové kódy. U linuxoveho jádra to zahrnuje většinou použité patche.
 \subsubsection{Vytvoření ze zdrojových kódů}
-Vytvoření ze zdrojových kódů reprezentuje například použitá "distribuce" Linux From Scratch. Postup se obecně skládá z několik částí, které jsou více rozepsány v projektové části. % TODO doplnit konkrétní umístění a odkaz
+Vytvoření ze zdrojových kódů reprezentuje například použitá "distribuce" Linux From Scratch. Postup se obecně skládá z několik částí.
 \begin{enumerate}
  \item Prve je třeba oddělit systém a vytvořit toolchain, který slouží k sestavení nové distribuce nezávislé na předchozím hostovském systému.
 \item sestavení vlastní sady základních nástrojů pro pouzití systému. Sada obsahuje překladače, nástroje pro práci se soubory a jiné potřebné programove vybavení.
@@ -925,7 +928,7 @@ Vytvoření ze zdrojových kódů reprezentuje například použitá "distribuce
 \item vytvoření tabulky souborových systémů, kompilace jádra systému, nastavení bootloaderu
 \end{enumerate}
 
-\subsubsection{Sestavení ze stávající linuxové distribuce}
+\subsubsection{Sestavení ze stávající linuxové distribuce} \label{sec:tvorbaDistribuce}
 Existuje hned několik nástrojů na sestavení tzv. derivátu Linuxové distribuce. Většinou jsou používány pro sestavení instalačního ISO obrazu na míru potřeb uživatele. To zahrnuje balíčky použité při instalaci, různé nastavení, grafická témata, písma apd,… Populární se staly především deriváty distribuce Ubuntu, pro Ubuntu existuje i nejvíce těchto nástrojů. K dispozici jsou nástroje jak pro desktop s bězným GUI nebo CLI,tak i nástroje webové, které sestaví distribuci v cloudu a uživatel stáhne jenom hotový obraz.
 
 \nadpis{Remastersys}\\
@@ -957,7 +960,7 @@ Examples:
 \end{center}
 %This tool has a newbie-proof GUI and works on both Ubuntu and Debian distros and any of their derivatives.
 %Remastersys works by transferring the distro you're running into an ISO image. You can choose to include your settings and personal data too, which makes it ideal for backups.
-\nadpis{The Ubuntu Customisation Kit (UCK)}\\
+\nadpis{The Ubuntu Customisation Kit (UCK)}\\ \label{sec:UCK}
 Program je určen pro Ubuntu a všechny jeho deriváty. Dovoluje odebrat nebo přidat jakékoliv aplikace na instalačním CD. UCK je určeno spíše pokročilejším uživatelům, protože po vytvoření LiveCD, do něj přihlásí uživatele prostřednictvím chroot a dovolí mu tak změnit prakticky cokoliv. Aplikace má jednoduché grafické rozhraní se spoustou dialogů, které vás provedou vytvořením LiveCD.\cite{Linux_Build}
 %The Ubuntu Customisation Kit – which is tastefully shortened to UCK – works with the ISO of any of the four Ubuntu flavours (the GNOME based original Ubuntu, KDE-based Kubuntu, Xfce-based Xubuntu and education-targeted Edubuntu) and lets you add or remove any apps to the stock.
 %This tool is ideal for advanced users because during the customisation process it places you in a chrooted environment of the Live CD, enabling you to tweak any aspect of the distro.
@@ -1016,31 +1019,10 @@ MySlax Creator jsou scripty určné k úpravě distribuce Slackware, předevší
 %Here's a Slackware customisation script with a unique twist. The tool creates customised versions of the Slackware-based Slax distro we mentioned above, but unlike the other tools we talk about here, MySlax Creator installs and work from within Windows!
 %It works with Slax ISO images and lets you add data to your own custom spins.
 
-\nadpis{NimbleX}\\
-Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního derivátu NimbleX. Umožňuje vytvořit vlastní obraz několik jednoduchými kroky, na výběr je stáhnutí minimální obrazu nebo sestavení vlastního obrazu. U vlastního obrazu si uživatel vybere aplikace přehledně rozdělné do kategorií, wallpaper, nastavení zvuku, nastavení uživatelů a jazyk systému. Pak už jen počká na vygenerování obrazu, který je následujících 12hodin ke stažení.
-\begin{figure}[h]
-\begin{center}$
-\begin{array}{cc}
-\includegraphics[width=2in]{./img/screens/nible1.png} &
-\includegraphics[width=2in]{./img/screens/nible2.png}
-\end{array}$
-\end{center}
-\caption{Webové rozhraní s nastavením NimbleX, v levo výběr míry nastavení, v pravo nastavení programů v sekci office}
-\end{figure}
-\begin{figure}[h]
-\begin{center}$
-\begin{array}{cc}
-\includegraphics[width=2in]{./img/screens/nible3.png} &
-\includegraphics[width=2in]{./img/screens/nible4.png}
-\end{array}$
-\end{center}
-\caption{Webové rozhraní s nastavením NimbleX, v levo výběr wallpaperu, v pravo nastavení zvuku}
-\end{figure}
-
 %\nadpis{LinuxCOE}\\
 
-\nadpis{Instalinux}\\
-Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat z několika distribucí (Debian, Ubuntu, CentOS, Fedora, OpenSUSE, Scientific) a v dalších krocích základní nastavení systému a výběr aplikací. Výsledkem je ISO obraz, kterým nemusí mít ani 30MB. Pro podrobnější nastavení exituje Designer Pro, který umožňuje nastavit mnohem více. Výbornou vlastností je uložení profilu, který je možné použít znovu a upravit si jej.
+\nadpis{Instalinux}\\ \label{sec:Instalinux}
+Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat z několika distribucí (Debian, Ubuntu, CentOS, Fedora, OpenSUSE, Scientific) a v dalších krocích základní nastavení systému a výběr aplikací. Výsledkem je ISO obraz, kterým nemusí mít ani 30MB. Pro podrobnější nastavení exituje Designer Pro, který umožňuje nastavit mnohem více. Výbornou vlastností je uložení profilu, který je možné použít znovu a upravit si jej.\\
 
 %This is a simple, easy way to install Linux. You follow the steps in the System Designer to choose from a bunch of different distributions and versions of Linux, and to choose what software you want included. The final product will be a fairly small ISO image (30 MB or less) that you can burn to a CD and boot from. It will automatically build your system for you, pulling what it needs from the network mirror you selected, while you sit back and relax.
 \begin{figure}[h]
@@ -1368,16 +1350,66 @@ Repozitáře s~falešným nebo upraveným SW. Další z reálných hrozeb v~linu
 
 Existuje ještě mnoho hrozeb, ale většinu neovlivňuje linux samotný, ale různé aplikace třetích stran a~chyby v~nich obsažené.
 
-\section{\upc{Tvorba LiveCD}}
+\section{\upc{LiveCD}}
+Ač by se mohl zdát, že liveCD je nějaká velmi složitá věc k~vytvoření není to tak úplně pravda. Nejjednoduší forma LiveCD je pokud strčíme CD do mechaniky, ten nabootuje a~spustí se příkazová řádka ve které je možné pracovat. Takto fungovali a~často ještě fungují instalační CD. Dnes se velmi často používá několik instalčních/live CD
+\begin{itemize}
+ \item Instalační CD s~příkazovou řádkou a~instalací pomocí textového nástroje (Archlinux,…)
+ \item Instalační CD s~grafickým instalátorem (Debian,…)
+ \item LiveCD ve kterém lze z~grafického Live prostředí spustit instalátor (ve většině případů lze spustit grafický isntalátor i~bez grafického live prostředí jako v~předchozí položce) (Ubuntu,…)
+ \item Čistě LiveCD, takový disk slouží pouze pro vyzkoušení většinou grafického prostředí nebo k~opravám stávajícího systému (neobsahuje instalátor) (GNOME Live Media, Gparted,…)
+ \item LiveCD určené pro běžnou práci. Takové LiveCD umí např. nahrání systému do RAM, pak už není třeba číst z~CD nebo také pokud se jedná o~LiveUSB jdou uložit změny v~systému na disk a~jsou načteny při dalším spuštění. (Slax,Chakra,…)
+\end{itemize}
 
 \subsection{Výhody/nevýhody LiveCD}
+Vyhodou LiveCD je především možnost \textbf{vyzkoušet si celý operační systém bez nutnosti instalace}. Kompromisem LiveCD je pak \textbf{rychlost}, která se odvíjí od rychlosti čtení CD/DVD mechaniky. Rychlost LiveCD je možné zvýšit použitím jiného média než CD nebo DVD, např. použitím FlashDisku. Rychlost běhu lze zvýšit také \textbf{nahraním celého systému do paměti RAM}, této proces má však velkou nevýhodu v~délce trvání, protože celé LiveCD musí být přečteno a~zapsáno do paměti RAM. Další nevýhodou je pak, až~na vyjímky, nemožnost uložení změn v~systému zpět na přenosné médium.\\
+
+Samozřejmě LiveCD není většinou používáno k~běžně práci, takže jeho výhoda ve vyzkoušení neznámého operačního systému nebo grafického prostředí bez nutnosti mnohdy zdlouhavé instalace, převišuje nad nevýhodami.
 \subsection{Možnosti tvorby LiveCD}
-\subsubsection{Obecný postup}
+Vytvořit LiveCD lze několika způsoby, nejjednoduší je způsob úpravy stávajícího LiveCD jak bylo i~popsáno \odkazNaKapitolu{sec:tvorbaDistribuce}. 
+
+\subsubsection{Obecný postup tvorby LiveCD}
+Obecný postup tvorby LiveCD se dá shrnout do několika kroků.
+\begin{enumerate}
+ \item Vytvoření adresářové struktury LiveCD
+ \item Připojení Virtual File System (VFS), ten zahrnuje složky: /sys /proc /dev /dev/shm /dev/pts /var/run
+ \item Nainstalování základních balíčků
+ \item Nainstalování modulů squashfs a~aufs
+ \item Nainstalování kernelu a~vytvoření initramfs pomocí mkinitcpio s~minimálně aktivovanými moduly aufs, squashfs a loop, které jsou potřebně pro běh LiveCD.
+ \item Nainstalování a~nastavení bootloaderu (GRUB)
+ \item Doinstalování dalších balíčků
+ \item Komprimace a~vytvoření squashfs souboru pomocí programu mksquashfs
+ \item Vytvoření iso obrazu pomocí programu genisoimage, který vytvoří i~zaváděcí tabulku disku.
+\end{enumerate}
+
+\subsubsection{NimbleX}
+Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního derivátu NimbleX. Umožňuje vytvořit vlastní LiveCD obraz několik jednoduchými kroky, na výběr je stáhnutí minimální obrazu nebo sestavení vlastního obrazu. U vlastního obrazu si uživatel vybere aplikace přehledně rozdělné do kategorií, wallpaper, nastavení zvuku, nastavení uživatelů a jazyk systému. Pak už jen počká na vygenerování obrazu, který je následujících 12hodin ke stažení.
+\begin{figure}[h]
+\begin{center}$
+\begin{array}{cc}
+\includegraphics[width=2in]{./img/screens/nible1.png} &
+\includegraphics[width=2in]{./img/screens/nible2.png}
+\end{array}$
+\end{center}
+\caption{Webové rozhraní s nastavením NimbleX, v levo výběr míry nastavení, v pravo nastavení programů v sekci office}
+\end{figure}
+\begin{figure}[h]
+\begin{center}$
+\begin{array}{cc}
+\includegraphics[width=2in]{./img/screens/nible3.png} &
+\includegraphics[width=2in]{./img/screens/nible4.png}
+\end{array}$
+\end{center}
+\caption{Webové rozhraní s nastavením NimbleX, v levo výběr wallpaperu, v pravo nastavení zvuku}
+\end{figure}
+
 \subsubsection{Linux-Live}
 Linux-Live je sada scriptů, která není závislá na distribuci, ale lze ji použít na jekémkoliv linuxu. Prakticky stačí stáhnou scripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Scripty už pak samy vytvoří Live system, který je možné nabootovat z CD nebo USB.
 %If you want a truly distro-agnostic way of customising your favourite Linux distribution, you need the Linux-Live set of scripts. The scripts work on any installed Linux distro and can create a Live system that you can boot from optical media or USB drives.
 %The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
-%\subsubsection{Podpodnadpis}
+
+\subsubsection{Další možnosti tvorby LiveCD}
+\b{Linux-live} je nejčastější způsobem vytvoření LiveCD. Spousta distribucí má, ale vlastní nástroje některé jako: The Ubuntu Customisation Kit (UCK) nebo Reconstructor, které již byly popsány \odkazNaKapitolu{sec:UCK}. Pro fedoru např. exituje nástroj \b{livecd-creator} pro tvorbu Fedora LiveCD a~podrobný návod je dostupný na stránkách fedory~\cite{FedoraLiveCDproject}. Pro debian existuje \textbf{Debian Live Project}, který poskytuje webové rozhraní podobné nástroji Instalinux \odkazNaKapitolu{sec:Instalinux} a~je zdarma dostupný na internetu.~\cite{DebianLiveProject}
+Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. Jsou hned tři a~všechny jsou popsány na wiki stránkách distribuce Archlinux~\cite{ArchWiki-BuildLiveCD}. První je oficiální sada nástrojů, používaná k~tvorbě oficiálních vydání disků nazvaná \b{Archiso}. Druhým nástrojem je \b{larch}, který nepotřebuje k~sestavení jako hostitelský systém archlinux, ale funguje v~jakémkoliv linuxu, protože si potřebné aplikace stáhne z~repozitářů archlinuxu. Posledním nástrojem je \textbf{poison-livecd-creator} jedná se o~opravdu jednoduchý Makefile a~několik jednoduchými kroky lze docílit vytvoření LiveCD na bázi Archlinuxu.
 
 %********************************* Analytická část ************************************
 %\part{Analytická část}
@@ -1735,6 +1767,11 @@ text
 \bibitem{SSHguide}BARRETT, PH. D., Daniel J.; SILVERMAN, Richard E.; BYRNES, Robert G. {\it{SSH: The Secure Shell}} [online]. 2001, 2010 [cit. 2011-05-16]. The Definitive Guide. Dostupné z~WWW: \href{http://www.snailbook.com/index.html}{http://www.snailbook.com/index.html}.
 \bibitem{DebianSSHFail}WEIMER, Florian. {\it{Debian}} [online]. 2008-05-13 [cit. 2011-05-16]. [SECURITY] [DSA 1571-1] New openssl packages fix predictable random number generator. Dostupné z~WWW: \href{http://lists.debian.org/debian-security-announce/2008/msg00152.html}{http://lists.debian.org/debian-security-announce/2008/msg00152.html}.
 \bibitem{ArchWikiPodepisovaniBalicku}{\it{ArchWiki}} [online]. 2009-06-03 [cit. 2011-05-16]. Pacman package signing. Dostupné z~WWW: \href{https://wiki.archlinux.org/index.php/Pacman\_package\_signing}{https://wiki.archlinux.org/index.php/Pacman\_package\_signing}.
+\bibitem{FedoraLiveCDproject}{\it{FedoraProject}} [online]. 2008-05-24 [cit. 2011-05-17]. How to create and use a Live CD. Dostupné z~WWW: \href{http://fedoraproject.org/wiki/FedoraLiveCD/LiveCDHowTo}{http://fedoraproject.org/wiki/FedoraLiveCD/LiveCDHowTo}.
+\bibitem{DebianLiveProject}BAUMANN, Daniel. {\it{Debian Live}} Project [online]. 2010 [cit. 2011-05-17]. Debian Live Project. Dostupné z~WWW: \href{http://live.debian.net/}{http://live.debian.net/}.
+\bibitem{ArchWiki-BuildLiveCD}{\it{ArchWiki}} [online]. 2005-07-23 [cit. 2011-05-17]. Building a Live CD. Dostupné z~WWW: \href{https://wiki.archlinux.org/index.php/Building\_a\_Live\_CD}{https://wiki.archlinux.org/index.php/Building\_a\_Live\_CD}.
+\bibitem{GoboLinuxMain}{\it{GoboLinux}} [online]. 2006 [cit. 2011-05-17]. What is GoboLinux?. Dostupné z~WWW: \href{http://www.gobolinux.org/index.php?page=at\_a\_glance}{http://www.gobolinux.org/index.php?page=at\_a\_glance}.
+\bibitem{GoboLinuxFilesystem}{\it{GoboLinux}} [online]. 2006-05-23 [cit. 2011-05-17]. The GoboLinux Filesystem Hierarchy. Dostupné z WWW: \href{http://wiki.gobolinux.org/index.php?title=The\_GoboLinux\_Filesystem\_Hierarchy}{http://wiki.gobolinux.org/index.php?title=The\_GoboLinux\_Filesystem\_Hierarchy}.
 }
 
 %********************************* Seznam zkratek ************************************
