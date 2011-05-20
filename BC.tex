@@ -349,7 +349,9 @@ V praktické části je rozebrána struktura scriptů a~funkce vytvořené v~jaz
 %********************************* poděkování, motto, úryvky knih, básní atp. ************************************
 \clearpage
 \thispagestyle{empty}
-poděkování, motto, úryvky knih, básní atp.
+Chtěl bych poděkovat především vedoucímu mé bakalářské práce, panu doc. Ing. Martinu Syslovy, Ph.D. za jeho cenné rady a~připomínky.
+Dále bych chtěl poděkovat i~celé mojí rodině za její obrovskou podporu během celého mého studia.
+
 %********************************* Prohlášení ************************************
 \clearpage
 \thispagestyle{empty}
@@ -1279,7 +1281,56 @@ CC vznikla na základě již dříve používaných kritérií hodnocení, zejm�
 Jako formální základ pro vzájemné uznávání hodnocení uzavřely Kanada, Francie, Německo, Velká Británie a Spojené státy americké v roce 1998 dohodu “Arrangement on the Recognition of
 Common Criteria Certificates in the field of Information Technology Security”, zkráceně nazývanou CCRA (CC Recognition Arrangement).~\cite{NBUHodnoceniBezpecnostiSW}
 
-Důležité je stanovení předdefinované vzestupné stupnice pro úroveň hodnocení. CC poskytuje 7 předdefinovaných balíků pro záruky (assurance package), známých jako Evaluation Assurance Levels (EAL), v~českém překladu míry záruky hodnocení. Jsou dobře promyšlené a~vyvážené, obecně aplikovatelné. Analogii lze nalézt v~třídách E1 až E6 v~kritériích ITSEC. Veškerá hodnocení IT podle CC se dnes provádějí na úrovni některé z~EAL, převážně do úrovně EAL4.~\cite{NBUHodnoceniBezpecnostiSW}
+\b{CC jsou rozdělena do 3 částí:}
+\begin{description}
+ \item[Část 1/ Part 1] Úvod a všeobecný model (Introduction and general model)
+ \item[Část 2/ Part 2] Bezpečnostní funkční požadavky (Security functional requirements)
+ \item[Část 3/ Part 3] Požadavky na záruky bezpečnosti (Security assurance requirements)
+ \end{description}
+
+V~\b{prvé části} jsou uvedeny definice pojmů, je vysvětlena základní filosofie CC a~je prezentován obecný model hodnocení. Důležitou součástí je vymezení několika stavebních prvků, které slouží pro jednotné vyjádření bezpečnostních požadavků, ať již funkčních nebo na záruku.~\cite{NBUHodnoceniBezpecnostiSW}\\
+
+Jsou to:
+\begin{description}
+ \item[prvek (element)] jako dále nedělitelný bezpečnostní požadavek ověřitelný při hodnocení
+ \item[komponenta (component)] jako nejmenší množina prvků pro zahrnutí do vyšších struktur v~CC
+ \item[rodina (family)] jako seskupení komponent, z~nichž všechny slouží k naplnění téhož cíle, ale~liší se přísností požadavků
+ \item[třída (class)]jako seskupení rodin, které pokrývají jednotlivé dílčí cíle a~dohromady tvoří konsistentní celek pro dosažení určitého cíle celkového
+ \end{description}
+
+Důležitým pojmem v CC je \b{“profil ochrany” (Protection Profile, PP)}, který představuje implementačně nezávislou množinu bezpečnostních požadavků pro zajištění definovaných cílů. Tyto požadavky mohou být vybrány z~CC nebo být vyjádřeny explicitně a~mají zahrnovat i~míru záruky hodnocení (Evaluation Assurance Level, EAL). PP se obvykle vytváří tak, aby byl opakovatelně použitelný a~musí obsahovat i~zdůvodnění bezpečnostních cílů a~požadavků.~\cite{NBUHodnoceniBezpecnostiSW}
+
+Pokud jde o~specifický produkt nebo~systém, nazývaný \b{“předmět hodnocení” ( Target of Evaluation, TOE)}, vyjadřují se bezpečnostní požadavky, které~jsou v~něm realizovány, jako tzv. \b{“bezpečnostní cíl” (Security Target, ST)}. ST je množinou bezpečnostních požadavků, vyjádřených odkazem na PP, na~existující balíky, na~komponenty CC nebo explicitně.~\cite{NBUHodnoceniBezpecnostiSW}
+
+Ve \b{druhé části} jsou stanoveny funkční komponenty, které~budou používány jako standardní způsob vyjadřování funkčních požadavků. Jde v~podstatě o~katalog funkčních komponent, rodin a~tříd.~\cite{NBUHodnoceniBezpecnostiSW}\\
+Je definováno 11 funkčních tříd, jejichž originální anglické názvy/české názvy jsou:
+\begin{itemize}
+ \item Audit/Bezpečnostní audit
+ \item Identification and Authentication/Identifikace a autentizace
+ \item Resource Utilisation/Využití zdrojů
+ \item Cryptographic Support/Kryptografická podpora
+ \item Security Management/správa bezpečnosti
+ \item TOE Access/Přístup k TOE
+ \item Communications/Komunikace
+ \item Privacy/Soukromí
+ \item Trusted Path/Channels / Důvěryhodná cesta/kanály
+ \item User Data Protection/Ochrana uživatelských dat
+ \item Protection of the TOE Security Functions/Ochrana TSF
+\end{itemize}
+
+\b{Třetí část} zahrnuje komponenty pro popis požadavků na záruky. Je katalogem komponent záruk, jejich rodin a~tříd. Rovněž jsou v~ní definována kritéria pro hodnocení profilů ochrany (PP) a~bezpečnostních cílů (ST). V~CC je pro oblast záruk definováno 8 tříd, jejichž originální anglické názvy/české názvy jsou~\cite{NBUHodnoceniBezpecnostiSW}:
+\begin{itemize}
+ \item Configuration Management/Správa konfigurace
+ \item Guidance Documents/Průvodní dokumentace
+ \item Vulnerability Assessment/Posouzení zranitelnosti
+ \item Delivery and Operation/Dodání a provoz
+ \item Life Cycle Support/Podpora životního cyklu
+ \item Assurance Maintenance/Údržba záruky
+ \item Development/Vývoj
+ \item Tests/Testy
+\end{itemize}
+
+Důležité je stanovení předdefinované vzestupné stupnice pro úroveň hodnocení. CC poskytuje 7 předdefinovaných balíků pro záruky (assurance package), známých jako Evaluation Assurance Levels (EAL), v~českém překladu míry záruky hodnocení. Jsou dobře promyšlené a~vyvážené, obecně aplikovatelné. Analogii lze nalézt v~třídách E1 až E6 v~kritériích ITSEC. Veškerá hodnocení IT podle CC se dnes provádějí na úrovni některé z~EAL, převážně do úrovně EAL4.~\cite{NBUHodnoceniBezpecnostiSW}\\
 
 Stručně lze jednotlivé úrovně popsat následujícím způsobem:
 \begin{description}
@@ -1803,7 +1854,9 @@ Možnosti vylepšení:
 
 %********************************* Závěr ************************************
 \nn{Závěr}
-text
+Cílem této bakalářské práce bylo vytvořit sadu skriptů v~jazyce BASH pro automatické sestavení Linuxové distribuce Linux From Scratch. Pro návrh skriptů byl použit návod pro sestavení distribuce Linux From Scratch a~nemalou měrou přispěl i~verzovací systém GIT a~komunitní web pro správu git repozitářů GitHub.\\
+
+V úvodní části bylo provedeno seznámení s~Linuxem jeho distribucemi a~možnostmi tvorby distribucí.
 %********************************* Seznam Literatury ************************************
 \seznamlit{
 \bibitem{BASHen}COOPER, Mendel. {\it{Advanced Bash-Scripting Guide}} [online]. Revision 6.2. [s.l.] : [s.n.], 17 March 2010, Dostupné z~WWW: \href{http://www.tldp.org/LDP/abs/html/index.html}{http://www.tldp.org/LDP/abs/html/index.html}. [e-kniha] 
@@ -1891,6 +1944,7 @@ SElinux & Security-Enhanced Linux\\
 LSM & Linux Security Modules\\
 IPC & interprocess communication\\
 SSH & Secure Shell\\
+PP & Protection Profile\\
 \end{tabular}
 %********************************* Seznam obrázků ************************************
 \seznamobr
