@@ -333,6 +333,9 @@
 \thispagestyle{empty}
 \nm{\uppercase{Abstrakt}}
 \vspace{1cm}
+Tato bakalářská práce v teoretické části obsahuje posmy, jako jsou Linux, dále pak linoxové distribuce, jazyk BASH, zabezpečení operačního systému Linux a~LiveCD. Úvodní část je věnována informacím o~systému Linux a~distribuci Linux From Scratch. Dále pak obsahuje stručný úvod do jazyka BASH a~kompilaci zdrojových kódů včetně možností sestavení Linuxových distribucí. Na závěr teoretické části je popsáno zabezpečení Linuxu, hodnocení bezpečnosti Software a tvorba LiveCD.\\
+
+V praktické části je rozbrána struktura scriptů a~funkce vytvořené v~jazyce BASH. Dále je uveden návod na sestavení distribuce LFS pomocí vytvořených scriptů. A na závěr uvedeny zdroje pomoci při chybách v~kompilaci a~možnosti zlepšení scriptů.
 
 \emph{Klíčová slova:}
 
@@ -1802,6 +1805,18 @@ pro obecné dotazy existuje channel: \#lfs\\
  \item[mailing-list] pro spoustu uživatelů také neznámá sféra, ale~co se týká linuxové komunity asi nejpoužívanější je mailing-list. Mailing-list funguje úplně jednoduše, stačí poslat email na adresu mailing-listu a~ten je následně zařazen mezi ostatní dotazy. Je dobré přihlásit se pro odběr novinek na adrese:\\ \href{http://linuxfromscratch.org/mailman/listinfo/lfs-support/}{http://linuxfromscratch.org/mailman/listinfo/lfs-support/}.\\
 adresa pro dotazy je pak: lfs-support@linuxfromscratch.org
  \end{description}
+
+\subsection{Možnosti vylepšení scriptů}
+Tak jako u všech programů existuje mnoho možností vylepšení i~u~vytovřených scriptů pro sestavení LFS.\\
+
+Možnosti vylepšení:
+\begin{itemize}
+ \item Částečná změna scriptů z~jazyka BASH na scripty programu GNU/make (tzv. Makafiles). Řídící script makeall a onlyunpackscript by se po změně na makefile staly lépe ovladatelnými, především při přerušení a~obnově práce.
+ \item Lepší přechody mezi login do chroot, tak aby nebylo potřeba přerušit script, toto by šlo vyřešit přes program \b{sudo}, ale ten často v~systémech pro build není dostupný.
+ \item přidání wget do toolchainu, tento krok by zajistil, že~by nebylo třeba stahovat balíčky před začátkem sestavení, ale~wget má další závislosti, které by bylo třeba vyřešit a~pravděpodobně by bylo třeba jinak zkompilovat překladač v toolchainu.
+ \item lepší diagnostika chyb. Scriptům by prospěl nástroj, který~by uživateli pomohl lokalizovat problém. Avšak takový nástroj by musel být velmi komplexní a~jeho vytvoření by bylo docela nejisté.
+\end{itemize}
+
 
 %********************************* Závěr ************************************
 \nn{Závěr}
