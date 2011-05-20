@@ -1427,11 +1427,16 @@ V~git repozitáři LFS---by-bash-scripts je k~nalezení několik souborů a~slo�
 \begin{description}
  \item[chap5] Obsahuje scripty pro sestavení toolchainu dle kapitoly 5 v~oficiálním návodu.
  \item[chap6] Obsahuje scripty pro sestavení systémových programů v prostředí chroot dle kapitoly 6 v~oficiálním návodu.
+ \item[chap7] Obsahuje scripty pro nastavení bootscripts.
+ \item[chap8] Obsahuje scripty pro poslední fázi sestavení.
  \item[FAIL\_Logs] Složka, která slouží pouze pro ukládání chybových záznamů pokud některá část kompilace selže.
  \item[include] Adresář s~funkcemi, jazykovou složkou a~verzemi programů
  \item[lfsuser] Pro usnadnění práce tento adresář obsahuje soubory potřébné pro uživatelský profil LFS
+ \item[chroot\_makeall] hlavní spouštěcí script pro sestavení kapitoly 6 v~chroot.
+ \item[chroot\_prepare] script, který se stará o~kontrolu potřebných složek a~symbolických odkazů v~prostředí chroot.
  \item[linker.1.test/linker.1.test64] dva soubory, které slouží pro test funkcnosti při oddělení toolchainu.
  \item[makeall] hlavní spouštěcí script, který spuští vše potřebné až do konce kapitoly 5.
+ \item[onlyunpackscript] script pro stažení a~rozbalení balíčků.
  \item[prepare] script, který se stará o~kontrolu existence potřebných složek a~symbolických odkazů.
  \item[README.markdown] README soubor ve~snačkovacím jazyce markdown
  \item[sources] Pozůstatek složky pro stahování zdrojových kódů před instalací. Už řešeno přímo před kompilací jednotlivě
@@ -1641,6 +1646,18 @@ check(){
 functions obsahuje také funkce pro kompilaci, ale předávání parametrů pomocí \$\@ se ukázalo jako nešťastné řešení, způsobující mno chyb při kompilaci.
 
 \subsection{Návod pro sestavení}
+\subsubsection{Předpříprava}
+Sestavení LFS je velmi komplexní a~složitou záležitostí. V~žádném případě by používat automatické scripty neměl někdo, kdo alespoň dvakrát úspěšně nesestavil LFS předtím. Pro člověka, který nikdy nesestavoval LFS je v~balíčku scriptů script \b{onlyunpackscript}, který zajišťuje stáhnutí potřebných balíčků a~jejich rozbalení více~\odkazNaKapitolu{sec:only}.\\
+
+Co by měl uživatel udělat před sestavení LFS pomocí automatických scriptů
+\begin{itemize}
+ \item několikrát úspěšně sestavit LFS
+ \item přečíst znovu alespoň první 4kapitoly (je dobré číst knihu za běhu scriptů)
+ \item zkontrolovat potřebné balíčky. Ke kontrole slouží script version-check.sh, který zkontroluje verze některých balíčků a~potřebné symbolické odkazy
+ \item být připraven řešit spoustu problémů. Při sestavování LFS může nastat v~kterékoliv části problém, který je třeba vyřešit k~dalšímu pokračování. Kam se obrátit z~dotazem je popsáno~\odkazNaKapitolu{sec:help}
+\end{itemize}
+
+\subsubsection{Sestavení}\label{sec:sestaveni}
 Sestavení je díky scriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskovy oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musejí být provedeny pod účtem uživatele root)
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
@@ -1671,7 +1688,7 @@ nyní je dobré stáhnout a~překopírovat scripty LFS by bash scripts. Nejjedno
 \begin{Verbatim}{frame=single} 
 cd ~/
 git clone git://github.com/zajca/LFS---by-bash-scripts.git
-# mkdir $LFS/scripts
+# mkdir $LFS/{scripts,build,sources}
 # cp -R ~/LFS---by-bash-scripts/* $LFS/scripts/
 \end{Verbatim} 
     \end{codeframe}
@@ -1688,15 +1705,23 @@ a~ještě překopírovat soubory užvatele lfs do jeho domovského adresáře
 nyní je třeba přenastavit práva tak aby uživatel lfs mohl zapisovat do složky /mnt/LFS
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
-# chown -R lfs $LFS
+# chown -R lfs:lfs $LFS
 \end{Verbatim} 
     \end{codeframe}
 
-po těchto krocích je už třeba jen přihlásit se jako uživatel lfs a~spustit script makeall
+po těchto krocích je už třeba jen přihlásit se jako uživatel lfs.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 su - lfs
 cd $LFS
+\end{Verbatim} 
+    \end{codeframe}
+
+Protože pro stažení balíčků se používá program wget, který v~toolchainu, respektive při sestavování kapitoly 6, nebude dostupný, je dobré stáhnou všechny balíčky scriptem onlyunpackscript~\odkazNaKapitolu{sec:only}.\\
+
+Nyní začne sestavení toolchainu, proto spustíme script makeall
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
 sh ./scripts/makeall
 \end{Verbatim} 
     \end{codeframe}
@@ -1708,14 +1733,14 @@ chown -R root:root $LFS/tools
 \end{Verbatim} 
     \end{codeframe}
 
-nyní je třeba spustit script prepareChap6, který vytvoří potřebné složky a~virtuální souborové systému.
+nyní je třeba spustit script start6, který vytvoří potřebné složky a~virtuální souborové systému.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
-# sh ./scripts/prepareChap6
+# sh ./scripts/chap6/start6
 \end{Verbatim} 
     \end{codeframe}
 
-nyní je třeba se chrootnout do systému, tedy se přihlásit do námi vytvořného toolchainu
+nyní je třeba se chrootnout do systému, tedy se přihlásit vytvořného toolchainu
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 chroot "$LFS" /tools/bin/env -i \
@@ -1724,13 +1749,60 @@ chroot "$LFS" /tools/bin/env -i \
     /tools/bin/bash --login +h
 \end{Verbatim} 
     \end{codeframe}
+Nyní je dobré nastavit opět potřebné proměnné v~souboru \/scripts\/chroot\_prepare
 
-a spustit script chrootMakeall
+a spustit script chroot\_makeall
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
-../scripts/chrootMakeall
+./scripts/chroot_makeall
 \end{Verbatim} 
     \end{codeframe}
+script je přerušen po opětovné přihlášení a~je potřeba ho spustit znovu.
+
+\subsubsection{onlyunpackscript}\label{sec:only}
+Tento script slouží pouze pro stažení, kontrolu a~rozbalení balíčků. Před jeho použitím je třeba mít vytvořený a~připojený diskový oddíl jak je popsáno \odkazNaKapitolu{sec:sestaveni}.\\
+
+Je třeba stáhnopu scripty a~překopírovat na místo
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+cd ~/
+git clone git://github.com/zajca/LFS---by-bash-scripts.git
+# mkdir $LFS/scripts
+# cp -R ~/LFS---by-bash-scripts/* $LFS/scripts/
+\end{Verbatim} 
+    \end{codeframe}
+
+Je třeba nastavit 3 proměnné:
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single} 
+export ROOT=/mnt/LFS
+export WAIT=1
+export UNPACK=1
+\end{Verbatim} 
+    \end{codeframe}
+\begin{description}
+ \item[ROOT] určuje přípojný bod disku s~LFS
+ \item[WAIT] určuje zda se má při každém kroku čekat až uživatel potvrdí další krok
+ \item[UNPACK] určuje zda se má každý balíček rozbalit
+\end{description}
+Kombinací proměnných je tak možné dosáhnout pouze stažení všech balíčků bez čekání nebo stažení balíčků a~jejich rozbalení s~čekáním na další krok. Pokud chceme sestavovat LFS manuálně podle knihy, je dobré nastavit proměnné tak jak je uvedeno v~poli s~kódem. Balíček se stáhne rozbalí a~script čeká až uživatel balíček sestaví a~stiskne klávesu ENTER. Pokud při sestavení nastane chyba a~je balíček třeba znovu sestavit, stačí zadat libovolný vstup a~stisknout ENTER, balíček se znovu rozbalí. \b{!!!POZOR. Pokud se balíček sestavuje odděleným buildem, tedy ve složce balíček-build, je třeba tuto složku smazat manuálně!!!}
+
+\subsubsection{Pomoc při selháních}\label{sec:help}
+Protože pravděpodobnost sestavení LFS bez jakéhokoliv problému není nikterak velká, existuje několik míst kde hledat při problému pomoc.
+
+\begin{description}
+ \item[Google] je prvním místem kam by se měl uživatel podívat, je relativně malá pravděpodobnost, že~chyba která nastala, nenastala někomu již dříve.
+ \item[irc channel LFS] pro některé uživatele je IRC mrtvé, někteří o~něm nikdy ani neslyšeli. V~každém případě je IRC možností nejrychlejší odezvy. V~IRC channelu LFS je téměř vždy kolem 30 uživatelů ochotných pomoci. \b{Ale první je třeba vždy použít google!}\\
+Nastavení IRC clienta:\\
+server: irc.linuxfromscratch.org\\
+channel: \#lfs-support\\
+pro obecné dotazy existuje channel: \#lfs\\
+ \item[Fórum] pro dotazy existuje také oddělení fóra LinuxQuestions.org speciálně pro LFS\\
+  lze ho nalézt na adrese: \href{http://www.linuxquestions.org/questions/linux-from-scratch-13/}{http://www.linuxquestions.org/questions/linux-from-scratch-13/}
+ \item[mailing-list] pro spoustu uživatelů také neznámá sféra, ale~co se týká linuxové komunity asi nejpoužívanější je mailing-list. Mailing-list funguje úplně jednoduše, stačí poslat email na adresu mailing-listu a~ten je následně zařazen mezi ostatní dotazy. Je dobré přihlásit se pro odběr novinek na adrese:\\ \href{http://linuxfromscratch.org/mailman/listinfo/lfs-support/}{http://linuxfromscratch.org/mailman/listinfo/lfs-support/}.\\
+adresa pro dotazy je pak: lfs-support@linuxfromscratch.org
+ \end{description}
+
 %********************************* Závěr ************************************
 \nn{Závěr}
 text
