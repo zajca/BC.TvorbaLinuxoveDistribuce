@@ -333,11 +333,11 @@
 \thispagestyle{empty}
 \nm{\uppercase{Abstrakt}}
 \vspace{1cm}
-Tato bakalářská práce v teoretické části obsahuje posmy, jako jsou Linux, dále pak linoxové distribuce, jazyk BASH, zabezpečení operačního systému Linux a~LiveCD. Úvodní část je věnována informacím o~systému Linux a~distribuci Linux From Scratch. Dále pak obsahuje stručný úvod do jazyka BASH a~kompilaci zdrojových kódů včetně možností sestavení Linuxových distribucí. Na závěr teoretické části je popsáno zabezpečení Linuxu, hodnocení bezpečnosti Software a tvorba LiveCD.\\
+Tato bakalářská práce v teoretické části obsahuje pojmy, jako jsou Linux, dále pak linuxové distribuce, jazyk BASH, zabezpečení operačního systému Linux a~LiveCD. Úvodní část je věnována informacím o~systému Linux a~distribuci Linux From Scratch. Dále pak obsahuje stručný úvod do jazyka BASH a~kompilaci zdrojových kódů včetně možností sestavení Linuxových distribucí. Na závěr teoretické části je popsáno zabezpečení Linuxu, hodnocení bezpečnosti Software a tvorba LiveCD.\\
 
-V praktické části je rozbrána struktura scriptů a~funkce vytvořené v~jazyce BASH. Dále je uveden návod na sestavení distribuce LFS pomocí vytvořených scriptů. A na závěr uvedeny zdroje pomoci při chybách v~kompilaci a~možnosti zlepšení scriptů.
+V praktické části je rozebrána struktura scriptů a~funkce vytvořené v~jazyce BASH. Dále je uveden návod na sestavení distribuce LFS pomocí vytvořených skriptů. A na závěr uvedeny zdroje pomoci při chybách v~kompilaci a~možnosti zlepšení skriptů.
 
-\emph{Klíčová slova:}
+\emph{Klíčová slova:} Linux, distribuce, operační systém, BASH, LFS, LiveCD, bezpečnost OS, kompilace, DAC, MAC
 
 \vspace{3cm}
 
@@ -402,39 +402,39 @@ text
 \section{\upc{Linux a svět kolem něj}}
 \subsection{OS Linux}
 Linux je v~informatice označení pro unixový operační systém (původně pouze jeho jádro). Linux je šířen v~podobě distribucí, které je snadné nainstalovat nebo přímo používat (tzv.~LiveCD). Zároveň se díky použitým licencím jedná o~volně šiřitelný software, takže je možné ho nejen volně používat, ale~i~dále upravovat a~distribuovat (kopírovat,~sdílet). Tím se odlišuje od proprietárních systémů (např.~Microsoft Windows či Mac OS X), za které je nutné platit a~dodržovat omezující licence.~\cite{WLinux}
-\obr{./img/Linux_logo.png}{0.3}{Typický obrázek tučnáka spojovaný s linuxem}
+\obr{./img/Linux_logo.png}{0.3}{Typický obrázek tučňáka spojovaný s Linuxem}
 
 \subsection{Dnešní použití OS Linux}
-V současnosti je Linux součástí trhu se stolními počítači. Zpočátku se vývojáři Linuxu zaměřovali na síťové systémy a~služby, kancelářské aplikace predstavovaly poslední bariéru, kterou bylo nutno překonat. V tomto trhu dominuje Microsoft, proto v~posledních několika letech vznikala spousta alternativních projektů, jejichž cílem je nabídnout Linux jako vhodnou volbu na pracovní stanice. V~rámci těchto projektů vznikají snadno použitelná uživatelská rozhraní i~kancelářské aplikace (textové editory, tabulkové procesory,…), kopatibilní s aplikacemi Microsoft Office (LibreOffice, Koffice, AbiWord,…)~\cite{LDP}.\\
-Co se týče použití na serverech, má Linux pověst stabilní a spolehlivé platformy, na které běží databázové a~další služby takových společností jako je Amazon, americká pošta~\cite{AmericanPostLinux}, německá armáda~\cite{GermanArmyNoLinux}, Google, Facebook a~další. Velmi oblíbený je Linux u poskytovatelů internetoveho přístupu a~služeb, kde se používá jako firewall, proxy server nebo webový server. Počítač s~Linuxem najdete i~u~každého správce některého UNIXového systému, který jej používá jako pohodlnou administrativní stanici. Clustery linuxových počítačů se podílely na vzniku filmů jako Titanic~\cite{TitanicLinux} nebo Shrek~\cite{Shrek2Linux}~\cite{Shrek3Linux}. Na poštách slouží jako centrály řídící směrování zásilek, velké vyhledávací stroje pomocí nich prohledávají Internet. To je jen ukázka několika z~mnoha tisíc náročných úkolů, které dnes Linux na celém světě vykonávajá~\cite{LDP}.\\
+V současnosti je Linux součástí trhu se stolními počítači. Zpočátku se vývojáři Linuxu zaměřovali na síťové systémy a~služby, kancelářské aplikace představovaly poslední bariéru, kterou bylo nutno překonat. V tomto trhu dominuje Microsoft, proto v~posledních několika letech vznikala spousta alternativních projektů, jejichž cílem je nabídnout Linux jako vhodnou volbu na pracovní stanice. V~rámci těchto projektů vznikají snadno použitelná uživatelská rozhraní i~kancelářské aplikace (textové editory, tabulkové procesory,…), kompatibilní s aplikacemi Microsoft Office (LibreOffice, Koffice, AbiWord,…)~\cite{LDP}.\\
+Co se týče použití na serverech, má Linux pověst stabilní a spolehlivé platformy, na které běží databázové a~další služby takových společností jako je Amazon, americká pošta~\cite{AmericanPostLinux}, německá armáda~\cite{GermanArmyNoLinux}, Google, Facebook a~další. Velmi oblíbený je Linux u poskytovatelů internetového přístupu a~služeb, kde se používá jako firewall, proxy server nebo webový server. Počítač s~Linuxem najdete i~u~každého správce některého Unixového systému, který jej používá jako pohodlnou administrativní stanici. Clustery linuxových počítačů se podílely na vzniku filmů jako Titanic~\cite{TitanicLinux} nebo Shrek~\cite{Shrek2Linux}~\cite{Shrek3Linux}. Na poštách slouží jako centrály řídící směrování zásilek, velké vyhledávací stroje pomocí nich prohledávají Internet. To je jen ukázka několika z~mnoha tisíc náročných úkolů, které dnes Linux na celém světě vykonává~\cite{LDP}.\\
 Stojí také za zmínku, že moderní Linux běží nejen na pracovních stanicích, středně a~velkých serverech, ale i~na "hračkách", jako jsou PDA či mobilní telefony, ve spoustě zařízení spotřební elektroniky, a~dokonce i~v~experimentálních náramkových hodinkách~\cite{LinuxHodinky}, Linux je jediný OS na světě, který pokrývá takto širokou škálu HW.~\cite{LDP}
 
 \subsection{Co je to distribuce}
-Distribuce, pokud je řeč o~distribucích operačňího systému, je balíkem jádra operačního systému~a doplňujícího SW. Distribuce nejsou jenom záležitostí Linuxu ikdyž jsou často milně spojovány pouze s Linuxem. Kromě Linuxových distribucí existují například distribuce s~jádrem BSD (OpenBSD, NetBSD, FreeBSD,…), HURD (ArchHurd), XNU (PureDarwin) a~mnoho jiných. Přídávný SW distribuce je čistě volbou autora distribuce, může se tak jednat například o~SW projektu GNU (nejvýznamějšími komponenty jsou GCC, glibc, Emacs nebo~GNOME)~\cite{GNUweb}, SW projektu BSD, proprietální (uzavřený) SW nebo jakýkoliv jiný SW jehož licence dovoluje použití v~distribuci.
+Distribuce, pokud je řeč o~distribucích operačního systému, je balíkem jádra operačního systému~a doplňujícího SW. Distribuce nejsou jenom záležitostí Linuxu i~když jsou často milně spojovány pouze s Linuxem. Kromě Linuxových distribucí existují například distribuce s~jádrem BSD (OpenBSD, NetBSD, FreeBSD,…), HURD (ArchHurd), XNU (PureDarwin) a~mnoho jiných. Přídavný SW distribuce je čistě volbou autora distribuce, může se tak jednat například o~SW projektu GNU (nejvýznamnějšími komponenty jsou GCC, glibc, Emacs nebo~GNOME)~\cite{GNUweb}, SW projektu BSD, proprietární (uzavřený) SW nebo jakýkoliv jiný SW jehož licence dovoluje použití v~distribuci.
 
 \subsection{GNU a Linux} 
 Rekurzivní akronym pro GNU is Not Unix, kde GNU znamená GNU is Not Unix,…
 Projekt založený v~roce 1984 Richardem Stallmanem a~společností Free Software Foundation na vytvoření svobodného a~otevřeného operačního systému (dále jen OS) na základě OS UNIX. Zpočátku soubor systémových programů, kterým chyběla hlavní součást - jádro (kernel). Později se jako jádro použil projekt Linuse Torvaldse Linux. V mínění veřejnosti se společný OS GNU/Linux přejmenoval pouze na Linux podle jádra. Jedna z~mála distribucí, které dodržují správné pojmenování tohoto OS, je Debian GNU/Linux.
-GNU obsahuje příkazy každodenní potřeby jako tar, awk, top, dd, ale~třeba i~Samba, xfig apod. De facto veškerý software vydavaný v~rámci projektu GNU je licencován GNU General public license (GPL). Dodnes je vyvýjeno původní microkernel jádro GNU/HURD, avšak ani za 21let vývoje jej vývojáři nedokázali dovést ke stabilnímu vydání.~\cite{GNUABCLinuxu}~\cite{GNUweb}~\cite{ROOT_HURD}
+GNU obsahuje příkazy každodenní potřeby jako tar, awk, top, dd, ale~třeba i~Samba, xfig apod. De facto veškerý software vydávaný v~rámci projektu GNU je licencován GNU General public license (GPL). Dodnes je vyvíjeno původní microkernel jádro GNU/HURD, avšak ani za 21~let vývoje jej vývojáři nedokázali dovést ke stabilnímu vydání.~\cite{GNUABCLinuxu}~\cite{GNUweb}~\cite{ROOT_HURD}
 
 
 \section{\upc{Linuxové distribuce}}
 Linuxová distribuce je v~informatice označení pro snadno použitelný Linuxový systém, přičemž název je odvozen od jádra Linuxu, které je základní součástí každé distribuce. Distribuce jsou vytvářeny proto, aby uživatel nemusel jádro a~doplňující software sám náročným způsobem skládat do funkčního celku. Obsažený software je volně dostupný na Internetu (typicky open source software). Pro odlišení jsou distribuce pojmenovány (např. Ubuntu, Fedora, …), přičemž každá je jinak zaměřena (pro nezkušeného uživatele, pro vývojáře, výuku atp.).\cite{WDIST}
 
 \subsection{Hlavní odlišnosti}
-Linuxové distribuce se liší v~mnoha více či méně zásadních ohledech ohledech. Nejvýraznějšími rozdíly, které dělají distribuce distrbucemi jsou: Cyklus vydání, balíčkovací systém, základní SW výbava, nasazení,…
+Linuxové distribuce se liší v~mnoha více či méně zásadních ohledech ohledech. Nejvýraznějšími rozdíly, které dělají distribuce distribucemi jsou: Cyklus vydání, balíčkovací systém, základní SW výbava, nasazení,…
 \subsubsection{Cyklus vydání}
 V zásadě rozlišujeme 3 vydávací cykly:
 \begin{description}
- \item[Dlouhý cyklus vydání] Tento cyklus vydání je delší než jeden rok. Používají ho distribuce, které nezakládají na aktuálnosti SW, ale~na jeho stabilitě. Předevší pak \b{Debian (stable)} a~\b{Red Hat Enterprise Linux} (dále pouze RHEL). Vývojáři Debianu před nedávnem (7. 2009) rozhodli o~tom, že~bude Debian vydáván v pravidelných intervalech a~to tak, že~na konci každého lichého roku dojde k~zmrazení větve \it{testing}, ta je následně nějaký čas testována aby byly odstraněny všechny bugy, po jejich odstranění je prohlášena za stabilní a~balíčky v~ní obsažené jsou přesunuty do větve \it{stable}
+ \item[Dlouhý cyklus vydání] Tento cyklus vydání je delší než jeden rok. Používají ho distribuce, které nezakládají na aktuálnosti SW, ale~na jeho stabilitě. Především pak \b{Debian (stable)} a~\b{Red Hat Enterprise Linux} (dále pouze RHEL). Vývojáři Debianu před nedávnem (7. 2009) rozhodli o~tom, že~bude Debian vydáván v pravidelných intervalech a~to tak, že~na konci každého lichého roku dojde k~zmrazení větve \it{testing}, ta je následně nějaký čas testována aby byly odstraněny všechny bugy, po jejich odstranění je prohlášena za stabilní a~balíčky v~ní obsažené jsou přesunuty do větve \it{stable}
 \footnote{časový odstup mezi vydáním verze 5 lenny a~aktuální 6 squeeze byl 2 roky. Nejdelší odstup mezi vydáními byl 3 roky a~to mezi vydáním 3.0 woody a~3.1 sarge}. RHEL vychází v nepravidelných cyklech (cca 2-3roky) a~v~mezičase vychází updaty. 
 \footnote{časový odstup mezi verzí 5 a~6, byl 3.5roku a~v~mezičase vyšlo 5 update verzí.}
- \item[Krátký cyklus vydání] Typicky půl roku až rok. Používá ho většina desktopových distribucí. Tento vydávací cyklus je kompromisem mezi stabilitou a~aktuálností SW. Např. \b{Ubuntu}
+ \item[Krátký cyklus vydání] Typicky půl roku až rok. Používá ho většina deskopových distribucí. Tento vydávací cyklus je kompromisem mezi stabilitou a~aktuálností SW. Např. \b{Ubuntu}
 \footnote{\b{Ubuntu}: cyklus vydání je půl roku, u~jeho derivátů pak zpravidla o~něco málo delší. Vydaní probíhá pravidelně v~dubnu a~říjnu, přičemž každé dva roky vyjde LTS verze s~podporou na dva roky. Poslední verze: 11.04}, \b{Mandriva} 
 \footnote{\b{Mandriva}: cyklus dlouhý půl roku, vychází verze s~číslem roku a~verze spring. Poslední verze: 2010 Spring}(dříve Mandrake), \b{Fedora} 
 \footnote{\b{Fedora}: cyklus vydání každého půl roku. Poslední verze: 14},…
- \item[Průbězné aktualizace (rolling-updates)] Distribuce používající rolling-updates se vyznačují především aktuálností SW, většinou udržují větev pro uživatele a~testovací větev kde je SW podroben krátkému testovaní, než se přesune do uživatelské větve. Tyto distribuce většinou vydávají jednou za čas instalační liveCD aby bylo možné je nainstalovat i~na aktuální HW. \b{Gentoo}, \b{Arch Linux}, \b{Debian sid (experimental)}
-\footnote{testovací větev debianu, která se jmenuje Sid používá právě rolling-updates, po otestování SW obsažený ve větvy putuje do větve \it{testing}},…
+ \item[Průběžné aktualizace (rolling-updates)] Distribuce používající rolling-updates se vyznačují především aktuálností SW, většinou udržují větev pro uživatele a~testovací větev kde je SW podroben krátkému testovaní, než se přesune do uživatelské větve. Tyto distribuce většinou vydávají jednou za čas instalační liveCD aby bylo možné je nainstalovat i~na aktuální HW. \b{Gentoo}, \b{Arch Linux}, \b{Debian sid (experimental)}
+\footnote{testovací větev debianu, která se jmenuje Sid používá právě rolling-updates, po otestování SW obsažený ve větvi putuje do větve \it{testing}},…
  \end{description}
 
 \subsubsection{Balíčkovací systémy}
@@ -445,12 +445,12 @@ Nejčastěji se používají programy, které mají rozšířenou funkcionalitu,
 \footnote{APT je několik aplikací (apt-cache, apt-get,…), které každý poskytují jinou funkci} a~GUI založené na ncurses Pro tento balíčkovací systém existuje i~velké množství GUI: synaptic (GTK), Ubuntu Software Center (GTK),KPackage (Qt),…\\
 Tento balíčkovací systém používájí kromě již zmíněného debianu i~jeho deriváty jako je Ubuntu, ale i~další distribuce a~OS. Existuje port pro MacOSX nebo Opensolaris\cite{DPKG}.
  \item[RPM] \it{Red Hat Package Manager} Druhý nejčastěji používaný balíčkovací systém. Je používán množstvím velkých distribucí včele s RHEL (Red Hat Enterprise Linux), také je používán distribucemi Fedora, Mandriva, SUSE,ArkLinux,...\\
-RPM označuje jak název základního balíčkovacího systému tak i~název balíčků samotných (vždy s~příponou rpm). RPM se především vyznačuje nepřenosností z~jedné distribuce na druhou (narozdíl od deb balíčků kde to více méně funguje). Proto se lze často setkat s~názorem,že rmp neumí pořádně řešit závislosti,tímto názorem se většinou vyznačují lidé, kteří kombinují repozitáře různých distribucí založaných na RPM.\\
-RPM se často vyznačuje ještě jedním specifikem a~to tím, že~na rozdíl od DPKG kde se nejčastěji používají obrovské repositáře s~obrovským množstvím balížků se u~RPM používá velké množství repositářů s~už ne tak velkým množstvím software. Např. Debian používá jeden repozitář pro každou jeho verzi (Stable,Testing,Unstable) kdyžto u RPM distribucí se setkáme s repozitáři zvláš pro multimedia, core system, apd...\\
+RPM označuje jak název základního balíčkovacího systému tak i~název balíčků samotných (vždy s~příponou rpm). RPM se především vyznačuje nepřenosností z~jedné distribuce na druhou (na~rozdíl od deb balíčků kde to více méně funguje). Proto se lze často setkat s~názorem,že rmp neumí pořádně řešit závislosti,tímto názorem se většinou vyznačují lidé, kteří kombinují repozitáře různých distribucí založených na RPM.\\
+RPM se často vyznačuje ještě jedním specifikem a~to tím, že~na rozdíl od DPKG kde se nejčastěji používají obrovské repositáře s~obrovským množstvím balíčků se u~RPM používá velké množství repositářů s~už ne tak velkým množstvím software. Např. Debian používá jeden repozitář pro každou jeho verzi (Stable,Testing,Unstable) když~to u RPM distribucí se setkáme s repozitáři zvlášť pro multimédia, core system, apd...\\
  \item[PACMAN] Jedná se pravděpodobně o~jeden s~nejrychlejších balíčkovacích systémů a~je součástí distribuce ArchLinux jejích derivátů larch, FaunOS, Archie, Chakra a~je také používán v distribuci DeLi Linux a~Frugalware Linux (ve Frugalware linux byl vytvořen fork a~jeho vývoj probíhá odděleně). Pacman má výhodu proti jiným balíčkovacím systémům nejen v~rychlosti, ale také v~tvoření balíčků. Na rozdíl od DPKG, kde existují rozsáhlé návody jak vytvořit balíček stačí u~Pacmana vytvořit podle jasných pravidel script s~názvem PKGBUILD, který obsahuje všechno od licencí, závislostí, zdrojů kontrolních součtů až po návod jak postupovat při sestavení balíčku, poté stačí napsat makepkg a~balíček se sám vytvoří bez jakéhokoliv zásahu.\\
 Na tomto principu fungují jak source repoziráře v~ArchLinuxu zvané ABS tak i~uživatelské repozitáře AUR.\\
 Pro pacman existuje velké množství wrapperů
-\footnote{wrapper je program, který funguje pouze s jinym programem a~rozšiřuje jeho funkcionalitu} pacman-color (přidává do výstupu barvy). Defaultní Pacman také neumí pracovat uživatelským repozitáři AUR proto vzniklo několik wrapperů, které přidávají podporu vyhledávání a~instalace balíčků z~AUR např. Clyde nebo yaourt. Jiné wrappery zase přidávají podporu stahování z~více zdrojů naráz aby byl balíčet stáhnut co nejdříve např. PowerPill nebo Bauerbill.\\
+\footnote{wrapper je program, který funguje pouze s~jiným programem a~rozšiřuje jeho funkcionalitu} pacman-color (přidává do výstupu barvy). Defaultní Pacman také neumí pracovat uživatelským repozitáři AUR proto vzniklo několik wrapperů, které přidávají podporu vyhledávání a~instalace balíčků z~AUR např. Clyde nebo yaourt. Jiné wrappery zase přidávají podporu stahování z~více zdrojů naráz aby byl balíček stáhnut co nejdříve např. PowerPill nebo Bauerbill.\\
 Všechny tyto programy pracují s~repozitáři a~balíčky stejně jsou tedy kompatibilní a~mají dokonce i~stejnou syntaxi.\\
 Existují i~GUI pro pacman, nejznámější je asi shaman (Qt).
  \item[Portage] Portage je balíčkovací systém GNU/Linuxové distribuce Gentoo Linux, který je podobný systému portů z~FreeBSD. Portage je napsán v programovacím jazyce Python. Hlavním příkazem je zde příkaz emerge. Tento balíčkovací systém využívá balíčky ebuild, které zajistí zkompilovaní podle nastavených systémových proměnných jako jsou například USE, CFLAGS, CHOST a LINGUAS. Portage automaticky dohledá závislosti, stáhne požadované balíčky a~program nainstaluje.\\
@@ -462,10 +462,10 @@ Existují různé grafické nadstavby, např. Kuroo (Qt) nebo Porthole (GTK).
 Linuxové distribuce se dále liší podle druhu zařízení na, které jsou určena. Nejčastěji je to server nebo desktop, ale existují i~jiné druhy zařízení na, kterých linux běží.
 \begin{description}
  \item[User choise (volba uživatele)] Některé distribuce si nedělají starosti s~určením na, kterém druhu zařízení budou použity. Poskytují pouze základní sadu nástrojů (programů), které uživatel doplňuje podle svých požadavků. Toto je typická vlastnost Debianu (u debianu už dnes existují přímo různé konfigurace distribuce jako server, desktop nebo laptop), Archlinuxu, LFS nebo Gentoo.\\
-Tyto distribuce je možné většinou nasadit, na vsechny níže zmíněné zařízení.
- \item[Desktop] Dalšími zařízeními na které je linux určen jsou desktopové (personální) počítače. Tyto distribuce poskytují grafické programy pro bězné použití např. v kanceláři. Typicky např. Ubuntu (desktop), Fedora, Mandriva,…
- \item[Server] Serverové distribuce obsahují základní nástroje pro nasazení na serverových počítačích a~neobsahují narozdíl desktopových distribucí grafický server Xorg, ale obsahují serverové nástroje jako je např. webový server apache. Typicky serverovou distribucí je např. Ubuntu (server), CentOS, RHEL,…
- \item[Enterprise] Enterprise distribuce jsou distribuce určené pro podnikové nasazení a~na rozdíl od bězných distribucí mají placenou podporu ze strany dodavatele a~delší testovací dobu např. SLED (SUSE Linux Enterprise Desktop) nebo RHEL.
+Tyto distribuce je možné většinou nasadit, na všechny níže zmíněné zařízení.
+ \item[Desktop] Dalšími zařízeními na které je linux určen jsou desktopové (personální) počítače. Tyto distribuce poskytují grafické programy pro běžné použití např. v kanceláři. Typicky např. Ubuntu (desktop), Fedora, Mandriva,…
+ \item[Server] Serverové distribuce obsahují základní nástroje pro nasazení na serverových počítačích a~neobsahují na~rozdíl desktopových distribucí grafický server Xorg, ale obsahují serverové nástroje jako je např. webový server apache. Typicky serverovou distribucí je např. Ubuntu (server), CentOS, RHEL,…
+ \item[Enterprise] Enterprise distribuce jsou distribuce určené pro podnikové nasazení a~na rozdíl od běžných distribucí mají placenou podporu ze strany dodavatele a~delší testovací dobu např. SLED (SUSE Linux Enterprise Desktop) nebo RHEL.
  \item[Embedded] Jedná se o~distribuce směrované na určité zařízení. Nejznámější je např. openwrt což je distribuce určená pro síťové nasazení, např, routery, gatewaye apd,…\\
 Linux, ale najde i~v~embedded zařízeních jako jsou settopboxy, televize, IP kamery, pračky, mikrovlnky, ledničky a~jiné jednoúčelové zařízení,…
  \item[Mobilní] Asi nejnovějším prostředí ve, kterém momentálně již dominuje systém linux jsou mobilní telefony. Zde kraluje OS pro mobilní telefony od společnosti Google, Android. Existují, ale i~další distribuce pro mobilní telefony jako je OpenMoko používaný v~mobilu Neo FreeRunner nebo Bada od společnosti Samsung.
@@ -476,10 +476,10 @@ Linux, ale najde i~v~embedded zařízeních jako jsou settopboxy, televize, IP k
 Linuxové distribuce jsou také směřovány na různé procesorové architektury, většinou distribuce nesměřují jenom na jednu architekturu, ale~na více architektur současně. Příkladem za všechny je distribuce Debian, která je známá také podporou pro největší množství architektur. Např. MS Windows 7 je dostupný pouze pro architektury x86 a x86\_64 (x64), zatímco Debian podporuje oficiálně 10 architektur a~neoficiálně 16 architektur. Nejčastěji však většina distribucí podporuje architektury x86 a x86\_64 a~v~poslední době také ARM.
 
 \subsubsection{Další rozdíly}
-Rozdíly ikdyž ne tak zásadní jsou v~softwarové výbavě, ta sice jde ruku v~ruce s~nasazením linuxu, ale~ve světě desktopů a~hlavně distribuce Ubuntu se v~posledních několika letech oběvují distribuce, které se odlišují pouze v~základním uživatelském prostředí. Oficiálně společnost Canonical (tvůrce Ubuntu) vytváří 4 distribuce, které se odlišují od Ubuntu pouze v~základním uživatelském prostředí a~další 4 distribuce, které se liší v~softwarove výbavě.
+Rozdíly i~když ne tak zásadní jsou v~softwarové výbavě, ta sice jde ruku v~ruce s~nasazením Linuxu, ale~ve světě desktopů a~hlavně distribuce Ubuntu se v~posledních několika letech objevují distribuce, které se odlišují pouze v~základním uživatelském prostředí. Oficiálně společnost Canonical (tvůrce Ubuntu) vytváří 4 distribuce, které se odlišují od Ubuntu pouze v~základním uživatelském prostředí a~další 4 distribuce, které se liší v~softwarové výbavě.
 \b{Ubuntu, Kubuntu, Edubuntu, Xubuntu, Gobuntu, Lubuntu, Fluxbuntu, Ubuntu Netbook Edition}\\
 
-Velký rozdíl zavádí do linuxových ditribucí \textbf{GoboLinux}. Tato distribuce mění základní rozdělení Linuxového filesystému na více intuitivní a~uživatelsky příznivější.V rootu distribuce GoboLinux lze nalézt pouze složky \b{Programs, Users, System, Files, Mount, Depot}. Programs je velice zajímavá složka, protože v~GoboLinuxu obsahuje všechny programy a~jejich soubory a~díky promyšlené struktuře je možné provozovat v~GoboLinuxu hned několik verzí stejného programu. Programs také zajišťuje databázi balíčkovacího systému, která je řešena pomocí složek programů. Chytrost tohoto řešení je však trochu degradována řešením zpětné kompatibility s~Linuxovým standardem, která je řešena přes velké množství symbolických adres.~\cite{GoboLinuxFilesystem}~\cite{GoboLinuxMain}
+Velký rozdíl zavádí do linuxových distribucí \textbf{GoboLinux}. Tato distribuce mění základní rozdělení Linuxového filesystému na více intuitivní a~uživatelsky příznivější.V rootu distribuce GoboLinux lze nalézt pouze složky \b{Programs, Users, System, Files, Mount, Depot}. Programs je velice zajímavá složka, protože v~GoboLinuxu obsahuje všechny programy a~jejich soubory a~díky promyšlené struktuře je možné provozovat v~GoboLinuxu hned několik verzí stejného programu. Programs také zajišťuje databázi balíčkovacího systému, která je řešena pomocí složek programů. Chytrost tohoto řešení je však trochu degradována řešením zpětné kompatibility s~Linuxovým standardem, která je řešena přes velké množství symbolických adres.~\cite{GoboLinuxFilesystem}~\cite{GoboLinuxMain}
 
 \section{\upc{Distribuce Linux from scratch}}
 LFS je projekt poskytující návod, který vás provede krok za krokem sestavením vlastní Linuxové distribuce ze zdrojových kódů.~\cite{LFSwMAIN}
@@ -488,20 +488,33 @@ LFS je projekt poskytující návod, který vás provede krok za krokem sestaven
 
 \subsection{Užití Linux From Scratch}
 Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když je možné si jednoduše stáhnout už sestavenou distribuci Linuxu. Avšak i~přes některé obtíže jenž sestavování LFS skýtá, má tento proces své výhody.~\cite{LFS}
+
 %Many wonder why they should go through the hassle of building a Linux system from scratch when they could just download an existing Linux distribution. However, there are several benefits of building LFS. Consider the following:
+
 \begin{itemize}
  \item LFS učí uživatele jak Linux funguje uvnitř.
+
 %LFS teaches people how a Linux system works internally
- \item Sestavování LFS učí o~všem co v~systemu běží, jak jednotlivé pracují a~závisí jedna na druhé. A~jak upravit systém podle chuti.
+
+ \item Sestavování LFS učí o~všem co v~systému běží, jak jednotlivé pracují a~závisí jedna na druhé. A~jak upravit systém podle chuti.
+
 %Building LFS teaches you about all that makes Linux tick, how things work together and depend on each other. And most importantly, how to customize it to your own tastes and needs.
+
  \item Sestavením LFS získáme velice kompaktní Linuxový systém
+
 %Building LFS produces a very compact Linux system
- \item Pokud instalujete běznou Linuxovou distribuci, nainstalujete i~množství programů, které pravděpodobně nikdy nepoužijete. LFS jde sestavit i~ve velikosti nepřesahující 100MB
+
+ \item Pokud instalujete běžnou Linuxovou distribuci, nainstalujete i~množství programů, které pravděpodobně nikdy nepoužijete. LFS jde sestavit i~ve velikosti nepřesahující 100MB
+
 %When you install a regular distribution, you often end up installing a lot of programs that you would probably never use. They're just sitting there taking up (precious) disk space. It's not hard to get an LFS system installed under 100 MB. Does that still sound like a lot? A few of us have been working on creating a very small embedded LFS system. We installed a system that was just enough to run the Apache web server; total disk space usage was approximately 8 MB. With further stripping, that can be brought down to 5 MB or less. Try that with a regular distribution.
-\item LFS je extrémě flexibilní. Máte moc systém sestavit přesně podle vašich potřeb.
+
+\item LFS je extrémně flexibilní. Máte moc systém sestavit přesně podle vašich potřeb.
+
 %LFS is extremely flexible
 %Building LFS could be compared to a finished house. LFS will give you the skeleton of a house, but it's up to you to install plumbing, electrical outlets, kitchen, bath, wallpaper, etc. You have the ability to turn it into whatever type of system you need it to be, customized completely for you.
-\item LFS můžete zabezpečit na míru. Nemusíte čekat, jako u binárních distribucí, až někdo sestaví balíček s~bezpečtnostním patchem, který potřebujete. Můžete se si zkompilovat SW s~patchem sami.
+
+\item LFS můžete zabezpečit na míru. Nemusíte čekat, jako u binárních distribucí, až někdo sestaví balíček s~bezpečnostním patchem, který potřebujete. Můžete se si zkompilovat SW s~patchem sami.
+
 %LFS offers you added security
 %You will compile the entire system from source, thus allowing you to audit everything, if you wish to do so, and apply all the security patches you want or need to apply. You don't have to wait for someone else to provide a new binary package that (hopefully) fixes a security hole. Often, you never truly know whether a security hole is fixed or not unless you do it yourself.
 \end{itemize}
@@ -509,12 +522,13 @@ Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když j
 \subsection{Další projekty LFS}
 \begin{description}
  \item[BLFS] Beyond Linux From Scratch - projekt jehož cílem je vytvořit návod pro rozšíření základního sestavení LFS a~umožnit tak uživateli co nejjednodušeji dotvořit vlastní distribuci.
- \item[ALFS] Automated Linux From Scratch - cílem projektu je vytvořit nástroje pro autmatické sestavování LFS a~BLFS
- \item[CLFS] Cross Linux From Scratch - jak už název napovídá, projekt umozňuje cross-compilaci, tedy sestavení LFS na mnoha jiných typech systémů a~archytektur.
+ \item[ALFS] Automated Linux From Scratch - cílem projektu je vytvořit návod jakým způsobem vygenerovat kód pro automatické sestavování LFS a~BLFS
+ \item[CLFS] Cross Linux From Scratch - jak už název napovídá, projekt umožňuje cross-compilaci, tedy sestavení LFS na mnoha jiných typech systémů a~architektur.
  \item[HLFS] Hardened Linux From Scratch - se snaží o~vytvoření maximálně bezpečného sestavení LFS, odolného proti hrozbám hackerů a~jiným bezpečnostním hrozbám.
- \item[Hints] jedná se o~kolekci dokumnetů, které popisují jak vylepšit vaše sestavení LFS jinak než je popsáno v~LFS a~BLFS.
- \item[LiveCD] projekt jehož hlavním cílem je vytovřit LiveCD vhodné jako hostotitelský systém pro sestavení LFS.
+ \item[Hints] jedná se o~kolekci dokumentů, které popisují jak vylepšit vaše sestavení LFS jinak než je popsáno v~LFS a~BLFS.
+ \item[LiveCD] projekt jehož hlavním cílem je vytvořit LiveCD vhodné jako hostitelský systém pro sestavení LFS.
  \end{description}
+
 %BLFS :: Beyond Linux From Scratch helps you extend your finished LFS installation into a more customized and usable system.
 %ALFS :: Automated Linux From Scratch provides tools for automating and managing LFS and BLFS builds.
 %CLFS :: Cross Linux From Scratch provides the means to cross-compile an LFS system on many types of systems.
@@ -695,7 +709,7 @@ else
 fi
 \end{Verbatim} 
     \end{codeframe}
-Podmínky je samozřejmě možno spojovat pomocí operátorů \&\& (a zároveň platí) a || (nebo platí). Operátor || má velké využití ve scriptech pro testování jestly funkce skončila úspěšně\cite{ABC_SBASH}.
+Podmínky je samozřejmě možno spojovat pomocí operátorů \&\& (a zároveň platí) a || (nebo platí). Operátor || má velké využití ve scriptech pro testování jestli funkce skončila úspěšně\cite{ABC_SBASH}.
     \begin{codeframe} 
       \begin{Verbatim}{frame=single}
 #testujeme dvě podmínky
@@ -797,7 +811,7 @@ done
 
 \subsection{Funkce,pole příkazy}
 \subsubsection{Speciální proměnné}
-Informace o názvu skriptu, počtu předaných argumentů a~argumenty samotné jsou uloženy ve speciálních proměnných. Tyto proměnné se používájí stejným způsobem ve scriptech i~ve funkcích\cite{ABC_SBASH}.
+Informace o názvu skriptu, počtu předaných argumentů a~argumenty samotné jsou uloženy ve speciálních proměnných. Tyto proměnné se používají stejným způsobem ve scriptech i~ve funkcích\cite{ABC_SBASH}.
 \begin{description}
  \item[\$0] název skriptu
  \item[\$\#] počet předaných argumentů
@@ -862,7 +876,7 @@ Příkazy můžeme rozdělit na zabudované a normální. Zabudované příkazy 
  \end{description}
 
 \subsubsection{Pole}
-Pole se v BASHi definují do kulatých závorek a~položky se odělují mezerou. Vyvolat položky lze pak jednoduše jako jiné proměnné, ale s~indexem v~hranatých závorkách.~\cite{BASHen}
+Pole se v BASHi definují do kulatých závorek a~položky se oddělují mezerou. Vyvolat položky lze pak jednoduše jako jiné proměnné, ale s~indexem v~hranatých závorkách.~\cite{BASHen}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 packagename=(name dlink archivename foldername extension md5)
@@ -882,18 +896,18 @@ promenna = ${packagename[0]}
 \subsection{Překladač (kompilátor)}
 Překladač (též kompilátor, anglicky compiler z~to compile – sestavit, zpracovat) je v~nejčastějším smyslu slova nástrojem používaným programátory pro vývoj softwaru. Kompilátor slouží pro překlad algoritmů zapsaných ve vyšším programovacím jazyce do jazyka strojového, či spíše do strojového kódu. Z širšího obecného hlediska je kompilátor stroj, respektive program, provádějící překlad z nějakého vstupního jazyka do jazyka výstupního. Z~matematického hlediska je kompilátor funkce, která mapuje jeden nebo více zdrojových kódů podle překladových parametrů na kód ve výstupním jazyce.~\cite{Wkom}
 \subsection{Důležité soubory}
-Zdrojové kódy programů jsou uloženy souborech rozličných formátu podle účelu a~jazyka v~němž je program napsán. Ale každý program by měl obsahovat i~další soubory, které mají význam pro uživatele, kteří chtějí program zkompilovat nebo ho dále upravovat. Tyto soubory jsou,ale spíše dobrým mravem a~záleží na programátorovy jestly je jeho projekt bude obsahovat.
+Zdrojové kódy programů jsou uloženy souborech rozličných formátu podle účelu a~jazyka v~němž je program napsán. Ale každý program by měl obsahovat i~další soubory, které mají význam pro uživatele, kteří chtějí program zkompilovat nebo ho dále upravovat. Tyto soubory jsou,ale spíše dobrým mravem a~záleží na programátorovy jestli je jeho projekt bude obsahovat.
 \subsubsection{LICENSE (COPYING)}
-Soubor obsahující licenci pod kterou je program vydán. Licence je důležitá, protože určuje jak smí uživatel s programem nakládat. U~programů s~otevřeným zdrojovým kódem se neastěji používají licence GNU GPL a BSD.\\ \b{GPL} v jednoduchosti říká, že můžete s~programem libovolně nakládat, avšak pokud provedete jakékoliv modifikace, musíte zdrojové kódy opět uvolnit pod stejnou licencí \it{(jedná se o licenci tzv. virovou)}. Anglický originál licence je lze možno nalézt na \href{http://www.opensource.org/licenses/gpl-3.0}{opensource.org} Pod touto licencí je šířeno Linuxové jádro i~sada nástrojů projektu GNU, které Linuxové jádro standartně distribuováno.\\ \b{BSD} Umožňuje volné šíření licencovaného obsahu, přičemž vyžaduje pouze uvedení autora a~informace o~licenci, spolu s~upozorněním na zřeknutí se odpovědnosti za dílo.~\cite{BSDL} Anglický originál licence je lze možno nalézt na \href{http://www.opensource.org/licenses/bsd-license.php}{opensource.org}. Pod touto licencí šířeno např. jádro stejnojmeného operačního systému BSD nebo operační systém HAIKU.\\
+Soubor obsahující licenci pod kterou je program vydán. Licence je důležitá, protože určuje jak smí uživatel s programem nakládat. U~programů s~otevřeným zdrojovým kódem se nejčastěji používají licence GNU GPL a BSD.\\ \b{GPL} v jednoduchosti říká, že můžete s~programem libovolně nakládat, avšak pokud provedete jakékoliv modifikace, musíte zdrojové kódy opět uvolnit pod stejnou licencí \it{(jedná se o licenci tzv. virovou)}. Anglický originál licence je lze možno nalézt na \href{http://www.opensource.org/licenses/gpl-3.0}{opensource.org} Pod touto licencí je šířeno Linuxové jádro i~sada nástrojů projektu GNU, které Linuxové jádro standardně distribuováno.\\ \b{BSD} Umožňuje volné šíření licencovaného obsahu, přičemž vyžaduje pouze uvedení autora a~informace o~licenci, spolu s~upozorněním na zřeknutí se odpovědnosti za dílo.~\cite{BSDL} Anglický originál licence je lze možno nalézt na \href{http://www.opensource.org/licenses/bsd-license.php}{opensource.org}. Pod touto licencí šířeno např. jádro stejnojmenného operačního systému BSD nebo operační systém HAIKU.\\
 Často bývá licence uvedena jako součást souboru README.
 \subsubsection{INSTALL}
-Soubor INSTALL obsahuje instalační informace pro uživatele. Obsahuje informace o~tom jak program zkompilovat a~informace o~jeho nastavení. U~menších projektů bývají často tyto informace součástí souboru README, naopak u velkých projektů se často tyto informce přesunují na internet.
+Soubor INSTALL obsahuje instalační informace pro uživatele. Obsahuje informace o~tom jak program zkompilovat a~informace o~jeho nastavení. U~menších projektů bývají často tyto informace součástí souboru README, naopak u velkých projektů se často tyto informace přesunují na internet.
 \subsubsection{Dokumnetace}
-Dokumentace obsahuje informace o~používání programů a~je velmi důležitá především u~knihoven, protože obsahuje popis funkcí, které danná knihovna poskytuje. Většina distribucí poskytuje dokumentaci v~samostatných balíčcích, protože spousta uživatelů dokumentaci nijak nevyužije a~ušetří se tím místo v~uživatelově počítači a~především se tím sníží zatížení a~množství přenesených dat z~repozitářů distribucí.
+Dokumentace obsahuje informace o~používání programů a~je velmi důležitá především u~knihoven, protože obsahuje popis funkcí, které daná knihovna poskytuje. Většina distribucí poskytuje dokumentaci v~samostatných balíčcích, protože spousta uživatelů dokumentaci nijak nevyužije a~ušetří se tím místo v~uživatelově počítači a~především se tím sníží zatížení a~množství přenesených dat z~repozitářů distribucí.
 \subsubsection{README}
 Soubor obsahuje základní informace o~programu. Může, a~často i~obsahuje informace ze všech výše uvedených souborů. Avšak někdy není vůbec, protože je vše uvedeno ve výše uvedených souborech.
 \subsubsection{Configure}
-Soubor s~nasteveními pro překlad. Jedná se v~zásadě o~BASH script, kterým můžete nastavit co a~jak se má v~programu kompilovat. Různými volbami, které jsou uvedeny v~INSTALL,README, nebo v~nějaké online dokumentaci, můžete nastavit \it{např. cesty kam se mám program nebo jeho části nainstalovat nebo také které části programu se mají přeložit}. Configure je scriptem BASHe a~proto je také tak volána, výsledekem configure je vygenerovaní souboru, které řídí překlad.
+Soubor s~nastaveními pro překlad. Jedná se v~zásadě o~BASH script, kterým můžete nastavit co a~jak se má v~programu kompilovat. Různými volbami, které jsou uvedeny v~INSTALL,README, nebo v~nějaké online dokumentaci, můžete nastavit \it{např. cesty kam se mám program nebo jeho části nainstalovat nebo také které části programu se mají přeložit}. Configure je scriptem BASHe a~proto je také tak volána, výsledkem configure je vygenerovaní souboru, které řídí překlad, nejčastěji Makefil(u).
 \subsubsection{Další soubory a alternativy některých souborů}
 
 \subsection{Kompilace}
@@ -921,21 +935,21 @@ zkompiluje zdrojové kódy
 nahraje soubory do systému všechny potřebné soubory
 
 \subsection{Možnosti tvorby distribuce}
-Linuxovou distribuci lze vytvořit více způsoby, nejběžnějším způsobem je sestavení ze zdrojových kódů. Je třeba dávat pozor na licenční ujednání a~dle GNU/GPL licence (pod kterou je distribuováno linuxové jádro) musí autor uvolnit zdrojové kódy. U~linuxoveho jádra to zahrnuje většinou použité patche.
+Linuxovou distribuci lze vytvořit více způsoby, nejběžnějším způsobem je sestavení ze zdrojových kódů. Je třeba dávat pozor na licenční ujednání a~dle GNU/GPL licence (pod kterou je distribuováno linuxové jádro) musí autor uvolnit zdrojové kódy. U~linuxového jádra to zahrnuje většinou použité patche.
 \subsubsection{Vytvoření ze zdrojových kódů}
 Vytvoření ze zdrojových kódů reprezentuje například použitá "distribuce" Linux From Scratch. Postup se obecně skládá z~několik částí.
 \begin{enumerate}
- \item Prve je třeba oddělit systém a~vytvořit toolchain, který slouží k~sestavení nové distribuce nezávislé na předchozím hostovském systému.
-\item sestavení vlastní sady základních nástrojů pro pouzití systému. Sada obsahuje překladače, nástroje pro práci se soubory a~jiné potřebné programove vybavení.
+ \item Prve je třeba oddělit systém a~vytvořit toolchain, který slouží k~sestavení nové distribuce nezávislé na předchozím hostovskému systému.
+\item sestavení vlastní sady základních nástrojů pro použití systému. Sada obsahuje překladače, nástroje pro práci se soubory a~jiné potřebné programové vybavení.
 \item nastavení bootovacího procesu systému.
 \item vytvoření tabulky souborových systémů, kompilace jádra systému, nastavení bootloaderu
 \end{enumerate}
 
 \subsubsection{Sestavení ze stávající linuxové distribuce} \label{sec:tvorbaDistribuce}
-Existuje hned několik nástrojů na sestavení tzv. derivátu Linuxové distribuce. Většinou jsou používány pro sestavení instalačního ISO obrazu na míru potřeb uživatele. To zahrnuje balíčky použité při instalaci, různé nastavení, grafická témata, písma apd,… Populární se staly především deriváty distribuce Ubuntu, pro Ubuntu existuje i~nejvíce těchto nástrojů. K dispozici jsou nástroje jak pro desktop s bězným GUI nebo CLI,tak i~nástroje webové, které sestaví distribuci v~cloudu a uživatel stáhne jenom hotový obraz.
+Existuje hned několik nástrojů na sestavení tzv. derivátu Linuxové distribuce. Většinou jsou používány pro sestavení instalačního ISO obrazu na míru potřeb uživatele. To zahrnuje balíčky použité při instalaci, různé nastavení, grafická témata, písma apd,… Populární se staly především deriváty distribuce Ubuntu, pro Ubuntu existuje i~nejvíce těchto nástrojů. K dispozici jsou nástroje jak pro desktop s běžným GUI nebo CLI,tak i~nástroje webové, které sestaví distribuci v~cloudu a uživatel stáhne jenom hotový obraz.
 
 \nadpis{Remastersys}\\
-Remastersys je jednoduchý grafický nástroj určený pro Ubuntu, Debian a všechny jejich deriváty. Remastersys dokáže převést aktuální běžící distribuci na vašem počítači do ISO obrazu. Je výborným nástojem pro zálohování dat systému, protože uloží všechny vaše uživatelská data a~nastavení.\cite{Linux_Build}
+Remastersys je jednoduchý grafický nástroj určený pro Ubuntu, Debian a všechny jejich deriváty. Remastersys dokáže převést aktuální běžící distribuci na vašem počítači do ISO obrazu. Je výborným nástrojem pro zálohování dat systému, protože uloží všechny vaše uživatelská data a~nastavení.\cite{Linux_Build}
 
 Výpis možností použití Remastersys: Jedná se opravdu o~jednoduchý program.
     \begin{codeframe} 
@@ -959,12 +973,17 @@ Examples:
     \end{codeframe} 
 \begin{center}
 \obr{./img/screens/remastersys.png}{0.5}{Grafické rozhraní programu Remastersys}
- % remastersys.png: 625x388 pixel, 96dpi, 16.53x10.26 cm, bb=0 0 469 291
+
+% remastersys.png: 625x388 pixel, 96dpi, 16.53x10.26 cm, bb=0 0 469 291
+
 \end{center}
+
 %This tool has a newbie-proof GUI and works on both Ubuntu and Debian distros and any of their derivatives.
 %Remastersys works by transferring the distro you're running into an ISO image. You can choose to include your settings and personal data too, which makes it ideal for backups.
+
 \nadpis{The Ubuntu Customisation Kit (UCK)}\\ \label{sec:UCK}
 Program je určen pro Ubuntu a~všechny jeho deriváty. Dovoluje odebrat nebo přidat jakékoliv aplikace na instalačním CD. UCK je určeno spíše pokročilejším uživatelům, protože po vytvoření LiveCD, do něj přihlásí uživatele prostřednictvím chroot a~dovolí mu tak změnit prakticky cokoliv. Aplikace má jednoduché grafické rozhraní se spoustou dialogů, které vás provedou vytvořením LiveCD.\cite{Linux_Build}
+
 %The Ubuntu Customisation Kit – which is tastefully shortened to UCK – works with the ISO of any of the four Ubuntu flavours (the GNOME based original Ubuntu, KDE-based Kubuntu, Xfce-based Xubuntu and education-targeted Edubuntu) and lets you add or remove any apps to the stock.
 %This tool is ideal for advanced users because during the customisation process it places you in a chrooted environment of the Live CD, enabling you to tweak any aspect of the distro.
 
@@ -974,20 +993,23 @@ Jedná se o webovou aplikaci a její cena je \$5.\cite{Linux_Build}
 \begin{center}
 \obr{./img/screens/reconstructor.jpg}{0.5}{Webové rozhraní Reconstructoru}
 \end{center}
+
 %As the name suggests, this tool is a comprehensive suite for creating your own custom Ubuntu and Debian distros from an existing ISO image. It lets you tweak the wallpaper, themes, icons, applications, and more.
 %The browser-based tool requires no installation, but you'll need to pay a small fee before you can use all of its features.
 
 \nadpis{Revisor}\\
-Revisor je aplikace pro vytvoření vlastního instalčního CD/DVD/USB založeném na distribuci Fedora. Má jak grafické rozhraní tak CLI. Další rozdíl je také to, že Revisor nevytváří instalační medium z~existujícího obrazu, ale stahuje vše z~internetu, takže rychlost vytvoření média je také závislá na rychlosti vašeho připojení.\cite{Linux_Build}
+Revisor je aplikace pro vytvoření vlastního instalačního CD/DVD/USB založeném na distribuci Fedora. Má jak grafické rozhraní tak CLI. Další rozdíl je také to, že Revisor nevytváří instalační medium z~existujícího obrazu, ale stahuje vše z~internetu, takže rychlost vytvoření média je také závislá na rychlosti vašeho připojení.\cite{Linux_Build}
 \begin{center}
 \obr{./img/screens/revisor.jpg}{0.7}{Grafické rozhraní programu Revisor}
 \end{center}
+
 %Unlike the three tools above, this app is for the RPM-based distro Fedora. Revisor has both a GUI and a command-line interface, and it can create USB Live media as well as install-only CDs and DVDs.
 %Instead of using ISO images, Revisor downloads packages from the internet, so it may take some time to compile depending on your connection speed and customised package selection.
-\nadpis{SUSE Studio}\\
-Asi nejzajímavějším programem je webová aplikace od společnosti Novell, SUSE Studio. Nejenomže umí nakonfigurovat velké množství nastavení. Ale velice dobrou vlastností je testování systému přímo v~prohlížeči. Výborná je také galerie, která obsahuje obrazy vytvořené ostatními uživateli, lze tak bez práce najít už funkční obraz dle potřeb uživatele a~případně si již vytvořený obraz upravit.
 
-\obr{./img/screens/suse1.png}{0.7}{Webové stránka s výběrem již existujích sestavení}
+\nadpis{SUSE Studio}\\
+Asi nejzajímavějším programem je webová aplikace od společnosti Novell, SUSE Studio. Ne~jenomže umí nakonfigurovat velké množství nastavení. Ale velice dobrou vlastností je testování systému přímo v~prohlížeči. Výborná je také galerie, která obsahuje obrazy vytvořené ostatními uživateli, lze tak bez práce najít už funkční obraz dle potřeb uživatele a~případně si již vytvořený obraz upravit.
+
+\obr{./img/screens/suse1.png}{0.7}{Webové stránka s výběrem již existujících sestavení}
 \begin{figure}[h]
 \begin{center}$
 \begin{array}{cc}
@@ -995,7 +1017,7 @@ Asi nejzajímavějším programem je webová aplikace od společnosti Novell, SU
 \includegraphics[width=3in]{./img/screens/suse3.png}
 \end{array}$
 \end{center}
-\caption{Webové rozhraní s nastavením systému, v~levo výběr základního rozhraní, v~pravo podrobnější nastavení}
+\caption{Webové rozhraní s nastavením systému, vlevo výběr základního rozhraní, vpravo podrobnější nastavení}
 \end{figure}
 
 %\begin{center}
@@ -1009,25 +1031,29 @@ Asi nejzajímavějším programem je webová aplikace od společnosti Novell, SU
 %\end{center}
 \newpage
 \nadpis{Pungi}\\
-Pungi je nástrojem, který používají vývojári Fedory pro sestavení oficiálních vydání. Jedná se o~program bez grafického rozhraní napsaný v~pythonu a~stejně jako Revisor stahuje balíčky z~internetu a sestavuje z~nich instalační médium.\cite{Linux_Build}
+Pungi je nástrojem, který používají vývojáři Fedory pro sestavení oficiálních vydání. Jedná se o~program bez grafického rozhraní napsaný v~pythonu a~stejně jako Revisor stahuje balíčky z~internetu a sestavuje z~nich instalační médium.\cite{Linux_Build}
+
 %This is the tool that the Fedora developers use to spin the official releases. It's a command-line tool written in Python.
 %Like Revisor, the tool gathers packages directly from the internet and then automatically splits them and creates CD-sized installable ISO images.
 
 \nadpis{Builder}\\
-Builder je série scriptů napsaných v~BASHi, které používají vývojáři derivátu distribuce Ubuntu "gNewSense" na sestavení jejich distribuce. Ke scriptům je také napsaný přehledný manuál jak je používat, který je dostupný online~\cite{Linux_Build}~\cite{BuilderNavod}.
+Builder je série skriptů napsaných v~BASHi, které používají vývojáři derivátu distribuce Ubuntu "gNewSense" na sestavení jejich distribuce. Ke scriptům je také napsaný přehledný manuál jak je používat, který je dostupný online~\cite{Linux_Build}~\cite{BuilderNavod}.
+
 %Builder is a series of bash scripts that are used by the gNewSense developers to create their distro. Along with the tool they've also written a handy nine-step guide to creating a customised distro from Ubuntu Hardy. The guide is available on their site.
 
 \nadpis{MySlax Creator}\\
-MySlax Creator jsou scripty určné k~úpravě distribuce Slackware, především tedy k~vytvoření vlastního obrazu odvozené distribuce SLAX. Jejich odlišnost je v~tom že fungují přímo z Windows.
+MySlax Creator jsou scripty určené k~úpravě distribuce Slackware, především tedy k~vytvoření vlastního obrazu odvozené distribuce SLAX. Jejich odlišnost je v~tom že fungují přímo z Windows.
+
 %Here's a Slackware customisation script with a unique twist. The tool creates customised versions of the Slackware-based Slax distro we mentioned above, but unlike the other tools we talk about here, MySlax Creator installs and work from within Windows!
 %It works with Slax ISO images and lets you add data to your own custom spins.
 
 %\nadpis{LinuxCOE}\\
 
 \nadpis{Instalinux}\\ \label{sec:Instalinux}
-Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat z několika distribucí (Debian, Ubuntu, CentOS, Fedora, OpenSUSE, Scientific) a~v~dalších krocích základní nastavení systému a~výběr aplikací. Výsledkem je ISO obraz, kterým nemusí mít ani 30MB. Pro podrobnější nastavení exituje Designer Pro, který umožňuje nastavit mnohem více. Výbornou vlastností je uložení profilu, který je možné použít znovu a~upravit si jej.\\
+Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat z několika distribucí (Debian, Ubuntu, CentOS, Fedora, OpenSUSE, Scientific) a~v~dalších krocích základní nastavení systému a~výběr aplikací. Výsledkem je ISO obraz, kterým nemusí mít ani 30MB. Pro podrobnější nastavení existuje Designer Pro, který umožňuje nastavit mnohem více. Výbornou vlastností je uložení profilu, který je možné použít znovu a~upravit si jej.\\
 
 %This is a simple, easy way to install Linux. You follow the steps in the System Designer to choose from a bunch of different distributions and versions of Linux, and to choose what software you want included. The final product will be a fairly small ISO image (30 MB or less) that you can burn to a CD and boot from. It will automatically build your system for you, pulling what it needs from the network mirror you selected, while you sit back and relax.
+
 \begin{figure}[h]
 \begin{center}$
 \begin{array}{cc}
@@ -1035,7 +1061,7 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 \includegraphics[scale=0.5]{./img/screens/instalinux2.png}
 \end{array}$
 \end{center}
-\caption{Webové rozhraní Instalinux, v~levo výběr distribuce, v~pravo nastavení jazyka a časové zóny}
+\caption{Webové rozhraní Instalinux, vlevo výběr distribuce, vpravo nastavení jazyka a časové zóny}
 \end{figure}
 \begin{figure}[h]
 \begin{center}$
@@ -1044,30 +1070,32 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 \includegraphics[scale=0.5]{./img/screens/instalinux4.png}
 \end{array}$
 \end{center}
-\caption{Webové rozhraní Instalinux, v~levo výběr aplikací, v~pravo nastavení uživatelů}
+\caption{Webové rozhraní Instalinux, vlevo výběr aplikací, vpravo nastavení uživatelů}
 \end{figure}
 Takto vytvořená distribuce může mít i~8MB!
 \section{\upc{Zabezpečení Linuxového systému}}
-Zabezpečení OS je velice rozsáhlým a~komplexním odvětvím, které se navíc velmi rychle vyvíjí a~rozšiřuje. Jeho plné popsání by vadalo na několik desítek bakalářských prací, proto jen základní informace o~vnitřním zabezpečení systému, nástrojích jež toto zabezpečení rozšiřují a~také o~zabezpečení proti vnějšímu útoku a~bezpečném přenosu informací.
+Zabezpečení OS je velice rozsáhlým a~komplexním odvětvím, které se navíc velmi rychle vyvíjí a~rozšiřuje. Jeho plné popsání by vydalo na několik desítek bakalářských prací, proto jen základní informace o~vnitřním zabezpečení systému, nástrojích jež toto zabezpečení rozšiřují a~také o~zabezpečení proti vnějšímu útoku a~bezpečném přenosu informací.
 \subsection{Access Control}
-Kontrola přístupu uvnitř systému je jedno z~nejdůležitějších zabezpeční v~OS vůbec. Určuje, který proces nebo uživatel má k čemu oprávnění. Existuje několik obecných modelů tohoto zabezpečení, v~Linuxu se konkrétně využívá dvou modelů: \b{Discretionary Access Control (DAC)} a \b{Mandatory Access Control (MAC)}. Model zabezpečení DAC je bežnou součástí linuxového jádra a~využívá jej defaultně většina distribucí. Model MAC je pak v~linuxu dostupný díky různým rozšířením, jež nejčastěji využívají \b{Linux Security Modules (LSM)}, které zajišťující implementaci MAC v jádře.
+Kontrola přístupu uvnitř systému je jedno z~nejdůležitějších zabezpečení v~OS vůbec. Určuje, který proces nebo uživatel má k čemu oprávnění. Existuje několik obecných modelů tohoto zabezpečení, v~Linuxu se konkrétně využívá dvou modelů: \b{Discretionary Access Control (DAC)} a \b{Mandatory Access Control (MAC)}. Model zabezpečení DAC je běžnou součástí linuxového jádra a~využívá jej defaultně většina distribucí. Model MAC je pak v~Linuxu dostupný díky různým rozšířením, jež nejčastěji využívají \b{Linux Security Modules (LSM)}, které zajišťující implementaci MAC v jádře.
 \subsubsection{DAC vs. MAC}
 %\subsubsection{DAC vs. MAC vs. RBAC}
 %TODO dopiš informace o RBAC
-Bezpečnostní model využívaný většinou mainstreamových operačních systému je založen na \b{Discretionary Access Control (DAC)}, který je založen na bezpečnosti vlastnictvím. Pokud uživatel vlastní soubor, může nastavovat práva pro čtení, zápis a~spoštění (r+w+x), pro tento soubor. V~tomto modelu uživatel kontroluje data dle vlastního uvážení. Vlastník systému\footnote{Vlastník systému (anglicky system owner nebo také administrátor) je určen při instalaci OS, oproti účtu uživatele root nemá právo měnit např. práva systémových souborů, ale má právo měnit přístupová práva široké škály uživatelů a~uživatelé nemají možnost tyto ustanovení měnit.\cite{SystemOwner}}
+Bezpečnostní model využívaný většinou mainstreamových operačních systému je založen na \b{Discretionary Access Control (DAC)}, který je založen na bezpečnosti vlastnictvím. Pokud uživatel vlastní soubor, může nastavovat práva pro čtení, zápis a~spouštění (r+w+x), pro tento soubor. V~tomto modelu uživatel kontroluje data dle vlastního uvážení. Vlastník systému\footnote{Vlastník systému (anglicky system owner nebo také administrátor) je určen při instalaci OS, oproti účtu uživatele root nemá právo měnit např. práva systémových souborů, ale má právo měnit přístupová práva široké škály uživatelů a~uživatelé nemají možnost tyto ustanovení měnit.\cite{SystemOwner}} nemá totální kontrolu nad systémem, tu má uživatel.~\cite{Linux_com_MACvsDAC}
+
 %The desktop interface implements the concept of a ``system owner''. When you install the operating system, a user is designated as the owner. Any user name (except those already reserved by the system, such as uucp and bin) can be assigned as the system owner. The system owner is given the necessary permissions to do the day-to-day system administration tasks available through the SCOadmin interface. These special authorizations, and the ability to assign additional system owners, are described in ``Assigning authorizations''.
- nemá totální kontorlu nad systémem, tu má uživatel.~\cite{Linux_com_MACvsDAC}
+
 
 %The security model used by most mainstream operating systems is based on Discretionary Access Control (DAC), which enforces security by ownership. If a user owns a file, he is allowed to set the read, write, and execute permissions for that file. In this model, users control the data at their discretion. The owner of the system does not have total control over the system; the users do.
 
-Avšak největší hrozba v~Linuxovém modelu je reprezentována účtem uživatele root. Tento super-uzivatel může kontorlovat všechny soubory a procesy. Pokud je účet uživatele root nebo proces s~takto vysokými přístupovými právy kompromitovám, útoční získává kontorolu nad celým systémem a~nad daty v~něm.~\cite{Linux_com_MACvsDAC}
+Avšak největší hrozba v~Linuxovém modelu je reprezentována účtem uživatele root. Tento super-uzivatel může kontrolovat všechny soubory a procesy. Pokud je účet uživatele root nebo proces s~takto vysokými přístupovými právy kompromitován, útočník získává kontrolu nad celým systémem a~nad daty v~něm.~\cite{Linux_com_MACvsDAC}
  
 %However, the biggest concern with the Linux model is the danger presented by the root account. This super-user has the power to control all files and processes. If the root account, or a process that runs with its privileges, is compromised, an attacker can take control of the system and its data.
 
 Bezpečnějším přístupem je omezit nebo přímo eliminovat účet uživatele root a~přesunout tak práva z uživatelských účtů na na vlastníka systému\footnotemark[1]. Tento přístup se nazývá \b{Mandatory Access Control (MAC)}~\cite{Linux_com_MACvsDAC}
+
 %A more secure approach would limit or even eliminate the need for a root account, and shift the power from the user accounts to the owner of the system. This is MAC's approach.
 
-MAC prosazuje bezpečnostní pravidla povinně (mandatory) narozdíl od DAC, který pravidla prosazuje volitelně (discretionary). Bezpečnostní pravidla můze nastavit vlastník systému a implementovat systémový nebo bezpečnostní administrátor. Jakmile jsou pravidla jednou stanovena, žádný uživatel nemůže tyto pravidla měnit, ikdyby měl práva uživatele root. S bezpečnostní přístupem MAC je ochrana souborů a procesů nezávislá na na jejich vlastníkovy.~\cite{Linux_com_MACvsDAC}
+MAC prosazuje bezpečnostní pravidla povinně (mandatory) na~rozdíl od DAC, který pravidla prosazuje volitelně (discretionary). Bezpečnostní pravidla může nastavit vlastník systému a implementovat systémový nebo bezpečnostní administrátor. Jakmile jsou pravidla jednou stanovena, žádný uživatel nemůže tyto pravidla měnit, i~kdyby měl práva uživatele root. S bezpečnostní přístupem MAC je ochrana souborů a procesů nezávislá na na jejich vlastníkovy.~\cite{Linux_com_MACvsDAC}
 %MAC makes the enforcement of security policies mandatory instead of discretionary, as you might imagine from the name Mandatory Access Control. Security policies can be set by the system owner and implemented by a system or security administrator. Once these policies are in place, users cannot override them, even if they have root privileges. With MAC, file and process protection is independent of owners.
 
 
@@ -1091,7 +1119,7 @@ MAC prosazuje bezpečnostní pravidla povinně (mandatory) narozdíl od DAC, kte
 
 SELinux je bezpečnostní vylepšení pro Linux, které dává uživatelům a správcům větší kontrolu nad tím, který uživatele nebo aplikace může přistupovat k jakým prostředkům. Standardní Linuxová kontrola přístupu jako je oprávnění pro soubor (-rwxr-xr-x) je modifikovatelné uživatelem nebo aplikací, kterou uživatel spustí. Oproti tomu, kontrola přístupu v~SELinuxu je určena pravidly v~systému a~neopatrný uživatel nebo nesprávná aplikace je nemůže nijak změnit.
 
-SELinux také přidává mnoho možností pro řízení přístupu. Místo klasického určení, kdo může číst, psát nebo spustit soubor, např. SELinux umožňuje určit, kdo může vytvářet a~rušit odkazy, přesouvat soubory a~mnoho dalšího. SELinux umožňuje určit přístup k mnoha jiných zdrojů než jenom k souborům, např. přístum k~síťovým zdrojům nebo k~meziprocesové komunikaci (IPC).\cite{SElinuxWiki}
+SELinux také přidává mnoho možností pro řízení přístupu. Místo klasického určení, kdo může číst, psát nebo spustit soubor, např. SELinux umožňuje určit, kdo může vytvářet a~rušit odkazy, přesouvat soubory a~mnoho dalšího. SELinux umožňuje určit přístup k mnoha jiných zdrojů než jenom k souborům, např. přístup k~síťovým zdrojům nebo k~mezi procesové komunikaci (IPC).\cite{SElinuxWiki}
 
 %SELinux is a security enhancement to Linux that allows users and administrators more control over which users and applications can access which resources, such as files. Standard Linux access controls, such as file modes (-rwxr-xr-x) are modifiable by the user and applications that the user runs whereas SELinux access controls are determined by a policy loaded on the system and not changeable by careless users or misbehaving applications.
 %SELinux also adds finer granularity to access controls. Instead of only being able to specify who can read, write or execute a file, for example, SELinux lets you specify who can unlink, append only, move a file and so on. SELinux allows you to specify access to many resources other than files as well, such as network resources and interprocess communication (IPC).
@@ -1099,13 +1127,13 @@ SELinux také přidává mnoho možností pro řízení přístupu. Místo klasi
 \subsubsection{AppArmor}
 AppArmor je efektivní a~snadno použitelná Linuxová bezpečnostní aplikace. AppArmor aktivně chrání operační systém a~aplikace před vnějšími nebo vnitřními bezpečnostními hrozbami a~díky prosazování dobrého chování a~prevence od neznámých, nebezpečných nebo vadných aplikací dokáže chránit systém i~od tzv. zero-day útoků\footnote{zero-day atack je útok na vývojářům neznámou zranitelnost~v systému. Zero-day je také nazýván, protože se objeví dříve než vývojáři dokáží chybu záplatovat.}. V~bezpečnostních pravidlech AppArmor lze definovat, k~jakým systémovým zdrojům můžou jednotlivé aplikace přistupovat a~jak s nimi mohou nakládat. Mnoho výchozích bezpečnostních pravidel je součástí AppArmor a~pomocí kombinace vyspělé statické analýzy a~learning-based nástrojů, je možné bezpečnostní pravidla AppArmor i~pro velmi složité aplikace úspěšně nasadit během několika hodin.\cite{AppArmorWikiMain}
 
-AppArmor se převším oproti SElinuxu vyznačuje mnohem jednoduším nastavením.
+AppArmor se především oproti SElinuxu vyznačuje mnohem jednodušším nastavením.
 %AppArmor is an effective and easy-to-use Linux application security system. AppArmor proactively protects the operating system and applications from external or internal threats, even zero-day attacks, by enforcing good behavior and preventing even unknown application flaws from being exploited. AppArmor security policies completely define what system resources individual applications can access, and with what privileges. A number of default policies are included with AppArmor, and using a combination of advanced static analysis and learning-based tools, AppArmor policies for even very complex applications can be deployed successfully in a matter of hours.
 
 \subsubsection{TOMOYO}
-Tomoyo Linux je Mandatory Access Control (MAC) implementace pro Linux, díky které lze zvýšit zabezpečení systému a~nebo můze být pouze nástrojem systémové analýzy. Jeho vývoj byl zahájem v~březnu 2003 a je sponzorován NTT Data Corporation, Japonsko.
+Tomoyo Linux je Mandatory Access Control (MAC) implementace pro Linux, díky které lze zvýšit zabezpečení systému a~nebo může být pouze nástrojem systémové analýzy. Jeho vývoj byl zahájen v~březnu 2003 a je sponzorován NTT Data Corporation, Japonsko.
 
-Tomoyo Linux se zaměřuje na chování systému. Každý proces je vytvořen za dosažením uřcitého cíle a~jako imigrační pracovník, Tomoyo Linux umožňuje každému procesu určit si zdroje potřebné k~dosažení svého cíle. Pokud je povolena ochrana, Tomoyo Linux funguje jako hlídací pes a~omezuje každý proces tak jak má povoleno správcem.\cite{TOMOYOLinuxHOME}
+Tomoyo Linux se zaměřuje na chování systému. Každý proces je vytvořen za dosažením určitého cíle a~jako imigrační pracovník, Tomoyo Linux umožňuje každému procesu určit si zdroje potřebné k~dosažení svého cíle. Pokud je povolena ochrana, Tomoyo Linux funguje jako hlídací pes a~omezuje každý proces tak jak má povoleno správcem.\cite{TOMOYOLinuxHOME}
 
 Mezi hlavní přednosti Tomoyo Linux patří:
 \begin{itemize}
@@ -1136,7 +1164,7 @@ grsecurity je inovativní přístup k~zabezpečení, využívající multi-layer
 
 Nabízí mnoho funkcí:
 \begin{itemize}
- \item inteligentní a robustní Role-Based Access Control (RBAC) systém, který může generovat bezpečnotstní pravidla pro celý systém bez jakékoliv konfigurace
+ \item inteligentní a robustní Role-Based Access Control (RBAC) systém, který může generovat bezpečnostní pravidla pro celý systém bez jakékoliv konfigurace
  \item Rozsáhlé kontroly
  \item Prevence nežádoucího kódu, bez ohledu na použité techniky (stack smashing, heap corruption, atd…)
  \item Prevence spuštění libovolného kódu v jádře
@@ -1166,7 +1194,7 @@ Nabízí mnoho funkcí:
 \subsection{Hodnocní bezpečnosti OS a SW}
 Tak jako ve spoustě jiných odvětvích se i~v~bezpečnosti určují standardy a~udělují certifikace bezpečnosti.
 \subsubsection{Trusted Computer System Evaluation Criteria, TCSEC} \label{sec:TCSEC}
-Asi nejznáměší kniha popisující požadavky pro "důvěryhodný" operační systém, vydaná v roce 1985 americkým ministrestvem obrany (Department of Defense, DoD) a je známa také jako oranžová kniha (Orange book) pro svůj orančový přebal. Dnes se tyto hodnotící kritéria již nepoužívají, původně měla být nahrazena Federal Criteries (FC), ale tento soubor kritérií nebyl nikdy nasazen a zůstal pouze ve fázi draft\footnote{\b{Draft} se používá jako označení pro návrh}, protože jej v roce 2005 nahradil soubor Common Criteria (CC) \odkazNaKapitolu{sec:cc}\\
+Asi nejznámější kniha popisující požadavky pro "důvěryhodný" operační systém, vydaná v roce 1985 americkým ministerstvem obrany (Department of Defense, DoD) a je známa také jako oranžová kniha (Orange book) pro svůj oranžový přebal. Dnes se tyto hodnotící kritéria již nepoužívají, původně měla být nahrazena Federal Criteries (FC), ale tento soubor kritérií nebyl nikdy nasazen a zůstal pouze ve fázi draft\footnote{\b{Draft} se používá jako označení pro návrh}, protože jej v roce 2005 nahradil soubor Common Criteria (CC) \odkazNaKapitolu{sec:cc}\\
 
 \vspace{4 mm}
 TCSEC, hodnotí míru splnění požadavků ve třech oblastech informační bezpečnosti~\cite{PrezentaceBIS}
@@ -1186,7 +1214,7 @@ TCSEC, hodnotí míru splnění požadavků ve třech oblastech informační bez
 \item[Třída B] povinná ochrana (Mandatory Protection)
 \begin{description}
 \item[Podtřída B1] ochrana bezpečnosti návěštím - přidělení stupně utajení (neformální model)
-\item[Podtřída B2] strukturovaná ochrana - existence poloformálního modelu, oddělení citlivých a necitlivých částí systému (odolnost proti napadení)
+\item[Podtřída B2] strukturovaná ochrana - existence polo-formálního modelu, oddělení citlivých a necitlivých částí systému (odolnost proti napadení)
 \item[Podtřída B3] bezpečnostní domény - modulární architektura systému (vysoká odolnost proti napadení)
 \end{description}
 \item[Třída A] verifikovaná ochrana (Verified Protection)
@@ -1199,7 +1227,7 @@ Systémy s dostatečnou bezpečností pro běžný provoz se považují systémy
 Většina Linuxových distribucí dosahuje Třídy C2~\cite{LinuxDictionary}
 
 \subsubsection{IT Security Evaluation Criteria,ITSEC}\label{sec:ITSEC}
-Evroská kritéria vytvořená v roce 1990 dnes již nahrazena krytérii Common Criteries (CC)~\odkazNaKapitolu{sec:cc}.
+Evropská kritéria vytvořená v roce 1990 dnes již nahrazena kritérii Common Criteries (CC)~\odkazNaKapitolu{sec:cc}.
 
 rozdělení požadavků kladených na
 \begin{itemize}
@@ -1242,72 +1270,26 @@ Funkce - rozdělení do skupin, v každé skupině pro každou funkci je stanove
 
 \subsubsection[Common Criteria, CC]{Common Criteria for Information Technology Security Evaluation, CC}\label{sec:cc}
 V České republice je dobře známa norma ISO/IEC 15408-1:1999, která je totožná s~textem, zveřejněným Organizacemi sponzorujícími projekt Společná kritéria, pod názvem “Common Criteria for Information Technology Security Evaluation”, verze 2.1. Tato kritéria jsou obvykle nazývána pouze “Common Criteria” a~pro jejich označení se hojně používá zkratky “CC”. Zkratka “CC”
-je ponechána i~v~českém překladu normy.\cite{NBUHodnoceniBezpecnostiSW}
+je ponechána i~v~českém překladu normy.~\cite{NBUHodnoceniBezpecnostiSW}
 
 V současné době se používá verze 3.0.
 
-CC vznikla na základě již dříve používaných kritérií hodnocení, zejména amerických TCSEC~\odkazNaKapitolu{sec:TCSEC} a~Federal Criteria, evropských ITSEC~\odkazNaKapitolu{sec:ITSEC} a~kanadských CTCPEC~\odkazNaKapitolu{sec:CTCPEC}. Na vývoji CC se podílely národní organizace, působící v~oblasti bezpečnosti a~standardizace, z~šesti států světa, jmenovitě Kanady, Francie, Německa, Holandska, Velké Británie a~Spojených států amerických a~jsou posledním výsledkem úsilí o~vytvoření společného standardu v~oblasti hodnocení bezpečnosti informačních technologií. V~uvedených státech lze nalézt většinu z~uznávaných laboratoří, které prováděly hodnocení bezpečnosti produktů v~oblasti informačních technologií podle dříve široce akceptovaných kritérií TCSEC nebo ITSEC a~v~současné době již přešly výhradně na hodnocení podle CC.\cite{NBUHodnoceniBezpecnostiSW}
+CC vznikla na základě již dříve používaných kritérií hodnocení, zejména amerických TCSEC~\odkazNaKapitolu{sec:TCSEC} a~Federal Criteria, evropských ITSEC~\odkazNaKapitolu{sec:ITSEC} a~kanadských CTCPEC~\odkazNaKapitolu{sec:CTCPEC}. Na vývoji CC se podílely národní organizace, působící v~oblasti bezpečnosti a~standardizace, z~šesti států světa, jmenovitě Kanady, Francie, Německa, Holandska, Velké Británie a~Spojených států amerických a~jsou posledním výsledkem úsilí o~vytvoření společného standardu v~oblasti hodnocení bezpečnosti informačních technologií. V~uvedených státech lze nalézt většinu z~uznávaných laboratoří, které prováděly hodnocení bezpečnosti produktů v~oblasti informačních technologií podle dříve široce akceptovaných kritérií TCSEC nebo ITSEC a~v~současné době již přešly výhradně na hodnocení podle CC.~\cite{NBUHodnoceniBezpecnostiSW}
 
 Jako formální základ pro vzájemné uznávání hodnocení uzavřely Kanada, Francie, Německo, Velká Británie a Spojené státy americké v roce 1998 dohodu “Arrangement on the Recognition of
-Common Criteria Certificates in the field of Information Technology Security”, zkráceně nazývanou CCRA (CC Recognition Arrangement).\cite{NBUHodnoceniBezpecnostiSW}
+Common Criteria Certificates in the field of Information Technology Security”, zkráceně nazývanou CCRA (CC Recognition Arrangement).~\cite{NBUHodnoceniBezpecnostiSW}
 
-Důležité je stanovení předdefinované vzestupné stupnice pro úroveň hodnocení. CC poskytuje 7 předdefinovaných balíků pro záruky (assurance package), známých jako Evaluation Assurance Levels (EAL), v~českém překladu míry záruky hodnocení. Jsou dobře promyšlené a~vyvážené, obecně aplikovatelné. Analogii lze nalézt v~třídách E1 až E6 v~kritériích ITSEC. Veškerá hodnocení IT podle CC se dnes provádějí na úrovni některé z~EAL, převážně do úrovně EAL4.
+Důležité je stanovení předdefinované vzestupné stupnice pro úroveň hodnocení. CC poskytuje 7 předdefinovaných balíků pro záruky (assurance package), známých jako Evaluation Assurance Levels (EAL), v~českém překladu míry záruky hodnocení. Jsou dobře promyšlené a~vyvážené, obecně aplikovatelné. Analogii lze nalézt v~třídách E1 až E6 v~kritériích ITSEC. Veškerá hodnocení IT podle CC se dnes provádějí na úrovni některé z~EAL, převážně do úrovně EAL4.~\cite{NBUHodnoceniBezpecnostiSW}
 
 Stručně lze jednotlivé úrovně popsat následujícím způsobem:
 \begin{description}
-\item[EAL1] je vhodná, pokud je vyžadována určitá základní důvěra ve správnost fungování
-hodnoceného PP, ST nebo TOE, avšak hrozby nejsou považovány za vážné. Důvěry se dosahuje
-nezávislým testováním shody hodnoceného PP, ST nebo TOE s neformální funkční specifikací a
-zkoumáním předložených příruček pro uživatele.
-\item[EAL2] již vyžaduje spolupráci vývojáře, který musí v podstatě dodat funkční specifikace,
-určité informace o návrhu bezpečnostních funkcí (na úrovni globálního návrhu, high-level design) a
-výsledky testování, avšak vývoj si nevyžaduje více úsilí nežli je potřebné pro dodržování dobré
-komerční praxe, a v podstatě nepřináší zvýšení nákladů. Poskytuje nízkou až střední nezávisle
-ověřenou bezpečnost v případě, že není dostupná kompletní informace z fáze vývoje. Důvěry se
-dosahuje analýzou vyžadované dokumentace, ověřením výsledků některých testů, analýzou síly
-funkcí a analýzou zřejmých zranitelností. Pro TOE musí být sestaven seznam konfigurace a
-vypracovány procedura pro bezpečnou instalaci, generování a spouštění.
-\item[EAL3] je možno ještě dosáhnout bez podstatných změn základních existujících vývojářských
-praktik. Je aplikovatelná v případě, že se vyžaduje střední úroveň nezávisle ověřené bezpečnosti a je
-opřena o důkladné zkoumání TOE (ST, PP). Navíc oproti EAL2 se vyžaduje rozsáhlejší testování,
-kontroly vývojového prostředí a zajištění správy konfigurace.
-\item[EAL4] stále umožňuje pohybovat se v rámci dobré komerční vývojářské praxe. Jakkoliv přísné
-jsou tyto praktiky, nevyžadují podstatné specializované znalosti, dovednosti a jiné zdroje. EAL4 je
-nejvyšší úrovní záruk, kterou lze dosáhnout (za rozumné náklady) zpětně pro již existující produkt.
-Poskytuje střední až vysokou úroveň záruky nezávisle ověřené bezpečnosti pro běžnou komoditu
-produktů a vyžaduje ze strany vývojáře nebo uživatelů připravenost k pokrytí dodatečných
-specifických nákladů spjatých s bezpečnostním inženýrstvím. Navíc oproti EAL3 se již vyžaduje také
-detailní návrh (low-level design) TOE, neformální model bezpečnostní politiky TOE a dodání určité
-podmnožiny implementace (např. část zdrojového kódu bezpečnostních funkcí). Nezávislá analýza
-zranitelností musí demonstrovat odolnost vůči průniku útočníků s nízkým potenciálem pro útok.
-Kontroly vývojového prostředí jsou doplněny modelem životního cyklu, stanovením nástrojů a
-automatizovanou správou konfigurace.
-\item[EAL5]vyžaduje kromě přísného uplatnění dobré komerční vývojářské praxe
-aplikaci
-speciálních technik bezpečnostního inženýrství ve středním rozsahu. Dané TOE bude pravděpodobně
-již navrženo a vyvíjeno s cílem dosáhnout úrovně záruk EAL5. Nepředpokládá se nicméně velké
-zvýšení nákladů oproti EAL4. EAL5 je tak vhodná v případech, kdy se vyžaduje vysoká úroveň
-záruky nezávisle ověřené bezpečnosti aniž by náklady na specializované techniky byly nerozumně
-vysoké. Navíc oproti EAL4 je vyžadováno dodání kompletní implementace TOE, formální model
-bezpečnostní politiky TOE, poloformální presentace funkčních specifikací, poloformální globální
-návrh (high-level design) a poloformální demonstrace korespondence. Nezávislá analýza zranitelností
-musí demonstrovat odolnost vůči průniku útočníků se středním potenciálem pro útok. Vyžaduje se
-také analýza skrytých kanálů a modularita návrhu.
-\item[EAL6] vyžaduje aplikaci technik bezpečnostního inženýrství do přísného vývojového prostředí a
-je určena pro vývoj TOE sloužícího pro ochranu vysoce hodnotných aktiv proti význačným rizikům,
-kdy lze odůvodnit dodatečné náklady. Navíc oproti EAL5 se vyžaduje poloformální detailní návrh,
-rozsáhlejší testování, návrh TOE musí být modulární a zvrstvený, prezentace implementace
-strukturovaná. Nezávislá analýza zranitelností musí demonstrovat odolnost vůči průniku útočníků
-s vysokým potenciálem pro útok. Analýza skrytých kanálů musí být systematická. Vyšší nároky jsou
-kladeny na správu konfigurace a kontroly vývojového prostředí.
-\item[EAL7] je použitelná pro vývoj produktů určených do extrémně rizikového prostředí a/nebo kde
-vysoká hodnota aktiv ospravedlňuje vyšší náklady. Praktické použití EAL7 je v současnosti
-omezeno na TOE a úzce vymezenou bezpečnostní funkčností, kde lze provést formální analýzu
-v požadované míře. Vyžaduje se plná formalizace, formální model bezpečnostní politiky, formální
-presentace funkčních specifikací and high-level návrhu, poloformální detailní návrh, formální a
-poloformální demonstrace korespondence. Testování se vyžaduje na úrovni bílé skříňky (white-box)
-a musí být dosaženo úplného nezávislého potvrzení výsledků všech předložených testů. Složitost
-návrhu musí být minimalizována.
+ \item[EAL1] je vhodná, pokud je vyžadována určitá základní důvěra ve~správnost fungování hodnoceného PP, ST nebo TOE, avšak hrozby nejsou považovány za vážné. Důvěry se dosahuje nezávislým testováním shody hodnoceného PP, ST nebo TOE s~neformální funkční specifikací a~zkoumáním předložených příruček pro uživatele.~\cite{NBUHodnoceniBezpecnostiSW}
+ \item[EAL2] již vyžaduje spolupráci vývojáře, který musí v~podstatě dodat funkční specifikace, určité informace o návrhu bezpečnostních funkcí (na úrovni globálního návrhu, high-level design) a~výsledky testování, avšak vývoj si nevyžaduje více úsilí nežli je potřebné pro dodržování dobré komerční praxe, a~v~podstatě nepřináší zvýšení nákladů. Poskytuje nízkou až střední nezávisle ověřenou bezpečnost v~případě, že~není dostupná kompletní informace z~fáze vývoje. Důvěry se dosahuje analýzou vyžadované dokumentace, ověřením výsledků některých testů, analýzou síly funkcí a~analýzou zřejmých zranitelností. Pro TOE musí být sestaven seznam konfigurace a~vypracovány procedura pro bezpečnou instalaci, generování a~spouštění.~\cite{NBUHodnoceniBezpecnostiSW}
+ \item[EAL3] je možno ještě dosáhnout bez podstatných změn základních existujících vývojářských praktik. Je aplikovatelná v~případě, že se vyžaduje střední úroveň nezávisle ověřené bezpečnosti a~je~opřena o~důkladné zkoumání TOE (ST, PP). Navíc oproti EAL2 se vyžaduje rozsáhlejší testování, kontroly vývojového prostředí a~zajištění správy konfigurace.~\cite{NBUHodnoceniBezpecnostiSW}
+ \item[EAL4] stále umožňuje pohybovat se v~rámci dobré komerční vývojářské praxe. Jakkoliv přísné jsou tyto praktiky, nevyžadují podstatné specializované znalosti, dovednosti a~jiné zdroje. EAL4 je nejvyšší úrovní záruk, kterou lze dosáhnout (za rozumné náklady) zpětně pro již existující produkt. Poskytuje střední až vysokou úroveň záruky nezávisle ověřené bezpečnosti pro běžnou komoditu produktů a~vyžaduje ze strany vývojáře nebo~uživatelů připravenost k~pokrytí dodatečných specifických nákladů spjatých s~bezpečnostním inženýrstvím. Navíc oproti EAL3 se již vyžaduje také detailní návrh (low-level design) TOE, neformální model bezpečnostní politiky TOE a~dodání určité podmnožiny implementace (např. část zdrojového kódu bezpečnostních funkcí). Nezávislá analýza zranitelností musí demonstrovat odolnost vůči průniku útočníků s~nízkým potenciálem pro útok. Kontroly vývojového prostředí jsou doplněny modelem životního cyklu, stanovením nástrojů a~automatizovanou správou konfigurace.~\cite{NBUHodnoceniBezpecnostiSW}
+ \item[EAL5]vyžaduje kromě přísného uplatnění dobré komerční vývojářské praxe aplikaci speciálních technik bezpečnostního inženýrství ve středním rozsahu. Dané TOE bude pravděpodobně již navrženo a~vyvíjeno s~cílem dosáhnout úrovně záruk EAL5. Nepředpokládá se nicméně velké zvýšení nákladů oproti EAL4. EAL5 je tak vhodná v~případech, kdy se vyžaduje vysoká úroveň záruky nezávisle ověřené bezpečnosti aniž by náklady na specializované techniky byly nerozumně vysoké. Navíc oproti EAL4 je vyžadováno dodání kompletní implementace TOE, formální model bezpečnostní politiky TOE, poloformální presentace funkčních specifikací, poloformální globální návrh (high-level design) a~poloformální demonstrace korespondence. Nezávislá analýza zranitelností musí demonstrovat odolnost vůči průniku útočníků se středním potenciálem pro útok. Vyžaduje se také analýza skrytých kanálů a~modularita návrhu.~\cite{NBUHodnoceniBezpecnostiSW}
+ \item[EAL6] vyžaduje aplikaci technik bezpečnostního inženýrství do přísného vývojového prostředí a~je určena pro vývoj TOE sloužícího pro ochranu vysoce hodnotných aktiv proti význačným rizikům, kdy lze odůvodnit dodatečné náklady. Navíc oproti EAL5 se vyžaduje poloformální detailní návrh, rozsáhlejší testování, návrh TOE musí být modulární a~zvrstvený, prezentace implementace strukturovaná. Nezávislá analýza zranitelností musí demonstrovat odolnost vůči průniku útočníků s~vysokým potenciálem pro útok. Analýza skrytých kanálů musí být systematická. Vyšší nároky jsou kladeny na~správu konfigurace a~kontroly vývojového prostředí.~\cite{NBUHodnoceniBezpecnostiSW}
+ \item[EAL7] je použitelná pro vývoj produktů určených do extrémně rizikového prostředí a/nebo~kde vysoká hodnota aktiv ospravedlňuje vyšší náklady. Praktické použití EAL7 je v současnosti omezeno na~TOE a~úzce vymezenou bezpečnostní funkčností, kde lze provést formální analýzu v~požadované míře. Vyžaduje se plná formalizace, formální model bezpečnostní politiky, formální presentace funkčních specifikací and high-level návrhu, poloformální detailní návrh, formální a~poloformální demonstrace korespondence. Testování se vyžaduje na úrovni bílé skříňky (white-box) a~musí být dosaženo úplného nezávislého potvrzení výsledků všech předložených testů. Složitost návrhu musí být minimalizována.~\cite{NBUHodnoceniBezpecnostiSW}
 \end{description}
 Operační systém Linux dosahuje úrovně EAL4.~\cite{CCredhat}~\cite{CCsuse}
 
@@ -1316,14 +1298,14 @@ Operační systém Linux dosahuje úrovně EAL4.~\cite{CCredhat}~\cite{CCsuse}
 \subsubsection{Firewall v Linuxu}
 Firewall v Linuxu je tvořen projektem \b{Netfilter}, který pracuje na úrovni jádra a umožňuje filtrovat pakety na základě mnoha kritérií. Základním nástrojem pro nastavení paketového filtru je známý řádkový nástroj \b{iptables}.~\cite{FirewallNetfilter}
 
-IPtables jsou, ale nástrojem velice složitým a~proto vzniklo několik projektů, které se snaží nastavení Firewallu usnadnit. Nástrojem určným pro běžné uživatele je např. grafický program \b{Firestarter}. Přístup Firestarteru je však vhodný spíše pro osobní počítače, pro větší síť a~nastavení více firewallů, je vhodným řešením nástroj ve které si uživatel vytvoří nastavení v~grafického nebo textového rozhraní a~výslednou konfiguraci firewallu pak přenese na server. Takovým nástrojem je např. \b{FirewallBuilder}, \b{FireHOL} oblíbená sada scriptů pro konfiguraci Netfilteru \b{Shorewall}.
+IPtables jsou, ale nástrojem velice složitým a~proto vzniklo několik projektů, které se snaží nastavení Firewallu usnadnit. Nástrojem určeným pro běžné uživatele je např. grafický program \b{Firestarter}. Přístup Firestarteru je však vhodný spíše pro osobní počítače, pro větší síť a~nastavení více firewallů, je vhodným řešením nástroj ve které si uživatel vytvoří nastavení v~grafického nebo textového rozhraní a~výslednou konfiguraci firewallu pak přenese na server. Takovým nástrojem je např. \b{FirewallBuilder}, \b{FireHOL} oblíbená sada skriptů pro konfiguraci Netfilteru \b{Shorewall}.
 
-Jak už je v~linuxu dobrým zvykem vše je často přehledně a~pouzitelně zabaleno v~distribucích. V prostředí firewallů existuje velké množství distribucí, které nenabízejí většinou v~základu jen firewall, ale jsou určiny i~pro routery a~jiná síťová zařízení (PROXY server, gateway, VPN, IPSEC, Anti-virus, www server,…). Asi nejpoužívanější distribucí je \b{IPCop} což je derivát distribuce \b{Smoothwall}. Oblíbenou distribucí pro firewally je také router distribuce \b{OpenWRT} a~několik projektů na ní založených např. \b{FreeWRT} nebo \b{DD-WRT}.
+Jak už je v~Linuxu dobrým zvykem vše je často přehledně a~použitelně zabaleno v~distribucích. V prostředí firewallů existuje velké množství distribucí, které nenabízejí většinou v~základu jen firewall, ale jsou určiny i~pro routery a~jiná síťová zařízení (PROXY server, gateway, VPN, IPSEC, Anti-virus, www server,…). Asi nejpoužívanější distribucí je \b{IPCop} což je derivát distribuce \b{Smoothwall}. Oblíbenou distribucí pro firewally je také router distribuce \b{OpenWRT} a~několik projektů na ní založených např. \b{FreeWRT} nebo \b{DD-WRT}.
 
 \subsubsection{Antivirus}\label{sec:antivirus}
-Antivirus a~viry obecně jsou velmi diskutovaným tématem v~linuxovém prostředí. V dnešní době je nebezpečí virů na linuxu stále mizivé a~vše naznačuje, že to tak ještě nějakou dobu potrvá. Hlavním argumentem proč na linuxu neexistují viry je často jeho malá rozšířenost, což není tak úplně pravda, protože většina průzkumů rozšířenosti OS se zaměřuje na desktopové počítače, kde dle statistik linux drží 1\%~\cite{StatistikaOS}, ale co se týče především www serverů dosahuje linuxový webový server Apache podílu přes 70\%~\cite{StatLinuxWebServer}. Linux je před viry a malwarem chráněn především díky jeho balíčkovacím systémům, protože software není jako u windows instalován z~různých pochybných webů a~jiných zdrojů, ale přímo od tvůrců distribuce a~jejich repozitářů. Dalším stupněm ochrany jsou pak oddělené uživatelské účty a~oddělený účet administrátora, které zabraňují šíření viru v~systému a~jeho další napadení.~\cite{LinuxCZviry}
+Antivirus a~viry obecně jsou velmi diskutovaným tématem v~linuxovém prostředí. V dnešní době je nebezpečí virů na linuxu stále mizivé a~vše naznačuje, že to tak ještě nějakou dobu potrvá. Hlavním argumentem proč na Linuxu neexistují viry je často jeho malá rozšířenost, což není tak úplně pravda, protože většina průzkumů rozšířenosti OS se zaměřuje na desktopové počítače, kde dle statistik Linux drží 1\%~\cite{StatistikaOS}, ale co se týče především www serverů dosahuje linuxový webový server Apache podílu přes 70\%~\cite{StatLinuxWebServer}. Linux je před viry a malwarem chráněn především díky jeho balíčkovacím systémům, protože software není jako u windows instalován z~různých pochybných webů a~jiných zdrojů, ale přímo od tvůrců distribuce a~jejich repozitářů. Dalším stupněm ochrany jsou pak oddělené uživatelské účty a~oddělený účet administrátora, které zabraňují šíření viru v~systému a~jeho další napadení.~\cite{LinuxCZviry}
 
-Samozřejmě pro linux existuje množštví antivirových programů, které spousta neznalých uživatelů považuje za důkaz virů v~linuxu, což není pravda, protože antivirové programy v~Linuxu slouží především k~ochraně windowsových stanic. Většina serverových řešení je totiž postavena právě na linuxu a~je třeba chránit klienty, kteří fungují na windows. Nejznámější antivirovým programem pro linux je zřejmě \b{ClamAV}, jedná se o OpenSource program, který slouží především ke scanování e-mailové komunikace a~ochraně windowsových stanic~\cite{ClamAV}. Samozřejmě existuje i~množství komerčních antivirových programů od firem jako ESETs nebo AVG a~je jen na uživateli, které řešení použije.
+Samozřejmě pro Linux existuje množství antivirových programů, které spousta neznalých uživatelů považuje za důkaz virů v~Linuxu, což není pravda, protože antivirové programy v~Linuxu slouží především k~ochraně windowsových stanic. Většina serverových řešení je totiž postavena právě na Linuxu a~je třeba chránit klienty, kteří fungují na windows. Nejznámější antivirovým programem pro Linux je zřejmě \b{ClamAV}, jedná se o OpenSource program, který slouží především ke scanování e-mailové komunikace a~ochraně windowsových stanic~\cite{ClamAV}. Samozřejmě existuje i~množství komerčních antivirových programů od firem jako ESETs nebo AVG a~je jen na uživateli, které řešení použije.
 
 \subsubsection{SSH}
 Secure Shell neboli ssh je nástroj pro bezpečné připojení v nedůvěryhodné síti. Poskytuje šifrované terminálové spojení se bezpečným systémem autentizace, jak na straně serveru tak straně klienta, pomocí veřejných kryptografických klíčů.
@@ -1337,24 +1319,24 @@ Hlavní výhody:
 \end{itemize}
 
 \subsection{Hypotetické bezpečnostní hrozby v linuxu}
-Virové hrozby byli probrány~\odkazNaKapitolu{sec:antivirus} v~souvislosti s~viry a~malwarem se, ale v~linuxu mluví o~hrozbě jménem \b{sudo}, sudo je nástroj přes který si uživatel nebo aplikace může požádat o~vyší oprávnění než jsou jí určeny, k~samotnému přidělení opravnění je třeba aby uživatel zadal heslo pro uživatele root, což zdánlivě celou situaci řeší, ale zde vstupuje nejzranitelnější část celého systému a~tou je uživatel. Neznalý uživatel zadá bez rozmyslu svoje heslo a~aplikace má plný přístup nad systémem. Samozřejmě jedná se o faktor, který vývojář nevyřeší, ale hrozba číhá i~někde jinde, celkem jednoduše jde vytovořit alias\footnote{alias je jak název napovídá taková přezdívka, uživatel si může pod řetězec uložit složitějsí příkaz, např. alias ls='ls -hF --color=always'} na program sudo a~tak spustit při zadání příkazu sudo nebezpečný kód pod oprávněním uživatele root. např. 
+Virové hrozby byli probrány~\odkazNaKapitolu{sec:antivirus} v~souvislosti s~viry a~malwarem se, ale v~Linuxu mluví o~hrozbě jménem \b{sudo}, sudo je nástroj přes který si uživatel nebo aplikace může požádat o~vyší oprávnění než jsou jí určeny, k~samotnému přidělení opravnění je třeba aby uživatel zadal heslo pro uživatele root, což zdánlivě celou situaci řeší, ale zde vstupuje nejzranitelnější část celého systému a~tou je uživatel. Neznalý uživatel zadá bez rozmyslu svoje heslo a~aplikace má plný přístup nad systémem. Samozřejmě jedná se o faktor, který vývojář nevyřeší, ale hrozba číhá i~někde jinde, celkem jednoduše jde vytovořit alias\footnote{alias je jak název napovídá taková přezdívka, uživatel si může pod řetězec uložit složitějsí příkaz, např. alias ls='ls -hF --color=always'} na program sudo a~tak spustit při zadání příkazu sudo nebezpečný kód pod oprávněním uživatele root. např. 
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 alias sudo='sudo rm -rf /'
 \end{Verbatim} 
     \end{codeframe} 
-při takovém aliasu my si uživatel smazal disk. Samozřejmě takový kód je jen na ukázku, ale demostruje možnosti tohoto "útoku", daleko pravděpodobnější by bylo spuštění útočníkova scriptu a následné přepsání konfiguračních souborů, tak aby získal útočník kontrolu nad počítačem. Tomuto se dá zabránit aplikování MAC, ale využití podobného rozšíření zabezpečení, není v~linuxu vůbec samozřejmostí.
+při takovém aliasu my si uživatel smazal disk. Samozřejmě takový kód je jen na ukázku, ale demonstruje možnosti tohoto "útoku", daleko pravděpodobnější by bylo spuštění útočníkova scriptu a následné přepsání konfiguračních souborů, tak aby získal útočník kontrolu nad počítačem. Tomuto se dá zabránit aplikování MAC, ale využití podobného rozšíření zabezpečení, není v~Linuxu vůbec samozřejmostí.
 
 Lidský faktor přispívá ve zranitelnosti jakéhokoliv systému, ukázkou může být chyba vývojáře debianu, která způsobila, že autentizační mechanizmus u~ssh generoval předvídatelné textové řetězce, které mohl zneužít útočník pro napadení systému. Tato chyba se navíc vyskytovala v~debianu po dlouhou dobu než se na ni přišlo.~\cite{DebianSSHFail}
 
-Další hrozbou jsou pak chyby v~kódu jádra. Naštěstí je, díky otevřenému kódu, kolem linuxu obrovská skupina vývojářů, která chyby téměř okamžitě záplatuje a~eliminuje tak zero-day útoky.
+Další hrozbou jsou pak chyby v~kódu jádra. Naštěstí je, díky otevřenému kódu, kolem Linuxu obrovská skupina vývojářů, která chyby téměř okamžitě záplatuje a~eliminuje tak zero-day útoky.
 
-Repozitáře s~falešným nebo upraveným SW. Další z reálných hrozeb v~linuxu avšak uživatel je opět ten, který si přidá takovýto repozitář. Této možnosti útoku zabraňuje podepisování balíčků a~repozitářů.~\cite{ArchWikiPodepisovaniBalicku}
+Repozitáře s~falešným nebo upraveným SW. Další z reálných hrozeb v~Linuxu avšak uživatel je opět ten, který si přidá takovýto repozitář. Této možnosti útoku zabraňuje podepisování balíčků a~repozitářů.~\cite{ArchWikiPodepisovaniBalicku}
 
-Existuje ještě mnoho hrozeb, ale většinu neovlivňuje linux samotný, ale různé aplikace třetích stran a~chyby v~nich obsažené.
+Existuje ještě mnoho hrozeb, ale většinu neovlivňuje Linux samotný, ale různé aplikace třetích stran a~chyby v~nich obsažené.
 
 \section{\upc{LiveCD}}
-Ač by se mohl zdát, že liveCD je nějaká velmi složitá věc k~vytvoření není to tak úplně pravda. Nejjednoduší forma LiveCD je pokud strčíme CD do mechaniky, ten nabootuje a~spustí se příkazová řádka ve které je možné pracovat. Takto fungovali a~často ještě fungují instalační CD. Dnes se velmi často používá několik instalčních/live CD
+Ač by se mohl zdát, že liveCD je nějaká velmi složitá věc k~vytvoření není to tak úplně pravda. Nejjednodušší forma LiveCD je pokud strčíme CD do mechaniky, ten nabootuje a~spustí se příkazová řádka ve které je možné pracovat. Takto fungovali a~často ještě fungují instalační CD různých distribucí. Dnes se velmi často používá několik druhů instalačních/live CD
 \begin{itemize}
  \item Instalační CD s~příkazovou řádkou a~instalací pomocí textového nástroje (Archlinux,…)
  \item Instalační CD s~grafickým instalátorem (Debian,…)
@@ -1364,11 +1346,11 @@ Ač by se mohl zdát, že liveCD je nějaká velmi složitá věc k~vytvoření 
 \end{itemize}
 
 \subsection{Výhody/nevýhody LiveCD}
-Vyhodou LiveCD je především možnost \textbf{vyzkoušet si celý operační systém bez nutnosti instalace}. Kompromisem LiveCD je pak \textbf{rychlost}, která se odvíjí od rychlosti čtení CD/DVD mechaniky. Rychlost LiveCD je možné zvýšit použitím jiného média než CD nebo DVD, např. použitím FlashDisku. Rychlost běhu lze zvýšit také \textbf{nahraním celého systému do paměti RAM}, této proces má však velkou nevýhodu v~délce trvání, protože celé LiveCD musí být přečteno a~zapsáno do paměti RAM. Další nevýhodou je pak, až~na vyjímky, nemožnost uložení změn v~systému zpět na přenosné médium.\\
+Vyhodou LiveCD je především možnost \textbf{vyzkoušet si celý operační systém bez nutnosti instalace}. Kompromisem LiveCD je pak \textbf{rychlost}, která se odvíjí od rychlosti čtení CD/DVD mechaniky. Rychlost LiveCD je možné zvýšit použitím jiného média než CD nebo DVD, např. použitím FlashDisku. Rychlost běhu lze zvýšit také \textbf{nahráním celého systému do paměti RAM}, této proces má však velkou nevýhodu v~délce trvání, protože celé LiveCD musí být přečteno a~zapsáno do paměti RAM. Další nevýhodou je pak, až~na výjimky, nemožnost uložení změn v~systému zpět na přenosné médium.\\
 
-Samozřejmě LiveCD není většinou používáno k~běžně práci, takže jeho výhoda ve vyzkoušení neznámého operačního systému nebo grafického prostředí bez nutnosti mnohdy zdlouhavé instalace, převišuje nad nevýhodami.
+Samozřejmě LiveCD není většinou používáno k~běžně práci, takže jeho výhoda ve vyzkoušení neznámého operačního systému nebo grafického prostředí bez nutnosti mnohdy zdlouhavé instalace, převyšuje nad nevýhodami.
 \subsection{Možnosti tvorby LiveCD}
-Vytvořit LiveCD lze několika způsoby, nejjednoduší je způsob úpravy stávajícího LiveCD jak bylo i~popsáno \odkazNaKapitolu{sec:tvorbaDistribuce}. 
+Vytvořit LiveCD lze několika způsoby, nejjednodušší je způsob úpravy stávajícího LiveCD jak bylo i~popsáno \odkazNaKapitolu{sec:tvorbaDistribuce}. 
 
 \subsubsection{Obecný postup tvorby LiveCD}
 Obecný postup tvorby LiveCD se dá shrnout do několika kroků.
@@ -1385,7 +1367,7 @@ Obecný postup tvorby LiveCD se dá shrnout do několika kroků.
 \end{enumerate}
 
 \subsubsection{NimbleX}
-Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního derivátu NimbleX. Umožňuje vytvořit vlastní LiveCD obraz několik jednoduchými kroky, na výběr je stáhnutí minimální obrazu nebo sestavení vlastního obrazu. U vlastního obrazu si uživatel vybere aplikace přehledně rozdělné do kategorií, wallpaper, nastavení zvuku, nastavení uživatelů a jazyk systému. Pak už jen počká na vygenerování obrazu, který je následujících 12hodin ke stažení.
+Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního derivátu NimbleX. Umožňuje vytvořit vlastní LiveCD obraz několik jednoduchými kroky, na výběr je stáhnutí minimální obrazu nebo sestavení vlastního obrazu. U vlastního obrazu si uživatel vybere aplikace přehledně rozdělené do kategorií, wallpaper, nastavení zvuku, nastavení uživatelů a jazyk systému. Pak už jen počká na vygenerování obrazu, který je následujících 12hodin ke stažení.
 \begin{figure}[h]
 \begin{center}$
 \begin{array}{cc}
@@ -1406,13 +1388,14 @@ Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního de
 \end{figure}
 
 \subsubsection{Linux-Live}
-Linux-Live je sada scriptů, která není závislá na distribuci, ale lze ji použít na jekémkoliv linuxu. Prakticky stačí stáhnou scripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Scripty už pak samy vytvoří Live system, který je možné nabootovat z CD nebo USB.
+Linux-Live je sada scriptů, která není závislá na distribuci, ale lze ji použít na jakémkoliv linuxu. Prakticky stačí stáhnou scripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Scripty už pak samy vytvoří Live systém, který je možné nabootovat z CD nebo USB.
+
 %If you want a truly distro-agnostic way of customising your favourite Linux distribution, you need the Linux-Live set of scripts. The scripts work on any installed Linux distro and can create a Live system that you can boot from optical media or USB drives.
 %The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
 
 \subsubsection{Další možnosti tvorby LiveCD}
 \b{Linux-live} je nejčastější způsobem vytvoření LiveCD. Spousta distribucí má, ale vlastní nástroje některé jako: The Ubuntu Customisation Kit (UCK) nebo Reconstructor, které již byly popsány \odkazNaKapitolu{sec:UCK}. Pro fedoru např. exituje nástroj \b{livecd-creator} pro tvorbu Fedora LiveCD a~podrobný návod je dostupný na stránkách fedory~\cite{FedoraLiveCDproject}. Pro debian existuje \textbf{Debian Live Project}, který poskytuje webové rozhraní podobné nástroji Instalinux \odkazNaKapitolu{sec:Instalinux} a~je zdarma dostupný na internetu.~\cite{DebianLiveProject}
-Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. Jsou hned tři a~všechny jsou popsány na wiki stránkách distribuce Archlinux~\cite{ArchWiki-BuildLiveCD}. První je oficiální sada nástrojů, používaná k~tvorbě oficiálních vydání disků nazvaná \b{Archiso}. Druhým nástrojem je \b{larch}, který nepotřebuje k~sestavení jako hostitelský systém archlinux, ale funguje v~jakémkoliv linuxu, protože si potřebné aplikace stáhne z~repozitářů archlinuxu. Posledním nástrojem je \textbf{poison-livecd-creator} jedná se o~opravdu jednoduchý Makefile a~několik jednoduchými kroky lze docílit vytvoření LiveCD na bázi Archlinuxu.
+Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. Jsou hned tři a~všechny jsou popsány na wiki stránkách distribuce Archlinux~\cite{ArchWiki-BuildLiveCD}. První je oficiální sada nástrojů, používaná k~tvorbě oficiálních vydání disků nazvaná \b{Archiso}. Druhým nástrojem je \b{larch}, který nepotřebuje k~sestavení jako hostitelský systém Archlinux, ale funguje v~jakémkoliv Linuxu, protože si potřebné aplikace stáhne z~repozitářů archlinuxu. Posledním nástrojem je \textbf{poison-livecd-creator} jedná se o~opravdu jednoduchý Makefile a~několik jednoduchými kroky lze docílit vytvoření LiveCD na bázi Archlinuxu.
 
 %********************************* Analytická část ************************************
 %\part{Analytická část}
@@ -1421,7 +1404,7 @@ Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. J
 %********************************* Projektová část ************************************
 \part{Projektová část}
 \section{\upc{LFS by bash scripts}}
-Účelem LFS by bash scripts je sestavení distribuce LFS za pomocí jednoduchých a~přehledných scriptů napsaných v~interpretovaném jazyce BASH \odkazNaKapitolu{sec:BASH-MAIN}. Jejich struktura je velice jednoduchá a~přehledná, tak aby ji kdokoliv mohl libovolně upravovat bez velkého zkoumání kódu.
+Účelem LFS by bash scripts je sestavení distribuce LFS za pomocí jednoduchých a~přehledných skriptů napsaných v~interpretovaném jazyce BASH \odkazNaKapitolu{sec:BASH-MAIN}. Jejich struktura je velice jednoduchá a~přehledná, tak aby ji kdokoliv mohl libovolně upravovat bez velkého zkoumání kódu.
 
 \subsection{Struktura a použití}
 V~git repozitáři LFS---by-bash-scripts je k~nalezení několik souborů a~složek.\\
@@ -1434,14 +1417,14 @@ V~git repozitáři LFS---by-bash-scripts je k~nalezení několik souborů a~slo�
  \item[chap8] Obsahuje scripty pro poslední fázi sestavení.
  \item[FAIL\_Logs] Složka, která slouží pouze pro ukládání chybových záznamů pokud některá část kompilace selže.
  \item[include] Adresář s~funkcemi, jazykovou složkou a~verzemi programů
- \item[lfsuser] Pro usnadnění práce tento adresář obsahuje soubory potřébné pro uživatelský profil LFS
+ \item[lfsuser] Pro usnadnění práce tento adresář obsahuje soubory potřebné pro uživatelský profil LFS
  \item[chroot\_makeall] hlavní spouštěcí script pro sestavení kapitoly 6 v~chroot.
  \item[chroot\_prepare] script, který se stará o~kontrolu potřebných složek a~symbolických odkazů v~prostředí chroot.
- \item[linker.1.test/linker.1.test64] dva soubory, které slouží pro test funkcnosti při oddělení toolchainu.
- \item[makeall] hlavní spouštěcí script, který spuští vše potřebné až do konce kapitoly 5.
+ \item[linker.1.test/linker.1.test64] dva soubory, které slouží pro test funkčnosti při oddělení toolchainu.
+ \item[makeall] hlavní spouštěcí script, který spustí vše potřebné až do konce kapitoly 5.
  \item[onlyunpackscript] script pro stažení a~rozbalení balíčků.
  \item[prepare] script, který se stará o~kontrolu existence potřebných složek a~symbolických odkazů.
- \item[README.markdown] README soubor ve~snačkovacím jazyce markdown
+ \item[README.markdown] README soubor ve~značkovacím jazyce markdown
  \item[sources] Pozůstatek složky pro stahování zdrojových kódů před instalací. Už řešeno přímo před kompilací jednotlivě
  \item[version-check.sh] Oficiální script LFS pro test potřebných nástrojů v~systému
  \end{description}
@@ -1450,18 +1433,18 @@ Velmi důležitou je pak složka include, která obsahuje verze programů a~funk
 \begin{description}
  \item[functions] script se všemi funkcemi
  \item[ver] script s~poly, které obsahují informace o balíčcích
- \item[l10n-EN] už téměř nepoužívaný script, který měl sloužit pro lokalizaci do jiných jazyků, byl zavrhnut, protože znamenal velkém množství porměnných
+ \item[l10n-EN] už téměř nepoužívaný script, který měl sloužit pro lokalizaci do jiných jazyků, byl zavrhnut, protože znamenal velkém množství proměnných
  \end{description}
 
 \subsubsection{Důležité proměnné}
-LFS samotná obsahuje několik proměnných, které jsou důležité pro sestavení toolchainu a~LFS by bash scripts obsahuje další proměnné důležité pro funkčnost scriptů.\\
+LFS samotná obsahuje několik proměnných, které jsou důležité pro sestavení toolchainu a~LFS by bash scripts obsahuje další proměnné důležité pro funkčnost skriptů.\\
 
 \b{jsou to především:}
 \begin{description}
  \item[TOOLS\_STRIP=0] proměnná nastavuje zda se mají odstranit některé nepotřebné soubory v~toolchainu, vhodné pro malý diskový oddíl
  \item[WAIT=1] proměnná nastavuje zda se má v~každém kroku čekat na uživatelskou interakci. Doporučena hodnota 1 (čekat)
  \item[MAKEFLAGS='-j 3'] tato proměnná nastavuje počet jader procesoru.
- \item[ROOT=/mnt/LFS] cesta na které je připojem disk
+ \item[ROOT=/mnt/LFS] cesta na které je připojen disk
  \item[SOURCES\_DIR=\$ROOT/sources] cesta na které jsou umístěny stažené balíčky
  \item[BUILD\_DIR=\$ROOT/build] cesta do adresáře kde probíhá kompilace
  \item[TOOLS\_DIR=\$ROOT/tools] cesta do adresáře kde je instalován toolchain
@@ -1498,7 +1481,7 @@ M="${BOLD}$(tput setaf 5)"
 \end{Verbatim} 
     \end{codeframe}
 
-unpack() je jednoduchá funkce, která pouze na základě předaného paramatru z~proměnné \$EXT volá funkce pro rozbalení.
+unpack() je jednoduchá funkce, která pouze na základě předaného parametru z~proměnné \$EXT volá funkce pro rozbalení.
 \label{func:unpack}
     \begin{codeframe} 
 \begin{Verbatim}{frame=single}
@@ -1560,7 +1543,7 @@ export -f SepBuild
 \end{Verbatim} 
     \end{codeframe}
 
-testSimLink() je funkcí pro testování existence symbolického odkazu. první parametr \$1 je testováný odkaz a~pokud neexistuje je vytvořen symbolický odkaz parametru \$2 na adresu v~parametru \$3
+testSimLink() je funkcí pro testování existence symbolického odkazu. první parametr \$1 je testovaný odkaz a~pokud neexistuje je vytvořen symbolický odkaz parametru \$2 na adresu v~parametru \$3
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 testSimLink (){ 
@@ -1577,7 +1560,7 @@ export -f testSimLink
 \end{Verbatim} 
     \end{codeframe}
 
-Funkce addPatch() využívá programu \b{patch}, pro aplikování patche. A~jejím jediným paramatrem je název souboru patche, který je větsinou v~proměnné \$pPatch.
+Funkce addPatch() využívá programu \b{patch}, pro aplikování patche. A~jejím jediným parametrem je název souboru patche, který je většinou v~proměnné \$pPatch.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 addPatch (){
@@ -1605,7 +1588,7 @@ export -f compareFiles
 \end{Verbatim} 
     \end{codeframe}
 
-Funkce waitUser() na základě proměnné \$WAIT pozastavuje vykonávání scriptu, dokud uživatel nezmáčkne klavesu enter. Podobnou funkcí je pak fuknce waitUserAl(), která pozastaví scripty vždy.
+Funkce waitUser() na základě proměnné \$WAIT pozastavuje vykonávání scriptu, dokud uživatel nezmáčkne klávesu enter. Podobnou funkcí je pak fuknce waitUserAl(), která pozastaví scripty vždy.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 waitUser (){
@@ -1652,16 +1635,16 @@ functions obsahuje také funkce pro kompilaci, ale předávání parametrů pomo
 \subsubsection{Předpříprava}
 Sestavení LFS je velmi komplexní a~složitou záležitostí. V~žádném případě by používat automatické scripty neměl někdo, kdo alespoň dvakrát úspěšně nesestavil LFS předtím. Pro člověka, který nikdy nesestavoval LFS je v~balíčku scriptů script \b{onlyunpackscript}, který zajišťuje stáhnutí potřebných balíčků a~jejich rozbalení více~\odkazNaKapitolu{sec:only}.\\
 
-Co by měl uživatel udělat před sestavení LFS pomocí automatických scriptů
+Co by měl uživatel udělat před sestavení LFS pomocí automatických skriptů
 \begin{itemize}
  \item několikrát úspěšně sestavit LFS
- \item přečíst znovu alespoň první 4kapitoly (je dobré číst knihu za běhu scriptů)
+ \item přečíst znovu alespoň první 4 kapitoly (je dobré číst knihu za běhu skriptů)
  \item zkontrolovat potřebné balíčky. Ke kontrole slouží script version-check.sh, který zkontroluje verze některých balíčků a~potřebné symbolické odkazy
  \item být připraven řešit spoustu problémů. Při sestavování LFS může nastat v~kterékoliv části problém, který je třeba vyřešit k~dalšímu pokračování. Kam se obrátit z~dotazem je popsáno~\odkazNaKapitolu{sec:help}
 \end{itemize}
 
 \subsubsection{Sestavení}\label{sec:sestaveni}
-Sestavení je díky scriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskovy oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musejí být provedeny pod účtem uživatele root)
+Sestavení je díky scriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskový oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musejí být provedeny pod účtem uživatele root)
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # mkdir /mnt/LFS
@@ -1686,7 +1669,7 @@ Dalším krokem je vytvoření uživatele a~skupiny lfs.
 # passwd lfs #nastavení hesla
 \end{Verbatim} 
     \end{codeframe}
-nyní je dobré stáhnout a~překopírovat scripty LFS by bash scripts. Nejjednoduším způsobem je stáhnutí scriptů pomocí verzovacího systému git.
+nyní je dobré stáhnout a~překopírovat scripty LFS by bash scripts. Nejjednodušším způsobem je stáhnutí skriptů pomocí verzovacího systému git.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 cd ~/
@@ -1696,7 +1679,7 @@ git clone git://github.com/zajca/LFS---by-bash-scripts.git
 \end{Verbatim} 
     \end{codeframe}
 
-a~ještě překopírovat soubory užvatele lfs do jeho domovského adresáře
+a~ještě překopírovat soubory uživatele lfs do jeho domovského adresáře
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # cp $LFS/scripts/lfsuser/{.bash_profile,.bashrc} /home/lfs/
@@ -1743,7 +1726,7 @@ nyní je třeba spustit script start6, který vytvoří potřebné složky a~vir
 \end{Verbatim} 
     \end{codeframe}
 
-nyní je třeba se chrootnout do systému, tedy se přihlásit vytvořného toolchainu
+nyní je třeba se chrootnout do systému, tedy se přihlásit vytvořeného toolchainu
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 chroot "$LFS" /tools/bin/env -i \
@@ -1765,7 +1748,7 @@ script je přerušen po opětovné přihlášení a~je potřeba ho spustit znovu
 \subsubsection{onlyunpackscript}\label{sec:only}
 Tento script slouží pouze pro stažení, kontrolu a~rozbalení balíčků. Před jeho použitím je třeba mít vytvořený a~připojený diskový oddíl jak je popsáno \odkazNaKapitolu{sec:sestaveni}.\\
 
-Je třeba stáhnopu scripty a~překopírovat na místo
+Je třeba stáhnout scripty a~překopírovat na místo
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 cd ~/
@@ -1807,11 +1790,11 @@ adresa pro dotazy je pak: lfs-support@linuxfromscratch.org
  \end{description}
 
 \subsection{Možnosti vylepšení scriptů}
-Tak jako u všech programů existuje mnoho možností vylepšení i~u~vytovřených scriptů pro sestavení LFS.\\
+Tak jako u všech programů existuje mnoho možností vylepšení i~u~vytvořených skriptů pro sestavení LFS.\\
 
 Možnosti vylepšení:
 \begin{itemize}
- \item Částečná změna scriptů z~jazyka BASH na scripty programu GNU/make (tzv. Makafiles). Řídící script makeall a onlyunpackscript by se po změně na makefile staly lépe ovladatelnými, především při přerušení a~obnově práce.
+ \item Částečná změna skriptů z~jazyka BASH na scripty programu GNU/make (tzv. Makafiles). Řídící script makeall a onlyunpackscript by se po změně na makefile staly lépe ovladatelnými, především při přerušení a~obnově práce.
  \item Lepší přechody mezi login do chroot, tak aby nebylo potřeba přerušit script, toto by šlo vyřešit přes program \b{sudo}, ale ten často v~systémech pro build není dostupný.
  \item přidání wget do toolchainu, tento krok by zajistil, že~by nebylo třeba stahovat balíčky před začátkem sestavení, ale~wget má další závislosti, které by bylo třeba vyřešit a~pravděpodobně by bylo třeba jinak zkompilovat překladač v toolchainu.
  \item lepší diagnostika chyb. Scriptům by prospěl nástroj, který~by uživateli pomohl lokalizovat problém. Avšak takový nástroj by musel být velmi komplexní a~jeho vytvoření by bylo docela nejisté.
