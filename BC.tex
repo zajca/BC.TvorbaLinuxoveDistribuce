@@ -998,7 +998,7 @@ Jedná se o webovou aplikaci a její cena je \$5.\cite{Linux_Build}
 
 %As the name suggests, this tool is a comprehensive suite for creating your own custom Ubuntu and Debian distros from an existing ISO image. It lets you tweak the wallpaper, themes, icons, applications, and more.
 %The browser-based tool requires no installation, but you'll need to pay a small fee before you can use all of its features.
-
+\newpage
 \nadpis{Revisor}\\
 Revisor je aplikace pro vytvoření vlastního instalačního CD/DVD/USB založeném na distribuci Fedora. Má jak grafické rozhraní tak CLI. Další rozdíl je také to, že Revisor nevytváří instalační medium z~existujícího obrazu, ale stahuje vše z~internetu, takže rychlost vytvoření média je také závislá na rychlosti vašeho připojení.\cite{Linux_Build}
 \begin{center}
@@ -1050,7 +1050,7 @@ MySlax Creator jsou scripty určené k~úpravě distribuce Slackware, předevš�
 %It works with Slax ISO images and lets you add data to your own custom spins.
 
 %\nadpis{LinuxCOE}\\
-
+\newpage
 \nadpis{Instalinux}\\ \label{sec:Instalinux}
 Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat z několika distribucí (Debian, Ubuntu, CentOS, Fedora, OpenSUSE, Scientific) a~v~dalších krocích základní nastavení systému a~výběr aplikací. Výsledkem je ISO obraz, kterým nemusí mít ani 30MB. Pro podrobnější nastavení existuje Designer Pro, který umožňuje nastavit mnohem více. Výbornou vlastností je uložení profilu, který je možné použít znovu a~upravit si jej.\\
 
@@ -1075,13 +1075,20 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 \caption{Webové rozhraní Instalinux, vlevo výběr aplikací, vpravo nastavení uživatelů}
 \end{figure}
 Takto vytvořená distribuce může mít i~8MB!
+
 \section{\upc{Zabezpečení Linuxového systému}}
+
 Zabezpečení OS je velice rozsáhlým a~komplexním odvětvím, které se navíc velmi rychle vyvíjí a~rozšiřuje. Jeho plné popsání by vydalo na několik desítek bakalářských prací, proto jen základní informace o~vnitřním zabezpečení systému, nástrojích jež toto zabezpečení rozšiřují a~také o~zabezpečení proti vnějšímu útoku a~bezpečném přenosu informací.
+
 \subsection{Access Control}
+
 Kontrola přístupu uvnitř systému je jedno z~nejdůležitějších zabezpečení v~OS vůbec. Určuje, který proces nebo uživatel má k čemu oprávnění. Existuje několik obecných modelů tohoto zabezpečení, v~Linuxu se konkrétně využívá dvou modelů: \b{Discretionary Access Control (DAC)} a \b{Mandatory Access Control (MAC)}. Model zabezpečení DAC je běžnou součástí linuxového jádra a~využívá jej defaultně většina distribucí. Model MAC je pak v~Linuxu dostupný díky různým rozšířením, jež nejčastěji využívají \b{Linux Security Modules (LSM)}, které zajišťující implementaci MAC v jádře.
-\subsubsection{DAC vs. MAC}
+
+\subsubsection{DAC vs. MAC vs. RBAC} \label{sec:DAC}
+
 %\subsubsection{DAC vs. MAC vs. RBAC}
 %TODO dopiš informace o RBAC
+
 Bezpečnostní model využívaný většinou mainstreamových operačních systému je založen na \b{Discretionary Access Control (DAC)}, který je založen na bezpečnosti vlastnictvím. Pokud uživatel vlastní soubor, může nastavovat práva pro čtení, zápis a~spouštění (r+w+x), pro tento soubor. V~tomto modelu uživatel kontroluje data dle vlastního uvážení. Vlastník systému\footnote{Vlastník systému (anglicky system owner nebo také administrátor) je určen při instalaci OS, oproti účtu uživatele root nemá právo měnit např. práva systémových souborů, ale má právo měnit přístupová práva široké škály uživatelů a~uživatelé nemají možnost tyto ustanovení měnit.\cite{SystemOwner}} nemá totální kontrolu nad systémem, tu má uživatel.~\cite{Linux_com_MACvsDAC}
 
 %The desktop interface implements the concept of a ``system owner''. When you install the operating system, a user is designated as the owner. Any user name (except those already reserved by the system, such as uucp and bin) can be assigned as the system owner. The system owner is given the necessary permissions to do the day-to-day system administration tasks available through the SCOadmin interface. These special authorizations, and the ability to assign additional system owners, are described in ``Assigning authorizations''.
@@ -1089,33 +1096,28 @@ Bezpečnostní model využívaný většinou mainstreamových operačních syst�
 
 %The security model used by most mainstream operating systems is based on Discretionary Access Control (DAC), which enforces security by ownership. If a user owns a file, he is allowed to set the read, write, and execute permissions for that file. In this model, users control the data at their discretion. The owner of the system does not have total control over the system; the users do.
 
-Avšak největší hrozba v~Linuxovém modelu je reprezentována účtem uživatele root. Tento super-uzivatel může kontrolovat všechny soubory a procesy. Pokud je účet uživatele root nebo proces s~takto vysokými přístupovými právy kompromitován, útočník získává kontrolu nad celým systémem a~nad daty v~něm.~\cite{Linux_com_MACvsDAC}
+%Avšak největší hrozba v~Linuxovém modelu je reprezentována účtem uživatele root. Tento super-uzivatel může kontrolovat všechny soubory a procesy. Pokud je účet uživatele root nebo proces s~takto vysokými přístupovými právy kompromitován, útočník získává kontrolu nad celým systémem a~nad daty v~něm.~\cite{Linux_com_MACvsDAC}
  
 %However, the biggest concern with the Linux model is the danger presented by the root account. This super-user has the power to control all files and processes. If the root account, or a process that runs with its privileges, is compromised, an attacker can take control of the system and its data.
 
-Bezpečnějším přístupem je omezit nebo přímo eliminovat účet uživatele root a~přesunout tak práva z uživatelských účtů na na vlastníka systému\footnotemark[1]. Tento přístup se nazývá \b{Mandatory Access Control (MAC)}~\cite{Linux_com_MACvsDAC}
+%Bezpečnějším přístupem je omezit nebo přímo eliminovat účet uživatele root a~přesunout tak práva z uživatelských účtů na na vlastníka systému\footnotemark[1]. Tento přístup se nazývá \b{Mandatory Access Control (MAC)}~\cite{Linux_com_MACvsDAC}
 
 %A more secure approach would limit or even eliminate the need for a root account, and shift the power from the user accounts to the owner of the system. This is MAC's approach.
 
-MAC prosazuje bezpečnostní pravidla povinně (mandatory) na~rozdíl od DAC, který pravidla prosazuje volitelně (discretionary). Bezpečnostní pravidla může nastavit vlastník systému a implementovat systémový nebo bezpečnostní administrátor. Jakmile jsou pravidla jednou stanovena, žádný uživatel nemůže tyto pravidla měnit, i~kdyby měl práva uživatele root. S bezpečnostní přístupem MAC je ochrana souborů a procesů nezávislá na na jejich vlastníkovy.~\cite{Linux_com_MACvsDAC}
+%MAC prosazuje bezpečnostní pravidla povinně (mandatory) na~rozdíl od DAC, který pravidla prosazuje volitelně (discretionary). Bezpečnostní pravidla může nastavit vlastník systému a implementovat systémový nebo bezpečnostní administrátor. Jakmile jsou pravidla jednou stanovena, žádný uživatel nemůže tyto pravidla měnit, i~kdyby měl práva uživatele root. S bezpečnostní přístupem MAC je ochrana souborů a procesů nezávislá na na jejich vlastníkovy.~\cite{Linux_com_MACvsDAC}
 %MAC makes the enforcement of security policies mandatory instead of discretionary, as you might imagine from the name Mandatory Access Control. Security policies can be set by the system owner and implemented by a system or security administrator. Once these policies are in place, users cannot override them, even if they have root privileges. With MAC, file and process protection is independent of owners.
 
+%DAC v diskreční Access Control (DAC) model, je přístup ke zdrojům na základě identity uživatele. Uživatel je uděleno oprávnění k prostředku tím, že je uveden na seznamu řízení přístupu (ACL), spojené s zdroj. vstup na zdroje ACL je známý jako položka řízení přístupu (ACE). Když uživatel (nebo skupina) je vlastníkem objektu v modelu DAC, uživatel může udělit povolení ot ostatních uživatelů a skupin. Tento model je založen na DAC zdroj vlastnictví.
 
-%Discretionary Access Control: The Discretionary Access Control Policy is enforced on processes running on behalf of users as subjects and file system objects as well as IPC objects. This mechanism allows only administrators and object owners to modify the access control attributes of named objects. Access Control Lists (ACLs) can be used for a more fine grained control for file system objects.
+%DAC In the Discretionary Access Control (DAC) model, access to resources is based on user's identity. A user is granted permissions to a resource by being placed on an access control list (ACL) associated with resource. An entry on a resource's ACL is known as an Access Control Entry (ACE). When a user (or group) is the owner of an object in the DAC model, the user can grant permission ot other users and groups. The DAC model is based on resource ownership. 
 
-%Mandatory Access Control: The Mandatory Access Control Policy is enforced on processes running on behalf of users as subjects and all objects known to the system. This mechanism allows only administrators to modify the access control attributes. Access is determined based on labels maintained for subjects and objects according to the Bell-LaPadula model. Labeled networking as well as labeled printing is also provided.
+V Mandatory (česky Povinné) Access Control (MAC), uživatelům jsou dána povolení ke~zdrojům správcem. Pouze správce může udělit oprávnění nebo právo k~objektům a~zdrojům. Přístup ke zdrojům je založený na úrovni zabezpečení objektu a uživateli je udělene bezpečnostní prověrka pro přistup k~objektu. Pouze správci mohou upravovat objektu bezpečnostní štítek nebo uživateli bezpečnostní prověrky.
 
-%Role-based Access Control: The Role-based Access Control Policy is enforced on processes running on behalf of users as subjects and file system objects as well as IPC objects. This mechanism allows only administrators and object owners to modify the access control attributes of named objects.
+%MAC In the Mandatory Access Control (MAC) model, users are given permissions to resources by an administrator. Only an administrator can grant permissions or right to objects and resources. Access to resources is based on an object's security level, while users are granted security clearance. Only administrators can modify an object's security label or a user's security clearance. 
 
+V Role-Based Access Control (RBAC), je přístup ke zdrojům na základě založen na \uv{roli kterou uživatel hraje}. V tomto modelu, správce přiřadí uživateli roli, která má předem pridělena určitá práva a výsady. Vzhledem k~uživateli přidělené rolí, může uživatel přístupova k~určitým zdrojům a plnit specifické úkolů. RBAC je také známý jako Non-Discretionary Access Control. Role přiřazené uživatelům, jsou centrálně spravovány.
 
-%Každé z výše uvedených kritérií, je požadováno pro splnění požadavků amerického 'Department of Defense' (Ministerstva obrany, DOD) pro "důvěryhodný" Operační systém. Všechny požadavky pro "důvěryhodný" Operační systém byly vydány v publikaci "Trusted Computer System Evaluation Criteria (TCSEC)" známé taky jako Orange Book\footnote{Orange Book: obsahuje mnoho kritérií pro OS a určuje úrovně certifikace od D (Minimal protection) po A (Verified protection)} (Oranžová kniha). 
-%All of the above are requirements to meet the Department of Defense criteria for "trusted" operating systems. These criteria are laid out in the DOD publication "Trusted Computer System Evaluation Criteria," otherwise known as the Orange Book (due to the color of its cover). By one day gaining Orange Book B1-level certification, Linux can be more widely used in government.
-
-%\subsubsection{Discretionary Access Control (DAC)}
-%\subsubsection{Mandatory Access Control (MAC)}
-%\subsubsection{Role-based Access Control (RBAC)}
-%\subsubsection{Práva souborů a uživatelů v Linuxu}
-%\subsubsection{Linux Security Modules, LSM}
+%RBAC in the Role-Based Access Control (RBAC) model, access to resources is based on the role assigned to a user. In this model, an administrator assigns a user to a role that has certain predetermined right and privileges. Because of the user's association with the role, the user can access certain resources and perform specific tasks. RBACK is also known as Non-Discretionary Access Control. The roles assigned to users are centrally administered. 
 
 \subsubsection{Security-Enhanced Linux, SElinux}
 
@@ -1127,12 +1129,14 @@ SELinux také přidává mnoho možností pro řízení přístupu. Místo klasi
 %SELinux also adds finer granularity to access controls. Instead of only being able to specify who can read, write or execute a file, for example, SELinux lets you specify who can unlink, append only, move a file and so on. SELinux allows you to specify access to many resources other than files as well, such as network resources and interprocess communication (IPC).
 
 \subsubsection{AppArmor}
+
 AppArmor je efektivní a~snadno použitelná Linuxová bezpečnostní aplikace. AppArmor aktivně chrání operační systém a~aplikace před vnějšími nebo vnitřními bezpečnostními hrozbami a~díky prosazování dobrého chování a~prevence od neznámých, nebezpečných nebo vadných aplikací dokáže chránit systém i~od tzv. zero-day útoků\footnote{zero-day atack je útok na vývojářům neznámou zranitelnost~v systému. Zero-day je také nazýván, protože se objeví dříve než vývojáři dokáží chybu záplatovat.}. V~bezpečnostních pravidlech AppArmor lze definovat, k~jakým systémovým zdrojům můžou jednotlivé aplikace přistupovat a~jak s nimi mohou nakládat. Mnoho výchozích bezpečnostních pravidel je součástí AppArmor a~pomocí kombinace vyspělé statické analýzy a~learning-based nástrojů, je možné bezpečnostní pravidla AppArmor i~pro velmi složité aplikace úspěšně nasadit během několika hodin.\cite{AppArmorWikiMain}
 
 AppArmor se především oproti SElinuxu vyznačuje mnohem jednodušším nastavením.
 %AppArmor is an effective and easy-to-use Linux application security system. AppArmor proactively protects the operating system and applications from external or internal threats, even zero-day attacks, by enforcing good behavior and preventing even unknown application flaws from being exploited. AppArmor security policies completely define what system resources individual applications can access, and with what privileges. A number of default policies are included with AppArmor, and using a combination of advanced static analysis and learning-based tools, AppArmor policies for even very complex applications can be deployed successfully in a matter of hours.
 
 \subsubsection{TOMOYO}
+
 Tomoyo Linux je Mandatory Access Control (MAC) implementace pro Linux, díky které lze zvýšit zabezpečení systému a~nebo může být pouze nástrojem systémové analýzy. Jeho vývoj byl zahájen v~březnu 2003 a je sponzorován NTT Data Corporation, Japonsko.
 
 Tomoyo Linux se zaměřuje na chování systému. Každý proces je vytvořen za dosažením určitého cíle a~jako imigrační pracovník, Tomoyo Linux umožňuje každému procesu určit si zdroje potřebné k~dosažení svého cíle. Pokud je povolena ochrana, Tomoyo Linux funguje jako hlídací pes a~omezuje každý proces tak jak má povoleno správcem.\cite{TOMOYOLinuxHOME}
@@ -1162,6 +1166,7 @@ Mezi hlavní přednosti Tomoyo Linux patří:
 %Requires no modification of existing binaries
 
 \subsubsection{grsecurity}
+
 grsecurity je inovativní přístup k~zabezpečení, využívající multi-layered (vícevrstvou) detekci, prevenci a omezení modelu. Je vyvíjen pod licencí GNU GPL.~\cite{Grsecurity}
 
 Nabízí mnoho funkcí:
@@ -1194,8 +1199,11 @@ Nabízí mnoho funkcí:
 %Security alerts and audits that contain the IP address of the person causing the alert
 
 \subsection{Hodnocní bezpečnosti OS a SW}
+
 Tak jako ve spoustě jiných odvětvích se i~v~bezpečnosti určují standardy a~udělují certifikace bezpečnosti.
+
 \subsubsection{Trusted Computer System Evaluation Criteria, TCSEC} \label{sec:TCSEC}
+
 Asi nejznámější kniha popisující požadavky pro "důvěryhodný" operační systém, vydaná v roce 1985 americkým ministerstvem obrany (Department of Defense, DoD) a je známa také jako oranžová kniha (Orange book) pro svůj oranžový přebal. Dnes se tyto hodnotící kritéria již nepoužívají, původně měla být nahrazena Federal Criteries (FC), ale tento soubor kritérií nebyl nikdy nasazen a zůstal pouze ve fázi draft\footnote{\b{Draft} se používá jako označení pro návrh}, protože jej v roce 2005 nahradil soubor Common Criteria (CC) \odkazNaKapitolu{sec:cc}\\
 
 \vspace{4 mm}
@@ -1229,6 +1237,7 @@ Systémy s dostatečnou bezpečností pro běžný provoz se považují systémy
 Většina Linuxových distribucí dosahuje Třídy C2~\cite{LinuxDictionary}
 
 \subsubsection{IT Security Evaluation Criteria,ITSEC}\label{sec:ITSEC}
+
 Evropská kritéria vytvořená v roce 1990 dnes již nahrazena kritérii Common Criteries (CC)~\odkazNaKapitolu{sec:cc}.
 
 rozdělení požadavků kladených na
@@ -1258,6 +1267,7 @@ Třídy funkčnosti~\cite{PrezentaceBIS}
 \end{description}
 
 \subsubsection{Canadian Trusted Computer Product Evaluation Criteria, CTCPEC}\label{sec:CTCPEC}
+
 Kanadský soubor kriterií, který je dnes již také nahrazen Common Criteries (CC)~\odkazNaKapitolu{sec:cc}.\\
 
 Hodnocený systém je chápán jako soubor bezpečnostních funkcí s úrovní záruk~\cite{PrezentaceBIS}\\
@@ -1271,6 +1281,7 @@ Funkce - rozdělení do skupin, v každé skupině pro každou funkci je stanove
 \end{description}
 
 \subsubsection[Common Criteria, CC]{Common Criteria for Information Technology Security Evaluation, CC}\label{sec:cc}
+
 V České republice je dobře známa norma ISO/IEC 15408-1:1999, která je totožná s~textem, zveřejněným Organizacemi sponzorujícími projekt Společná kritéria, pod názvem “Common Criteria for Information Technology Security Evaluation”, verze 2.1. Tato kritéria jsou obvykle nazývána pouze “Common Criteria” a~pro jejich označení se hojně používá zkratky “CC”. Zkratka “CC”
 je ponechána i~v~českém překladu normy.~\cite{NBUHodnoceniBezpecnostiSW}
 
@@ -1344,9 +1355,84 @@ Stručně lze jednotlivé úrovně popsat následujícím způsobem:
 \end{description}
 Operační systém Linux dosahuje úrovně EAL4.~\cite{CCredhat}~\cite{CCsuse}
 
+\subsection{Uživatelé a přihlášení}
+
+Linux je multiuživatelským systémem a~model uživatelského oprávnění vychází z~modelu DAC \odkazNaKapitolu{sec:DAC}. Přihlášení uživatele probíhá podobně jako u~webových a~jiných služeb. Tedy uživatelské heslo není v~systému uloženo, ale~je uložen pouze jeho HASH,získaný pomocí funkce SHA1 (záleží na nastavení sytému), když se pak uživatel přihlašuje do systému, je z~jím zadaného hesla vygenerován HASH a~porovnán s~HASHem uloženým v~sytému. 
+
+\subsubsection{Uložení uživatelů a hesel}
+Uživatelské v~OS Linux jsou definováni v~souboru /etc/passwd a~jejich hesla jsou zabezpečena pomocí šifry SHA1 a~uchována v~souboru /etc/shadow, který je přístupný pouze uživateli root. 
+
+\nadpis{/etc/passwd}
+
+Základní databází uživatelů v~systému Linux je textový soubor /etc/passwd (angl. password file), v němž jsou uvedeny platná uživatelská jména a~další k~nim přidružené informace. Každému uživateli odpovídá v~souboru jeden záznam - řádek, který je rozdělen na sedm polí, jejichž oddělovačem je dvojtečka. Význam jednotlivých položek je následující~\cite{LDP}:
+\begin{enumerate}
+ \item Uživatelské jméno.
+ \item Pole pro heslo v~zakódované podobě, které se nepoužívá a~heslo se ukládá do /etc/shadow
+ \item Identifikační číslo uživatele.
+ \item Identifikační číslo pracovní skupiny (angl. group ID, zkráceně GID).
+ \item Skutečné jméno uživatele, případně popis účtu.
+ \item Domovský adresář.
+ \item Příkazový interpret (nebo program), který se spustí po přihlášení.
+\end{enumerate}
+
+Každý uživatel systému má k~souboru /etc/passwd přístup (může jej číst). Může tedy například zjistit přihlašovací jména ostatních uživatelů~\cite{LDP}.\\
+
+\nadpis{/etc/shadow}
+
+Soubor /etc/shadow (nebo také-li soubor stínových hesel) uchovává hesla uživatelů v~zašifrované podobě pomocí definovaného šifrovacího algoritmu (nejčastěji MD5, DES nebo SHA1). Často se nepoužívá přímo šifra hesla, ale tzv. salt což je ochrana proti tzv. rainbow attacku (česky duhový útok) což je útok na HASHovací funkce pomocí tabulek hesel (rainbow tables) a~podobností v~nich. Salt (česky sůl) pak rozpouští duhu a~znemožňuje tak rainbow attack, díky přidání předdefinovaných stringů do hesla, které je pak zašifrováno.~\cite{rubyOnRailTutorial}\\
+
+Můžou existovat tři druhy uživatelů podle možností přihlášení:
+\begin{description}
+ \item[Uživatel s heslem] běžný uživatel s~nastaveným heslem. Jeho nastavení vypadá asi takto:\\
+/etc/passwd
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+lfs:x:1002:1000::/home/lfs:/bin/bash
+\end{Verbatim} 
+    \end{codeframe}
+/etc/shadow
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+lfs:$1$MhyAxheU$Nq85ITaTmL8yJqgHXoOEK0:15111:0:99999:7:::
+\end{Verbatim} 
+    \end{codeframe}
+ \item[Uživatel bez hesla] Běžný uživatel jehož přihlášení nevyžaduje heslo, \b{POZOR! je rozdíl jestli je uživatel bez hesla nebo se při startu systému přihlašuje uživatel automaticky prostřednictvím správce sezení jako je GDM nebo KDM}. Nastavení uživatele bez hesla se liší pouze v~souboru /etc/shadow a~heslo je nahrazeno prázdným stringem:\\
+/etc/shadow
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+lfs:$1$VNMbpxGH$sew7cnwH9ixU.x27UbFNn.:15111:0:99999:7:::
+\end{Verbatim} 
+    \end{codeframe}
+\b{POZOR!!! takový přístup se nepoužívá! Uživatelé bez hesla se používají pouze na LiveCD!}
+ \item[Uživatel bez přihlášení] uživatel bez přihlášení se používá pro služby (v~Linuxu daemony, česky někdy též démony), je to speciální druh uživatele, za kterého se nelze přihlásit a~používá se aby byly práva služeb odděleny od uživatelů a~neběželi pod oprávnění uživatele root. Jejich nastavení se liší od normálního uživatele pouze v~tom, že~v~souboru /etc/passwd je defaultní shell jako /bin/bash nahrazem /bin/nologin nebo /bin/false a~heslo v~/etc/shadow je nahrazeno vykřičníkem:\\
+/etc/shadow
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+dbus:x:81:81:System message bus:/:/bin/false
+\end{Verbatim} 
+    \end{codeframe}
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+dbus:!:15084:0:99999:7:::
+\end{Verbatim} 
+    \end{codeframe}
+
+ \end{description}
+
+\subsubsection{Přihlášení uživatele}
+Pro přihlášení uživatele se používá několik způsobů, ať už grafických textových nebo vzdálených.\\
+
+Základní možnosti přihlášení uživatele:
+\begin{description}
+ \item[Computer terminal (tty)] Standardní přihlášení do systému, uživatel zadá uživatelské jméno, heslo a~je mu zpřístupněn systém prostřednictvím console.
+ \item[Desktop manager] slouží jako přihlašovací obrazovka do většinou grafických prostředí a~většinou poskytuje kromě přihlášení, také služby jako je vypnutí, restart nebo uspání bez nutnosti zadání hesla uživatele root. Existují \textbf{grafické desktopové managery} jako KDM, GDM, SLiM, XDM, EDM, LightDM a~jiné. Velmi často se ke grafickému prostředí váže i~jeho vlastní desktop manager, který ovšem dokáže spouštět i~ostatní prostředí. \textbf{Textových desktopových managerů} existuje velmi málo a~většinou se jedná pouze o~nástoroje, které umožní po textovém přihlášení spustit Xserver se zvoleným grafickým prostředím. wmctrl, CDM.
+ \item[Vzdálené přihlášení] vzdálených přihlášení existuje mnoho druhů, protože~spousta služeb, které umožňují zdálený přístup implementuje vlastní způsob přihlášení. Např. některé grafické desktopové managery umožňují vzdálený přístup přes protokol XDMCP. Nejčastěji se však pro vzdálené přihlášení používá SSH \odkazNaKapitolu{sec:SSH}
+\end{description}
+
 \subsection{Internetové zabezpečení}
 
 \subsubsection{Firewall v Linuxu}
+
 Firewall v Linuxu je tvořen projektem \b{Netfilter}, který pracuje na úrovni jádra a umožňuje filtrovat pakety na základě mnoha kritérií. Základním nástrojem pro nastavení paketového filtru je známý řádkový nástroj \b{iptables}.~\cite{FirewallNetfilter}
 
 IPtables jsou, ale nástrojem velice složitým a~proto vzniklo několik projektů, které se snaží nastavení Firewallu usnadnit. Nástrojem určeným pro běžné uživatele je např. grafický program \b{Firestarter}. Přístup Firestarteru je však vhodný spíše pro osobní počítače, pro větší síť a~nastavení více firewallů, je vhodným řešením nástroj ve které si uživatel vytvoří nastavení v~grafického nebo textového rozhraní a~výslednou konfiguraci firewallu pak přenese na server. Takovým nástrojem je např. \b{FirewallBuilder}, \b{FireHOL} oblíbená sada skriptů pro konfiguraci Netfilteru \b{Shorewall}.
@@ -1354,11 +1440,13 @@ IPtables jsou, ale nástrojem velice složitým a~proto vzniklo několik projekt
 Jak už je v~Linuxu dobrým zvykem vše je často přehledně a~použitelně zabaleno v~distribucích. V prostředí firewallů existuje velké množství distribucí, které nenabízejí většinou v~základu jen firewall, ale jsou určiny i~pro routery a~jiná síťová zařízení (PROXY server, gateway, VPN, IPSEC, Anti-virus, www server,…). Asi nejpoužívanější distribucí je \b{IPCop} což je derivát distribuce \b{Smoothwall}. Oblíbenou distribucí pro firewally je také router distribuce \b{OpenWRT} a~několik projektů na ní založených např. \b{FreeWRT} nebo \b{DD-WRT}.
 
 \subsubsection{Antivirus}\label{sec:antivirus}
+
 Antivirus a~viry obecně jsou velmi diskutovaným tématem v~linuxovém prostředí. V dnešní době je nebezpečí virů na linuxu stále mizivé a~vše naznačuje, že to tak ještě nějakou dobu potrvá. Hlavním argumentem proč na Linuxu neexistují viry je často jeho malá rozšířenost, což není tak úplně pravda, protože většina průzkumů rozšířenosti OS se zaměřuje na desktopové počítače, kde dle statistik Linux drží 1\%~\cite{StatistikaOS}, ale co se týče především www serverů dosahuje linuxový webový server Apache podílu přes 70\%~\cite{StatLinuxWebServer}. Linux je před viry a malwarem chráněn především díky jeho balíčkovacím systémům, protože software není jako u windows instalován z~různých pochybných webů a~jiných zdrojů, ale přímo od tvůrců distribuce a~jejich repozitářů. Dalším stupněm ochrany jsou pak oddělené uživatelské účty a~oddělený účet administrátora, které zabraňují šíření viru v~systému a~jeho další napadení.~\cite{LinuxCZviry}
 
 Samozřejmě pro Linux existuje množství antivirových programů, které spousta neznalých uživatelů považuje za důkaz virů v~Linuxu, což není pravda, protože antivirové programy v~Linuxu slouží především k~ochraně windowsových stanic. Většina serverových řešení je totiž postavena právě na Linuxu a~je třeba chránit klienty, kteří fungují na windows. Nejznámější antivirovým programem pro Linux je zřejmě \b{ClamAV}, jedná se o OpenSource program, který slouží především ke scanování e-mailové komunikace a~ochraně windowsových stanic~\cite{ClamAV}. Samozřejmě existuje i~množství komerčních antivirových programů od firem jako ESETs nebo AVG a~je jen na uživateli, které řešení použije.
 
-\subsubsection{SSH}
+\subsubsection{SSH}\label{sec:SSH}
+
 Secure Shell neboli ssh je nástroj pro bezpečné připojení v nedůvěryhodné síti. Poskytuje šifrované terminálové spojení se bezpečným systémem autentizace, jak na straně serveru tak straně klienta, pomocí veřejných kryptografických klíčů.
 
 Hlavní výhody:
@@ -1856,7 +1944,7 @@ Možnosti vylepšení:
 \nn{Závěr}
 Cílem této bakalářské práce bylo vytvořit sadu skriptů v~jazyce BASH pro automatické sestavení Linuxové distribuce Linux From Scratch. Pro návrh skriptů byl použit návod pro sestavení distribuce Linux From Scratch a~nemalou měrou přispěl i~verzovací systém GIT a~komunitní web pro správu git repozitářů GitHub.\\
 
-V úvodní části bylo provedeno seznámení s~Linuxem jeho distribucemi a~možnostmi tvorby distribucí.
+V úvodní části bylo provedeno seznámení s~Linuxem jeho distribucemi a~možnostmi tvorby distribucí. 
 %********************************* Seznam Literatury ************************************
 \seznamlit{
 \bibitem{BASHen}COOPER, Mendel. {\it{Advanced Bash-Scripting Guide}} [online]. Revision 6.2. [s.l.] : [s.n.], 17 March 2010, Dostupné z~WWW: \href{http://www.tldp.org/LDP/abs/html/index.html}{http://www.tldp.org/LDP/abs/html/index.html}. [e-kniha] 
@@ -1909,6 +1997,7 @@ V úvodní části bylo provedeno seznámení s~Linuxem jeho distribucemi a~mož
 \bibitem{Shrek2Linux}JAQUES, Robert. {\it{IT News from V3.co.uk}} [online]. 2004-06-29 [cit. 2011-05-17]. Linux behind the magic of Shrek 2. Dostupné z~WWW: \href{http://www.v3.co.uk/v3-uk/news/1972166/linux-magic-shrek}{http://www.v3.co.uk/v3-uk/news/1972166/linux-magic-shrek}.
 \bibitem{LinuxHodinky}SIMPSON, Stacy.{\it{ Linux for Devices}} [online]. 2001-10-11 [cit. 2011-05-17]. IBM \& Citizen Watch develop Linux-based "WatchPad". Dostupné z~WWW: \href{http://www.linuxfordevices.com/c/a/News/IBM-Citizen-Watch-develop-Linuxbased-WatchPad/}{http://www.linuxfordevices.com/c/a/News/IBM-Citizen-Watch-develop-Linuxbased-WatchPad/}.
 \bibitem{BuilderNavod}{\it{GNewSense GNU/Linux}} [online]. 2006-08-27 [cit. 2011-05-17]. Builder/HowToCreateYourOwnGNULinuxDistribution. Dostupné z~WWW: \href{http://www.gnewsense.org/Builder/HowToCreateYourOwnGNULinuxDistribution}{http://www.gnewsense.org/Builder/HowToCreateYourOwnGNULinuxDistribution}.
+\bibitem{rubyOnRailTutorial}HARTL, Michael. {\it{Ruby on Rails Tutorial}} [online]. [s.l.] : [s.n.], 2010 [cit. 2011-05-21]. Dostupné z~WWW: \href{http://ruby.railstutorial.org/book/ruby-on-rails-tutorial\#sec:secure\_password\_theory}{http://ruby.railstutorial.org/book/ruby-on-rails-tutorial\#sec:secure\_password\_theory}.
 }
 
 %********************************* Seznam zkratek ************************************
@@ -1945,6 +2034,8 @@ LSM & Linux Security Modules\\
 IPC & interprocess communication\\
 SSH & Secure Shell\\
 PP & Protection Profile\\
+TOE & Target of Evaluation\\
+ST & Security Target\\
 \end{tabular}
 %********************************* Seznam obrázků ************************************
 \seznamobr
