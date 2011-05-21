@@ -102,6 +102,13 @@
 	\end{figure}
 	}
 
+\newcommand{\ofZadani}[2]{% styl \obr pro obrázky
+	\begin{figure}[h]
+	\center\includegraphics[width=500pt,height=700pt]{#1}
+	\caption{#2}
+	\end{figure}
+	}
+
 \newcommand{\tab}[3]{% styl \tab pro tabulky
 	\begin{table}[h]
 	\caption{#1}
@@ -321,21 +328,20 @@
 %********************************* nascanované zadání ************************************
 \clearpage
 \thispagestyle{empty}
-\voffset=-1.61cm\evensidemargin=0.96cm\oddsidemargin=0.96cm\headsep=1cm\headheight=0.5cm\setlength{\parskip}{3pt}\textheight=248mm\textwidth=155mm
-***nascannované zadání s. 1***
-\obr{fai_logo_cz.png}{1}{logo}
+\ofZadani{./img/ofZadani/ofZadaniStr1.png}{Oficiální zadání bakalářské práce strana 1}
 \clearpage
 \thispagestyle{empty}
-***nascannované zadání s. 2***
-\obr{fai_logo_cz.png}{1}{logo}
+\ofZadani{./img/ofZadani/ofZadaniStr2.png}{Oficiální zadání bakalářské práce strana 2}
 %********************************* Abstrakt ************************************
 \clearpage
 \thispagestyle{empty}
+\voffset=-1.61cm\evensidemargin=0.96cm\oddsidemargin=0.96cm\headsep=1cm\headheight=0.5cm\setlength{\parskip}{3pt}\textheight=248mm\textwidth=155mm
 \nm{\uppercase{Abstrakt}}
 \vspace{1cm}
 Tato bakalářská práce v teoretické části obsahuje pojmy, jako jsou Linux, dále pak linuxové distribuce, jazyk BASH, zabezpečení operačního systému Linux a~LiveCD. Úvodní část je věnována informacím o~systému Linux a~distribuci Linux From Scratch. Dále pak obsahuje stručný úvod do jazyka BASH a~kompilaci zdrojových kódů včetně možností sestavení Linuxových distribucí. Na závěr teoretické části je popsáno zabezpečení Linuxu, hodnocení bezpečnosti Software a tvorba LiveCD.\\
 
 V praktické části je rozebrána struktura scriptů a~funkce vytvořené v~jazyce BASH. Dále je uveden návod na sestavení distribuce LFS pomocí vytvořených skriptů. A na závěr uvedeny zdroje pomoci při chybách v~kompilaci a~možnosti zlepšení skriptů.
+\vspace{1cm}
 
 \emph{Klíčová slova:} Linux, distribuce, operační systém, BASH, LFS, LiveCD, bezpečnost OS, kompilace, DAC, MAC
 
@@ -1115,7 +1121,7 @@ V Mandatory (česky Povinné) Access Control (MAC), uživatelům jsou dána povo
 
 %MAC In the Mandatory Access Control (MAC) model, users are given permissions to resources by an administrator. Only an administrator can grant permissions or right to objects and resources. Access to resources is based on an object's security level, while users are granted security clearance. Only administrators can modify an object's security label or a user's security clearance. 
 
-V Role-Based Access Control (RBAC), je přístup ke zdrojům na základě založen na \uv{roli kterou uživatel hraje}. V tomto modelu, správce přiřadí uživateli roli, která má předem pridělena určitá práva a výsady. Vzhledem k~uživateli přidělené rolí, může uživatel přístupova k~určitým zdrojům a plnit specifické úkolů. RBAC je také známý jako Non-Discretionary Access Control. Role přiřazené uživatelům, jsou centrálně spravovány.
+V Role-Based Access Control (RBAC), je přístup ke zdrojům na základě založen na \uv{roli kterou uživatel hraje}. V tomto modelu, správce přiřadí uživateli roli, která má předem přidělena určitá práva a výsady. Vzhledem k~uživateli přidělené rolí, může uživatel přístupová k~určitým zdrojům a plnit specifické úkolů. RBAC je také známý jako Non-Discretionary Access Control. Role přiřazené uživatelům, jsou centrálně spravovány.
 
 %RBAC in the Role-Based Access Control (RBAC) model, access to resources is based on the role assigned to a user. In this model, an administrator assigns a user to a role that has certain predetermined right and privileges. Because of the user's association with the role, the user can access certain resources and perform specific tasks. RBACK is also known as Non-Discretionary Access Control. The roles assigned to users are centrally administered. 
 
@@ -1404,7 +1410,7 @@ lfs:$1$VNMbpxGH$sew7cnwH9ixU.x27UbFNn.:15111:0:99999:7:::
 \end{Verbatim} 
     \end{codeframe}
 \b{POZOR!!! takový přístup se nepoužívá! Uživatelé bez hesla se používají pouze na LiveCD!}
- \item[Uživatel bez přihlášení] uživatel bez přihlášení se používá pro služby (v~Linuxu daemony, česky někdy též démony), je to speciální druh uživatele, za kterého se nelze přihlásit a~používá se aby byly práva služeb odděleny od uživatelů a~neběželi pod oprávnění uživatele root. Jejich nastavení se liší od normálního uživatele pouze v~tom, že~v~souboru /etc/passwd je defaultní shell jako /bin/bash nahrazem /bin/nologin nebo /bin/false a~heslo v~/etc/shadow je nahrazeno vykřičníkem:\\
+ \item[Uživatel bez přihlášení] uživatel bez přihlášení se používá pro služby (v~Linuxu daemony, česky někdy též démony), je to speciální druh uživatele, za kterého se nelze přihlásit a~používá se aby byly práva služeb odděleny od uživatelů a~neběželi pod oprávnění uživatele root. Jejich nastavení se liší od normálního uživatele pouze v~tom, že~v~souboru /etc/passwd je defaultní shell jako /bin/bash nahrazen /bin/nologin nebo /bin/false a~heslo v~/etc/shadow je nahrazeno vykřičníkem:\\
 /etc/shadow
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
@@ -1425,8 +1431,8 @@ Pro přihlášení uživatele se používá několik způsobů, ať už grafick�
 Základní možnosti přihlášení uživatele:
 \begin{description}
  \item[Computer terminal (tty)] Standardní přihlášení do systému, uživatel zadá uživatelské jméno, heslo a~je mu zpřístupněn systém prostřednictvím console.
- \item[Desktop manager] slouží jako přihlašovací obrazovka do většinou grafických prostředí a~většinou poskytuje kromě přihlášení, také služby jako je vypnutí, restart nebo uspání bez nutnosti zadání hesla uživatele root. Existují \textbf{grafické desktopové managery} jako KDM, GDM, SLiM, XDM, EDM, LightDM a~jiné. Velmi často se ke grafickému prostředí váže i~jeho vlastní desktop manager, který ovšem dokáže spouštět i~ostatní prostředí. \textbf{Textových desktopových managerů} existuje velmi málo a~většinou se jedná pouze o~nástoroje, které umožní po textovém přihlášení spustit Xserver se zvoleným grafickým prostředím. wmctrl, CDM.
- \item[Vzdálené přihlášení] vzdálených přihlášení existuje mnoho druhů, protože~spousta služeb, které umožňují zdálený přístup implementuje vlastní způsob přihlášení. Např. některé grafické desktopové managery umožňují vzdálený přístup přes protokol XDMCP. Nejčastěji se však pro vzdálené přihlášení používá SSH \odkazNaKapitolu{sec:SSH}
+ \item[Desktop manager] slouží jako přihlašovací obrazovka do většinou grafických prostředí a~většinou poskytuje kromě přihlášení, také služby jako je vypnutí, restart nebo uspání bez nutnosti zadání hesla uživatele root. Existují \textbf{grafické desktopové managery} jako KDM, GDM, SLiM, XDM, EDM, LightDM a~jiné. Velmi často se ke grafickému prostředí váže i~jeho vlastní desktop manager, který ovšem dokáže spouštět i~ostatní prostředí. \textbf{Textových desktopových managerů} existuje velmi málo a~většinou se jedná pouze o~nástroje, které umožní po textovém přihlášení spustit Xserver se zvoleným grafickým prostředím. wmctrl, CDM.
+ \item[Vzdálené přihlášení] vzdálených přihlášení existuje mnoho druhů, protože~spousta služeb, které umožňují vzdálený přístup implementuje vlastní způsob přihlášení. Např. některé grafické desktopové managery umožňují vzdálený přístup přes protokol XDMCP. Nejčastěji se však pro vzdálené přihlášení používá SSH \odkazNaKapitolu{sec:SSH}
 \end{description}
 
 \subsection{Internetové zabezpečení}
@@ -1858,25 +1864,14 @@ chown -R root:root $LFS/tools
 \end{Verbatim} 
     \end{codeframe}
 
-nyní je třeba spustit script start6, který vytvoří potřebné složky a~virtuální souborové systému.
+nyní je třeba spustit script start6, který vytvoří potřebné složky a~virtuální souborové systému. Skript také provede přihlášení do systému prostřednictvím prostředí chroot.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # sh ./scripts/chap6/start6
 \end{Verbatim} 
     \end{codeframe}
 
-nyní je třeba se chrootnout do systému, tedy se přihlásit vytvořeného toolchainu
-    \begin{codeframe} 
-\begin{Verbatim}{frame=single} 
-chroot "$LFS" /tools/bin/env -i \
-    HOME=/root TERM="$TERM" PS1='\u:\w\$ ' \
-    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \
-    /tools/bin/bash --login +h
-\end{Verbatim} 
-    \end{codeframe}
-Nyní je dobré nastavit opět potřebné proměnné v~souboru \/scripts\/chroot\_prepare
-
-a spustit script chroot\_makeall
+Nyní je dobré nastavit opět potřebné proměnné v~souboru \/scripts\/chroot\_prepare a~spustit script chroot\_makeall
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 ./scripts/chroot_makeall
