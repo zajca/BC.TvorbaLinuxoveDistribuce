@@ -455,7 +455,7 @@ Tento balíčkovací systém používájí kromě již zmíněného debianu i~je
  \item[RPM] \it{Red Hat Package Manager} Druhý nejčastěji používaný balíčkovací systém. Je používán množstvím velkých distribucí včele s RHEL (Red Hat Enterprise Linux), také je používán distribucemi Fedora, Mandriva, SUSE,ArkLinux,...\\
 RPM označuje jak název základního balíčkovacího systému tak i~název balíčků samotných (vždy s~příponou rpm). RPM se především vyznačuje nepřenosností z~jedné distribuce na druhou (na~rozdíl od deb balíčků kde to více méně funguje). Proto se lze často setkat s~názorem,že rmp neumí pořádně řešit závislosti,tímto názorem se většinou vyznačují lidé, kteří kombinují repozitáře různých distribucí založených na RPM.\\
 RPM se často vyznačuje ještě jedním specifikem a~to tím, že~na rozdíl od DPKG kde se nejčastěji používají obrovské repositáře s~obrovským množstvím balíčků se u~RPM používá velké množství repositářů s~už ne tak velkým množstvím software. Např. Debian používá jeden repozitář pro každou jeho verzi (Stable,Testing,Unstable) když~to u RPM distribucí se setkáme s repozitáři zvlášť pro multimédia, core system, apd...\\
- \item[PACMAN] Jedná se pravděpodobně o~jeden s~nejrychlejších balíčkovacích systémů a~je součástí distribuce ArchLinux jejích derivátů larch, FaunOS, Archie, Chakra a~je také používán v distribuci DeLi Linux a~Frugalware Linux (ve Frugalware linux byl vytvořen fork a~jeho vývoj probíhá odděleně). Pacman má výhodu proti jiným balíčkovacím systémům nejen v~rychlosti, ale také v~tvoření balíčků. Na rozdíl od DPKG, kde existují rozsáhlé návody jak vytvořit balíček stačí u~Pacmana vytvořit podle jasných pravidel script s~názvem PKGBUILD, který obsahuje všechno od licencí, závislostí, zdrojů kontrolních součtů až po návod jak postupovat při sestavení balíčku, poté stačí napsat makepkg a~balíček se sám vytvoří bez jakéhokoliv zásahu.\\
+ \item[PACMAN] Jedná se pravděpodobně o~jeden s~nejrychlejších balíčkovacích systémů a~je součástí distribuce ArchLinux jejích derivátů larch, FaunOS, Archie, Chakra a~je také používán v distribuci DeLi Linux a~Frugalware Linux (ve Frugalware linux byl vytvořen fork a~jeho vývoj probíhá odděleně). Pacman má výhodu proti jiným balíčkovacím systémům nejen v~rychlosti, ale také v~tvoření balíčků. Na rozdíl od DPKG, kde existují rozsáhlé návody jak vytvořit balíček stačí u~Pacmana vytvořit podle jasných pravidel skript s~názvem PKGBUILD, který obsahuje všechno od licencí, závislostí, zdrojů kontrolních součtů až po návod jak postupovat při sestavení balíčku, poté stačí napsat makepkg a~balíček se sám vytvoří bez jakéhokoliv zásahu.\\
 Na tomto principu fungují jak source repoziráře v~ArchLinuxu zvané ABS tak i~uživatelské repozitáře AUR.\\
 Pro pacman existuje velké množství wrapperů
 \footnote{wrapper je program, který funguje pouze s~jiným programem a~rozšiřuje jeho funkcionalitu} pacman-color (přidává do výstupu barvy). Defaultní Pacman také neumí pracovat uživatelským repozitáři AUR proto vzniklo několik wrapperů, které přidávají podporu vyhledávání a~instalace balíčků z~AUR např. Clyde nebo yaourt. Jiné wrappery zase přidávají podporu stahování z~více zdrojů naráz aby byl balíček stáhnut co nejdříve např. PowerPill nebo Bauerbill.\\
@@ -557,7 +557,7 @@ Komentáře jsou v~bashi jako v~jiných jazycích značeny znakem \# (sharp)
    # cokoliv za tímto znakem je komentář
 \end{Verbatim} 
     \end{codeframe}
-Každý script by měl začínat komentářem, který říká jaký interpret shellu se má použít, pokud toto není uvedeno je použit defaultní interpret, což může znamenat problémy pokud jsme napsali script např. pro bash a~v~systému je defaultně jiný odlehčený interpret.
+Každý skript by měl začínat komentářem, který říká jaký interpret shellu se má použít, pokud toto není uvedeno je použit defaultní interpret, což může znamenat problémy pokud jsme napsali skript např. pro bash a~v~systému je defaultně jiný odlehčený interpret.
     \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
 #!/bin/bash
@@ -717,7 +717,7 @@ else
 fi
 \end{Verbatim} 
     \end{codeframe}
-Podmínky je samozřejmě možno spojovat pomocí operátorů \&\& (a zároveň platí) a || (nebo platí). Operátor || má velké využití ve scriptech pro testování jestli funkce skončila úspěšně\cite{ABC_SBASH}.
+Podmínky je samozřejmě možno spojovat pomocí operátorů \&\& (a zároveň platí) a || (nebo platí). Operátor || má velké využití ve skriptech pro testování jestli funkce skončila úspěšně\cite{ABC_SBASH}.
     \begin{codeframe} 
       \begin{Verbatim}{frame=single}
 #testujeme dvě podmínky
@@ -725,7 +725,7 @@ if [ $USER == "root" ] && [ $LANG == "cs_CZ" ]; then
   echo "Jsi český admin"
 fi
 
-#pokud funkce skončí chybou script skončí s příznakem 1
+#pokud funkce skončí chybou skript skončí s příznakem 1
 funkce || exit 1
 \end{Verbatim} 
     \end{codeframe}
@@ -819,7 +819,7 @@ done
 
 \subsection{Funkce,pole příkazy}
 \subsubsection{Speciální proměnné}
-Informace o názvu skriptu, počtu předaných argumentů a~argumenty samotné jsou uloženy ve speciálních proměnných. Tyto proměnné se používají stejným způsobem ve scriptech i~ve funkcích\cite{ABC_SBASH}.
+Informace o názvu skriptu, počtu předaných argumentů a~argumenty samotné jsou uloženy ve speciálních proměnných. Tyto proměnné se používají stejným způsobem ve skriptech i~ve funkcích\cite{ABC_SBASH}.
 \begin{description}
  \item[\$0] název skriptu
  \item[\$\#] počet předaných argumentů
@@ -915,7 +915,7 @@ Dokumentace obsahuje informace o~používání programů a~je velmi důležitá 
 \subsubsection{README}
 Soubor obsahuje základní informace o~programu. Může, a~často i~obsahuje informace ze všech výše uvedených souborů. Avšak někdy není vůbec, protože je vše uvedeno ve výše uvedených souborech.
 \subsubsection{Configure}
-Soubor s~nastaveními pro překlad. Jedná se v~zásadě o~BASH script, kterým můžete nastavit co a~jak se má v~programu kompilovat. Různými volbami, které jsou uvedeny v~INSTALL,README, nebo v~nějaké online dokumentaci, můžete nastavit \it{např. cesty kam se mám program nebo jeho části nainstalovat nebo také které části programu se mají přeložit}. Configure je scriptem BASHe a~proto je také tak volána, výsledkem configure je vygenerovaní souboru, které řídí překlad, nejčastěji Makefil(u).
+Soubor s~nastaveními pro překlad. Jedná se v~zásadě o~BASH skript, kterým můžete nastavit co a~jak se má v~programu kompilovat. Různými volbami, které jsou uvedeny v~INSTALL,README, nebo v~nějaké online dokumentaci, můžete nastavit \it{např. cesty kam se mám program nebo jeho části nainstalovat nebo také které části programu se mají přeložit}. Configure je skriptem BASHe a~proto je také tak volána, výsledkem configure je vygenerovaní souboru, které řídí překlad, nejčastěji Makefil(u).
 \subsubsection{Další soubory a alternativy některých souborů}
 
 \subsection{Kompilace}
@@ -1045,12 +1045,12 @@ Pungi je nástrojem, který používají vývojáři Fedory pro sestavení ofici
 %Like Revisor, the tool gathers packages directly from the internet and then automatically splits them and creates CD-sized installable ISO images.
 
 \nadpis{Builder}\\
-Builder je série skriptů napsaných v~BASHi, které používají vývojáři derivátu distribuce Ubuntu "gNewSense" na sestavení jejich distribuce. Ke scriptům je také napsaný přehledný manuál jak je používat, který je dostupný online~\cite{Linux_Build}~\cite{BuilderNavod}.
+Builder je série skriptů napsaných v~BASHi, které používají vývojáři derivátu distribuce Ubuntu "gNewSense" na sestavení jejich distribuce. Ke skriptům je také napsaný přehledný manuál jak je používat, který je dostupný online~\cite{Linux_Build}~\cite{BuilderNavod}.
 
 %Builder is a series of bash scripts that are used by the gNewSense developers to create their distro. Along with the tool they've also written a handy nine-step guide to creating a customised distro from Ubuntu Hardy. The guide is available on their site.
 
 \nadpis{MySlax Creator}\\
-MySlax Creator jsou scripty určené k~úpravě distribuce Slackware, především tedy k~vytvoření vlastního obrazu odvozené distribuce SLAX. Jejich odlišnost je v~tom že fungují přímo z Windows.
+MySlax Creator jsou skripty určené k~úpravě distribuce Slackware, především tedy k~vytvoření vlastního obrazu odvozené distribuce SLAX. Jejich odlišnost je v~tom že fungují přímo z Windows.
 
 %Here's a Slackware customisation script with a unique twist. The tool creates customised versions of the Slackware-based Slax distro we mentioned above, but unlike the other tools we talk about here, MySlax Creator installs and work from within Windows!
 %It works with Slax ISO images and lets you add data to your own custom spins.
@@ -1467,7 +1467,7 @@ Virové hrozby byli probrány~\odkazNaKapitolu{sec:antivirus} v~souvislosti s~vi
 alias sudo='sudo rm -rf /'
 \end{Verbatim} 
     \end{codeframe} 
-při takovém aliasu my si uživatel smazal disk. Samozřejmě takový kód je jen na ukázku, ale demonstruje možnosti tohoto "útoku", daleko pravděpodobnější by bylo spuštění útočníkova scriptu a následné přepsání konfiguračních souborů, tak aby získal útočník kontrolu nad počítačem. Tomuto se dá zabránit aplikování MAC, ale využití podobného rozšíření zabezpečení, není v~Linuxu vůbec samozřejmostí.
+při takovém aliasu my si uživatel smazal disk. Samozřejmě takový kód je jen na ukázku, ale demonstruje možnosti tohoto "útoku", daleko pravděpodobnější by bylo spuštění útočníkova skriptu a následné přepsání konfiguračních souborů, tak aby získal útočník kontrolu nad počítačem. Tomuto se dá zabránit aplikování MAC, ale využití podobného rozšíření zabezpečení, není v~Linuxu vůbec samozřejmostí.
 
 Lidský faktor přispívá ve zranitelnosti jakéhokoliv systému, ukázkou může být chyba vývojáře debianu, která způsobila, že autentizační mechanizmus u~ssh generoval předvídatelné textové řetězce, které mohl zneužít útočník pro napadení systému. Tato chyba se navíc vyskytovala v~debianu po dlouhou dobu než se na ni přišlo.~\cite{DebianSSHFail}
 
@@ -1530,7 +1530,7 @@ Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního de
 \end{figure}
 
 \subsubsection{Linux-Live}
-Linux-Live je sada scriptů, která není závislá na distribuci, ale lze ji použít na jakémkoliv linuxu. Prakticky stačí stáhnou scripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Scripty už pak samy vytvoří Live systém, který je možné nabootovat z CD nebo USB.
+Linux-Live je sada skriptů, která není závislá na distribuci, ale lze ji použít na jakémkoliv linuxu. Prakticky stačí stáhnou skripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Skripty už pak samy vytvoří Live systém, který je možné nabootovat z CD nebo USB.
 
 %If you want a truly distro-agnostic way of customising your favourite Linux distribution, you need the Linux-Live set of scripts. The scripts work on any installed Linux distro and can create a Live system that you can boot from optical media or USB drives.
 %The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
@@ -1570,25 +1570,25 @@ V~git repozitáři LFS---by-bash-scripts je k~nalezení několik souborů a~slo�
  \item[FAIL\_Logs] Složka, která slouží pouze pro ukládání chybových záznamů pokud některá část kompilace selže.
  \item[include] Adresář s~funkcemi, jazykovou složkou a~verzemi programů
  \item[lfsuser] Pro usnadnění práce tento adresář obsahuje soubory potřebné pro uživatelský profil LFS
- \item[chroot\_makeall] hlavní spouštěcí script pro sestavení kapitoly 6 v~chroot.
+ \item[chroot\_makeall] hlavní spouštěcí skript pro sestavení kapitoly 6 v~chroot.
  \item[linker.1.test/linker.1.test64] dva soubory, které slouží pro test funkčnosti při oddělení toolchainu.
- \item[makeall] hlavní spouštěcí script, který spustí vše potřebné až do konce kapitoly 5.
- \item[makeall\_rest] hlavní spouštěcí script pro sestavení kapitoly 7~a~8.
- \item[onlyunpackscript] script pro stažení a~rozbalení balíčků.
+ \item[makeall] hlavní spouštěcí skript, který spustí vše potřebné až do konce kapitoly 5.
+ \item[makeall\_rest] hlavní spouštěcí skript pro sestavení kapitoly 7~a~8.
+ \item[onlyunpackscript] skript pro stažení a~rozbalení balíčků.
  \item[README.markdown] README soubor ve~značkovacím jazyce markdown
  \item[sources] Pozůstatek složky pro stahování zdrojových kódů před instalací. Už řešeno přímo před kompilací jednotlivě
- \item[version-check.sh] Oficiální script LFS pro test potřebných nástrojů v~systému
+ \item[version-check.sh] Oficiální skript LFS pro test potřebných nástrojů v~systému
  \end{description}
 
 Velmi důležitou je pak složka include, která obsahuje verze programů a~funkce využívané při kompilaci
 
 \b{LFS---by-bash-scripts/include}
 \begin{description}
- \item[chroot\_prepare] script, který se stará o~kontrolu potřebných složek a~symbolických odkazů v~prostředí chroot.
- \item[functions] script se všemi funkcemi
- \item[prepare] script, který se stará o~kontrolu existence potřebných složek a~symbolických odkazů.
- \item[ver] script s~poly, které obsahují informace o balíčcích
- \item[l10n-EN] už téměř nepoužívaný script, který měl sloužit pro lokalizaci do jiných jazyků, byl zavrhnut, protože znamenal velkém množství proměnných
+ \item[chroot\_prepare] skript, který se stará o~kontrolu potřebných složek a~symbolických odkazů v~prostředí chroot.
+ \item[functions] skript se všemi funkcemi
+ \item[prepare] skript, který se stará o~kontrolu existence potřebných složek a~symbolických odkazů.
+ \item[ver] skript s~poly, které obsahují informace o balíčcích
+ \item[l10n-EN] už téměř nepoužívaný skript, který měl sloužit pro lokalizaci do jiných jazyků, byl zavrhnut, protože znamenal velkém množství proměnných
  \end{description}
 
 \subsubsection{Důležité proměnné}
@@ -1603,13 +1603,13 @@ LFS samotná obsahuje několik proměnných, které jsou důležité pro sestave
  \item[SOURCES\_DIR=\$ROOT/sources] cesta na které jsou umístěny stažené balíčky
  \item[BUILD\_DIR=\$ROOT/build] cesta do adresáře kde probíhá kompilace
  \item[TOOLS\_DIR=\$ROOT/tools] cesta do adresáře kde je instalován toolchain
- \item[SCRIPTS\_DIR=\$ROOT/scripts] cesta do adresáře kde jsou umístěny scripty
+ \item[SCRIPTS\_DIR=\$ROOT/scripts] cesta do adresáře kde jsou umístěny skripty
  \item[on64=0] pokud je systém sestavován na stroji s~64bitovým procesorem, ale na 32bitovém sytému je třeba nastavit na 1
 \end{description}
 
-Každý script ke kompilaci programu navíc obsahuje interní proměnné, do kterých se ukládají názvy programů jejich adresy ke stažení a~jiné informace z~polí, uložených v~souboru includes/ver. Tyto proměnné se pak většinou předávají jako parametry funkcím definovaným v souboru includes/funtions.\\
+Každý skript ke kompilaci programu navíc obsahuje interní proměnné, do kterých se ukládají názvy programů jejich adresy ke stažení a~jiné informace z~polí, uložených v~souboru includes/ver. Tyto proměnné se pak většinou předávají jako parametry funkcím definovaným v souboru includes/funtions.\\
 
-\b{malá ukázka ze scriptu chap5/glibc:}
+\b{malá ukázka ze skriptu chap5/glibc:}
 \begin{description}
  \item[NAME=]\$\{glibc[0]\} do proměnné se ukládá název programu z~první položky pole (glibc)
  \item[PROGRAM=]\$\{glibc[3]\} do proměnné se ukládá název programu i~s~jeho verzí, slouží především k~určování adresy po rozbalení programu. (glibc-2.13)
@@ -1621,7 +1621,7 @@ Každý script ke kompilaci programu navíc obsahuje interní proměnné, do kte
  \end{description}
 
 \subsubsection{functions}
-script functions slouží pro automatizování stále se opakujících procedur pomocí BASH funkcí. Každá funkce obsahuje jednoduchý komentář s~popisem funkcí a~jejich parametrů v~angličtině. Pro ukázku několik funkcí z~tohoto scriptu.\\
+skript functions slouží pro automatizování stále se opakujících procedur pomocí BASH funkcí. Každá funkce obsahuje jednoduchý komentář s~popisem funkcí a~jejich parametrů v~angličtině. Pro ukázku několik funkcí z~tohoto skriptu.\\
 
 Pro barevný výstup jsou definovány barvy, které je třeba pro použití ve funkcích nastavovat přes program \b{tput}
     \begin{codeframe} 
@@ -1728,7 +1728,7 @@ export -f addPatch
 \end{Verbatim} 
     \end{codeframe}
 
-Funkce compareFiles() porovnává dva soubory pomocí programu \b{cmp}. Je vytvořena pro účely testování správnosti oddělení toolchainu a~pokud se soubory neshodují, ukončuje scripty.
+Funkce compareFiles() porovnává dva soubory pomocí programu \b{cmp}. Je vytvořena pro účely testování správnosti oddělení toolchainu a~pokud se soubory neshodují, ukončuje skripty.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 compareFiles (){
@@ -1744,7 +1744,7 @@ export -f compareFiles
 \end{Verbatim} 
     \end{codeframe}
 
-Funkce waitUser() na základě proměnné \$WAIT pozastavuje vykonávání scriptu, dokud uživatel nezmáčkne klávesu enter. Podobnou funkcí je pak fuknce waitUserAl(), která pozastaví scripty vždy.
+Funkce waitUser() na základě proměnné \$WAIT pozastavuje vykonávání skriptu, dokud uživatel nezmáčkne klávesu enter. Podobnou funkcí je pak fuknce waitUserAl(), která pozastaví skripty vždy.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 waitUser (){
@@ -1789,20 +1789,20 @@ functions obsahuje také funkce pro kompilaci, ale předávání parametrů pomo
 
 \subsection{Návod pro sestavení}
 \subsubsection{Předpříprava}
-Sestavení LFS je velmi komplexní a~složitou záležitostí. V~žádném případě by používat automatické scripty neměl někdo, kdo alespoň dvakrát úspěšně nesestavil LFS předtím. Pro člověka, který nikdy nesestavoval LFS je v~balíčku scriptů script \b{onlyunpackscript}, který zajišťuje stáhnutí potřebných balíčků a~jejich rozbalení více~\odkazNaKapitolu{sec:only}.\\
+Sestavení LFS je velmi komplexní a~složitou záležitostí. V~žádném případě by používat automatické skripty neměl někdo, kdo alespoň dvakrát úspěšně nesestavil LFS předtím. Pro člověka, který nikdy nesestavoval LFS je v~balíčku skriptů skript \b{onlyunpackscript}, který zajišťuje stáhnutí potřebných balíčků a~jejich rozbalení více~\odkazNaKapitolu{sec:only}.\\
 
 Co by měl uživatel udělat před sestavení LFS pomocí automatických skriptů
 \begin{itemize}
  \item několikrát úspěšně sestavit LFS
  \item přečíst znovu alespoň první 4 kapitoly (je dobré číst knihu za běhu skriptů)
- \item zkontrolovat potřebné balíčky. Ke kontrole slouží script version-check.sh, který zkontroluje verze některých balíčků a~potřebné symbolické odkazy
+ \item zkontrolovat potřebné balíčky. Ke kontrole slouží skript version-check.sh, který zkontroluje verze některých balíčků a~potřebné symbolické odkazy
  \item být připraven řešit spoustu problémů. Při sestavování LFS může nastat v~kterékoliv části problém, který je třeba vyřešit k~dalšímu pokračování. Kam se obrátit z~dotazem je popsáno~\odkazNaKapitolu{sec:help}
 \end{itemize}
 
-Uživatel by měl mít také dostatečné znalosti jazyka bash aby~mohl V~případě potřeby upravit scripty.
+Uživatel by měl mít také dostatečné znalosti jazyka bash aby~mohl V~případě potřeby upravit skripty.
 
 \subsubsection{Sestavení}\label{sec:sestaveni}
-Sestavení je díky scriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskový oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musejí být provedeny pod účtem uživatele root)
+Sestavení je díky skriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskový oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musejí být provedeny pod účtem uživatele root)
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # mkdir /mnt/LFS
@@ -1827,7 +1827,7 @@ Dalším krokem je vytvoření uživatele a~skupiny lfs.
 # passwd lfs #nastavení hesla
 \end{Verbatim} 
     \end{codeframe}
-nyní je dobré stáhnout a~překopírovat scripty LFS by bash scripts. Nejjednodušším způsobem je stáhnutí skriptů pomocí verzovacího systému git.
+nyní je dobré stáhnout a~překopírovat skripty LFS by bash scripts. Nejjednodušším způsobem je stáhnutí skriptů pomocí verzovacího systému git.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 cd ~/
@@ -1861,23 +1861,23 @@ cd $LFS
 \end{Verbatim} 
     \end{codeframe}
 
-Protože pro stažení balíčků se používá program wget, který v~toolchainu, respektive při sestavování kapitoly 6, nebude dostupný, je dobré stáhnou všechny balíčky scriptem onlyunpackscript~\odkazNaKapitolu{sec:only}.\\
+Protože pro stažení balíčků se používá program wget, který v~toolchainu, respektive při sestavování kapitoly 6, nebude dostupný, je dobré stáhnou všechny balíčky skriptem onlyunpackscript~\odkazNaKapitolu{sec:only}.\\
 
-Nyní začne sestavení toolchainu, proto spustíme script makeall
+Nyní začne sestavení toolchainu, proto spustíme skript makeall
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 sh ./scripts/makeall
 \end{Verbatim} 
     \end{codeframe}
 
-script makeall ověří správnost nastavení a~vytvoří toolchain, který je potřebný pro další sestavení systému. Jakmile je toolchain sestaven je třeba změnit práva pro adresář /mnt/LFS/tools
+skript makeall ověří správnost nastavení a~vytvoří toolchain, který je potřebný pro další sestavení systému. Jakmile je toolchain sestaven je třeba změnit práva pro adresář /mnt/LFS/tools
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 chown -R root:root $LFS/tools
 \end{Verbatim} 
     \end{codeframe}
 
-nyní je třeba spustit script start6, který vytvoří potřebné složky a~virtuální souborové systému. Skript také provede přihlášení do systému prostřednictvím prostředí chroot.
+nyní je třeba spustit skript start6, který vytvoří potřebné složky a~virtuální souborové systému. Skript také provede přihlášení do systému prostřednictvím prostředí chroot.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # sh ./scripts/chap6/start6
@@ -1903,7 +1903,7 @@ make: *** [check] Error 2
     \end{codeframe}
 Po balíčku glibc proběhne oddělení systému od toolchainu, toto je \b{extrémně důležitá část} skript je několikrát přerušen, je vždy vypsána hodnota v~systému a~hodnota, která by měla být vypsána, hodnoty se liší v~závislosti na tom jestli se jedná o~systém 64bitový nebo 32bitový. \b{Ve~výpisech by se neměla objevit žádná chyba!}\\
 
-Ihned po balíčku glibc je spuštěn script chap6/locales, který kromě testu jazyků nastavuje i~časovou zónu. Je třeba otevřít nové terminálové okno, přihlásit se do systému pomocí skriptu:
+Ihned po balíčku glibc je spuštěn skript chap6/locales, který kromě testu jazyků nastavuje i~časovou zónu. Je třeba otevřít nové terminálové okno, přihlásit se do systému pomocí skriptu:
     \begin{codeframe} 
 \begin{Verbatim}{frame=single}
 ./scripts/chrootIN/chrootChap6
@@ -1957,15 +1957,15 @@ Skript makeall\_rest provede uživatele kapitolami 7~a~8. Několikrát skript vy
  \item po skriptu s~nastavení sítě je třeba nastavit síť. V~souboru /etc/sysconfig/network-devices/ifconfig.<network interface>/ipv4. A~DNS servery v~souboru /etc/resolv.conf.
  \item skript dále vytvoří soubor /etc/fstab kde je třeba nastavit adresu root disku v~/dev/, jeho filesystém a~adresu swapu v~/dev/.
  \item dalším krokem je nastavení kernelu a~jeho kompilace. Pokud jde pouze o~to vyzkoušet LFS (pozn. musí být použit filesystém ext3, ext4 je třeba zaškrtnout v~sekci File systems), je možné použít defaultní config. Tedy v~menu, které vyskočí zvolit <exit>. Jinak je nastavení kernelu komplexní a~složitou záležitostí, které je třeba věnovat čas, uvážit naše potřeby a~HW konfiguraci zařízení na němž systém poběží.
- \item Posledním krokem ke kterému scripty navedou je pak nastavení programu grub. Uživatel musí zadat /dev adresu disku, na kterém se nachází LFS např. sdb sda. GRUB poté vygeneruje soubor /boot/grub/grub.cfg potřebný pro zavedení jádra systému.
+ \item Posledním krokem ke kterému skripty navedou je pak nastavení programu grub. Uživatel musí zadat /dev adresu disku, na kterém se nachází LFS např. sdb sda. GRUB poté vygeneruje soubor /boot/grub/grub.cfg potřebný pro zavedení jádra systému.
 \end{itemize}
 
 Nyní je již třeba postupovat dle knihy, otestovat nastavení programu GRUB a~aktualizovat Master Boot Record. Tyto kroky však nejsou třeba pokud se chystá uživatel provozovat LFS vedle jiného systému, v~tom případě stačí pouze přidat položku LFS do souboru nastavení programu GRUB ve stávajícím systému.
 
 \subsubsection{onlyunpackscript}\label{sec:only}
-Tento script slouží pouze pro stažení, kontrolu a~rozbalení balíčků. Před jeho použitím je třeba mít vytvořený a~připojený diskový oddíl jak je popsáno \odkazNaKapitolu{sec:sestaveni}.\\
+Tento skript slouží pouze pro stažení, kontrolu a~rozbalení balíčků. Před jeho použitím je třeba mít vytvořený a~připojený diskový oddíl jak je popsáno \odkazNaKapitolu{sec:sestaveni}.\\
 
-Je třeba stáhnout scripty a~překopírovat na místo
+Je třeba stáhnout skripty a~překopírovat na místo
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 cd ~/
@@ -1988,7 +1988,7 @@ export UNPACK=1
  \item[WAIT] určuje zda se má při každém kroku čekat až uživatel potvrdí další krok
  \item[UNPACK] určuje zda se má každý balíček rozbalit
 \end{description}
-Kombinací proměnných je tak možné dosáhnout pouze stažení všech balíčků bez čekání nebo stažení balíčků a~jejich rozbalení s~čekáním na další krok. Pokud chceme sestavovat LFS manuálně podle knihy, je dobré nastavit proměnné tak jak je uvedeno v~poli s~kódem. Balíček se stáhne rozbalí a~script čeká až uživatel balíček sestaví a~stiskne klávesu ENTER. Pokud při sestavení nastane chyba a~je balíček třeba znovu sestavit, stačí zadat libovolný vstup a~stisknout ENTER, balíček se znovu rozbalí. \b{!!!POZOR. Pokud se balíček sestavuje odděleným buildem, tedy ve složce balíček-build, je třeba tuto složku smazat manuálně!!!}
+Kombinací proměnných je tak možné dosáhnout pouze stažení všech balíčků bez čekání nebo stažení balíčků a~jejich rozbalení s~čekáním na další krok. Pokud chceme sestavovat LFS manuálně podle knihy, je dobré nastavit proměnné tak jak je uvedeno v~poli s~kódem. Balíček se stáhne rozbalí a~skript čeká až uživatel balíček sestaví a~stiskne klávesu ENTER. Pokud při sestavení nastane chyba a~je balíček třeba znovu sestavit, stačí zadat libovolný vstup a~stisknout ENTER, balíček se znovu rozbalí. \b{!!!POZOR. Pokud se balíček sestavuje odděleným buildem, tedy ve složce balíček-build, je třeba tuto složku smazat manuálně!!!}
 
 \subsubsection{Pomoc při selháních}\label{sec:help}
 Protože pravděpodobnost sestavení LFS bez jakéhokoliv problému není nikterak velká, existuje několik míst kde hledat při problému pomoc.
@@ -2011,10 +2011,10 @@ Tak jako u všech programů existuje mnoho možností vylepšení i~u~vytvořen�
 
 Možnosti vylepšení:
 \begin{itemize}
- \item Částečná změna skriptů z~jazyka BASH na scripty programu GNU/make (tzv. Makafiles). Řídící script makeall a onlyunpackscript by se po změně na makefile staly lépe ovladatelnými, především při přerušení a~obnově práce.
- \item Lepší přechody mezi login do chroot, tak aby nebylo potřeba přerušit script, toto by šlo vyřešit přes program \b{sudo}, ale ten často v~systémech pro build není dostupný.
+ \item Částečná změna skriptů z~jazyka BASH na scripty programu GNU/make (tzv. Makafiles). Řídící skript makeall a onlyunpackscript by se po změně na makefile staly lépe ovladatelnými, především při přerušení a~obnově práce.
+ \item Lepší přechody mezi login do chroot, tak aby nebylo potřeba přerušit skript, toto by šlo vyřešit přes program \b{sudo}, ale ten často v~systémech pro build není dostupný.
  \item přidání wget do toolchainu, tento krok by zajistil, že~by nebylo třeba stahovat balíčky před začátkem sestavení, ale~wget má další závislosti, které by bylo třeba vyřešit a~pravděpodobně by bylo třeba jinak zkompilovat překladač v toolchainu.
- \item lepší diagnostika chyb. Scriptům by prospěl nástroj, který~by uživateli pomohl lokalizovat problém. Avšak takový nástroj by musel být velmi komplexní a~jeho vytvoření by bylo docela nejisté.
+ \item lepší diagnostika chyb. Skriptům by prospěl nástroj, který~by uživateli pomohl lokalizovat problém. Avšak takový nástroj by musel být velmi komplexní a~jeho vytvoření by bylo docela nejisté.
 \end{itemize}
 
 
