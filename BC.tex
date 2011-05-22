@@ -1562,27 +1562,31 @@ V~git repozitáři LFS---by-bash-scripts je k~nalezení několik souborů a~slo�
 
 \subsubsection{Adesářová struktura}
 \begin{description}
- \item[chap5] Obsahuje scripty pro sestavení toolchainu dle kapitoly 5 v~oficiálním návodu.
- \item[chap6] Obsahuje scripty pro sestavení systémových programů v prostředí chroot dle kapitoly 6 v~oficiálním návodu.
- \item[chap7] Obsahuje scripty pro nastavení bootscripts.
- \item[chap8] Obsahuje scripty pro poslední fázi sestavení.
+ \item[chap5] Obsahuje skripty pro sestavení toolchainu dle kapitoly 5 v~oficiálním návodu.
+ \item[chap6] Obsahuje skripty pro sestavení systémových programů v prostředí chroot dle kapitoly 6 v~oficiálním návodu.
+ \item[chap7] Obsahuje skripty pro nastavení bootscripts.
+ \item[chap8] Obsahuje skripty pro poslední fázi sestavení.
+ \item[ChrootIN] Obsahuje skripty pro chroot do systému v~různých fázích sestavení
  \item[FAIL\_Logs] Složka, která slouží pouze pro ukládání chybových záznamů pokud některá část kompilace selže.
  \item[include] Adresář s~funkcemi, jazykovou složkou a~verzemi programů
  \item[lfsuser] Pro usnadnění práce tento adresář obsahuje soubory potřebné pro uživatelský profil LFS
  \item[chroot\_makeall] hlavní spouštěcí script pro sestavení kapitoly 6 v~chroot.
- \item[chroot\_prepare] script, který se stará o~kontrolu potřebných složek a~symbolických odkazů v~prostředí chroot.
  \item[linker.1.test/linker.1.test64] dva soubory, které slouží pro test funkčnosti při oddělení toolchainu.
  \item[makeall] hlavní spouštěcí script, který spustí vše potřebné až do konce kapitoly 5.
+ \item[makeall\_rest] hlavní spouštěcí script pro sestavení kapitoly 7~a~8.
  \item[onlyunpackscript] script pro stažení a~rozbalení balíčků.
- \item[prepare] script, který se stará o~kontrolu existence potřebných složek a~symbolických odkazů.
  \item[README.markdown] README soubor ve~značkovacím jazyce markdown
  \item[sources] Pozůstatek složky pro stahování zdrojových kódů před instalací. Už řešeno přímo před kompilací jednotlivě
  \item[version-check.sh] Oficiální script LFS pro test potřebných nástrojů v~systému
  \end{description}
+
 Velmi důležitou je pak složka include, která obsahuje verze programů a~funkce využívané při kompilaci
+
 \b{LFS---by-bash-scripts/include}
 \begin{description}
+ \item[chroot\_prepare] script, který se stará o~kontrolu potřebných složek a~symbolických odkazů v~prostředí chroot.
  \item[functions] script se všemi funkcemi
+ \item[prepare] script, který se stará o~kontrolu existence potřebných složek a~symbolických odkazů.
  \item[ver] script s~poly, které obsahují informace o balíčcích
  \item[l10n-EN] už téměř nepoužívaný script, který měl sloužit pro lokalizaci do jiných jazyků, byl zavrhnut, protože znamenal velkém množství proměnných
  \end{description}
@@ -1600,7 +1604,8 @@ LFS samotná obsahuje několik proměnných, které jsou důležité pro sestave
  \item[BUILD\_DIR=\$ROOT/build] cesta do adresáře kde probíhá kompilace
  \item[TOOLS\_DIR=\$ROOT/tools] cesta do adresáře kde je instalován toolchain
  \item[SCRIPTS\_DIR=\$ROOT/scripts] cesta do adresáře kde jsou umístěny scripty
- \end{description}
+ \item[on64=0] pokud je systém sestavován na stroji s~64bitovým procesorem, ale na 32bitovém sytému je třeba nastavit na 1
+\end{description}
 
 Každý script ke kompilaci programu navíc obsahuje interní proměnné, do kterých se ukládají názvy programů jejich adresy ke stažení a~jiné informace z~polí, uložených v~souboru includes/ver. Tyto proměnné se pak většinou předávají jako parametry funkcím definovaným v souboru includes/funtions.\\
 
@@ -1794,6 +1799,8 @@ Co by měl uživatel udělat před sestavení LFS pomocí automatických skript�
  \item být připraven řešit spoustu problémů. Při sestavování LFS může nastat v~kterékoliv části problém, který je třeba vyřešit k~dalšímu pokračování. Kam se obrátit z~dotazem je popsáno~\odkazNaKapitolu{sec:help}
 \end{itemize}
 
+Uživatel by měl mít také dostatečné znalosti jazyka bash aby~mohl V~případě potřeby upravit scripty.
+
 \subsubsection{Sestavení}\label{sec:sestaveni}
 Sestavení je díky scriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskový oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musejí být provedeny pod účtem uživatele root)
     \begin{codeframe} 
@@ -1950,10 +1957,10 @@ Skript makeall\_rest provede uživatele kapitolami 7~a~8. Několikrát skript vy
  \item po skriptu s~nastavení sítě je třeba nastavit síť. V~souboru /etc/sysconfig/network-devices/ifconfig.<network interface>/ipv4. A~DNS servery v~souboru /etc/resolv.conf.
  \item skript dále vytvoří soubor /etc/fstab kde je třeba nastavit adresu root disku v~/dev/, jeho filesystém a~adresu swapu v~/dev/.
  \item dalším krokem je nastavení kernelu a~jeho kompilace. Pokud jde pouze o~to vyzkoušet LFS (pozn. musí být použit filesystém ext3, ext4 je třeba zaškrtnout v~sekci File systems), je možné použít defaultní config. Tedy v~menu, které vyskočí zvolit <exit>. Jinak je nastavení kernelu komplexní a~složitou záležitostí, které je třeba věnovat čas, uvážit naše potřeby a~HW konfiguraci zařízení na němž systém poběží.
- \item Posledním krokem ke kterému scripty navedou je pak nastavení programu grub. Je třeba nastavit /boot/grub/grub.cfg dle potřeb systému a~uživatele.
+ \item Posledním krokem ke kterému scripty navedou je pak nastavení programu grub. Uživatel musí zadat /dev adresu disku, na kterém se nachází LFS např. sdb sda. GRUB poté vygeneruje soubor /boot/grub/grub.cfg potřebný pro zavedení jádra systému.
 \end{itemize}
 
-Nyní je již třeba postupovat dle knihy, otestovat nastavení programu GRUB a~aktualizovat Master Boot Record. Tyto kroky však nejsou třeba pokud se chystá uživatel provozovat LFS vedle jiného systému, v~tom případě není třeba nastavovat ani soubor /boot/grub/grub.cfg a~stačí pouze přidat položku LFS do souboru nastavení programu GRUB ve stávajícím systému.
+Nyní je již třeba postupovat dle knihy, otestovat nastavení programu GRUB a~aktualizovat Master Boot Record. Tyto kroky však nejsou třeba pokud se chystá uživatel provozovat LFS vedle jiného systému, v~tom případě stačí pouze přidat položku LFS do souboru nastavení programu GRUB ve stávajícím systému.
 
 \subsubsection{onlyunpackscript}\label{sec:only}
 Tento script slouží pouze pro stažení, kontrolu a~rozbalení balíčků. Před jeho použitím je třeba mít vytvořený a~připojený diskový oddíl jak je popsáno \odkazNaKapitolu{sec:sestaveni}.\\
