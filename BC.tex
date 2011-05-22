@@ -1092,9 +1092,6 @@ Kontrola přístupu uvnitř systému je jedno z~nejdůležitějších zabezpeče
 
 \subsubsection{DAC vs. MAC vs. RBAC} \label{sec:DAC}
 
-%\subsubsection{DAC vs. MAC vs. RBAC}
-%TODO dopiš informace o RBAC
-
 Bezpečnostní model využívaný většinou mainstreamových operačních systému je založen na \b{Discretionary Access Control (DAC)}, který je založen na bezpečnosti vlastnictvím. Pokud uživatel vlastní soubor, může nastavovat práva pro čtení, zápis a~spouštění (r+w+x), pro tento soubor. V~tomto modelu uživatel kontroluje data dle vlastního uvážení. Vlastník systému\footnote{Vlastník systému (anglicky system owner nebo také administrátor) je určen při instalaci OS, oproti účtu uživatele root nemá právo měnit např. práva systémových souborů, ale má právo měnit přístupová práva široké škály uživatelů a~uživatelé nemají možnost tyto ustanovení měnit.\cite{SystemOwner}} nemá totální kontrolu nad systémem, tu má uživatel.~\cite{Linux_com_MACvsDAC}
 
 %The desktop interface implements the concept of a ``system owner''. When you install the operating system, a user is designated as the owner. Any user name (except those already reserved by the system, such as uucp and bin) can be assigned as the system owner. The system owner is given the necessary permissions to do the day-to-day system administration tasks available through the SCOadmin interface. These special authorizations, and the ability to assign additional system owners, are described in ``Assigning authorizations''.
@@ -1542,6 +1539,15 @@ Linux-Live je sada scriptů, která není závislá na distribuci, ale lze ji po
 \b{Linux-live} je nejčastější způsobem vytvoření LiveCD. Spousta distribucí má, ale vlastní nástroje některé jako: The Ubuntu Customisation Kit (UCK) nebo Reconstructor, které již byly popsány \odkazNaKapitolu{sec:UCK}. Pro fedoru např. exituje nástroj \b{livecd-creator} pro tvorbu Fedora LiveCD a~podrobný návod je dostupný na stránkách fedory~\cite{FedoraLiveCDproject}. Pro debian existuje \textbf{Debian Live Project}, který poskytuje webové rozhraní podobné nástroji Instalinux \odkazNaKapitolu{sec:Instalinux} a~je zdarma dostupný na internetu.~\cite{DebianLiveProject}
 Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. Jsou hned tři a~všechny jsou popsány na wiki stránkách distribuce Archlinux~\cite{ArchWiki-BuildLiveCD}. První je oficiální sada nástrojů, používaná k~tvorbě oficiálních vydání disků nazvaná \b{Archiso}. Druhým nástrojem je \b{larch}, který nepotřebuje k~sestavení jako hostitelský systém Archlinux, ale funguje v~jakémkoliv Linuxu, protože si potřebné aplikace stáhne z~repozitářů archlinuxu. Posledním nástrojem je \textbf{poison-livecd-creator} jedná se o~opravdu jednoduchý Makefile a~několik jednoduchými kroky lze docílit vytvoření LiveCD na bázi Archlinuxu.
 
+%\section{\upc{LaTeX}}
+
+
+
+%\section{\upc{GIT}}
+
+
+
+
 %********************************* Analytická část ************************************
 %\part{Analytická část}
 %\sectionV{Nadpis}
@@ -1871,13 +1877,83 @@ nyní je třeba spustit script start6, který vytvoří potřebné složky a~vir
 \end{Verbatim} 
     \end{codeframe}
 
-Nyní je dobré nastavit opět potřebné proměnné v~souboru \/scripts\/chroot\_prepare a~spustit script chroot\_makeall
+Nyní je dobré nastavit opět potřebné proměnné v~souboru \/scripts\/chroot\_prepare a~spustit skript chroot\_makeall
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 ./scripts/chroot_makeall
 \end{Verbatim} 
     \end{codeframe}
-script je přerušen po opětovné přihlášení a~je potřeba ho spustit znovu.
+skript je přerušen po opětovné přihlášení a~je potřeba ho spustit znovu.\\
+Při kompilaci balíčku \b{glibc} je skript pozastaven aby bylo možné zkontrolovat možné chyby při kompilaci, \b{tato část je velmi důležitá pro funkčnost systému.}\\
+Podobné chybové hlášení je v~pořádku. (chybový log je /build/glibc-2.13/glibc-check-log) Pokud se objeví více chyb je třeba je zkonzultovat \odkazNaKapitolu{sec:help}. Ale i~více chyb neznamená, že bude systém nefunkční, chyby se často odvíjejí od HW.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+make[2]: [/build/glibc-BUILD/posix/annexc.out] Error 1 (ignored)
+make[2]: *** [/build/glibc-BUILD/rt/tst-cpuclock2.out] Error 1
+make[1]: *** [rt/tests] Error 2
+make: *** [check] Error 2
+\end{Verbatim} 
+    \end{codeframe}
+Po balíčku glibc proběhne oddělení systému od toolchainu, toto je \b{extrémně důležitá část} skript je několikrát přerušen, je vždy vypsána hodnota v~systému a~hodnota, která by měla být vypsána, hodnoty se liší v~závislosti na tom jestli se jedná o~systém 64bitový nebo 32bitový. \b{Ve~výpisech by se neměla objevit žádná chyba!}\\
+
+Ihned po balíčku glibc je spuštěn script chap6/locales, který kromě testu jazyků nastavuje i~časovou zónu. Je třeba otevřít nové terminálové okno, přihlásit se do systému pomocí skriptu:
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+./scripts/chrootIN/chrootChap6
+\end{Verbatim} 
+    \end{codeframe}
+a~v~novém terminálovém okně spustit \b{tzselect}. Tzselect se zeptá na dvě otázky a~vygeneruje časovou zónu, např. Europe/Prague, kterou je třeba zadat do předchozího terminálu a~potvrdit klávesou enter. 
+
+Po testu u~balíčku \b{binutils} by měl být zkontrolován jeho log, skript k~tomu uživatele sám vyzve. Stejná situace nastane později u balíku \b{mpfr}\\
+
+Další přerušení kvůli důležitému testu nastane při balíčku \b{qmp}, skript je opět zastaven a~na obrazovku jsou vypsány výsledky testů. Všech 162 testů by mělo být úspěšných, pokud ne je třeba tyto chyby zkonzultovat \odkazNaKapitolu{sec:help}.
+
+Balíček \b{gcc} sebou nese velké množství testů, první test trvá opravdu dlouhou dobu a~jeho výsledkem je množství hlášení. Tyto hlášení je také možné konzultovat \odkazNaKapitolu{sec:help}, ale~ani vývojáři LFS většinou neví co který test přesně dělá a~proč selhal. Většinou je možné tyto selhání ignorovat a~pokračovat dále. O to důležitější je série testů po instalaci balíčku. \b{Tyto testy kontrolují správnost právě nainstalovaného překladače, takže je naprosto nezbytné je zkontrolovat!!!}. Probíhají úplně stejně jako testy u~oddělení systému od toolchainu.
+
+Po nainstalování balíčku \b{bash} je skript přerušen znovu, protože je uživatel přihlášen s~právě nainstalovaným interpretem. Proto je třeba znovu spustit skript /scripts/chroot\_makeall.\\
+
+Poslední zastavení v~kapitole 6 je pak u~balíčku \b{shadow}, při přerušení skriptu je třeba otevřít nový terminál, přihlásit se prostřednictvím skriptu:
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+./scripts/chrootIN/chrootChap6
+\end{Verbatim} 
+    \end{codeframe}
+a~v~novém terminálovém okně nastavit heslo uživatele root příkazem:
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+passwd root
+\end{Verbatim} 
+    \end{codeframe}
+
+Po sestavení několik dalších balíčků je skript chroot\_makeall ukončen a~je~možnost, stejně jako na~konci kapitoly 5 zmenšit velikost systému smazání debugovacích symbolů. K tomuto je třeba se přihlásit do systému a~spustit skript pro smazání debugovacích symbolů.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+./scripts/chrootIN/chrootForStrip
+./scripts/chap6/StripDebug
+\end{Verbatim} 
+    \end{codeframe}
+
+!!!NÁSLEDUJÍCÍ FÁZE OBSAHUJE NĚKTERÁ DŮLEŽITÁ NASTAVENÍ A~JE TŘEBA ABY JIM UŽIVATEL DOBŘE ROZUMĚL, PROTO JE DOPORUČENO NEPOUŽÍT SKRIPTY, ALE POKRAČOVAT DÁLE PODLE KNIHY!!!
+
+Nyní je se naposled přihlásit do systému a~spustit skript na sestavení posledních dvou kapitol.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+./scripts/chrootIN/chrootAfterChap6
+./scripts/makeall_rest
+\end{Verbatim} 
+    \end{codeframe}
+Skript makeall\_rest provede uživatele kapitolami 7~a~8. Několikrát skript vyzve uživatele k~zadání potřebných údajů.
+\begin{itemize}
+ \item natavení locale, je třeba aby si uživatel vybral ze seznamu jazyk a~kódování, např. en\_US.utf8.
+ \item nastavení hostname, zde je třeba zvolit název pro systém (počítač).
+ \item nastavení network interface, zde je třeba aby uživatel vybral z~výpisu identifikátor své síťové karty a~vepsal jej do terminálu.
+ \item po skriptu s~nastavení sítě je třeba nastavit síť. V~souboru /etc/sysconfig/network-devices/ifconfig.<network interface>/ipv4. A~DNS servery v~souboru /etc/resolv.conf.
+ \item skript dále vytvoří soubor /etc/fstab kde je třeba nastavit adresu root disku v~/dev/, jeho filesystém a~adresu swapu v~/dev/.
+ \item dalším krokem je nastavení kernelu a~jeho kompilace. Pokud jde pouze o~to vyzkoušet LFS (pozn. musí být použit filesystém ext3, ext4 je třeba zaškrtnout v~sekci File systems), je možné použít defaultní config. Tedy v~menu, které vyskočí zvolit <exit>. Jinak je nastavení kernelu komplexní a~složitou záležitostí, které je třeba věnovat čas, uvážit naše potřeby a~HW konfiguraci zařízení na němž systém poběží.
+ \item Posledním krokem ke kterému scripty navedou je pak nastavení programu grub. Je třeba nastavit /boot/grub/grub.cfg dle potřeb systému a~uživatele.
+\end{itemize}
+
+Nyní je již třeba postupovat dle knihy, otestovat nastavení programu GRUB a~aktualizovat Master Boot Record. Tyto kroky však nejsou třeba pokud se chystá uživatel provozovat LFS vedle jiného systému, v~tom případě není třeba nastavovat ani soubor /boot/grub/grub.cfg a~stačí pouze přidat položku LFS do souboru nastavení programu GRUB ve stávajícím systému.
 
 \subsubsection{onlyunpackscript}\label{sec:only}
 Tento script slouží pouze pro stažení, kontrolu a~rozbalení balíčků. Před jeho použitím je třeba mít vytvořený a~připojený diskový oddíl jak je popsáno \odkazNaKapitolu{sec:sestaveni}.\\
