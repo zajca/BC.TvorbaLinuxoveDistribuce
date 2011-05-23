@@ -1082,6 +1082,69 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 \end{figure}
 Takto vytvořená distribuce může mít i~8MB!
 
+\section{\upc{LiveCD}}
+Ač by se mohl zdát, že liveCD je nějaká velmi složitá věc k~vytvoření není to tak úplně pravda. Nejjednodušší forma LiveCD je pokud strčíme CD do mechaniky, ten nabootuje a~spustí se příkazová řádka ve které je možné pracovat. Takto fungovali a~často ještě fungují instalační CD různých distribucí. Dnes se velmi často používá několik druhů instalačních/live CD
+\begin{itemize}
+ \item Instalační CD s~příkazovou řádkou a~instalací pomocí textového nástroje (Archlinux,…)
+ \item Instalační CD s~grafickým instalátorem (Debian,…)
+ \item LiveCD ve kterém lze z~grafického Live prostředí spustit instalátor (ve většině případů lze spustit grafický isntalátor i~bez grafického live prostředí jako v~předchozí položce) (Ubuntu,…)
+ \item Čistě LiveCD, takový disk slouží pouze pro vyzkoušení většinou grafického prostředí nebo k~opravám stávajícího systému (neobsahuje instalátor) (GNOME Live Media, Gparted,…)
+ \item LiveCD určené pro běžnou práci. Takové LiveCD umí např. nahrání systému do RAM, pak už není třeba číst z~CD nebo také pokud se jedná o~LiveUSB jdou uložit změny v~systému na disk a~jsou načteny při dalším spuštění. (Slax,Chakra,…)
+\end{itemize}
+
+\subsection{Výhody/nevýhody LiveCD}
+Vyhodou LiveCD je především možnost \textbf{vyzkoušet si celý operační systém bez nutnosti instalace}. Kompromisem LiveCD je pak \textbf{rychlost}, která se odvíjí od rychlosti čtení CD/DVD mechaniky. Rychlost LiveCD je možné zvýšit použitím jiného média než CD nebo DVD, např. použitím FlashDisku. Rychlost běhu lze zvýšit také \textbf{nahráním celého systému do paměti RAM}, této proces má však velkou nevýhodu v~délce trvání, protože celé LiveCD musí být přečteno a~zapsáno do paměti RAM. Další nevýhodou je pak, až~na výjimky, nemožnost uložení změn v~systému zpět na přenosné médium.\\
+
+Samozřejmě LiveCD není většinou používáno k~běžně práci, takže jeho výhoda ve vyzkoušení neznámého operačního systému nebo grafického prostředí bez nutnosti mnohdy zdlouhavé instalace, převyšuje nad nevýhodami.
+\subsection{Možnosti tvorby LiveCD}
+Vytvořit LiveCD lze několika způsoby, nejjednodušší je způsob úpravy stávajícího LiveCD jak bylo i~popsáno \odkazNaKapitolu{sec:tvorbaDistribuce}. 
+
+\subsubsection{Obecný postup tvorby LiveCD}
+Obecný postup tvorby LiveCD se dá shrnout do několika kroků.
+\begin{enumerate}
+ \item Vytvoření adresářové struktury LiveCD
+ \item Připojení Virtual File System (VFS), ten zahrnuje složky: /sys /proc /dev /dev/shm /dev/pts /var/run
+ \item Nainstalování základních balíčků
+ \item Nainstalování modulů squashfs a~aufs
+ \item Nainstalování kernelu a~vytvoření initramfs pomocí mkinitcpio s~minimálně aktivovanými moduly aufs, squashfs a loop, které jsou potřebně pro běh LiveCD.
+ \item Nainstalování a~nastavení bootloaderu (GRUB)
+ \item Doinstalování dalších balíčků
+ \item Komprimace a~vytvoření squashfs souboru pomocí programu mksquashfs
+ \item Vytvoření iso obrazu pomocí programu genisoimage, který vytvoří i~zaváděcí tabulku disku.
+\end{enumerate}
+
+\subsubsection{NimbleX}
+Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního derivátu NimbleX. Umožňuje vytvořit vlastní LiveCD obraz několik jednoduchými kroky, na výběr je stáhnutí minimální obrazu nebo sestavení vlastního obrazu. U vlastního obrazu si uživatel vybere aplikace přehledně rozdělené do kategorií, wallpaper, nastavení zvuku, nastavení uživatelů a jazyk systému. Pak už jen počká na vygenerování obrazu, který je následujících 12hodin ke stažení.
+\begin{figure}[h]
+\begin{center}$
+\begin{array}{cc}
+\includegraphics[width=2in]{./img/screens/nible1.png} &
+\includegraphics[width=2in]{./img/screens/nible2.png}
+\end{array}$
+\end{center}
+\caption{Webové rozhraní s nastavením NimbleX, v levo výběr míry nastavení, v pravo nastavení programů v sekci office}
+\end{figure}
+\begin{figure}[h]
+\begin{center}$
+\begin{array}{cc}
+\includegraphics[width=2in]{./img/screens/nible3.png} &
+\includegraphics[width=2in]{./img/screens/nible4.png}
+\end{array}$
+\end{center}
+\caption{Webové rozhraní s nastavením NimbleX, v levo výběr wallpaperu, v pravo nastavení zvuku}
+\end{figure}
+
+\subsubsection{Linux-Live}
+Linux-Live je sada skriptů, která není závislá na distribuci, ale lze ji použít na jakémkoliv linuxu. Prakticky stačí stáhnou skripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Skripty už pak samy vytvoří Live systém, který je možné nabootovat z CD nebo USB.
+
+%If you want a truly distro-agnostic way of customising your favourite Linux distribution, you need the Linux-Live set of scripts. The scripts work on any installed Linux distro and can create a Live system that you can boot from optical media or USB drives.
+%The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
+
+\subsubsection{Další možnosti tvorby LiveCD}
+\b{Linux-live} je nejčastější způsobem vytvoření LiveCD. Spousta distribucí má, ale vlastní nástroje některé jako: The Ubuntu Customisation Kit (UCK) nebo Reconstructor, které již byly popsány \odkazNaKapitolu{sec:UCK}. Pro fedoru např. exituje nástroj \b{livecd-creator} pro tvorbu Fedora LiveCD a~podrobný návod je dostupný na stránkách fedory~\cite{FedoraLiveCDproject}. Pro debian existuje \textbf{Debian Live Project}, který poskytuje webové rozhraní podobné nástroji Instalinux \odkazNaKapitolu{sec:Instalinux} a~je zdarma dostupný na internetu.~\cite{DebianLiveProject}
+Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. Jsou hned tři a~všechny jsou popsány na wiki stránkách distribuce Archlinux~\cite{ArchWiki-BuildLiveCD}. První je oficiální sada nástrojů, používaná k~tvorbě oficiálních vydání disků nazvaná \b{Archiso}. Druhým nástrojem je \b{larch}, který nepotřebuje k~sestavení jako hostitelský systém Archlinux, ale funguje v~jakémkoliv Linuxu, protože si potřebné aplikace stáhne z~repozitářů archlinuxu. Posledním nástrojem je \textbf{poison-livecd-creator} jedná se o~opravdu jednoduchý Makefile a~několik jednoduchými kroky lze docílit vytvoření LiveCD na bázi Arch
+
+
 \section{\upc{Zabezpečení Linuxového systému}}
 
 Zabezpečení OS je velice rozsáhlým a~komplexním odvětvím, které se navíc velmi rychle vyvíjí a~rozšiřuje. Jeho plné popsání by vydalo na několik desítek bakalářských prací, proto jen základní informace o~vnitřním zabezpečení systému, nástrojích jež toto zabezpečení rozšiřují a~také o~zabezpečení proti vnějšímu útoku a~bezpečném přenosu informací.
@@ -1477,67 +1540,7 @@ Repozitáře s~falešným nebo upraveným SW. Další z reálných hrozeb v~Linu
 
 Existuje ještě mnoho hrozeb, ale většinu neovlivňuje Linux samotný, ale různé aplikace třetích stran a~chyby v~nich obsažené.
 
-\section{\upc{LiveCD}}
-Ač by se mohl zdát, že liveCD je nějaká velmi složitá věc k~vytvoření není to tak úplně pravda. Nejjednodušší forma LiveCD je pokud strčíme CD do mechaniky, ten nabootuje a~spustí se příkazová řádka ve které je možné pracovat. Takto fungovali a~často ještě fungují instalační CD různých distribucí. Dnes se velmi často používá několik druhů instalačních/live CD
-\begin{itemize}
- \item Instalační CD s~příkazovou řádkou a~instalací pomocí textového nástroje (Archlinux,…)
- \item Instalační CD s~grafickým instalátorem (Debian,…)
- \item LiveCD ve kterém lze z~grafického Live prostředí spustit instalátor (ve většině případů lze spustit grafický isntalátor i~bez grafického live prostředí jako v~předchozí položce) (Ubuntu,…)
- \item Čistě LiveCD, takový disk slouží pouze pro vyzkoušení většinou grafického prostředí nebo k~opravám stávajícího systému (neobsahuje instalátor) (GNOME Live Media, Gparted,…)
- \item LiveCD určené pro běžnou práci. Takové LiveCD umí např. nahrání systému do RAM, pak už není třeba číst z~CD nebo také pokud se jedná o~LiveUSB jdou uložit změny v~systému na disk a~jsou načteny při dalším spuštění. (Slax,Chakra,…)
-\end{itemize}
-
-\subsection{Výhody/nevýhody LiveCD}
-Vyhodou LiveCD je především možnost \textbf{vyzkoušet si celý operační systém bez nutnosti instalace}. Kompromisem LiveCD je pak \textbf{rychlost}, která se odvíjí od rychlosti čtení CD/DVD mechaniky. Rychlost LiveCD je možné zvýšit použitím jiného média než CD nebo DVD, např. použitím FlashDisku. Rychlost běhu lze zvýšit také \textbf{nahráním celého systému do paměti RAM}, této proces má však velkou nevýhodu v~délce trvání, protože celé LiveCD musí být přečteno a~zapsáno do paměti RAM. Další nevýhodou je pak, až~na výjimky, nemožnost uložení změn v~systému zpět na přenosné médium.\\
-
-Samozřejmě LiveCD není většinou používáno k~běžně práci, takže jeho výhoda ve vyzkoušení neznámého operačního systému nebo grafického prostředí bez nutnosti mnohdy zdlouhavé instalace, převyšuje nad nevýhodami.
-\subsection{Možnosti tvorby LiveCD}
-Vytvořit LiveCD lze několika způsoby, nejjednodušší je způsob úpravy stávajícího LiveCD jak bylo i~popsáno \odkazNaKapitolu{sec:tvorbaDistribuce}. 
-
-\subsubsection{Obecný postup tvorby LiveCD}
-Obecný postup tvorby LiveCD se dá shrnout do několika kroků.
-\begin{enumerate}
- \item Vytvoření adresářové struktury LiveCD
- \item Připojení Virtual File System (VFS), ten zahrnuje složky: /sys /proc /dev /dev/shm /dev/pts /var/run
- \item Nainstalování základních balíčků
- \item Nainstalování modulů squashfs a~aufs
- \item Nainstalování kernelu a~vytvoření initramfs pomocí mkinitcpio s~minimálně aktivovanými moduly aufs, squashfs a loop, které jsou potřebně pro běh LiveCD.
- \item Nainstalování a~nastavení bootloaderu (GRUB)
- \item Doinstalování dalších balíčků
- \item Komprimace a~vytvoření squashfs souboru pomocí programu mksquashfs
- \item Vytvoření iso obrazu pomocí programu genisoimage, který vytvoří i~zaváděcí tabulku disku.
-\end{enumerate}
-
-\subsubsection{NimbleX}
-Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního derivátu NimbleX. Umožňuje vytvořit vlastní LiveCD obraz několik jednoduchými kroky, na výběr je stáhnutí minimální obrazu nebo sestavení vlastního obrazu. U vlastního obrazu si uživatel vybere aplikace přehledně rozdělené do kategorií, wallpaper, nastavení zvuku, nastavení uživatelů a jazyk systému. Pak už jen počká na vygenerování obrazu, který je následujících 12hodin ke stažení.
-\begin{figure}[h]
-\begin{center}$
-\begin{array}{cc}
-\includegraphics[width=2in]{./img/screens/nible1.png} &
-\includegraphics[width=2in]{./img/screens/nible2.png}
-\end{array}$
-\end{center}
-\caption{Webové rozhraní s nastavením NimbleX, v levo výběr míry nastavení, v pravo nastavení programů v sekci office}
-\end{figure}
-\begin{figure}[h]
-\begin{center}$
-\begin{array}{cc}
-\includegraphics[width=2in]{./img/screens/nible3.png} &
-\includegraphics[width=2in]{./img/screens/nible4.png}
-\end{array}$
-\end{center}
-\caption{Webové rozhraní s nastavením NimbleX, v levo výběr wallpaperu, v pravo nastavení zvuku}
-\end{figure}
-
-\subsubsection{Linux-Live}
-Linux-Live je sada skriptů, která není závislá na distribuci, ale lze ji použít na jakémkoliv linuxu. Prakticky stačí stáhnou skripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Skripty už pak samy vytvoří Live systém, který je možné nabootovat z CD nebo USB.
-
-%If you want a truly distro-agnostic way of customising your favourite Linux distribution, you need the Linux-Live set of scripts. The scripts work on any installed Linux distro and can create a Live system that you can boot from optical media or USB drives.
-%The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
-
-\subsubsection{Další možnosti tvorby LiveCD}
-\b{Linux-live} je nejčastější způsobem vytvoření LiveCD. Spousta distribucí má, ale vlastní nástroje některé jako: The Ubuntu Customisation Kit (UCK) nebo Reconstructor, které již byly popsány \odkazNaKapitolu{sec:UCK}. Pro fedoru např. exituje nástroj \b{livecd-creator} pro tvorbu Fedora LiveCD a~podrobný návod je dostupný na stránkách fedory~\cite{FedoraLiveCDproject}. Pro debian existuje \textbf{Debian Live Project}, který poskytuje webové rozhraní podobné nástroji Instalinux \odkazNaKapitolu{sec:Instalinux} a~je zdarma dostupný na internetu.~\cite{DebianLiveProject}
-Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. Jsou hned tři a~všechny jsou popsány na wiki stránkách distribuce Archlinux~\cite{ArchWiki-BuildLiveCD}. První je oficiální sada nástrojů, používaná k~tvorbě oficiálních vydání disků nazvaná \b{Archiso}. Druhým nástrojem je \b{larch}, který nepotřebuje k~sestavení jako hostitelský systém Archlinux, ale funguje v~jakémkoliv Linuxu, protože si potřebné aplikace stáhne z~repozitářů archlinuxu. Posledním nástrojem je \textbf{poison-livecd-creator} jedná se o~opravdu jednoduchý Makefile a~několik jednoduchými kroky lze docílit vytvoření LiveCD na bázi Archlinuxu.
+linuxu.
 
 %\section{\upc{LaTeX}}
 
@@ -2022,7 +2025,15 @@ Možnosti vylepšení:
 \nn{Závěr}
 Cílem této bakalářské práce bylo vytvořit sadu skriptů v~jazyce BASH pro automatické sestavení Linuxové distribuce Linux From Scratch. Pro návrh skriptů byl použit návod pro sestavení distribuce Linux From Scratch a~nemalou měrou přispěl i~verzovací systém GIT a~komunitní web pro správu git repozitářů GitHub.\\
 
-V úvodní části bylo provedeno seznámení s~Linuxem jeho distribucemi a~možnostmi tvorby distribucí. 
+V~teoretické části bylo provedeno seznámení s~Linuxem jeho distribucemi a~možnostmi tvorby distribucí včetně kompilace zdrojových kódů a~programování v~interpretovaném jazyce BASH, což~jsou důležité znalosti pro vytvoření distribuce Linuxu. Dále bylo provedeno seznámení se zabezpečením Linuxu a~systémem hodnocení bezpečnosti Softwaru. Praktická část byla věnována skriptům v~interpretovaném jazyce BASH, jejich struktuře, obsahu a~návodu pro použití. Skripty byly otestovány jak na virtuálním počítači, vytvořeného programem VirtualBox a~s~použitím systému Ubuntu 10.10 Maverick Meerkat, tak na fyzickém počítači se~systémem ArchLinux.\\
+
+Programování v~interpretovaném jazyce BASH je velice zajímavé zvláště vzhledem k~jeho integraci se systémem Linux. Jsem rád, že~jsem si mohl rozšířit prostřednictvím této bakalářské práce znalosti tohoto jazyka, o~tomto svědčí i~fakt, že jsem dvakrát přepsal způsob jakým skripty fungují. Také jsem rozšířil své znalosti o~tom jak funguje Operační systém Linux v~širším měřítku za~což jsem velmi rád.
+%********************************* Závěr anglicky************************************
+\newpage
+\nn{Závěr v Angličtině}
+
+
+\newpage
 %********************************* Seznam Literatury ************************************
 \seznamlit{
 \bibitem{BASHen}COOPER, Mendel. {\it{Advanced Bash-Scripting Guide}} [online]. Revision 6.2. [s.l.] : [s.n.], 17 March 2010, Dostupné z~WWW: \href{http://www.tldp.org/LDP/abs/html/index.html}{http://www.tldp.org/LDP/abs/html/index.html}. [e-kniha] 
