@@ -7,13 +7,17 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{xltxtra}
 \usepackage[czech]{babel}
+\usepackage{listings}
 \usepackage{indentfirst}
 \usepackage{color}
+\usepackage[svgnames]{xcolor} 
 \usepackage{colortbl}
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{fancyhdr}
+\usepackage{fancyvrb}
+\usepackage{fancybox,calc} 
 \usepackage{hyperref}
 \usepackage{multirow}
 \usepackage{tocloft}
@@ -22,7 +26,8 @@
 \usepackage{setspace}
 \usepackage{ccaption}
 \usepackage{sectsty}
-\usepackage[srcstyle=leftnumhang,linenumbersep={\ }]{examplep}
+\usepackage{wrapfig}
+%\usepackage[srcstyle=leftnumhang,linenumbersep={\ }]{examplep}
 % ************************ NASTAVENÍ AUTORA A NÁZVU DOKUMENTU ************************
 \newcommand{\rok}{2011}
 \newcommand{\jmeno}{Martin Zajíc}
@@ -79,11 +84,28 @@
 \newcommand{\nmm}[1]{\section*{#1}} % definujeme styl nmm = nečíslovaný nadpis (není vysázený v obsahu) malými písmeny bez clearpage
 \newcommand{\nns}[1]{\section*{\uppercase{#1}}}		% definujeme styl ns = nečíslovaný nadpis na stejné stránce (není vysázený v obsahu)
 \newcommand{\sectionV}[1]{\section{\uppercase{#1}}}	%nadpis1 (section) velkým
+%\renewcommand{\section}[1]{\section{\uppercase{#1}}}
+\newcommand{\upc}[1]{\uppercase{#1}} %zjednodušení pro velká písmena
+\newcommand{\odkazNaKapitolu}[1]{(viz.~kapitola~\ref{#1}/s\pageref{#1})}
+\newcommand{\odkazNaObrazek}[1]{(viz.~obr.~\ref{#1}/s\pageref{#1})}
+
+\newcommand{\nadpis}[1]{%nadpis pod kterym je vertikalni mezera
+	\vspace{4 mm}
+	\textbf{#1}\\
+	\vspace{4 mm}
+	}
 
 \newcommand{\obr}[3]{% styl \obr pro obrázky
 	\begin{figure}[h]
 	\center\includegraphics[scale=#2]{#1}
 	\caption{#3}
+	\end{figure}
+	}
+
+\newcommand{\ofZadani}[2]{% styl \obr pro obrázky
+	\begin{figure}[h]
+	\center\includegraphics[width=500pt,height=700pt]{#1}
+	\caption{#2}
 	\end{figure}
 	}
 
@@ -191,6 +213,21 @@
 \nobreak
 \clearpage	
 }
+% *******************Barevný code *******************
+\definecolor{codeback}{gray}{0.8} %barva pozadi
+
+\newenvironment{codeframe}{% 
+  \begin{Sbox} 
+    \begin{minipage} 
+      {\columnwidth-\leftmargin-\rightmargin-2\fboxsep-2\fboxrule-4pt} 
+}{% 
+
+  \end{minipage} 
+  \end{Sbox} 
+  \begin{center} 
+    \fcolorbox{black}{codeback}{\TheSbox} 
+  \end{center} 
+} 
 
 % *************** NASTAVENÍ FORMÁTU ČÍSLOVÁNÍ OBRÁZKŮ A TABULEK ***************
 \def\thefigure{\arabic{figure}}      % číslování obrázků typu (y)
@@ -291,16 +328,14 @@
 %********************************* nascanované zadání ************************************
 \clearpage
 \thispagestyle{empty}
-\voffset=-1.61cm\evensidemargin=0.96cm\oddsidemargin=0.96cm\headsep=1cm\headheight=0.5cm\setlength{\parskip}{3pt}\textheight=248mm\textwidth=155mm
-***nascannované zadání s. 1***
-\obr{fai_logo_cz.png}{1}{logo}
+\ofZadani{./img/ofZadani/ofZadaniStr1.png}{Oficiální zadání bakalářské práce strana 1}
 \clearpage
 \thispagestyle{empty}
-***nascannované zadání s. 2***
-\obr{fai_logo_cz.png}{1}{logo}
+\ofZadani{./img/ofZadani/ofZadaniStr2.png}{Oficiální zadání bakalářské práce strana 2}
 %********************************* Abstrakt ************************************
 \clearpage
 \thispagestyle{empty}
+\voffset=-1.61cm\evensidemargin=0.96cm\oddsidemargin=0.96cm\headsep=1cm\headheight=0.5cm\setlength{\parskip}{3pt}\textheight=248mm\textwidth=155mm
 \nm{\uppercase{Abstrakt}}
 \vspace{1cm}
 
@@ -355,6 +390,7 @@ Ve Zlíně &\hspace{9cm} .......................\\
 % tučně \b{tučné}
 % tučná kurzíva \bi{tučná kurzíva}
 % kurzíva \it{kurzíva}
+% citace text~\cite{zkratka knihy}
 %********************************* Generování obsahu ************************************
 \obsah
 %********************************* úvod ************************************
