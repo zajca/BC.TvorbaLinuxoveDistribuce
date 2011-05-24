@@ -1837,11 +1837,11 @@ Dalším krokem je vytvoření uživatele a~skupiny lfs.
 # passwd lfs #nastavení hesla
 \end{Verbatim} 
     \end{codeframe}
-nyní je dobré stáhnout a~překopírovat skripty LFS by bash scripts. Nejjednodušším způsobem je stáhnutí skriptů pomocí verzovacího systému git.
-    \begin{codeframe} 
+nyní je dobré stáhnout a~překopírovat skripty LFS by bash scripts. Nejjednodušším způsobem je stáhnutí skriptů pomocí verzovacího systému git. Repozitář můze obsahovat změny, které by mohly udělat návod nefunkčním, proto je třeba změnit branch na tag BCv6.8, na který návod sedí.    \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 cd ~/
 git clone git://github.com/zajca/LFS---by-bash-scripts.git
+git checkout BCv6.8
 # mkdir $LFS/{scripts,build,sources}
 # cp -R ~/LFS---by-bash-scripts/* $LFS/scripts/
 \end{Verbatim} 
