@@ -1,9 +1,13 @@
 % šablona na pro bakalářskou práci na FAI UTB
 % šablona je úpravou původní šablony pro FAI UTB
-% už neznám púvodního autora šablona už není na internetu
+% =======================================================
+% verze 0.9.5 (10. říjen 2005)
+% autor: Ing. Jozef Říha ()
+% některé komentáře převzaty z dokumentu Ivana Pomykacze
+% =======================================================
 % upravil Martin Zajíc
 % šablona je upravena aby šla bez problému přeložit pomocí TeXlive a překladače XeLaTeX
-% 
+% XeLaTex také řeší neduhy spojené s kódováním českých znaků a jejich kopírování z PDF dokumnetu
 \documentclass[a4paper,12pt]{article}
 \usepackage{xltxtra}
 \usepackage[czech]{babel}
@@ -105,7 +109,7 @@
 \newcommand{\ofZadani}[2]{% styl \obr pro obrázky
 	\begin{figure}[h]
 	\center\includegraphics[width=500pt,height=700pt]{#1}
-	\caption{#2}
+	%\caption{#2}
 	\end{figure}
 	}
 
@@ -343,7 +347,7 @@ Tato bakalářská práce v teoretické části obsahuje pojmy, jako jsou Linux,
 V praktické části je rozebrána struktura scriptů a~funkce vytvořené v~jazyce BASH. Dále je uveden návod na sestavení distribuce LFS pomocí vytvořených skriptů. A na závěr uvedeny zdroje pomoci při chybách v~kompilaci a~možnosti zlepšení skriptů.
 \vspace{1cm}
 
-\emph{Klíčová slova:} Linux, distribuce, operační systém, BASH, LFS, LiveCD, bezpečnost OS, kompilace, DAC, MAC
+\emph{Klíčová slova:} Linux, distribuce, BASH, LFS, LiveCD, bezpečnost Linuxu, kompilace, DAC, MAC
 
 \vspace{3cm}
 
@@ -1156,41 +1160,30 @@ Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. J
 
 Zabezpečení OS je velice rozsáhlým a~komplexním odvětvím, které se navíc velmi rychle vyvíjí a~rozšiřuje. Jeho plné popsání by vydalo na několik desítek bakalářských prací, proto jen základní informace o~vnitřním zabezpečení systému, nástrojích jež toto zabezpečení rozšiřují a~také o~zabezpečení proti vnějšímu útoku a~bezpečném přenosu informací.
 
+\subsection{Bezpečnostní model Linuxu}
+Standardní bezpečnostní model, vycházející z~Discretionary Access Control (DAC) \odkazNaKapitolu{sec:DAC}, jejž najdeme na většině UNIXových operačních systemů (tedy i~Linuxu) je postaven na několika bitových maskách (specifikující u souboru práva pro vlastníka, skupinu, ostatní (drwxrwxrwx) a~popř. nastavující některé speciální bity, jako je SUID (secure user identification number) či SGID (secure group identification number)). Další velmi typickou stránkou tohoto bezpečnostního modelu je uživatel root – administrátor a~uživatel s~nejvyššími možnými privilegii (jinak řečeno uživatel, jenž může vše).~\cite{LINUXZONEGrsecurity}\\
+
+Tento bezpečnostní model se v~praxi v~různých UNIXových klonech osvědčil a~používá se dodnes. Ale jsou případy kdy není zrovna nevýhodnější. Prvním problémem jsou ona již zmíněná přístupová práva k~souborům, jež jsou ze své podstaty poměrně omezená a~nastavení práv tak často nutí administrátora k~různým krokům, jako je např. vytváření velkého množství uživatelských skupin (a~v~některých případech ani~to není uspokojivým řešením).
+Dalším kamenem úrazu je uživatel root, kterýžto jako administrátor prakticky má veškerá možná práva. Některý software část těchto práv ovšem vyžaduje – typickým příkladem je většina síťových démonů, které poslouchají na privilegovaných síťových portech (<1024). A~krom oněch potřebných práv tak program zcela zbytečně dostane plnou kontrolu nad systémem, což může být zneužito potenciálním útočníkem, pokud se v~onom softwaru vyskytuje nějaká bezpečnostní chyba. Standardně se tento problém řeší tak, že program zahazuje EUID 0 (effective user identification number) v~momentě, kdy již nepotřebuje speciální práva.~\cite{LINUXZONEGrsecurity}\\
+
+Dalším souvisejícím problém je nemožnost efektivní distribuce práv k~systému mezi více administrátorů. Příkladem budiž situace, v~níž potřebujeme svěřit administraci DNS serveru jinému člověku než tomu, který se stará o~zbytek administrace systému. Nasnadě je povolení zápisu do konfiguračních souborů onoho daemonu, ale~tím vyřešíme jen část problémů. Onen administrátor též musí mít možnost např. onen server restartovat či mu alespoň poslat nějaký signál (např. pro načtení nové konfigurace), což s~sebou přínáší nutnost superuživatelských práv. Jistým řešením je sudo či podobný nástroj, který umožňuje administrátorovi nastavit, jaké příkazy (a~pod jakým uživatelem) může daný uživatel spouštět ze svého normálního uživatelského účtu. Nicméně nejedná se o~dostatečně flexibilní řešení.~\cite{LINUXZONEGrsecurity}\\
+
+Řešení se nabízí pomocí bezpečnostních patchů linuxového jádra implementující jiné modely přístupu než je v~Linuxu standardní Discretionary Access Control (DAC).
+
 \subsection{Access Control}
 
-Kontrola přístupu uvnitř systému je jedno z~nejdůležitějších zabezpečení v~OS vůbec. Určuje, který proces nebo uživatel má k čemu oprávnění. Existuje několik obecných modelů tohoto zabezpečení, v~Linuxu se konkrétně využívá dvou modelů: \b{Discretionary Access Control (DAC)} a \b{Mandatory Access Control (MAC)}. Model zabezpečení DAC je běžnou součástí linuxového jádra a~využívá jej defaultně většina distribucí. Model MAC je pak v~Linuxu dostupný díky různým rozšířením, jež nejčastěji využívají \b{Linux Security Modules (LSM)}, které zajišťující implementaci MAC v jádře.
+Kontrola přístupu uvnitř systému je jedno z~nejdůležitějších zabezpečení v~OS vůbec. Určuje, který proces nebo uživatel má k čemu oprávnění. Existuje několik obecných modelů tohoto zabezpečení. V~Linuxu se konkrétně využívá modelu \b{Discretionary Access Control (DAC)}, který je standardní součástí Linuxového jádra.
+
+%\subsubsection{Linux Security Module (LSM)} představuje nový mechanismus v~jádrech 2.6.x, který umožňuje jaderným modulům převzít kontrolu nad některými rozhodovacími mechanismy jádra. Přítomnost tohoto mechanismu je velmi významná pro zlepšení flexibility bezpečnostních mechanismů v~Linuxu, na druhou stranu LSM též sklidilo poměrně silnou kritiku od autorů jiných bezpečnostních patchů (grsecurity, RSBAC) a~ani jeden z těchto projektů nehodlá v~budoucnu využívat možností LSM, které se autorům oněch projektů jeví jako nedostačující.~\cite{LINUXZONEGrsecurity}\\
 
 \subsubsection{DAC vs. MAC vs. RBAC} \label{sec:DAC}
 
 Bezpečnostní model využívaný většinou mainstreamových operačních systému je založen na \b{Discretionary Access Control (DAC)}, který je založen na bezpečnosti vlastnictvím. Pokud uživatel vlastní soubor, může nastavovat práva pro čtení, zápis a~spouštění (r+w+x), pro tento soubor. V~tomto modelu uživatel kontroluje data dle vlastního uvážení. Vlastník systému\footnote{Vlastník systému (anglicky system owner nebo také administrátor) je určen při instalaci OS, oproti účtu uživatele root nemá právo měnit např. práva systémových souborů, ale má právo měnit přístupová práva široké škály uživatelů a~uživatelé nemají možnost tyto ustanovení měnit.\cite{SystemOwner}} nemá totální kontrolu nad systémem, tu má uživatel.~\cite{Linux_com_MACvsDAC}
 
-%The desktop interface implements the concept of a ``system owner''. When you install the operating system, a user is designated as the owner. Any user name (except those already reserved by the system, such as uucp and bin) can be assigned as the system owner. The system owner is given the necessary permissions to do the day-to-day system administration tasks available through the SCOadmin interface. These special authorizations, and the ability to assign additional system owners, are described in ``Assigning authorizations''.
-
-
-%The security model used by most mainstream operating systems is based on Discretionary Access Control (DAC), which enforces security by ownership. If a user owns a file, he is allowed to set the read, write, and execute permissions for that file. In this model, users control the data at their discretion. The owner of the system does not have total control over the system; the users do.
-
-%Avšak největší hrozba v~Linuxovém modelu je reprezentována účtem uživatele root. Tento super-uzivatel může kontrolovat všechny soubory a procesy. Pokud je účet uživatele root nebo proces s~takto vysokými přístupovými právy kompromitován, útočník získává kontrolu nad celým systémem a~nad daty v~něm.~\cite{Linux_com_MACvsDAC}
- 
-%However, the biggest concern with the Linux model is the danger presented by the root account. This super-user has the power to control all files and processes. If the root account, or a process that runs with its privileges, is compromised, an attacker can take control of the system and its data.
-
-%Bezpečnějším přístupem je omezit nebo přímo eliminovat účet uživatele root a~přesunout tak práva z uživatelských účtů na na vlastníka systému\footnotemark[1]. Tento přístup se nazývá \b{Mandatory Access Control (MAC)}~\cite{Linux_com_MACvsDAC}
-
-%A more secure approach would limit or even eliminate the need for a root account, and shift the power from the user accounts to the owner of the system. This is MAC's approach.
-
-%MAC prosazuje bezpečnostní pravidla povinně (mandatory) na~rozdíl od DAC, který pravidla prosazuje volitelně (discretionary). Bezpečnostní pravidla může nastavit vlastník systému a implementovat systémový nebo bezpečnostní administrátor. Jakmile jsou pravidla jednou stanovena, žádný uživatel nemůže tyto pravidla měnit, i~kdyby měl práva uživatele root. S bezpečnostní přístupem MAC je ochrana souborů a procesů nezávislá na na jejich vlastníkovy.~\cite{Linux_com_MACvsDAC}
-%MAC makes the enforcement of security policies mandatory instead of discretionary, as you might imagine from the name Mandatory Access Control. Security policies can be set by the system owner and implemented by a system or security administrator. Once these policies are in place, users cannot override them, even if they have root privileges. With MAC, file and process protection is independent of owners.
-
-%DAC v diskreční Access Control (DAC) model, je přístup ke zdrojům na základě identity uživatele. Uživatel je uděleno oprávnění k prostředku tím, že je uveden na seznamu řízení přístupu (ACL), spojené s zdroj. vstup na zdroje ACL je známý jako položka řízení přístupu (ACE). Když uživatel (nebo skupina) je vlastníkem objektu v modelu DAC, uživatel může udělit povolení ot ostatních uživatelů a skupin. Tento model je založen na DAC zdroj vlastnictví.
-
-%DAC In the Discretionary Access Control (DAC) model, access to resources is based on user's identity. A user is granted permissions to a resource by being placed on an access control list (ACL) associated with resource. An entry on a resource's ACL is known as an Access Control Entry (ACE). When a user (or group) is the owner of an object in the DAC model, the user can grant permission ot other users and groups. The DAC model is based on resource ownership. 
 
 V Mandatory (česky Povinné) Access Control (MAC), uživatelům jsou dána povolení ke~zdrojům správcem. Pouze správce může udělit oprávnění nebo právo k~objektům a~zdrojům. Přístup ke zdrojům je založený na úrovni zabezpečení objektu a uživateli je udělene bezpečnostní prověrka pro přistup k~objektu. Pouze správci mohou upravovat objektu bezpečnostní štítek nebo uživateli bezpečnostní prověrky.
 
-%MAC In the Mandatory Access Control (MAC) model, users are given permissions to resources by an administrator. Only an administrator can grant permissions or right to objects and resources. Access to resources is based on an object's security level, while users are granted security clearance. Only administrators can modify an object's security label or a user's security clearance. 
-
-V Role-Based Access Control (RBAC), je přístup ke zdrojům na základě založen na \uv{roli kterou uživatel hraje}. V tomto modelu, správce přiřadí uživateli roli, která má předem přidělena určitá práva a výsady. Vzhledem k~uživateli přidělené rolí, může uživatel přístupová k~určitým zdrojům a plnit specifické úkolů. RBAC je také známý jako Non-Discretionary Access Control. Role přiřazené uživatelům, jsou centrálně spravovány.
-
-%RBAC in the Role-Based Access Control (RBAC) model, access to resources is based on the role assigned to a user. In this model, an administrator assigns a user to a role that has certain predetermined right and privileges. Because of the user's association with the role, the user can access certain resources and perform specific tasks. RBACK is also known as Non-Discretionary Access Control. The roles assigned to users are centrally administered. 
+V Role-Based Access Control (RBAC), je přístup ke zdrojům založen na \uv{roli kterou uživatel hraje}. V tomto modelu, správce přiřadí uživateli roli, která má předem přidělena určitá práva a~výsady. Vzhledem k~uživateli přidělené rolí, může uživatel přístupová k~určitým zdrojům a~plnit specifické úkoly. RBAC je také známý jako Non-Discretionary Access Control. Role přiřazené uživatelům, jsou centrálně spravovány.
 
 \subsubsection{Security-Enhanced Linux, SElinux}
 
@@ -1270,6 +1263,7 @@ Nabízí mnoho funkcí:
 %Reduction of the risk of sensitive information being leaked by arbitrary-read kernel bugs
 %A restriction that allows a user to only view his/her processes
 %Security alerts and audits that contain the IP address of the person causing the alert
+
 
 \subsection{Hodnocní bezpečnosti OS a SW}
 
@@ -1525,10 +1519,25 @@ Secure Shell neboli ssh je nástroj pro bezpečné připojení v nedůvěryhodn�
 Hlavní výhody:
 \begin{itemize}
  \item Množství autentizačních metod
+\begin{itemize}
+ \item \textbf{Heslem} základní zabezpečení, které závisí na znalosti hesla.
+ \item \textbf{Veřejným klíčem} ověřená prostřednictvím kryptografických klíčů. Bezpečnější než přihlašování heslem.
+ \item \textbf{Rhosts} podle důvěryhodných hostitelů, povoluje připojení na základě adresy hostitelského počítače. Nepovažuje se za bezpečné.
+ \item \textbf{RhostsRSA} varianta předcházejícího, hostitelé se navíc musí autorizovat kryptografickým klíčem RSA.
+ \item SSH podporuje i~další způsoby jako například Kerberos, SecurID, S/Key, PAM a podobně.
+\end{itemize}
  \item tunelování libovolné TCP spojení přes SSH, chrání obvykle nešifrované protokoly, jako je IMAP a umožňuje bezpečný průchod přes firewally
  \item automatické přeposílání spojení X windows
  \item secure file transfers (bezpečné přenášení souborů)
 \end{itemize}
+
+
+SSH znamená, ale~kromě snadného přístupu uživateli do vzdáleného počítače i~cestu pro nějakého útočníka do počítače. Proto je při používání SSH doporučeno několik bezpečnostních postupů, které snižují možnost napadení počítače nejčastěji pomocí slovníkových útoků.
+\begin{description}
+ \item[Používat veřejných klíčů] použití veřejných klíčů zabraňuje slovníkovému útoku. např. GNU Privacy Guard (GPG)
+ \item[Zakázat přihlášení některých uživatelů] především se jedná o~účet uživatele root, který je v~každém Linuxu. Většina slovníkových útoků se zaměřuje právě na tohoto uživatele. Další časté pokusy jsou zaměřeny např. na uživatele user, admin, test,…
+ \item[fail2ban] je program, který vyhodnocuje log s~pokusy o~přihlášení prostřednictvím SSH a~na základě neúspěšných přihlášení z~unikátní IP adresy, zakazuje tuto IP adresu na přednastavenou dobu.
+\end{description}
 
 \subsection{Hypotetické bezpečnostní hrozby v linuxu}
 Virové hrozby byli probrány~\odkazNaKapitolu{sec:antivirus} v~souvislosti s~viry a~malwarem se, ale v~Linuxu mluví o~hrozbě jménem \b{sudo}, sudo je nástroj přes který si uživatel nebo aplikace může požádat o~vyší oprávnění než jsou jí určeny, k~samotnému přidělení opravnění je třeba aby uživatel zadal heslo pro uživatele root, což zdánlivě celou situaci řeší, ale zde vstupuje nejzranitelnější část celého systému a~tou je uživatel. Neznalý uživatel zadá bez rozmyslu svoje heslo a~aplikace má plný přístup nad systémem. Samozřejmě jedná se o faktor, který vývojář nevyřeší, ale hrozba číhá i~někde jinde, celkem jednoduše jde vytovořit alias\footnote{alias je jak název napovídá taková přezdívka, uživatel si může pod řetězec uložit složitějsí příkaz, např. alias ls='ls -hF --color=always'} na program sudo a~tak spustit při zadání příkazu sudo nebezpečný kód pod oprávněním uživatele root. např. 
@@ -1837,7 +1846,7 @@ Dalším krokem je vytvoření uživatele a~skupiny lfs.
 # passwd lfs #nastavení hesla
 \end{Verbatim} 
     \end{codeframe}
-nyní je dobré stáhnout a~překopírovat skripty LFS by bash scripts. Nejjednodušším způsobem je stáhnutí skriptů pomocí verzovacího systému git. Repozitář můze obsahovat změny, které by mohly udělat návod nefunkčním, proto je třeba změnit branch na tag BCv6.8, na který návod sedí.    \begin{codeframe} 
+nyní je nutné stáhnout a~překopírovat skripty LFS by bash scripts. Nejjednodušším způsobem je stáhnutí skriptů pomocí verzovacího systému git. Repozitář můze obsahovat změny, které by mohly udělat návod nefunkčním, proto je třeba změnit branch na~tag BCv6.8, na~který návod sedí.    \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 cd ~/
 git clone git://github.com/zajca/LFS---by-bash-scripts.git
@@ -1847,7 +1856,7 @@ git checkout BCv6.8
 \end{Verbatim} 
     \end{codeframe}
 
-a~ještě překopírovat soubory uživatele lfs do jeho domovského adresáře
+dále překopírovat soubory uživatele lfs do jeho domovského adresáře.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # cp $LFS/scripts/lfsuser/{.bash_profile,.bashrc} /home/lfs/
@@ -1856,7 +1865,7 @@ a~ještě překopírovat soubory uživatele lfs do jeho domovského adresáře
     \end{codeframe}
 
 
-nyní je třeba přenastavit práva tak aby uživatel lfs mohl zapisovat do složky /mnt/LFS
+Nyní je třeba přenastavit práva tak aby uživatel lfs mohl zapisovat do složky /mnt/LFS
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # chown -R lfs:lfs $LFS
@@ -1972,6 +1981,82 @@ Skript makeall\_rest provede uživatele kapitolami 7~a~8. Několikrát skript vy
 
 Nyní je již třeba postupovat dle knihy, otestovat nastavení programu GRUB a~aktualizovat Master Boot Record. Tyto kroky však nejsou třeba pokud se chystá uživatel provozovat LFS vedle jiného systému, v~tom případě stačí pouze přidat položku LFS do souboru nastavení programu GRUB ve stávajícím systému.
 
+\b{Test GRUBu}: Pro test je třeba aby byl v~hostovském systému nainstalován GRUB Legacy.\\
+Nejprve je třeba restartovat počítač. A~poté v~příkazovém řáďku GRUBu nahrát obraz GRUBu z~LFS.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+/sbin/reboot
+...
+grub> root (hd0,1)
+grub> kernel /boot/grub/core.img
+grub> boot
+\end{Verbatim} 
+    \end{codeframe}
+Měl by naběhnout GRUB z~LFS.\\
+
+Posledním krokem je pak opět v~chrootu LFS nahrát MBR (Master boot record) na disk s~LFS. Je třeba nastavit diskovou adresu v /dev např. /dev/sda /dev/sdb, opět bez čísla oddílu.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+./scripts/chap6/restart
+./scripts/chrootIN/chrootAfterChap6
+grub-setup /dev/sda
+\end{Verbatim} 
+    \end{codeframe}
+
+teď by po restartu měl naběhnout bootloader z~LFS a~LFS by měla v~pořádku naběhnout.
+
+\subsubsection{Instalace xorg}
+Malým bonusem v~balíku skriptů LFS by bash scripts je pak skript pro instalaci grafického Xserveru (dále jen Xserver). K jeho spuštění je třeba nejprve v~chrootu sytému nainstalovat balíček wget.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+./scripts/BLFS/wget
+\end{Verbatim} 
+    \end{codeframe}
+Po instalaci wget je už možné přímo z~LFS nainstalovat Xserver. Pokud je třeba změnit nějaké proměnné, např. proměnou WAIT, která určuje zda se má skript pozastavit v~každém kroku, je možné toto provést v~souboru /scripts/BLFS/variables.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+./scripts/BLFS/xorg
+\end{Verbatim} 
+    \end{codeframe}
+Skript končí naběhnutím testu Xserveru a~vytvořením konfiguračního souboru xorg.conf. Je třeba přesunout konfigurační soubor do /etc/X11, vytvořit soubor .xinitrc, který říká Xserveru jaké aplikace při startu spustit a~vytvořit složku pro log soubor.
+
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+install -v -m644 ~/xorg.conf.new /etc/X11/xorg.conf
+cat > ~/.xinitrc << "EOF"
+# Begin .xinitrc file
+xterm  -g 80x40+0+0   &
+xclock -g 100x100-0+0 &
+twm
+EOF
+cat >> /etc/sysconfig/createfiles << "EOF"
+/tmp/.ICE-unix dir 1777 root root
+EOF
+\end{Verbatim} 
+    \end{codeframe}
+Nyní už zbývá jenom spustit grafický server, který naběhne do správce oken twm.\\
+
+Někdy se stane, zvláště u~systému ve VirtualBoxu, že~Xserver skončí chybou (Chyba nebývá na úplné konci výpisu, ale vně. Proto je lepší si chybu nechat vypsat samostatně):
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+cat /var/log/Xorg.0.log | grep EE
+...
+(EE) open /dev/fb0: No such file or directory
+(EE) Screen(s) found, but none have a usable configuration.
+\end{Verbatim} 
+    \end{codeframe}
+Takova chyba je způsobena nastavení driveru Xserveru je třeba v~souboru /etc/X11/xorg.conf změnit v sekci Device položku Driver z~hodnoty fbdev na vesa.
+    \begin{codeframe} 
+\begin{Verbatim}{frame=single}
+Section "Device"
+  ....
+  Driver "vesa"
+  ....
+EndSection
+\end{Verbatim} 
+    \end{codeframe}
+Bohužel příčin pádu Xserveru může být spousta v~závislosti na HW a~jiných okolnostech. Nejjednodušší způsob jak najít důvod chyby a~její opravu je zadat výpis chyby do internetového vyhledávače.
+
 \subsubsection{onlyunpackscript}\label{sec:only}
 Tento skript slouží pouze pro stažení, kontrolu a~rozbalení balíčků. Před jeho použitím je třeba mít vytvořený a~připojený diskový oddíl jak je popsáno \odkazNaKapitolu{sec:sestaveni}.\\
 
@@ -2021,10 +2106,10 @@ Tak jako u všech programů existuje mnoho možností vylepšení i~u~vytvořen�
 
 Možnosti vylepšení:
 \begin{itemize}
- \item Částečná změna skriptů z~jazyka BASH na scripty programu GNU/make (tzv. Makafiles). Řídící skript makeall a onlyunpackscript by se po změně na makefile staly lépe ovladatelnými, především při přerušení a~obnově práce.
+ \item Částečná změna skriptů z~jazyka BASH na scripty programu GNU/make (tzv. Makafiles). Řídící skript makeall a onlyunpackscript by se po změně na makefile staly lépe ovladatelnými, především při přerušení a~obnově práce. Případně použít menuconfig jako používá např. jádro linuxu, pro nastavení co se má kompilovat.
  \item Lepší přechody mezi login do chroot, tak aby nebylo potřeba přerušit skript, toto by šlo vyřešit přes program \b{sudo}, ale ten často v~systémech pro build není dostupný.
  \item přidání wget do toolchainu, tento krok by zajistil, že~by nebylo třeba stahovat balíčky před začátkem sestavení, ale~wget má další závislosti, které by bylo třeba vyřešit a~pravděpodobně by bylo třeba jinak zkompilovat překladač v toolchainu.
- \item lepší diagnostika chyb. Skriptům by prospěl nástroj, který~by uživateli pomohl lokalizovat problém. Avšak takový nástroj by musel být velmi komplexní a~jeho vytvoření by bylo docela nejisté.
+ \item Další zásadním zlepšením by bylo vytvoření jakéhosi balíčkovacího systému. Zvláště u~instalací programů z~BLFS už je třeba hlídat závislosti na jiných balíčcích a~často se může stát, že~je některý program zbytečně kompilován dvakrát. Balíčkovací systém by mohl být založen na principu, že pro každý nainstalovaný balíček je vytvořen soubor nebo složka např. ve /var/packages se stejným názvem jako balíček. Takový soubor by pak nesl informace o~tom o jaký program se jedná jaké má závislosti a~jaké soubory nainstaloval do systému (Pokud by v~základu neuměl takový systém mazat nainstalované balíčky nebylo by třeba seznamu souborů). Taková věc by sebou nesla i~změny ve skriptech, bylo by třeba aby skript obsahoval i~seznam závislostí nejlépe v~poli aby se dalo s~těmito informacemi lépe pracovat a~jednotlivé části skriptu by se rozdělili do funkcí.
 \end{itemize}
 
 
@@ -2094,6 +2179,7 @@ Programování v~interpretovaném jazyce BASH je velice zajímavé zvláště vz
 \bibitem{LinuxHodinky}SIMPSON, Stacy.{\it{ Linux for Devices}} [online]. 2001-10-11 [cit. 2011-05-17]. IBM \& Citizen Watch develop Linux-based "WatchPad". Dostupné z~WWW: \href{http://www.linuxfordevices.com/c/a/News/IBM-Citizen-Watch-develop-Linuxbased-WatchPad/}{http://www.linuxfordevices.com/c/a/News/IBM-Citizen-Watch-develop-Linuxbased-WatchPad/}.
 \bibitem{BuilderNavod}{\it{GNewSense GNU/Linux}} [online]. 2006-08-27 [cit. 2011-05-17]. Builder/HowToCreateYourOwnGNULinuxDistribution. Dostupné z~WWW: \href{http://www.gnewsense.org/Builder/HowToCreateYourOwnGNULinuxDistribution}{http://www.gnewsense.org/Builder/HowToCreateYourOwnGNULinuxDistribution}.
 \bibitem{rubyOnRailTutorial}HARTL, Michael. {\it{Ruby on Rails Tutorial}} [online]. [s.l.] : [s.n.], 2010 [cit. 2011-05-21]. Dostupné z~WWW: \href{http://ruby.railstutorial.org/book/ruby-on-rails-tutorial\#sec:secure\_password\_theory}{http://ruby.railstutorial.org/book/ruby-on-rails-tutorial\#sec:secure\_password\_theory}.
+\bibitem{LINUXZONEGrsecurity}PALÁT, Pavel. {\it{LINUXZONE}} [online]. 2004-05-07 [cit. 2011-05-25]. Grsecurity. Dostupné z~WWW: \href{http://www.linuxzone.cz/index.phtml?ids=1\&idc=1060}{http://www.linuxzone.cz/index.phtml?ids=1\&idc=1060}.
 }
 
 %********************************* Seznam zkratek ************************************
@@ -2132,6 +2218,10 @@ SSH & Secure Shell\\
 PP & Protection Profile\\
 TOE & Target of Evaluation\\
 ST & Security Target\\
+SUID & secure user identification number\\
+SGID & secure group identification number\\
+EUID & effective user identification number\\
+GPG & GNU Privacy Guard\\
 \end{tabular}
 %********************************* Seznam obrázků ************************************
 \seznamobr
