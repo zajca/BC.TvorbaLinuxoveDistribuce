@@ -1571,14 +1571,14 @@ Ke správě jednoduchých a~malých projektů jako je např. tato bakalářská 
 \subsubsection{Nastavení gitu}
 Základní nastavení gitu spočívá pouze v~nastavení Jména Příjmení a~emailu. Pokud používáme git pouze lokálně a~nenahráváme data někam na server, bude nám to stačit a~můžeme již vytvořit repozitář.\\
 
-Nastavení jména, příjmení a~emailu.
+Nastavení jména, příjmení a~emailu.~\cite{GIThelpNastaveni}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 git config --global user.name "Jméno Příjmení"
 git config --global user.email "VášEmail@seznam.com"
 \end{Verbatim} 
     \end{codeframe}
-Pokud nahráváme data na server je třeba autentizace. K~účelu autentizace se často používá ssh klíč. Ten je možné vygenerovat následujícím způsobem
+Pokud nahráváme data na server je třeba autentizace. K~účelu autentizace se často používá ssh klíč. Ten je možné vygenerovat následujícím způsobem~\cite{GIThelpNastaveni}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 ssh-keygen -t rsa -C "VášEmail@seznam.com"
@@ -1586,7 +1586,7 @@ ssh-keygen -t rsa -C "VášEmail@seznam.com"
     \end{codeframe}
 pak je třeba zadat dvakrát heslo pro otevírání klíče a~klíč je vygenerován.\\
 
-Vygenerovaný klíč je k~nalezení v~domovském adresáři uživatele ve~složce \it{.ssh}, která obsahuje soubory \it{id_rsa} a \it{id_rsa.pub}. id_rsa je váš privátní klíč a~id_rsa.pub je klíč veřejný. Pro použití githubu je~třeba veřejný klíč nahrát do~nastavení na~webu \it{“Account Settings” > Click “SSH Public Keys” > Click “Add another public key”}. Také je potřebné nahrát do nastavení gitu bezpečnostní token githubu. Bezpečnostní token lze nalézt na webu \it{“Account Settings” > Click “Account Admin.”} položku API token, která obsahuje jakýsi HASH, je třeba vložit do~nastavení git na počítači.
+Vygenerovaný klíč je k~nalezení v~domovském adresáři uživatele ve~složce \it{.ssh}, která obsahuje soubory \it{id\_rsa} a \it{id\_rsa.pub}. id\_rsa je váš privátní klíč a~id\_rsa.pub je klíč veřejný. Pro použití githubu je~třeba veřejný klíč nahrát do~nastavení na~webu \it{“Account Settings” > Click “SSH Public Keys” > Click “Add another public key”}. Také je potřebné nahrát do nastavení gitu bezpečnostní token githubu. Bezpečnostní token lze nalézt na webu \it{“Account Settings” > Click “Account Admin.”} položku API token, která obsahuje jakýsi HASH, je třeba vložit do~nastavení git na počítači.~\cite{GIThelpNastaveni}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 git config --global github.user uzivatelskeJmeno
@@ -1598,8 +1598,8 @@ git config --global github.token 0123456789yourf0123456789token
 Vytvoření repozitáře je velmi jednoduché a~skládá se ze dvou kroků: Vytvoření složky a~inicializace repozitáře.
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
-mkdir projekKteryZmeniSvet
-cd projekKteryZmeniSvet
+mkdir projekt
+cd projekt
 git init
 \end{Verbatim} 
     \end{codeframe}
@@ -1608,35 +1608,68 @@ změny v~repozitáři jsou reprezentovány commity. Commit je vytvořen přidán
       \begin{Verbatim}{frame=single}
 touch README
 git add README
-$ git commit -m 'přidáno README'
+git commit -m 'přidáno README'
 \end{Verbatim} 
     \end{codeframe}
 
-Pokud chceme použít github je třeba vytvořit repozitář na webu github. Po vyplnění názvu a~popisu repozitáře, github vypíše kroky nutné k~vytvoření repozitáře. Vypíše tedy, že je třeba vytvořit složku, inicializovat git, přidat první commit (nejčastěji soubor README), přidat adresu repozitáře na serveru github a~odeslání změn v~repozitáři.
+Pokud chceme použít github je třeba vytvořit repozitář na webu github. Po vyplnění názvu a~popisu repozitáře, github vypíše kroky nutné k~vytvoření repozitáře. Vypíše tedy, že je třeba vytvořit složku, inicializovat git, přidat první commit (nejčastěji soubor README), přidat adresu repozitáře na serveru github a~odeslání změn v~repozitáři.~\cite{GIThelpNastaveni}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
-git remote add origin git@github.com:uzivatelskeJmeno/projekKteryZmeniSvet.git
+git remote add origin git@github.com:uzivatelskeJmeno/projekt.git
 git push origin master
 \end{Verbatim} 
     \end{codeframe}
 
 \subsubsection{Správa repozitáře}
-Každodenní správa repozitáře jednoduchého projektu je většinou o~přidávání commitů a~odesílání změn. Takže si většinou lze vystačit s~příkazy \it{add, rm, diff, commit a push}. Ale git obsahuje také spoustu jiných užitečných funkcí, které usnadní správu i~malého projektu.\\
+Každodenní správa repozitáře jednoduchého projektu je většinou o~přidávání commitů a~odesílání změn. Takže si většinou lze vystačit s~příkazy \it{add, rm, diff, commit, push a pull}. Ale git obsahuje také spoustu jiných užitečných funkcí, které usnadní správu i~malého projektu.\\
 
 Commit není pouze přidávání souborů, ale~i~mazání a~změny v~souborech.
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+git rm soubor #smaže soubor
+git add #přidá soubor, pokud jsme soubor změnily je třeba ho také přidat
+git diff #ukáže změny v repozitáři
+git commit #vytvoří commit
+git push #odešle změny
+git pull #stáhne změny ze serveru
+\end{Verbatim} 
+    \end{codeframe}
 
-Jednou z~funkcí je tag. Tag vytvoří značku za~určeným commitem ke které se lze jednoduše vrátit. Je tedy užitečný pokud chce vytvořit např. release programu. commity a~jejich kódy si lze prohlédnout příkazem \it{git log}
+Jednou z~funkcí je \b{tag}. Tag vytvoří značku za~určeným commitem ke které se lze jednoduše vrátit. Je tedy užitečný pokud chce vytvořit např. release programu. commity a~jejich kódy si lze prohlédnout příkazem \it{git log}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 git tag v1.0 <kód commitu>
 \end{Verbatim} 
     \end{codeframe}
-K~tagu se lze jednoduše vrátit příkazem checkout.
+K~tagu se lze jednoduše vrátit příkazem \it{checkout}. (příkaz \it{chekcout} také mění větve)
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 git checkout v1.0
 \end{Verbatim} 
     \end{codeframe}
+
+Další funkcí, která je užitečná je branch (větev). Branch můžeme např. použít pokud se chystáme udělat změnu, o~které nevíme jistě zda bude fungovat. Často je branch také k~oddělení prací uživatelů nebo částí projektu na, kterých se pracuje.\\
+Branch lze vytvořit příkazem
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+git branch <název větve>
+\end{Verbatim} 
+    \end{codeframe}
+repozitář je automaticky přepnut na vytvořenou větev a~změny už se neprovádí v~hlavní větvi master, ale v~nové větvi. Vytváření commitů a~odesílání změn je pak normální. Nastane, ale čas kdy je třeba části větve nebo větev celou začlenit do větve hlavní. K~tomuto je několik příkazů: první z~nich je \it{rebase}, který stáhne změny z~hlavní větve a~aplikuje je před změny ve vytvořené větvi. Pokud v~projektu nevznikají změny souběžně v~hlavní větvi i~větvi nové, není rebase třeba. Změny aplikujeme pomocí změny větve zpět na master příkazem \it{checkout} a~odeslání změn z~vytvořené větve pomocí \it{pull}. (takto lze aplikovat změny mezi libovolnými větvemi)
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+git checkout -f master
+git pull . <název větve>
+\end{Verbatim} 
+    \end{codeframe}
+Samozřejmě může nastat čas kdy větev již není třeba a~chceme ji spojit s~hlavní větví nebo smazat.
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+git merge <název větve> #spojí aktuální větev se zadanou
+git branch -D <název větve> #smaže větev
+\end{Verbatim} 
+    \end{codeframe}
+Pokud souběžně vznikají změny ve větvi hlavní i~nové větvi a~chceme provést příkazy jako \it{rebase, pull . <větev>} nebo \it{merge} mohou nastat konflikty ve změnách, které je třeba vyřešit (git některé konflikty řeší sám, ale nedokáže všechno). V takovém případě přepne git aktuální větev do speciálního režimu a~předá uživateli informace k~vyřešení těchto konfliktů.~\cite{GITmanualMerge}
 
 %\section{\upc{LaTeX}}
 
@@ -2257,6 +2290,7 @@ Programování v~interpretovaném jazyce BASH je velice zajímavé zvláště vz
 \bibitem{MailingListVznikGITu}TORVALDS, Linus.{\it{ LKML.ORG - the Linux Kernel Mailing List Archive}} [online]. 2005-04-07 [cit. 2011-05-26]. Linus Torvalds: Re: Kernel SCM saga. Dostupné z~WWW: \href{http://lkml.org/lkml/2005/4/8/9}{http://lkml.org/lkml/2005/4/8/9}.
 \bibitem{GITWEB}CHACON, Scott. {\it{ Git}} [online]. 2005 [cit. 2011-05-26]. Git - Fast Version Control System. Dostupné z~WWW: \href{http://git-scm.com/}{http://git-scm.com/}.
 \bibitem{GIThelpNastaveni}GitHub Inc.{\it{ Help.GitHub }}[online]. 2011 [cit. 2011-05-26]. Set Up Git (Linux). Dostupné z~WWW: \href{http://help.github.com/linux-set-up-git/}{http://help.github.com/linux-set-up-git/}.
+\bibitem{GITmanualMerge}Linux Kernel Organization, Inc. {\it{The Linux Kernel Archives}} [online]. 2006 [cit. 2011-05-26]. Git User’s Manual (for version 1.5.3 or newer). Dostupné z~WWW: \href{http://www.kernel.org/pub/software/scm/git/docs/user-manual.html\#how-to-merge}{http://www.kernel.org/pub/software/scm/git/docs/user-manual.html\#how-to-merge}.
 }
 
 %********************************* Seznam zkratek ************************************
