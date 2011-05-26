@@ -1471,13 +1471,14 @@ lfs:$1$VNMbpxGH$sew7cnwH9ixU.x27UbFNn.:15111:0:99999:7:::
 \end{Verbatim} 
     \end{codeframe}
 \b{POZOR!!! takový přístup se nepoužívá! Uživatelé bez hesla se používají pouze na LiveCD!}
- \item[Uživatel bez přihlášení] uživatel bez přihlášení se používá pro služby (v~Linuxu daemony, česky někdy též démony), je to speciální druh uživatele, za kterého se nelze přihlásit a~používá se aby byly práva služeb odděleny od uživatelů a~neběželi pod oprávnění uživatele root. Jejich nastavení se liší od normálního uživatele pouze v~tom, že~v~souboru /etc/passwd je defaultní shell jako /bin/bash nahrazen /bin/nologin nebo /bin/false a~heslo v~/etc/shadow je nahrazeno vykřičníkem:\\
+ \item[Uživatel bez přihlášení] uživatel bez přihlášení se používá pro služby (v~Linuxu daemony, česky někdy též démony), je to speciální druh uživatele, za kterého se nelze přihlásit a~používá se aby byly práva služeb odděleny od uživatelů a~neběželi pod oprávnění uživatele root. Jejich nastavení se liší od normálního uživatele pouze v~tom, že~v~souboru /etc/passwd je defaultní shell jako /bin/bash nahrazen /bin/nologin nebo /bin/false\\
 /etc/shadow
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 dbus:x:81:81:System message bus:/:/bin/false
 \end{Verbatim} 
     \end{codeframe}
+a~heslo v~/etc/shadow je nahrazeno vykřičníkem
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 dbus:!:15084:0:99999:7:::
@@ -1556,15 +1557,88 @@ Repozitáře s~falešným nebo upraveným SW. Další z reálných hrozeb v~Linu
 
 Existuje ještě mnoho hrozeb, ale většinu neovlivňuje Linux samotný, ale různé aplikace třetích stran a~chyby v~nich obsažené.
 
-linuxu.
+\section{\upc{Systém pro správu verzí git}}
+Projek git byl založen v~roce 2005 Linusem Torvaldsem, původně pro vývoj jádra Linuxu, a~jsou do něj vloženy zkušenosti, které Linus získal při vedení rozsáhlého projektu Linuxového jádra.~\cite{MailingListVznikGITu}\\
+
+Git je zcela zdarma, open source, \b{distribuovaný systém pro správu verzí} navržený zvládnout vše od malých až~po~velmi rozsáhlé projekty s~rychlosti a~účinnosti. Každý klon Git je full-fledged (česky plně rozvinuté) úložiště s~kompletní historií a~veškerými schopnostmi sledování revizí a~nezávislostí na přístupu k~síti nebo centrálnímu serveru. Větvení (branching) a~slučování (merging) jsou rychlé a~snadné.~\cite{GITWEB} Velmi důležité je pak slovo distribuovaný, protože git neukládá každou změnu na centrální úložiště, ale každý klon repozitáře obsahuje i~kompletní databázi změn projektu.
+
+\subsection{Použití git v bakalářské práci}
+Ke psaní této bakalářské práce byl zvolen sázecí systém \LaTeX, jednak pro jeho velmi kvalitní a~typograficky správný výstup, ale~i~protože je taková práce psána formou zdrojového kódu. Díky uložení zdrojového kódu do plain/text souboru je velmi snadné a~výhodné použít systému pro správu verzí. Systém git byl také použit pro správu verzí skriptů pro praktickou část \uv{LFS by BASH scripts}, které jsou uloženy také v~textových souborech.
+
+\subsection[Základní příkazy a github]{Základní příkazy a sociální web github}
+Ke správě jednoduchých a~malých projektů jako je např. tato bakalářská práce stačí umět opravdu jenom pár příkazů. A~díky webu github.com se stává správa malého projektu opravdu jednoduchou záležitostí.\\
+
+\subsubsection{Nastavení gitu}
+Základní nastavení gitu spočívá pouze v~nastavení Jména Příjmení a~emailu. Pokud používáme git pouze lokálně a~nenahráváme data někam na server, bude nám to stačit a~můžeme již vytvořit repozitář.\\
+
+Nastavení jména, příjmení a~emailu.
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+git config --global user.name "Jméno Příjmení"
+git config --global user.email "VášEmail@seznam.com"
+\end{Verbatim} 
+    \end{codeframe}
+Pokud nahráváme data na server je třeba autentizace. K~účelu autentizace se často používá ssh klíč. Ten je možné vygenerovat následujícím způsobem
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+ssh-keygen -t rsa -C "VášEmail@seznam.com"
+\end{Verbatim} 
+    \end{codeframe}
+pak je třeba zadat dvakrát heslo pro otevírání klíče a~klíč je vygenerován.\\
+
+Vygenerovaný klíč je k~nalezení v~domovském adresáři uživatele ve~složce \it{.ssh}, která obsahuje soubory \it{id_rsa} a \it{id_rsa.pub}. id_rsa je váš privátní klíč a~id_rsa.pub je klíč veřejný. Pro použití githubu je~třeba veřejný klíč nahrát do~nastavení na~webu \it{“Account Settings” > Click “SSH Public Keys” > Click “Add another public key”}. Také je potřebné nahrát do nastavení gitu bezpečnostní token githubu. Bezpečnostní token lze nalézt na webu \it{“Account Settings” > Click “Account Admin.”} položku API token, která obsahuje jakýsi HASH, je třeba vložit do~nastavení git na počítači.
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+git config --global github.user uzivatelskeJmeno
+git config --global github.token 0123456789yourf0123456789token
+\end{Verbatim} 
+    \end{codeframe}
+
+\subsubsection{Vytvoření repozitáře a první commit}
+Vytvoření repozitáře je velmi jednoduché a~skládá se ze dvou kroků: Vytvoření složky a~inicializace repozitáře.
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+mkdir projekKteryZmeniSvet
+cd projekKteryZmeniSvet
+git init
+\end{Verbatim} 
+    \end{codeframe}
+změny v~repozitáři jsou reprezentovány commity. Commit je vytvořen přidáním jednoho nebo více souborů a~přidáním popisku. Jako první by měl projekt obsahovat soubor README.
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+touch README
+git add README
+$ git commit -m 'přidáno README'
+\end{Verbatim} 
+    \end{codeframe}
+
+Pokud chceme použít github je třeba vytvořit repozitář na webu github. Po vyplnění názvu a~popisu repozitáře, github vypíše kroky nutné k~vytvoření repozitáře. Vypíše tedy, že je třeba vytvořit složku, inicializovat git, přidat první commit (nejčastěji soubor README), přidat adresu repozitáře na serveru github a~odeslání změn v~repozitáři.
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+git remote add origin git@github.com:uzivatelskeJmeno/projekKteryZmeniSvet.git
+git push origin master
+\end{Verbatim} 
+    \end{codeframe}
+
+\subsubsection{Správa repozitáře}
+Každodenní správa repozitáře jednoduchého projektu je většinou o~přidávání commitů a~odesílání změn. Takže si většinou lze vystačit s~příkazy \it{add, rm, diff, commit a push}. Ale git obsahuje také spoustu jiných užitečných funkcí, které usnadní správu i~malého projektu.\\
+
+Commit není pouze přidávání souborů, ale~i~mazání a~změny v~souborech.
+
+Jednou z~funkcí je tag. Tag vytvoří značku za~určeným commitem ke které se lze jednoduše vrátit. Je tedy užitečný pokud chce vytvořit např. release programu. commity a~jejich kódy si lze prohlédnout příkazem \it{git log}
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+git tag v1.0 <kód commitu>
+\end{Verbatim} 
+    \end{codeframe}
+K~tagu se lze jednoduše vrátit příkazem checkout.
+    \begin{codeframe}
+      \begin{Verbatim}{frame=single}
+git checkout v1.0
+\end{Verbatim} 
+    \end{codeframe}
 
 %\section{\upc{LaTeX}}
-
-
-
-%\section{\upc{GIT}}
-
-
 
 
 %********************************* Analytická část ************************************
@@ -2180,6 +2254,9 @@ Programování v~interpretovaném jazyce BASH je velice zajímavé zvláště vz
 \bibitem{BuilderNavod}{\it{GNewSense GNU/Linux}} [online]. 2006-08-27 [cit. 2011-05-17]. Builder/HowToCreateYourOwnGNULinuxDistribution. Dostupné z~WWW: \href{http://www.gnewsense.org/Builder/HowToCreateYourOwnGNULinuxDistribution}{http://www.gnewsense.org/Builder/HowToCreateYourOwnGNULinuxDistribution}.
 \bibitem{rubyOnRailTutorial}HARTL, Michael. {\it{Ruby on Rails Tutorial}} [online]. [s.l.] : [s.n.], 2010 [cit. 2011-05-21]. Dostupné z~WWW: \href{http://ruby.railstutorial.org/book/ruby-on-rails-tutorial\#sec:secure\_password\_theory}{http://ruby.railstutorial.org/book/ruby-on-rails-tutorial\#sec:secure\_password\_theory}.
 \bibitem{LINUXZONEGrsecurity}PALÁT, Pavel. {\it{LINUXZONE}} [online]. 2004-05-07 [cit. 2011-05-25]. Grsecurity. Dostupné z~WWW: \href{http://www.linuxzone.cz/index.phtml?ids=1\&idc=1060}{http://www.linuxzone.cz/index.phtml?ids=1\&idc=1060}.
+\bibitem{MailingListVznikGITu}TORVALDS, Linus.{\it{ LKML.ORG - the Linux Kernel Mailing List Archive}} [online]. 2005-04-07 [cit. 2011-05-26]. Linus Torvalds: Re: Kernel SCM saga. Dostupné z~WWW: \href{http://lkml.org/lkml/2005/4/8/9}{http://lkml.org/lkml/2005/4/8/9}.
+\bibitem{GITWEB}CHACON, Scott. {\it{ Git}} [online]. 2005 [cit. 2011-05-26]. Git - Fast Version Control System. Dostupné z~WWW: \href{http://git-scm.com/}{http://git-scm.com/}.
+\bibitem{GIThelpNastaveni}GitHub Inc.{\it{ Help.GitHub }}[online]. 2011 [cit. 2011-05-26]. Set Up Git (Linux). Dostupné z~WWW: \href{http://help.github.com/linux-set-up-git/}{http://help.github.com/linux-set-up-git/}.
 }
 
 %********************************* Seznam zkratek ************************************
