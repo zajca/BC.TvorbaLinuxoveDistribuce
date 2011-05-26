@@ -992,7 +992,7 @@ Examples:
     \end{codeframe} 
 \begin{center}
 \obr{./img/screens/remastersys.png}{0.5}{Grafické rozhraní programu Remastersys}
-
+%$
 % remastersys.png: 625x388 pixel, 96dpi, 16.53x10.26 cm, bb=0 0 469 291
 
 \end{center}
@@ -1094,19 +1094,19 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 Takto vytvořená distribuce může mít i~8MB!
 
 \section{\upc{LiveCD}}
-Ač by se mohl zdát, že liveCD je nějaká velmi složitá věc k~vytvoření není to tak úplně pravda. Nejjednodušší forma LiveCD je pokud strčíme CD do mechaniky, ten nabootuje a~spustí se příkazová řádka ve které je možné pracovat. Takto fungovali a~často ještě fungují instalační CD různých distribucí. Dnes se velmi často používá několik druhů instalačních/live CD
+Ač by se mohlo zdát, že liveCD je nějaká velmi složitá věc k~vytvoření není to tak úplně pravda. Nejjednodušší forma LiveCD je taková, že vložíme CD do mechaniky, ten nabootuje a~spustí se příkazový řádek ve kterém je možné pracovat. Takto fungovaly a~často ještě fungují instalační CD různých distribucí. Dnes se velmi často používá několik druhů instalačních/live CD
 \begin{itemize}
  \item Instalační CD s~příkazovou řádkou a~instalací pomocí textového nástroje (Archlinux,…)
  \item Instalační CD s~grafickým instalátorem (Debian,…)
  \item LiveCD ve kterém lze z~grafického Live prostředí spustit instalátor (ve většině případů lze spustit grafický isntalátor i~bez grafického live prostředí jako v~předchozí položce) (Ubuntu,…)
  \item Čistě LiveCD, takový disk slouží pouze pro vyzkoušení většinou grafického prostředí nebo k~opravám stávajícího systému (neobsahuje instalátor) (GNOME Live Media, Gparted,…)
- \item LiveCD určené pro běžnou práci. Takové LiveCD umí např. nahrání systému do RAM, pak už není třeba číst z~CD nebo také pokud se jedná o~LiveUSB jdou uložit změny v~systému na disk a~jsou načteny při dalším spuštění. (Slax,Chakra,…)
+ \item LiveCD určené pro běžnou práci. Takové LiveCD umí např. nahrát systém do RAM, pak už není třeba číst z~CD nebo také pokud se jedná o~LiveUSB je možné uložit změny v~systému na disk a~ty jsou načteny při dalším spuštění. (Slax,Chakra,…)
 \end{itemize}
 
 \subsection{Výhody/nevýhody LiveCD}
-Vyhodou LiveCD je především možnost \textbf{vyzkoušet si celý operační systém bez nutnosti instalace}. Kompromisem LiveCD je pak \textbf{rychlost}, která se odvíjí od rychlosti čtení CD/DVD mechaniky. Rychlost LiveCD je možné zvýšit použitím jiného média než CD nebo DVD, např. použitím FlashDisku. Rychlost běhu lze zvýšit také \textbf{nahráním celého systému do paměti RAM}, této proces má však velkou nevýhodu v~délce trvání, protože celé LiveCD musí být přečteno a~zapsáno do paměti RAM. Další nevýhodou je pak, až~na výjimky, nemožnost uložení změn v~systému zpět na přenosné médium.\\
+Vyhodou LiveCD je především možnost \textbf{vyzkoušet si celý operační systém bez nutnosti instalace}. Kompromisem LiveCD je pak \textbf{rychlost}, která se odvíjí od rychlosti čtení CD/DVD mechaniky. Rychlost LiveCD je možné zvýšit použitím jiného média než CD nebo DVD, např. použitím FlashDisku. Rychlost běhu lze zvýšit také \textbf{nahráním celého systému do paměti RAM}, tento proces má však velkou nevýhodu v~délce trvání, protože celé LiveCD musí být přečteno a~zapsáno do paměti RAM. Další nevýhodou je, až~na výjimky, nemožnost uložení změn v~systému zpět na přenosné médium.\\
 
-Samozřejmě LiveCD není většinou používáno k~běžně práci, takže jeho výhoda ve vyzkoušení neznámého operačního systému nebo grafického prostředí bez nutnosti mnohdy zdlouhavé instalace, převyšuje nad nevýhodami.
+Samozřejmě LiveCD není většinou používáno k~běžně práci, jeho výhodou je vyzkoušení neznámého operačního systému nebo grafického prostředí bez nutnosti mnohdy zdlouhavé instalace, což převyšuje nad nevýhodami.
 \subsection{Možnosti tvorby LiveCD}
 Vytvořit LiveCD lze několika způsoby, nejjednodušší je způsob úpravy stávajícího LiveCD jak bylo i~popsáno \odkazNaKapitolu{sec:tvorbaDistribuce}. 
 
@@ -1125,7 +1125,7 @@ Obecný postup tvorby LiveCD se dá shrnout do několika kroků.
 \end{enumerate}
 
 \subsubsection{NimbleX}
-Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního derivátu NimbleX. Umožňuje vytvořit vlastní LiveCD obraz několik jednoduchými kroky, na výběr je stáhnutí minimální obrazu nebo sestavení vlastního obrazu. U vlastního obrazu si uživatel vybere aplikace přehledně rozdělené do kategorií, wallpaper, nastavení zvuku, nastavení uživatelů a jazyk systému. Pak už jen počká na vygenerování obrazu, který je následujících 12hodin ke stažení.
+Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního derivátu NimbleX. Umožňuje vytvořit vlastní LiveCD obraz několik jednoduchými kroky, na výběr je stáhnutí minimálního obrazu nebo sestavení vlastního obrazu. U vlastního obrazu si uživatel vybere aplikace přehledně rozdělené do kategorií, wallpaper, nastavení zvuku, nastavení uživatelů a jazyk systému. Pak už jen počká na vygenerování obrazu, který je následujících 12hodin ke stažení.
 \begin{figure}[h]
 \begin{center}$
 \begin{array}{cc}
@@ -1146,14 +1146,14 @@ Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního de
 \end{figure}
 
 \subsubsection{Linux-Live}
-Linux-Live je sada skriptů, která není závislá na distribuci, ale lze ji použít na jakémkoliv linuxu. Prakticky stačí stáhnou skripty ze stránek linux-live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek linux-live. Skripty už pak samy vytvoří Live systém, který je možné nabootovat z CD nebo USB.
+Linux-Live je sada skriptů, která není závislá na distribuci, ale lze ji použít na jakémkoliv Linuxu. Prakticky stačí stáhnou skripty ze stránek Linux-Live a zkompilovat si kernel s podporou aufs a squashfs nebo si stáhnout již zkompilovaný kernel ze stránek Linux-Live. Skripty už pak samy vytvoří Live systém, který je možné nabootovat z CD nebo USB.
 
 %If you want a truly distro-agnostic way of customising your favourite Linux distribution, you need the Linux-Live set of scripts. The scripts work on any installed Linux distro and can create a Live system that you can boot from optical media or USB drives.
 %The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
 
 \subsubsection{Další možnosti tvorby LiveCD}
-\b{Linux-live} je nejčastější způsobem vytvoření LiveCD. Spousta distribucí má, ale vlastní nástroje některé jako: The Ubuntu Customisation Kit (UCK) nebo Reconstructor, které již byly popsány \odkazNaKapitolu{sec:UCK}. Pro fedoru např. exituje nástroj \b{livecd-creator} pro tvorbu Fedora LiveCD a~podrobný návod je dostupný na stránkách fedory~\cite{FedoraLiveCDproject}. Pro debian existuje \textbf{Debian Live Project}, který poskytuje webové rozhraní podobné nástroji Instalinux \odkazNaKapitolu{sec:Instalinux} a~je zdarma dostupný na internetu.~\cite{DebianLiveProject}
-Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. Jsou hned tři a~všechny jsou popsány na wiki stránkách distribuce Archlinux~\cite{ArchWiki-BuildLiveCD}. První je oficiální sada nástrojů, používaná k~tvorbě oficiálních vydání disků nazvaná \b{Archiso}. Druhým nástrojem je \b{larch}, který nepotřebuje k~sestavení jako hostitelský systém Archlinux, ale funguje v~jakémkoliv Linuxu, protože si potřebné aplikace stáhne z~repozitářů archlinuxu. Posledním nástrojem je \textbf{poison-livecd-creator} jedná se o~opravdu jednoduchý Makefile a~několik jednoduchými kroky lze docílit vytvoření LiveCD na bázi Arch
+\b{Linux-Live} je nejčastějším způsobem vytvoření LiveCD. Spousta distribucí má, ale vlastní nástroje některé jako: The Ubuntu Customisation Kit (UCK) nebo Reconstructor, které již byly popsány \odkazNaKapitolu{sec:UCK}. Pro fedoru např. exituje nástroj \b{livecd-creator} pro tvorbu Fedora LiveCD a~podrobný návod je dostupný na stránkách fedory~\cite{FedoraLiveCDproject}. Pro debian existuje \textbf{Debian Live Project}, který poskytuje webové rozhraní podobné nástroji Instalinux \odkazNaKapitolu{sec:Instalinux} a~je zdarma dostupný na internetu.~\cite{DebianLiveProject}
+Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. Jsou hned tři a~všechny jsou popsány na wiki stránkách distribuce Archlinux~\cite{ArchWiki-BuildLiveCD}. První je oficiální sada nástrojů, používaná k~tvorbě oficiálních vydání disků nazvaná \b{Archiso}. Druhým nástrojem je \b{larch}, který nepotřebuje k~sestavení jako hostitelský systém Archlinux, ale funguje v~jakémkoliv Linuxu, protože si potřebné aplikace stáhne z~repozitářů Archlinuxu. Posledním nástrojem je \textbf{poison-livecd-creator} jedná se o~opravdu jednoduchý Makefile a~několika jednoduchými kroky lze docílit vytvoření LiveCD na bázi Archlinuxu.
 
 
 \section{\upc{Zabezpečení Linuxového systému}}
@@ -1161,12 +1161,12 @@ Další zajímavé nástroje pro tvorbu LiveCD existují např. pro Archlinux. J
 Zabezpečení OS je velice rozsáhlým a~komplexním odvětvím, které se navíc velmi rychle vyvíjí a~rozšiřuje. Jeho plné popsání by vydalo na několik desítek bakalářských prací, proto jen základní informace o~vnitřním zabezpečení systému, nástrojích jež toto zabezpečení rozšiřují a~také o~zabezpečení proti vnějšímu útoku a~bezpečném přenosu informací.
 
 \subsection{Bezpečnostní model Linuxu}
-Standardní bezpečnostní model, vycházející z~Discretionary Access Control (DAC) \odkazNaKapitolu{sec:DAC}, jejž najdeme na většině UNIXových operačních systemů (tedy i~Linuxu) je postaven na několika bitových maskách (specifikující u souboru práva pro vlastníka, skupinu, ostatní (drwxrwxrwx) a~popř. nastavující některé speciální bity, jako je SUID (secure user identification number) či SGID (secure group identification number)). Další velmi typickou stránkou tohoto bezpečnostního modelu je uživatel root – administrátor a~uživatel s~nejvyššími možnými privilegii (jinak řečeno uživatel, jenž může vše).~\cite{LINUXZONEGrsecurity}\\
+Standardní bezpečnostní model, vycházející z~Discretionary Access Control (DAC) \odkazNaKapitolu{sec:DAC}, který nalezneme na většině UNIXových operačních systemů (tedy i~Linuxu) je postaven na několika bitových maskách (specifikující u souboru práva pro vlastníka, skupinu, ostatní (drwxrwxrwx) a~popř. nastavující některé speciální bity, jako je SUID (secure user identification number) či SGID (secure group identification number)). Další velmi typickou stránkou tohoto bezpečnostního modelu je uživatel root – administrátor a~uživatel s~nejvyššími možnými privilegii (jinak řečeno uživatel, jenž může vše).~\cite{LINUXZONEGrsecurity}\\
 
-Tento bezpečnostní model se v~praxi v~různých UNIXových klonech osvědčil a~používá se dodnes. Ale jsou případy kdy není zrovna nevýhodnější. Prvním problémem jsou ona již zmíněná přístupová práva k~souborům, jež jsou ze své podstaty poměrně omezená a~nastavení práv tak často nutí administrátora k~různým krokům, jako je např. vytváření velkého množství uživatelských skupin (a~v~některých případech ani~to není uspokojivým řešením).
-Dalším kamenem úrazu je uživatel root, kterýžto jako administrátor prakticky má veškerá možná práva. Některý software část těchto práv ovšem vyžaduje – typickým příkladem je většina síťových démonů, které poslouchají na privilegovaných síťových portech (<1024). A~krom oněch potřebných práv tak program zcela zbytečně dostane plnou kontrolu nad systémem, což může být zneužito potenciálním útočníkem, pokud se v~onom softwaru vyskytuje nějaká bezpečnostní chyba. Standardně se tento problém řeší tak, že program zahazuje EUID 0 (effective user identification number) v~momentě, kdy již nepotřebuje speciální práva.~\cite{LINUXZONEGrsecurity}\\
+Tento bezpečnostní model se v~praxi v~různých UNIXových klonech osvědčil a~používá se dodnes. Ale jsou případy kdy není zrovna nevýhodnější. Prvním problémem jsou ona již zmíněná přístupová práva k~souborům, která jsou ze své podstaty poměrně omezená a~nastavení práv tak často nutí administrátora k~různým krokům, jako je např. vytváření velkého množství uživatelských skupin (a~v~některých případech ani~to není uspokojivým řešením).
+Dalším kamenem úrazu je uživatel root, kterýžto jako administrátor prakticky má veškerá možná práva. Některý software část těchto práv ovšem vyžaduje – typickým příkladem je většina síťových démonů, které poslouchají na privilegovaných síťových portech (<1024). A~mimo oněch potřebných práv tak program zcela zbytečně dostane plnou kontrolu nad systémem, což může být zneužito potenciálním útočníkem, pokud se v~onom softwaru vyskytuje nějaká bezpečnostní chyba. Standardně se tento problém řeší tak, že program zahazuje EUID 0 (effective user identification number) v~momentě, kdy již nepotřebuje speciální práva.~\cite{LINUXZONEGrsecurity}\\
 
-Dalším souvisejícím problém je nemožnost efektivní distribuce práv k~systému mezi více administrátorů. Příkladem budiž situace, v~níž potřebujeme svěřit administraci DNS serveru jinému člověku než tomu, který se stará o~zbytek administrace systému. Nasnadě je povolení zápisu do konfiguračních souborů onoho daemonu, ale~tím vyřešíme jen část problémů. Onen administrátor též musí mít možnost např. onen server restartovat či mu alespoň poslat nějaký signál (např. pro načtení nové konfigurace), což s~sebou přínáší nutnost superuživatelských práv. Jistým řešením je sudo či podobný nástroj, který umožňuje administrátorovi nastavit, jaké příkazy (a~pod jakým uživatelem) může daný uživatel spouštět ze svého normálního uživatelského účtu. Nicméně nejedná se o~dostatečně flexibilní řešení.~\cite{LINUXZONEGrsecurity}\\
+Dalším souvisejícím problémem je nemožnost efektivní distribuce práv k~systému mezi více administrátorů. Příkladem budiž situace, v~níž potřebujeme svěřit administraci DNS serveru jinému člověku než tomu, který se stará o~zbytek administrace systému. Nasnadě je povolení zápisu do konfiguračních souborů onoho daemonu, ale~tím vyřešíme jen část problémů. Onen administrátor též musí mít možnost např. onen server restartovat či mu alespoň poslat nějaký signál (např. pro načtení nové konfigurace), což s~sebou přináší nutnost superuživatelských práv. Jistým řešením je sudo či podobný nástroj, který umožňuje administrátorovi nastavit, jaké příkazy (a~pod jakým uživatelem) může daný uživatel spouštět ze svého normálního uživatelského účtu. Nicméně nejedná se o~dostatečně flexibilní řešení.~\cite{LINUXZONEGrsecurity}\\
 
 Řešení se nabízí pomocí bezpečnostních patchů linuxového jádra implementující jiné modely přístupu než je v~Linuxu standardní Discretionary Access Control (DAC).
 
@@ -1178,18 +1178,18 @@ Kontrola přístupu uvnitř systému je jedno z~nejdůležitějších zabezpeče
 
 \subsubsection{DAC vs. MAC vs. RBAC} \label{sec:DAC}
 
-Bezpečnostní model využívaný většinou mainstreamových operačních systému je založen na \b{Discretionary Access Control (DAC)}, který je založen na bezpečnosti vlastnictvím. Pokud uživatel vlastní soubor, může nastavovat práva pro čtení, zápis a~spouštění (r+w+x), pro tento soubor. V~tomto modelu uživatel kontroluje data dle vlastního uvážení. Vlastník systému\footnote{Vlastník systému (anglicky system owner nebo také administrátor) je určen při instalaci OS, oproti účtu uživatele root nemá právo měnit např. práva systémových souborů, ale má právo měnit přístupová práva široké škály uživatelů a~uživatelé nemají možnost tyto ustanovení měnit.\cite{SystemOwner}} nemá totální kontrolu nad systémem, tu má uživatel.~\cite{Linux_com_MACvsDAC}
+Bezpečnostní model využívaný většinou mainstreamových operačních systému je založen na \b{Discretionary Access Control (DAC)}, který je založen na bezpečnosti vlastnictvím. Pokud uživatel vlastní soubor, může nastavovat práva pro čtení, zápis a~spouštění (r+w+x), pro tento soubor. V~tomto modelu uživatel kontroluje data dle vlastního uvážení. Vlastník systému\footnote{Vlastník systému (anglicky system owner nebo také administrátor) je určen při instalaci OS, oproti účtu uživatele root nemá právo měnit např. práva systémových souborů, ale má právo měnit přístupová práva široké škály uživatelů a~uživatelé nemají možnost tato ustanovení měnit.\cite{SystemOwner}} nemá totální kontrolu nad systémem, tu má uživatel.~\cite{Linux_com_MACvsDAC}
 
 
-V Mandatory (česky Povinné) Access Control (MAC), uživatelům jsou dána povolení ke~zdrojům správcem. Pouze správce může udělit oprávnění nebo právo k~objektům a~zdrojům. Přístup ke zdrojům je založený na úrovni zabezpečení objektu a uživateli je udělene bezpečnostní prověrka pro přistup k~objektu. Pouze správci mohou upravovat objektu bezpečnostní štítek nebo uživateli bezpečnostní prověrky.
+V Mandatory (česky Povinné) Access Control (MAC), uživatelům jsou dána povolení ke~zdrojům správcem. Pouze správce může udělit oprávnění nebo právo k~objektům a~zdrojům. Přístup ke zdrojům je založený na úrovni zabezpečení objektu a uživateli je udělena bezpečnostní prověrka pro přistup k~objektu. Pouze správci mohou upravovat objektu bezpečnostní štítek nebo uživateli bezpečnostní prověrky.
 
-V Role-Based Access Control (RBAC), je přístup ke zdrojům založen na \uv{roli kterou uživatel hraje}. V tomto modelu, správce přiřadí uživateli roli, která má předem přidělena určitá práva a~výsady. Vzhledem k~uživateli přidělené rolí, může uživatel přístupová k~určitým zdrojům a~plnit specifické úkoly. RBAC je také známý jako Non-Discretionary Access Control. Role přiřazené uživatelům, jsou centrálně spravovány.
+V Role-Based Access Control (RBAC), je přístup ke zdrojům založen na \uv{roli kterou uživatel hraje}. V tomto modelu, správce přiřadí uživateli roli, která má předem přidělena určitá práva a~výsady. Vzhledem k~uživateli přidělené roli, může uživatel přístupovat k~určitým zdrojům a~plnit specifické úkoly. RBAC je také známý jako Non-Discretionary Access Control. Role přiřazené uživatelům, jsou centrálně spravovány.
 
 \subsubsection{Security-Enhanced Linux, SElinux}
 
 SELinux je bezpečnostní vylepšení pro Linux, které dává uživatelům a správcům větší kontrolu nad tím, který uživatele nebo aplikace může přistupovat k jakým prostředkům. Standardní Linuxová kontrola přístupu jako je oprávnění pro soubor (-rwxr-xr-x) je modifikovatelné uživatelem nebo aplikací, kterou uživatel spustí. Oproti tomu, kontrola přístupu v~SELinuxu je určena pravidly v~systému a~neopatrný uživatel nebo nesprávná aplikace je nemůže nijak změnit.
 
-SELinux také přidává mnoho možností pro řízení přístupu. Místo klasického určení, kdo může číst, psát nebo spustit soubor, např. SELinux umožňuje určit, kdo může vytvářet a~rušit odkazy, přesouvat soubory a~mnoho dalšího. SELinux umožňuje určit přístup k mnoha jiných zdrojů než jenom k souborům, např. přístup k~síťovým zdrojům nebo k~mezi procesové komunikaci (IPC).\cite{SElinuxWiki}
+SELinux také přidává mnoho možností pro řízení přístupu. Místo klasického určení, kdo může číst, psát nebo spustit soubor, např. SELinux umožňuje určit, kdo může vytvářet a~rušit odkazy, přesouvat soubory a~mnoho dalšího. SELinux umožňuje určit přístup k mnoha jiným zdrojům než jen k souborům, např. přístup k~síťovým zdrojům nebo k~mezi procesové komunikaci (IPC).\cite{SElinuxWiki}
 
 %SELinux is a security enhancement to Linux that allows users and administrators more control over which users and applications can access which resources, such as files. Standard Linux access controls, such as file modes (-rwxr-xr-x) are modifiable by the user and applications that the user runs whereas SELinux access controls are determined by a policy loaded on the system and not changeable by careless users or misbehaving applications.
 %SELinux also adds finer granularity to access controls. Instead of only being able to specify who can read, write or execute a file, for example, SELinux lets you specify who can unlink, append only, move a file and so on. SELinux allows you to specify access to many resources other than files as well, such as network resources and interprocess communication (IPC).
@@ -1205,7 +1205,7 @@ AppArmor se především oproti SElinuxu vyznačuje mnohem jednodušším nastav
 
 Tomoyo Linux je Mandatory Access Control (MAC) implementace pro Linux, díky které lze zvýšit zabezpečení systému a~nebo může být pouze nástrojem systémové analýzy. Jeho vývoj byl zahájen v~březnu 2003 a je sponzorován NTT Data Corporation, Japonsko.
 
-Tomoyo Linux se zaměřuje na chování systému. Každý proces je vytvořen za dosažením určitého cíle a~jako imigrační pracovník, Tomoyo Linux umožňuje každému procesu určit si zdroje potřebné k~dosažení svého cíle. Pokud je povolena ochrana, Tomoyo Linux funguje jako hlídací pes a~omezuje každý proces tak jak má povoleno správcem.\cite{TOMOYOLinuxHOME}
+Tomoyo Linux se zaměřuje na chování systému. Každý proces je vytvořen za dosažením určitého cíle a~jako imigrační pracovník, Tomoyo Linux umožňuje každému procesu určit si zdroje potřebné k~dosažení svého cíle. Pokud je povolena ochrana, Tomoyo Linux funguje jako hlídací pes a~omezuje každý proces tak, jak má povoleno správcem.\cite{TOMOYOLinuxHOME}
 
 Mezi hlavní přednosti Tomoyo Linux patří:
 \begin{itemize}
@@ -1243,8 +1243,8 @@ Nabízí mnoho funkcí:
  \item Prevence spuštění libovolného kódu v jádře
  \item Randomizaci zásobníku a knihoven
  \item Ochrana proti využitelným chybám null-pointer dereference~\cite{Null-pointerDereference} v jádře
- \item Snížení rizika úniku citlivých informací díky chybám v jádra
- \item Omezení, která umožňuje uživateli zobrazit pouze své procesy
+ \item Snížení rizika úniku citlivých informací díky chybám v jádru systému
+ \item Omezení, která umožňují uživateli zobrazit pouze své procesy
  \item Výstrahy zabezpečení a audity, které obsahují IP adresu osoby, která způsobila záznam
 \end{itemize}
 
@@ -1307,7 +1307,7 @@ Většina Linuxových distribucí dosahuje Třídy C2~\cite{LinuxDictionary}
 
 Evropská kritéria vytvořená v roce 1990 dnes již nahrazena kritérii Common Criteries (CC)~\odkazNaKapitolu{sec:cc}.
 
-rozdělení požadavků kladených na
+Rozdělení požadavků kladených na
 \begin{itemize}
  \item Předmět hodnocení
  \item Míru záruk a funkčnost
@@ -1431,7 +1431,7 @@ Uživatelské v~OS Linux jsou definováni v~souboru /etc/passwd a~jejich hesla j
 
 \nadpis{/etc/passwd}
 
-Základní databází uživatelů v~systému Linux je textový soubor /etc/passwd (angl. password file), v němž jsou uvedeny platná uživatelská jména a~další k~nim přidružené informace. Každému uživateli odpovídá v~souboru jeden záznam - řádek, který je rozdělen na sedm polí, jejichž oddělovačem je dvojtečka. Význam jednotlivých položek je následující~\cite{LDP}:
+Základní databází uživatelů v~systému Linux je textový soubor /etc/passwd (angl. password file), v němž jsou uvedena platná uživatelská jména a~další k~nim přidružené informace. Každému uživateli odpovídá v~souboru jeden záznam - řádek, který je rozdělen na sedm polí, jejichž oddělovačem je dvojtečka. Význam jednotlivých položek je následující~\cite{LDP}:
 \begin{enumerate}
  \item Uživatelské jméno.
  \item Pole pro heslo v~zakódované podobě, které se nepoužívá a~heslo se ukládá do /etc/shadow
@@ -1471,7 +1471,7 @@ lfs:$1$VNMbpxGH$sew7cnwH9ixU.x27UbFNn.:15111:0:99999:7:::
 \end{Verbatim} 
     \end{codeframe}
 \b{POZOR!!! takový přístup se nepoužívá! Uživatelé bez hesla se používají pouze na LiveCD!}
- \item[Uživatel bez přihlášení] uživatel bez přihlášení se používá pro služby (v~Linuxu daemony, česky někdy též démony), je to speciální druh uživatele, za kterého se nelze přihlásit a~používá se aby byly práva služeb odděleny od uživatelů a~neběželi pod oprávnění uživatele root. Jejich nastavení se liší od normálního uživatele pouze v~tom, že~v~souboru /etc/passwd je defaultní shell jako /bin/bash nahrazen /bin/nologin nebo /bin/false\\
+ \item[Uživatel bez přihlášení] uživatel bez přihlášení se používá pro služby (v~Linuxu daemony, česky někdy též démony), je to speciální druh uživatele, za kterého se nelze přihlásit a~používá se aby byla práva služeb oddělena od uživatelů a~neběžela pod oprávnění uživatele root. Jejich nastavení se liší od normálního uživatele pouze v~tom, že~v~souboru /etc/passwd je defaultní shell jako /bin/bash nahrazen /bin/nologin nebo /bin/false\\
 /etc/shadow
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
@@ -1493,7 +1493,7 @@ Pro přihlášení uživatele se používá několik způsobů, ať už grafick�
 Základní možnosti přihlášení uživatele:
 \begin{description}
  \item[Computer terminal (tty)] Standardní přihlášení do systému, uživatel zadá uživatelské jméno, heslo a~je mu zpřístupněn systém prostřednictvím console.
- \item[Desktop manager] slouží jako přihlašovací obrazovka do většinou grafických prostředí a~většinou poskytuje kromě přihlášení, také služby jako je vypnutí, restart nebo uspání bez nutnosti zadání hesla uživatele root. Existují \textbf{grafické desktopové managery} jako KDM, GDM, SLiM, XDM, EDM, LightDM a~jiné. Velmi často se ke grafickému prostředí váže i~jeho vlastní desktop manager, který ovšem dokáže spouštět i~ostatní prostředí. \textbf{Textových desktopových managerů} existuje velmi málo a~většinou se jedná pouze o~nástroje, které umožní po textovém přihlášení spustit Xserver se zvoleným grafickým prostředím. wmctrl, CDM.
+ \item[Desktop manager] slouží jako přihlašovací obrazovka do většiny grafických prostředí a~většinou poskytuje kromě přihlášení, také služby jako je vypnutí, restart nebo uspání bez nutnosti zadání hesla uživatele root. Existují \textbf{grafické desktopové managery} jako KDM, GDM, SLiM, XDM, EDM, LightDM a~jiné. Velmi často se ke grafickému prostředí váže i~jeho vlastní desktop manager, který ovšem dokáže spouštět i~ostatní prostředí. \textbf{Textových desktopových managerů} existuje velmi málo a~většinou se jedná pouze o~nástroje, které umožní po textovém přihlášení spustit Xserver se zvoleným grafickým prostředím. wmctrl, CDM.
  \item[Vzdálené přihlášení] vzdálených přihlášení existuje mnoho druhů, protože~spousta služeb, které umožňují vzdálený přístup implementuje vlastní způsob přihlášení. Např. některé grafické desktopové managery umožňují vzdálený přístup přes protokol XDMCP. Nejčastěji se však pro vzdálené přihlášení používá SSH \odkazNaKapitolu{sec:SSH}
 \end{description}
 
@@ -1503,19 +1503,19 @@ Základní možnosti přihlášení uživatele:
 
 Firewall v Linuxu je tvořen projektem \b{Netfilter}, který pracuje na úrovni jádra a umožňuje filtrovat pakety na základě mnoha kritérií. Základním nástrojem pro nastavení paketového filtru je známý řádkový nástroj \b{iptables}.~\cite{FirewallNetfilter}
 
-IPtables jsou, ale nástrojem velice složitým a~proto vzniklo několik projektů, které se snaží nastavení Firewallu usnadnit. Nástrojem určeným pro běžné uživatele je např. grafický program \b{Firestarter}. Přístup Firestarteru je však vhodný spíše pro osobní počítače, pro větší síť a~nastavení více firewallů, je vhodným řešením nástroj ve které si uživatel vytvoří nastavení v~grafického nebo textového rozhraní a~výslednou konfiguraci firewallu pak přenese na server. Takovým nástrojem je např. \b{FirewallBuilder}, \b{FireHOL} oblíbená sada skriptů pro konfiguraci Netfilteru \b{Shorewall}.
+IPtables jsou, ale nástrojem velice složitým a~proto vzniklo několik projektů, které se snaží nastavení Firewallu usnadnit. Nástrojem určeným pro běžné uživatele je např. grafický program \b{Firestarter}. Přístup Firestarteru je však vhodný spíše pro osobní počítače, pro větší síť a~nastavení více firewallů, je vhodným řešením nástroj ve kterém si uživatel vytvoří nastavení v~grafickém nebo textovém rozhraní a~výslednou konfiguraci firewallu pak přenese na server. Takovým nástrojem je např. \b{FirewallBuilder}, \b{FireHOL} oblíbená sada skriptů pro konfiguraci Netfilteru \b{Shorewall}.
 
 Jak už je v~Linuxu dobrým zvykem vše je často přehledně a~použitelně zabaleno v~distribucích. V prostředí firewallů existuje velké množství distribucí, které nenabízejí většinou v~základu jen firewall, ale jsou určiny i~pro routery a~jiná síťová zařízení (PROXY server, gateway, VPN, IPSEC, Anti-virus, www server,…). Asi nejpoužívanější distribucí je \b{IPCop} což je derivát distribuce \b{Smoothwall}. Oblíbenou distribucí pro firewally je také router distribuce \b{OpenWRT} a~několik projektů na ní založených např. \b{FreeWRT} nebo \b{DD-WRT}.
 
 \subsubsection{Antivirus}\label{sec:antivirus}
 
-Antivirus a~viry obecně jsou velmi diskutovaným tématem v~linuxovém prostředí. V dnešní době je nebezpečí virů na linuxu stále mizivé a~vše naznačuje, že to tak ještě nějakou dobu potrvá. Hlavním argumentem proč na Linuxu neexistují viry je často jeho malá rozšířenost, což není tak úplně pravda, protože většina průzkumů rozšířenosti OS se zaměřuje na desktopové počítače, kde dle statistik Linux drží 1\%~\cite{StatistikaOS}, ale co se týče především www serverů dosahuje linuxový webový server Apache podílu přes 70\%~\cite{StatLinuxWebServer}. Linux je před viry a malwarem chráněn především díky jeho balíčkovacím systémům, protože software není jako u windows instalován z~různých pochybných webů a~jiných zdrojů, ale přímo od tvůrců distribuce a~jejich repozitářů. Dalším stupněm ochrany jsou pak oddělené uživatelské účty a~oddělený účet administrátora, které zabraňují šíření viru v~systému a~jeho další napadení.~\cite{LinuxCZviry}
+Antivirus a~viry obecně jsou velmi diskutovaným tématem v~Linuxovém prostředí. V dnešní době je nebezpečí virů na Linuxu stále mizivé a~vše naznačuje, že to tak ještě nějakou dobu potrvá. Hlavním argumentem proč na Linuxu neexistují viry je často jeho malá rozšířenost, což není tak úplně pravda, protože většina průzkumů rozšířenosti OS se zaměřuje na desktopové počítače, kde dle statistik Linux drží 1\%~\cite{StatistikaOS}, ale co se týče především www serverů dosahuje Linuxový webový server Apache podílu přes 70\%~\cite{StatLinuxWebServer}. Linux je před viry a malwarem chráněn především díky jeho balíčkovacím systémům, protože software není jako u windows instalován z~různých pochybných webů a~jiných zdrojů, ale přímo od tvůrců distribuce a~jejich repozitářů. Dalším stupněm ochrany jsou pak oddělené uživatelské účty a~oddělený účet administrátora, které zabraňují šíření viru v~systému a~v~jeho dalším napadení.~\cite{LinuxCZviry}\\
 
-Samozřejmě pro Linux existuje množství antivirových programů, které spousta neznalých uživatelů považuje za důkaz virů v~Linuxu, což není pravda, protože antivirové programy v~Linuxu slouží především k~ochraně windowsových stanic. Většina serverových řešení je totiž postavena právě na Linuxu a~je třeba chránit klienty, kteří fungují na windows. Nejznámější antivirovým programem pro Linux je zřejmě \b{ClamAV}, jedná se o OpenSource program, který slouží především ke scanování e-mailové komunikace a~ochraně windowsových stanic~\cite{ClamAV}. Samozřejmě existuje i~množství komerčních antivirových programů od firem jako ESETs nebo AVG a~je jen na uživateli, které řešení použije.
+Samozřejmě pro Linux existuje množství antivirových programů, které spousta neznalých uživatelů považuje za důkaz virů v~Linuxu, což není pravda, protože antivirové programy v~Linuxu slouží především k~ochraně Windowsových stanic. Většina serverových řešení je totiž postavena právě na Linuxu a~je třeba chránit klienty, kteří fungují na Windows. Nejznámější antivirovým programem pro Linux je zřejmě \b{ClamAV}, jedná se o OpenSource program, který slouží především ke scanování e-mailové komunikace a~ochraně windowsových stanic~\cite{ClamAV}. Samozřejmě existuje i~množství komerčních antivirových programů od firem jako ESETs nebo AVG a~je jen na uživateli, které řešení použije.
 
 \subsubsection{SSH}\label{sec:SSH}
 
-Secure Shell neboli ssh je nástroj pro bezpečné připojení v nedůvěryhodné síti. Poskytuje šifrované terminálové spojení se bezpečným systémem autentizace, jak na straně serveru tak straně klienta, pomocí veřejných kryptografických klíčů.
+Secure Shell neboli ssh je nástroj pro bezpečné připojení v nedůvěryhodné síti. Poskytuje šifrované terminálové spojení s~bezpečným systémem autentizace, jak na straně serveru tak straně klienta, pomocí veřejných kryptografických klíčů.
 
 Hlavní výhody:
 \begin{itemize}
@@ -1533,27 +1533,27 @@ Hlavní výhody:
 \end{itemize}
 
 
-SSH znamená, ale~kromě snadného přístupu uživateli do vzdáleného počítače i~cestu pro nějakého útočníka do počítače. Proto je při používání SSH doporučeno několik bezpečnostních postupů, které snižují možnost napadení počítače nejčastěji pomocí slovníkových útoků.
+SSH znamená kromě možnosti snadného přístupu uživatele do vzdáleného počítače i~cestu pro nějakého útočníka. Proto je při používání SSH doporučeno několik bezpečnostních postupů, které snižují možnost napadení počítače nejčastěji pomocí slovníkových útoků.
 \begin{description}
  \item[Používat veřejných klíčů] použití veřejných klíčů zabraňuje slovníkovému útoku. např. GNU Privacy Guard (GPG)
  \item[Zakázat přihlášení některých uživatelů] především se jedná o~účet uživatele root, který je v~každém Linuxu. Většina slovníkových útoků se zaměřuje právě na tohoto uživatele. Další časté pokusy jsou zaměřeny např. na uživatele user, admin, test,…
  \item[fail2ban] je program, který vyhodnocuje log s~pokusy o~přihlášení prostřednictvím SSH a~na základě neúspěšných přihlášení z~unikátní IP adresy, zakazuje tuto IP adresu na přednastavenou dobu.
 \end{description}
 
-\subsection{Hypotetické bezpečnostní hrozby v linuxu}
-Virové hrozby byli probrány~\odkazNaKapitolu{sec:antivirus} v~souvislosti s~viry a~malwarem se, ale v~Linuxu mluví o~hrozbě jménem \b{sudo}, sudo je nástroj přes který si uživatel nebo aplikace může požádat o~vyší oprávnění než jsou jí určeny, k~samotnému přidělení opravnění je třeba aby uživatel zadal heslo pro uživatele root, což zdánlivě celou situaci řeší, ale zde vstupuje nejzranitelnější část celého systému a~tou je uživatel. Neznalý uživatel zadá bez rozmyslu svoje heslo a~aplikace má plný přístup nad systémem. Samozřejmě jedná se o faktor, který vývojář nevyřeší, ale hrozba číhá i~někde jinde, celkem jednoduše jde vytovořit alias\footnote{alias je jak název napovídá taková přezdívka, uživatel si může pod řetězec uložit složitějsí příkaz, např. alias ls='ls -hF --color=always'} na program sudo a~tak spustit při zadání příkazu sudo nebezpečný kód pod oprávněním uživatele root. např. 
+\subsection{Hypotetické bezpečnostní hrozby v Linuxu}
+Virové hrozby byli probrány~\odkazNaKapitolu{sec:antivirus} v~souvislosti s~viry a~malwarem se, ale v~Linuxu mluví o~hrozbě jménem \b{sudo}, sudo je nástroj přes který si uživatel nebo aplikace může požádat o~vyší oprávnění než jsou jí určeny, k~samotnému přidělení opravnění je třeba aby uživatel zadal heslo pro uživatele root, což zdánlivě celou situaci řeší, ale zde vstupuje nejzranitelnější část celého systému a~tou je uživatel. Neznalý uživatel zadá bez rozmyslu svoje heslo a~aplikace má plný přístup nad systémem. Samozřejmě jedná se o faktor, který vývojář nevyřeší, ale hrozba číhá i~někde jinde, celkem jednoduše jde vytvořit alias\footnote{alias je jak název napovídá taková přezdívka, uživatel si může pod řetězec uložit složitějsí příkaz, např. alias ls='ls -hF --color=always'} na program sudo a~tak spustit při zadání příkazu sudo nebezpečný kód pod oprávněním uživatele root. např. 
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 alias sudo='sudo rm -rf /'
 \end{Verbatim} 
     \end{codeframe} 
-při takovém aliasu my si uživatel smazal disk. Samozřejmě takový kód je jen na ukázku, ale demonstruje možnosti tohoto "útoku", daleko pravděpodobnější by bylo spuštění útočníkova skriptu a následné přepsání konfiguračních souborů, tak aby získal útočník kontrolu nad počítačem. Tomuto se dá zabránit aplikování MAC, ale využití podobného rozšíření zabezpečení, není v~Linuxu vůbec samozřejmostí.
+při takovém aliasu by si uživatel smazal disk. Samozřejmě takový kód je jen na ukázku, ale demonstruje možnosti tohoto "útoku", daleko pravděpodobnější by bylo spuštění útočníkova skriptu a následné přepsání konfiguračních souborů, tak aby získal útočník kontrolu nad počítačem. Tomuto se dá zabránit aplikování MAC, ale využití podobného rozšíření zabezpečení, není v~Linuxu vůbec samozřejmostí.
 
-Lidský faktor přispívá ve zranitelnosti jakéhokoliv systému, ukázkou může být chyba vývojáře debianu, která způsobila, že autentizační mechanizmus u~ssh generoval předvídatelné textové řetězce, které mohl zneužít útočník pro napadení systému. Tato chyba se navíc vyskytovala v~debianu po dlouhou dobu než se na ni přišlo.~\cite{DebianSSHFail}
+Lidský faktor přispívá ke zranitelnosti jakéhokoliv systému, ukázkou může být chyba vývojáře debianu, která způsobila, že autentizační mechanizmus u~ssh generoval předvídatelné textové řetězce, které mohl zneužít útočník pro napadení systému. Tato chyba se navíc vyskytovala v~debianu po dlouhou dobu než se na ni přišlo.~\cite{DebianSSHFail}
 
 Další hrozbou jsou pak chyby v~kódu jádra. Naštěstí je, díky otevřenému kódu, kolem Linuxu obrovská skupina vývojářů, která chyby téměř okamžitě záplatuje a~eliminuje tak zero-day útoky.
 
-Repozitáře s~falešným nebo upraveným SW. Další z reálných hrozeb v~Linuxu avšak uživatel je opět ten, který si přidá takovýto repozitář. Této možnosti útoku zabraňuje podepisování balíčků a~repozitářů.~\cite{ArchWikiPodepisovaniBalicku}
+Repozitáře s~falešným nebo upraveným SW jsou další z reálných hrozeb v~Linuxu, avšak uživatel je opět ten, který si přidá takovýto repozitář. Této možnosti útoku zabraňuje podepisování balíčků a~repozitářů.~\cite{ArchWikiPodepisovaniBalicku}
 
 Existuje ještě mnoho hrozeb, ale většinu neovlivňuje Linux samotný, ale různé aplikace třetích stran a~chyby v~nich obsažené.
 
@@ -1627,7 +1627,7 @@ Commit není pouze přidávání souborů, ale~i~mazání a~změny v~souborech.
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 git rm soubor #smaže soubor
-git add #přidá soubor, pokud jsme soubor změnily je třeba ho také přidat
+git add #přidá soubor, pokud soubor změníme je třeba ho také přidat
 git diff #ukáže změny v repozitáři
 git commit #vytvoří commit
 git push #odešle změny
@@ -1648,7 +1648,7 @@ git checkout v1.0
 \end{Verbatim} 
     \end{codeframe}
 
-Další funkcí, která je užitečná je branch (větev). Branch můžeme např. použít pokud se chystáme udělat změnu, o~které nevíme jistě zda bude fungovat. Často je branch také k~oddělení prací uživatelů nebo částí projektu na, kterých se pracuje.\\
+Další funkcí, která je užitečná je branch (větev). Branch můžeme např. použít pokud se chystáme udělat změnu, o~které nevíme jistě zda bude fungovat. Často je branch také k~oddělení prací uživatelů nebo částí projektu na kterých se pracuje.\\
 Branch lze vytvořit příkazem
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
@@ -1713,7 +1713,7 @@ Velmi důležitou je pak složka include, která obsahuje verze programů a~funk
  \item[chroot\_prepare] skript, který se stará o~kontrolu potřebných složek a~symbolických odkazů v~prostředí chroot.
  \item[functions] skript se všemi funkcemi
  \item[prepare] skript, který se stará o~kontrolu existence potřebných složek a~symbolických odkazů.
- \item[ver] skript s~poly, které obsahují informace o balíčcích
+ \item[ver] skript s~poli, které obsahují informace o balíčcích
  \item[l10n-EN] už téměř nepoužívaný skript, který měl sloužit pro lokalizaci do jiných jazyků, byl zavrhnut, protože znamenal velkém množství proměnných
  \end{description}
 
@@ -1911,11 +1911,11 @@ check(){
 \end{Verbatim} 
     \end{codeframe}
 
-functions obsahuje také funkce pro kompilaci, ale předávání parametrů pomocí \$\@ se ukázalo jako nešťastné řešení, způsobující mno chyb při kompilaci.
+functions obsahuje také funkce pro kompilaci, ale předávání parametrů pomocí \$\@ se ukázalo jako nešťastné řešení, způsobující množství chyb při kompilaci.
 
 \subsection{Návod pro sestavení}
 \subsubsection{Předpříprava}
-Sestavení LFS je velmi komplexní a~složitou záležitostí. V~žádném případě by používat automatické skripty neměl někdo, kdo alespoň dvakrát úspěšně nesestavil LFS předtím. Pro člověka, který nikdy nesestavoval LFS je v~balíčku skriptů skript \b{onlyunpackscript}, který zajišťuje stáhnutí potřebných balíčků a~jejich rozbalení více~\odkazNaKapitolu{sec:only}.\\
+Sestavení LFS je velmi komplexní a~složitou záležitostí. V~žádném případě by neměl používat automatické skripty ten, kdo předtím úspěšně nesestavil LFS alespoň dvakrát. Pro člověka, který nikdy nesestavoval LFS je v~balíčku skriptů skript \b{onlyunpackscript}, který zajišťuje stáhnutí potřebných balíčků a~jejich rozbalení více~\odkazNaKapitolu{sec:only}.\\
 
 Co by měl uživatel udělat před sestavení LFS pomocí automatických skriptů
 \begin{itemize}
@@ -1928,7 +1928,7 @@ Co by měl uživatel udělat před sestavení LFS pomocí automatických skript�
 Uživatel by měl mít také dostatečné znalosti jazyka bash aby~mohl V~případě potřeby upravit skripty.
 
 \subsubsection{Sestavení}\label{sec:sestaveni}
-Sestavení je díky skriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskový oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musejí být provedeny pod účtem uživatele root)
+Sestavení je díky skriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskový oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musí být provedeny pod účtem uživatele root)
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # mkdir /mnt/LFS
@@ -2037,11 +2037,11 @@ Ihned po balíčku glibc je spuštěn skript chap6/locales, který kromě testu 
     \end{codeframe}
 a~v~novém terminálovém okně spustit \b{tzselect}. Tzselect se zeptá na dvě otázky a~vygeneruje časovou zónu, např. Europe/Prague, kterou je třeba zadat do předchozího terminálu a~potvrdit klávesou enter. 
 
-Po testu u~balíčku \b{binutils} by měl být zkontrolován jeho log, skript k~tomu uživatele sám vyzve. Stejná situace nastane později u balíku \b{mpfr}\\
+Po testu u~balíčku \b{binutils} by měl být zkontrolován jeho log, skript k~tomu uživatele sám vyzve. Stejná situace nastane později u balíčku \b{mpfr}\\
 
 Další přerušení kvůli důležitému testu nastane při balíčku \b{qmp}, skript je opět zastaven a~na obrazovku jsou vypsány výsledky testů. Všech 162 testů by mělo být úspěšných, pokud ne je třeba tyto chyby zkonzultovat \odkazNaKapitolu{sec:help}.
 
-Balíček \b{gcc} sebou nese velké množství testů, první test trvá opravdu dlouhou dobu a~jeho výsledkem je množství hlášení. Tyto hlášení je také možné konzultovat \odkazNaKapitolu{sec:help}, ale~ani vývojáři LFS většinou neví co který test přesně dělá a~proč selhal. Většinou je možné tyto selhání ignorovat a~pokračovat dále. O to důležitější je série testů po instalaci balíčku. \b{Tyto testy kontrolují správnost právě nainstalovaného překladače, takže je naprosto nezbytné je zkontrolovat!!!}. Probíhají úplně stejně jako testy u~oddělení systému od toolchainu.
+Balíček \b{gcc} sebou nese velké množství testů, první test trvá opravdu dlouhou dobu a~jeho výsledkem je množství hlášení. Tato hlášení je také možné konzultovat \odkazNaKapitolu{sec:help}, ale~ani vývojáři LFS většinou neví co který test přesně dělá a~proč selhal. Ve většině případů je možné tato selhání ignorovat a~pokračovat dále. O to důležitější je série testů po instalaci balíčku. \b{Tyto testy kontrolují správnost právě nainstalovaného překladače, takže je naprosto nezbytné je zkontrolovat!!!}. Probíhají úplně stejně jako testy u~oddělení systému od toolchainu.
 
 Po nainstalování balíčku \b{bash} je skript přerušen znovu, protože je uživatel přihlášen s~právě nainstalovaným interpretem. Proto je třeba znovu spustit skript /scripts/chroot\_makeall.\\
 
@@ -2068,7 +2068,7 @@ Po sestavení několik dalších balíčků je skript chroot\_makeall ukončen a
 
 !!!NÁSLEDUJÍCÍ FÁZE OBSAHUJE NĚKTERÁ DŮLEŽITÁ NASTAVENÍ A~JE TŘEBA ABY JIM UŽIVATEL DOBŘE ROZUMĚL, PROTO JE DOPORUČENO NEPOUŽÍT SKRIPTY, ALE POKRAČOVAT DÁLE PODLE KNIHY!!!
 
-Nyní je se naposled přihlásit do systému a~spustit skript na sestavení posledních dvou kapitol.
+Nyní je třeba se naposled přihlásit do systému a~spustit skript na sestavení posledních dvou kapitol.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single}
 ./scripts/chrootIN/chrootAfterChap6
@@ -2086,7 +2086,7 @@ Skript makeall\_rest provede uživatele kapitolami 7~a~8. Několikrát skript vy
  \item Posledním krokem ke kterému skripty navedou je pak nastavení programu grub. Uživatel musí zadat /dev adresu disku, na kterém se nachází LFS např. sdb sda. GRUB poté vygeneruje soubor /boot/grub/grub.cfg potřebný pro zavedení jádra systému.
 \end{itemize}
 
-Nyní je již třeba postupovat dle knihy, otestovat nastavení programu GRUB a~aktualizovat Master Boot Record. Tyto kroky však nejsou třeba pokud se chystá uživatel provozovat LFS vedle jiného systému, v~tom případě stačí pouze přidat položku LFS do souboru nastavení programu GRUB ve stávajícím systému.
+Nyní je již třeba postupovat dle knihy, otestovat nastavení programu GRUB a~aktualizovat Master Boot Record. Tyto kroky však nejsou třeba pokud se chystá uživatel provozovat LFS vedle jiného systému, v~tomto případě stačí pouze přidat položku LFS do souboru nastavení programu GRUB ve stávajícím systému.
 
 \b{Test GRUBu}: Pro test je třeba aby byl v~hostovském systému nainstalován GRUB Legacy.\\
 Nejprve je třeba restartovat počítač. A~poté v~příkazovém řáďku GRUBu nahrát obraz GRUBu z~LFS.
@@ -2190,7 +2190,7 @@ export UNPACK=1
  \item[WAIT] určuje zda se má při každém kroku čekat až uživatel potvrdí další krok
  \item[UNPACK] určuje zda se má každý balíček rozbalit
 \end{description}
-Kombinací proměnných je tak možné dosáhnout pouze stažení všech balíčků bez čekání nebo stažení balíčků a~jejich rozbalení s~čekáním na další krok. Pokud chceme sestavovat LFS manuálně podle knihy, je dobré nastavit proměnné tak jak je uvedeno v~poli s~kódem. Balíček se stáhne rozbalí a~skript čeká až uživatel balíček sestaví a~stiskne klávesu ENTER. Pokud při sestavení nastane chyba a~je balíček třeba znovu sestavit, stačí zadat libovolný vstup a~stisknout ENTER, balíček se znovu rozbalí. \b{!!!POZOR. Pokud se balíček sestavuje odděleným buildem, tedy ve složce balíček-build, je třeba tuto složku smazat manuálně!!!}
+Kombinací proměnných je tak možné dosáhnout pouze stažení všech balíčků bez čekání nebo stažení balíčků a~jejich rozbalení s~čekáním na další krok. Pokud chceme sestavovat LFS manuálně podle knihy, je dobré nastavit proměnné tak, jak je uvedeno v~poli s~kódem. Balíček se stáhne rozbalí a~skript čeká až uživatel balíček sestaví a~stiskne klávesu ENTER. Pokud při sestavení nastane chyba a~je balíček třeba znovu sestavit, stačí zadat libovolný vstup a~stisknout ENTER, balíček se znovu rozbalí. \b{!!!POZOR. Pokud se balíček sestavuje odděleným buildem, tedy ve složce balíček-build, je třeba tuto složku smazat manuálně!!!}
 
 \subsubsection{Pomoc při selháních}\label{sec:help}
 Protože pravděpodobnost sestavení LFS bez jakéhokoliv problému není nikterak velká, existuje několik míst kde hledat při problému pomoc.
@@ -2216,7 +2216,7 @@ Možnosti vylepšení:
  \item Částečná změna skriptů z~jazyka BASH na scripty programu GNU/make (tzv. Makafiles). Řídící skript makeall a onlyunpackscript by se po změně na makefile staly lépe ovladatelnými, především při přerušení a~obnově práce. Případně použít menuconfig jako používá např. jádro linuxu, pro nastavení co se má kompilovat.
  \item Lepší přechody mezi login do chroot, tak aby nebylo potřeba přerušit skript, toto by šlo vyřešit přes program \b{sudo}, ale ten často v~systémech pro build není dostupný.
  \item přidání wget do toolchainu, tento krok by zajistil, že~by nebylo třeba stahovat balíčky před začátkem sestavení, ale~wget má další závislosti, které by bylo třeba vyřešit a~pravděpodobně by bylo třeba jinak zkompilovat překladač v toolchainu.
- \item Další zásadním zlepšením by bylo vytvoření jakéhosi balíčkovacího systému. Zvláště u~instalací programů z~BLFS už je třeba hlídat závislosti na jiných balíčcích a~často se může stát, že~je některý program zbytečně kompilován dvakrát. Balíčkovací systém by mohl být založen na principu, že pro každý nainstalovaný balíček je vytvořen soubor nebo složka např. ve /var/packages se stejným názvem jako balíček. Takový soubor by pak nesl informace o~tom o jaký program se jedná jaké má závislosti a~jaké soubory nainstaloval do systému (Pokud by v~základu neuměl takový systém mazat nainstalované balíčky nebylo by třeba seznamu souborů). Taková věc by sebou nesla i~změny ve skriptech, bylo by třeba aby skript obsahoval i~seznam závislostí nejlépe v~poli aby se dalo s~těmito informacemi lépe pracovat a~jednotlivé části skriptu by se rozdělili do funkcí.
+ \item Další zásadním zlepšením by bylo vytvoření jakéhosi balíčkovacího systému. Zvláště u~instalací programů z~BLFS už je třeba hlídat závislosti na jiných balíčcích a~často se může stát, že~je některý program zbytečně kompilován dvakrát. Balíčkovací systém by mohl být založen na principu, že pro každý nainstalovaný balíček je vytvořen soubor nebo složka např. ve /var/packages se stejným názvem jako balíček. Takový soubor by pak nesl informace o~tom o jaký program se jedná jaké má závislosti a~jaké soubory nainstaloval do systému (Pokud by v~základu neuměl takový systém mazat nainstalované balíčky nebylo by třeba seznamu souborů). Taková věc by se sebou nesla i~změny ve skriptech, bylo by třeba aby skript obsahoval i~seznam závislostí nejlépe v~poli aby se dalo s~těmito informacemi lépe pracovat a~jednotlivé části skriptu by se rozdělily do funkcí.
 \end{itemize}
 
 
@@ -2226,7 +2226,7 @@ Cílem této bakalářské práce bylo vytvořit sadu skriptů v~jazyce BASH pro
 
 V~teoretické části bylo provedeno seznámení s~Linuxem jeho distribucemi a~možnostmi tvorby distribucí včetně kompilace zdrojových kódů a~programování v~interpretovaném jazyce BASH, což~jsou důležité znalosti pro vytvoření distribuce Linuxu. Dále bylo provedeno seznámení se zabezpečením Linuxu a~systémem hodnocení bezpečnosti Softwaru. Praktická část byla věnována skriptům v~interpretovaném jazyce BASH, jejich struktuře, obsahu a~návodu pro použití. Skripty byly otestovány jak na virtuálním počítači, vytvořeného programem VirtualBox a~s~použitím systému Ubuntu 10.10 Maverick Meerkat, tak na fyzickém počítači se~systémem ArchLinux.\\
 
-Programování v~interpretovaném jazyce BASH je velice zajímavé zvláště vzhledem k~jeho integraci se systémem Linux. Jsem rád, že~jsem si mohl rozšířit prostřednictvím této bakalářské práce znalosti tohoto jazyka, o~tomto svědčí i~fakt, že jsem dvakrát přepsal způsob jakým skripty fungují. Také jsem rozšířil své znalosti o~tom jak funguje Operační systém Linux v~širším měřítku za~což jsem velmi rád.
+Programování v~interpretovaném jazyce BASH je velmi zajímavé, zvláště vzhledem k~jeho integraci se systémem Linux. Jsem rád, že~jsem si mohl rozšířit prostřednictvím této bakalářské práce znalosti tohoto jazyka, o~tomto svědčí i~fakt, že jsem dvakrát přepsal způsob jakým skripty fungují. Také jsem rozšířil své znalosti o~tom jak funguje Operační systém Linux v~širším měřítku za~což jsem velmi rád.
 %********************************* Závěr anglicky************************************
 \newpage
 \nn{Závěr v Angličtině}
