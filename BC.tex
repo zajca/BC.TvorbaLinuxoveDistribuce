@@ -342,7 +342,7 @@
 \voffset=-1.61cm\evensidemargin=0.96cm\oddsidemargin=0.96cm\headsep=1cm\headheight=0.5cm\setlength{\parskip}{3pt}\textheight=248mm\textwidth=155mm
 \nm{\uppercase{Abstrakt}}
 \vspace{1cm}
-Tato bakalářská práce v teoretické části obsahuje pojmy, jako jsou Linux, dále pak linuxové distribuce, jazyk BASH, zabezpečení operačního systému Linux a~LiveCD. Úvodní část je věnována informacím o~systému Linux a~distribuci Linux From Scratch. Dále pak obsahuje stručný úvod do jazyka BASH a~kompilaci zdrojových kódů včetně možností sestavení Linuxových distribucí. Na závěr teoretické části je popsáno zabezpečení Linuxu, hodnocení bezpečnosti Software a tvorba LiveCD.\\
+Tato bakalářská práce v teoretické části definuje základní pojmy, jako jsou Linux, dále pak linuxové distribuce, jazyk BASH, zabezpečení operačního systému Linux a~LiveCD. Úvodní část je věnována informacím o~systému Linux a~distribuci Linux From Scratch. Dále pak obsahuje stručný úvod do jazyka BASH a~kompilaci zdrojových kódů včetně možností sestavení Linuxových distribucí. Na závěr teoretické části je popsáno zabezpečení Linuxu, hodnocení bezpečnosti Software a tvorba LiveCD.\\
 
 V praktické části je rozebrána struktura scriptů a~funkce vytvořené v~jazyce BASH. Dále je uveden návod~na sestavení distribuce LFS pomocí vytvořených skriptů. A~na~závěr uvedeny zdroje pomoci při chybách v~kompilaci a~možnosti zlepšení skriptů.
 \vspace{1cm}
@@ -408,7 +408,7 @@ Ve Zlíně &\hspace{9cm} .......................\\
 \nn{Úvod}
 Operační systém Linux je v~dnešní době k~nalezení ve všech možných druzích elektronických zařízení od náramkových hodinek až~po automobily. Pro administrátora Linuxového operačního systému je důležité znát tento systém mnohem podrobněji než např. konkurenční Microsoft Windows, protože je vhodné si operační sytém Linux nastavit do nejmenšího detailu. Jedním z~výborných dokumentů, díky kterému se dá zjistit o~Linuxu velké množství informací, je kniha Linux From Scratch, která popisuje sestavení Linuxového operačního systému. V~knize jsou uvedeny informace, postupy sestavení a~hlavně účel jednotlivých programů a~balíčků programů, díky čemuž získá uživatel větší představu o~tom, co se v~systému nachází a~k~čemu je to dobré. Automatické skripty pro sestavení jsou pak spíše určeny uživatelům, kteří již tyto informace znají a~chtějí sestavit základní systém bez zbytečného zdržování.\\
 
-Bakalářská práce je rozdělena do dvou částí - teoretické a praktické. V teoretické části jsou objasněny pojmy, jako jsou Linux, dále pak distribuce operačního systému Linux, liveCD, jazyk BASH, kompilace zdrojových kódů, způsob vytváření distribucí a~zabezpečení Linuxového operačního systému. V praktické části je pak rozebrána struktura skriptů pro tvorbu distribuce Linux From Scratch, popsány některé funkce, které jsou ve skriptech použity, popsán návod pro sestavení pomocí těchto skriptů a~také nastíněny možnosti vylepšení.
+Bakalářská práce je rozdělena do dvou částí - teoretické a praktické. V~teoretické části jsou definovány základní pojmy, jako Linux, dále pak distribuce operačního systému Linux, liveCD, jazyk BASH, kompilace zdrojových kódů, způsob vytváření distribucí a~zabezpečení Linuxového operačního systému. V~praktické části je pak rozebrána struktura skriptů pro tvorbu distribuce Linux From Scratch, popsány některé funkce, které jsou ve skriptech použity, popsán návod pro sestavení pomocí těchto skriptů a~také nastíněny možnosti vylepšení.
 
 %********************************* Vlastní obsah ************************************
 %********************************* Teoretická část ************************************
@@ -2231,7 +2231,11 @@ Programování v~interpretovaném jazyce BASH je velmi zajímavé, zvláště vz
 %********************************* Závěr anglicky************************************
 \newpage
 \nn{Závěr v Angličtině}
+The aim of this bachelor work was to~create a~set of~BASH scripts for~automatic compilation Linux From Scratch distribution. For the~design of~scripts was used Linux From Scratch book and~in~no small part contributed GIT version control system and community site for managing git repositories GitHub. 
 
+In the theoretical part was made introduction with Linux, the~Linux distributions and creation of~Linux distributions, including a~compilation of~source code and~programming interpreted language BASH, which are~important skills for~a~building Linux distribution. It~was also made familiar with~the~security of~Linux and~system software safety assessment. The~practical part was devoted to~scripts in~BASH, its structure, contents and~instructions for~use. Scripts was~tested in~virtual computer created by~program VirtualBox and~runing Ubuntu 10.10 Meerkat Maverick, and~at~the~physical computer running ArchLinux. 
+
+Programming in interpreted language BASH is very interesting, especially due to integration with Linux. I'm glad that I was able to extend my knowledge of~BASH becouse of this work. True of that was demonstrated by the fact that I'm twice rewrote the way how the script works. I also expanded my knowledge about the functioning of the Linux operating system on a larger scale, for which I am very happy.
 
 \newpage
 %********************************* Seznam Literatury ************************************
@@ -2338,7 +2342,7 @@ GPG & GNU Privacy Guard\\
 %********************************* Seznam obrázků ************************************
 \seznamobr
 %********************************* Seznam tabulek ************************************
-\seznamtab
+%\seznamtab
 %********************************* Seznam příloh ************************************
 \listofappendices
 
@@ -2372,9 +2376,9 @@ Funkční toolchain pro sestavení LFS na 64bitovém procesoru. Jedná se o~soub
 
 \priloha{Funkční sestavení distribuce LFS včetně X-serveru}
 
-Dostupné pouze na DVD jako soubor LFS.7z (TODO doplnit bytes)\\
+Dostupné pouze na DVD jako soubor LFS.ova (2,573,794,816 bytes)\\
 
-Obraz disku je určen pro program VirtualBox. Pro~použití stačí založit nový virtuální stroj \it{NEW -> vybrat název -> velikost RAM -> zvolit existující disk a~přidat disk LFS.vdi}\\
+Jedná se o~již nastavený virtuální počítač pro zdarma dostupný program VirtualBox. Stačí pouze otevřít VirtualBox a~spustit \it{FILE -> Import Appliance}. Velmi jednoduchý wizard pak nahraje vše potřebné a~přidá položku LFS.\\
 
 SW vybavení: Grafický server Xorg, window manager PekWM, programovací jazyk RUBY s~nainstalovaným gemem ShowOff~pro prezentace, webový prohlížeč opera.\\
 
@@ -2382,7 +2386,7 @@ Přihlášení:\\
 Uživatel: root\\
 Heslo: 1rootlfs\\
 
-Spuštění grafického serveru příkazem \it{startx}.
+Spuštění grafického serveru příkazem \it{xinit}.
 
 
 %\section*{PŘÍLOHA P I: ŠABLONA SLOVNĚ.}
