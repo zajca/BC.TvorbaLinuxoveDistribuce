@@ -348,19 +348,20 @@ V praktické části je rozebrána struktura scriptů a~funkce vytvořené v~jaz
 \vspace{1cm}
 
 \emph{Klíčová slova:} Linux, distribuce, BASH, LFS, LiveCD, bezpečnost Linuxu, kompilace, DAC, MAC
-
-\vspace{3cm}
+\vspace{2cm}
 
 \nns{\uppercase{Abstract}}
+This bachelor work includes the terms such as~Linux in~it's~theoretical part. Further, the terms such as~Linux distribution, BASH language, operating system security, and~LiveCD. The~introductory part is~dedicated to~the~information about the~Linux system and~Linux From Scratch distribution. Then it~also includes brief introduction to~the~BASH language and~the~source code compilation, including the~possibility to~compile Linux distributions. At~the~end of~the~theoretical part, there is~described Linux security, the~evaluation of~Software security and~the~LiveCD creation.\\
 
+In the practical part, there is~analysed the~script structure and~the~functions written in~BASH language. Next, there is~the~manual for~compiling LFS distributions using the~generated scripts. And~at~the~end of~this part, there are~mentioned resources to~compilation errors and~the possibilities of~script improvement.
 \vspace{1cm}
 
-\emph{Keywords:}
+\emph{Keywords:}Linux, distribution, BASH, LFS, LiveCD, Linux security, compilation, DAC, MAC
 %********************************* poděkování, motto, úryvky knih, básní atp. ************************************
 \clearpage
 \thispagestyle{empty}
-Chtěl bych poděkovat především vedoucímu mé bakalářské práce, panu doc. Ing.~Martinu~Syslovy,~Ph.D. za jeho cenné rady a~připomínky.
-Dále bych chtěl poděkovat celé mojí rodině za její obrovskou podporu během celého mého studia a~také mým přátelům se kterými jsem prožil tři roky studia na Univerzitě Tomáše Bati.
+Chtěl bych poděkovat především vedoucímu mé bakalářské práce, panu doc. Ing.~Martinu~Syslovy,~Ph.D., za jeho cenné rady a~připomínky.
+Dále bych chtěl poděkovat celé mojí rodině za její obrovskou podporu během celého mého studia a~také mým přátelům, se kterými jsem prožil tři roky studia na Univerzitě Tomáše Bati.
 
 \vspace{3cm}
 "Nejlepší knihy jsou takové, které člověku říkají, co už sám ví."\\
@@ -405,7 +406,7 @@ Ve Zlíně &\hspace{9cm} .......................\\
 \obsah
 %********************************* úvod ************************************
 \nn{Úvod}
-Operační systém Linux je v~dnešní době k~nalezení ve všech možných druzích elektronických zařízení od náramkových hodinek až~po automobily. Pro administrátora Linuxového operačního systému je důležité znát tento systém mnohem podrobněji než např. konkurenční Microsoft Windows, protože je vhodné si operační sytém Linux nastavit do nejmenšího detailu. Jedním z~výborných dokumentů díky kterému se dá zjistit o~Linuxu velké množství informací, je kniha Linux From Scratch, která popisuje sestavení Linuxového operačního systému. V~knize jsou uvedeny informace, postupy sestavení a~hlavně účel jednotlivých programů a~balíčků programů, díky čemuž získá uživatel větší představu o~tom, co se v~systému nachází a~k~čemu je to dobré. Automatické skripty pro sestavení jsou pak spíše určeny uživatelům, kteří již tyto informace znají a~chtějí sestavit základní systém bez zbytečného zdržování.\\
+Operační systém Linux je v~dnešní době k~nalezení ve všech možných druzích elektronických zařízení od náramkových hodinek až~po automobily. Pro administrátora Linuxového operačního systému je důležité znát tento systém mnohem podrobněji než např. konkurenční Microsoft Windows, protože je vhodné si operační sytém Linux nastavit do nejmenšího detailu. Jedním z~výborných dokumentů, díky kterému se dá zjistit o~Linuxu velké množství informací, je kniha Linux From Scratch, která popisuje sestavení Linuxového operačního systému. V~knize jsou uvedeny informace, postupy sestavení a~hlavně účel jednotlivých programů a~balíčků programů, díky čemuž získá uživatel větší představu o~tom, co se v~systému nachází a~k~čemu je to dobré. Automatické skripty pro sestavení jsou pak spíše určeny uživatelům, kteří již tyto informace znají a~chtějí sestavit základní systém bez zbytečného zdržování.\\
 
 Bakalářská práce je rozdělena do dvou částí - teoretické a praktické. V teoretické části jsou objasněny pojmy, jako jsou Linux, dále pak distribuce operačního systému Linux, liveCD, jazyk BASH, kompilace zdrojových kódů, způsob vytváření distribucí a~zabezpečení Linuxového operačního systému. V praktické části je pak rozebrána struktura skriptů pro tvorbu distribuce Linux From Scratch, popsány některé funkce, které jsou ve skriptech použity, popsán návod pro sestavení pomocí těchto skriptů a~také nastíněny možnosti vylepšení.
 
@@ -421,10 +422,10 @@ Linux je v~informatice označení pro unixový operační systém (původně pou
 \subsection{Dnešní použití OS Linux}
 V současnosti je Linux součástí trhu se stolními počítači. Zpočátku se vývojáři Linuxu zaměřovali na síťové systémy a~služby, kancelářské aplikace představovaly poslední bariéru, kterou bylo nutno překonat. Na tomto trhu dominuje Microsoft, proto v~posledních několika letech vznikala spousta alternativních projektů, jejichž cílem je~nabídnout Linux jako vhodnou volbu na pracovní stanice. V~rámci těchto projektů vznikají snadno použitelná uživatelská rozhraní i~kancelářské aplikace (textové editory, tabulkové procesory,…), kompatibilní s aplikacemi Microsoft Office (LibreOffice, Koffice, AbiWord,…)~\cite{LDP}.\\
 V oblasti serverů, má Linux pověst stabilní a spolehlivé platformy, na které běží databázové a~další služby takových společností jako je Amazon, americká pošta~\cite{AmericanPostLinux}, německá armáda~\cite{GermanArmyNoLinux}, Google, Facebook a~další. Velmi oblíbený je Linux u poskytovatelů internetového přístupu a~služeb, kde se používá jako firewall, proxy server nebo webový server. Počítač s~Linuxem najdete i~u~každého správce některého Unixového systému, který jej používá jako pohodlnou administrativní stanici. Clustery linuxových počítačů se podílely na vzniku filmů jako Titanic~\cite{TitanicLinux} nebo Shrek~\cite{Shrek2Linux}~\cite{Shrek3Linux}. Na poštách slouží jako centrály řídící směrování zásilek, velké vyhledávací stroje pomocí nich prohledávají Internet. To je jen ukázka několika z~mnoha tisíc náročných úkolů, které dnes Linux na celém světě vykonává~\cite{LDP}.\\
-Stojí také za zmínku, že moderní Linux běží nejen na pracovních stanicích, středně a~velkých serverech, ale i~na "hračkách", jako jsou PDA či mobilní telefony, ve spoustě zařízení spotřební elektroniky, a~dokonce i~v~experimentálních náramkových hodinkách~\cite{LinuxHodinky}, Linux je jediný OS na světě, který pokrývá takto širokou škálu HW.~\cite{LDP}
+Stojí také za zmínku, že moderní Linux běží nejen na pracovních stanicích, středních a~velkých serverech, ale~i~na "hračkách", jako jsou PDA či mobilní telefony, ve spoustě zařízení spotřební elektroniky, a~dokonce i~v~experimentálních náramkových hodinkách~\cite{LinuxHodinky}. Linux je jediný OS na světě, který pokrývá takto širokou škálu HW.~\cite{LDP}
 
 \subsection{Co je to distribuce}
-Distribuce, pokud je řeč o~distribucích operačního systému, je balíkem jádra operačního systému~a doplňujícího SW. Distribuce nejsou jenom záležitostí Linuxu i~když jsou často mylně spojovány pouze s Linuxem. Kromě Linuxových distribucí existují například distribuce s~jádrem BSD (OpenBSD, NetBSD, FreeBSD,…), HURD (ArchHurd), XNU (PureDarwin) a~mnoho jiných. Přídavný SW distribuce je čistě volbou autora distribuce, může se tak jednat například o~SW projektu GNU (nejvýznamnějšími komponenty jsou GCC, glibc, Emacs nebo~GNOME)~\cite{GNUweb}, SW projektu BSD, proprietární (uzavřený) SW nebo jakýkoliv jiný SW jehož licence dovoluje použití v~distribuci.
+Distribuce, pokud je řeč o~distribucích operačního systému, je balíkem jádra operačního systému~a doplňujícího SW. Distribuce nejsou jenom záležitostí Linuxu, i~když jsou často mylně spojovány pouze s Linuxem. Kromě Linuxových distribucí existují například distribuce s~jádrem BSD (OpenBSD, NetBSD, FreeBSD,…), HURD (ArchHurd), XNU (PureDarwin) a~mnoho jiných. Přídavný SW distribuce je čistě volbou autora distribuce, může se tak jednat například o~SW projektu GNU (nejvýznamnějšími komponenty jsou GCC, glibc, Emacs nebo~GNOME)~\cite{GNUweb}, SW projektu BSD, proprietární (uzavřený) SW nebo jakýkoliv jiný SW jehož licence dovoluje použití v~distribuci.
 
 \subsection{GNU a Linux} 
 Rekurzivní akronym pro GNU is Not Unix, kde GNU znamená GNU is Not Unix,…
@@ -440,15 +441,15 @@ Linuxové distribuce se liší v~mnoha více či méně zásadních ohledech. Ne
 \subsubsection{Cyklus vydání}
 V zásadě rozlišujeme 3 vydávací cykly:
 \begin{description}
- \item[Dlouhý cyklus vydání] Tento cyklus vydání je delší než jeden rok. Používají ho distribuce, které nezakládají na aktuálnosti SW, ale~na jeho stabilitě. Především pak \b{Debian (stable)} a~\b{Red Hat Enterprise Linux} (dále pouze RHEL). Vývojáři Debianu před nedávnem (7. 2009) rozhodli o~tom, že~bude Debian vydáván v pravidelných intervalech a~to tak, že~na konci každého lichého roku dojde k~zmrazení větve \it{testing}, ta je následně nějaký čas testována aby byly odstraněny všechny bugy, po jejich odstranění je prohlášena za stabilní a~balíčky v~ní obsažené jsou přesunuty do větve \it{stable}
-\footnote{časový odstup mezi vydáním verze 5 lenny a~aktuální 6 squeeze byl 2 roky. Nejdelší odstup mezi vydáními byl 3 roky a~to mezi vydáním 3.0 woody a~3.1 sarge}. RHEL vychází v nepravidelných cyklech (cca 2-3roky) a~v~mezičase vychází updaty. 
+ \item[Dlouhý cyklus vydání] Tento cyklus vydání je delší než jeden rok. Používají ho distribuce, které nezakládají na aktuálnosti SW, ale~na jeho stabilitě. Především pak \b{Debian (stable)} a~\b{Red Hat Enterprise Linux} (dále pouze RHEL). Vývojáři Debianu před nedávnem (7. 2009) rozhodli o~tom, že~bude Debian vydáván v pravidelných intervalech a~to tak, že~na konci každého lichého roku dojde k~zmrazení větve \it{testing}, ta je následně nějaký čas testována, aby~byly odstraněny všechny bugy, po jejichž odstranění je prohlášena za stabilní a~balíčky v~ní obsažené jsou přesunuty do větve \it{stable}
+\footnote{časový odstup mezi vydáním verze 5 lenny a~aktuální 6 squeeze byl 2 roky. Nejdelší odstup mezi vydáními byl 3 roky a~to mezi vydáním 3.0 woody a~3.1 sarge}. RHEL vychází v nepravidelných cyklech (cca 2-3~roky) a~v~mezičase vychází updaty. 
 \footnote{časový odstup mezi verzí 5 a~6, byl 3.5roku a~v~mezičase vyšlo 5 update verzí.}
  \item[Krátký cyklus vydání] Typicky půl roku až rok. Používá ho většina deskopových distribucí. Tento vydávací cyklus je kompromisem mezi stabilitou a~aktuálností SW. Např. \b{Ubuntu}
 \footnote{\b{Ubuntu}: cyklus vydání je půl roku, u~jeho derivátů pak zpravidla o~něco málo delší. Vydaní probíhá pravidelně v~dubnu a~říjnu, přičemž každé dva roky vyjde LTS verze s~podporou na dva roky. Poslední verze: 11.04}, \b{Mandriva} 
 \footnote{\b{Mandriva}: cyklus dlouhý půl roku, vychází verze s~číslem roku a~verze spring. Poslední verze: 2010 Spring}(dříve Mandrake), \b{Fedora} 
 \footnote{\b{Fedora}: cyklus vydání každého půl roku. Poslední verze: 14},…
- \item[Průběžné aktualizace (rolling-updates)] Distribuce používající rolling-updates se vyznačují především aktuálností SW, většinou udržují větev pro uživatele a~testovací větev kde je SW podroben krátkému testovaní, než se přesune do uživatelské větve. Tyto distribuce většinou vydávají jednou za čas instalační liveCD aby bylo možné je nainstalovat i~na aktuální HW. \b{Gentoo}, \b{Arch Linux}, \b{Debian sid (experimental)}
-\footnote{testovací větev debianu, která se jmenuje Sid používá právě rolling-updates, po otestování SW obsažený ve větvi putuje do větve \it{testing}},…
+ \item[Průběžné aktualizace (rolling-updates)] Distribuce používající rolling-updates se vyznačují především aktuálností SW, většinou udržují větev pro uživatele a~testovací větev, kde je SW podroben krátkému testovaní, než se přesune do uživatelské větve. Tyto distribuce většinou vydávají jednou za čas instalační liveCD aby bylo možné je nainstalovat i~na aktuální HW. \b{Gentoo}, \b{Arch Linux}, \b{Debian sid (experimental)}
+\footnote{testovací větev debianu, která se jmenuje Sid, používá právě rolling-updates, po otestování SW obsažený ve větvi putuje do větve \it{testing}},…
  \end{description}
 
 \subsubsection{Balíčkovací systémy}
@@ -456,37 +457,37 @@ Balíčkovací systémy jsou standartní součástí nejen Linuxových distribuc
 \begin{description}
  \item[DPKG] \it{Debian package management system} Jedná se o~základní \uv{nízko úrovňový} balíčkovací systém pro debian, umožňuje pouze instalaci mazání a~výpis balíčků (balíčky jsou vždy s~příponou deb).\\
 
-Nejčastěji se používají programy, které mají rozšířenou funkcionalitu, jsou založené a~volají dpkg. Nejznámějším je \b{APT} \it{(Advanced Packaging Tool)}\cite{DPKG}, od apt se upouští a doporučuje se používat jeho frontend \b{Aptitude}, protože aptitude dokáže lépe řešit konflikty balíčků, poskytuje jednotné rozhraní pro správu balíčků\footnote{APT je několik aplikací (apt-cache, apt-get,…), které každý poskytují jinou funkci} a~GUI založené na ncurses Pro tento balíčkovací systém existuje i~velké množství GUI: synaptic (GTK), Ubuntu Software Center (GTK),KPackage (Qt),…\\
+Nejčastěji se používají programy, které mají rozšířenou funkcionalitu, jsou založené a~volají dpkg. Nejznámějším je \b{APT} \it{(Advanced Packaging Tool)}\cite{DPKG}, od apt se upouští a doporučuje se používat jeho frontend \b{Aptitude}, protože aptitude dokáže lépe řešit konflikty balíčků, poskytuje jednotné rozhraní pro správu balíčků\footnote{APT je několik aplikací (apt-cache, apt-get,…), kde každá poskytuje jinou funkci} a~GUI založené na ncurses. Pro tento balíčkovací systém existuje i~velké množství GUI: synaptic (GTK), Ubuntu Software Center (GTK),KPackage (Qt),…\\
 Tento balíčkovací systém používájí kromě již zmíněného debianu i~jeho deriváty jako je Ubuntu, ale i~další distribuce a~OS. Existuje port pro MacOSX nebo~Opensolaris\cite{DPKG}.
- \item[RPM] \it{Red Hat Package Manager} Druhý nejčastěji používaný balíčkovací systém. Je~používán množstvím velkých distribucí v čele s RHEL (Red Hat Enterprise Linux), také je používán distribucemi Fedora, Mandriva, SUSE,ArkLinux,...\\
+ \item[RPM] \it{Red Hat Package Manager} Druhý nejčastěji používaný balíčkovací systém. Je~používán množstvím velkých distribucí v čele s RHEL (Red Hat Enterprise Linux), také je používán distribucemi Fedora, Mandriva, SUSE, ArkLinux,...\\
 
-RPM označuje jak název základního balíčkovacího systému tak i~název balíčků samotných (vždy s~příponou rpm). RPM se především vyznačuje nepřenosností z~jedné distribuce na druhou (na~rozdíl od deb balíčků kde to více méně funguje). Proto se lze často setkat s~názorem,že rmp neumí pořádně řešit závislosti,tímto názorem se většinou vyznačují lidé, kteří kombinují repozitáře různých distribucí založených na RPM.\\
+RPM označuje jak název základního balíčkovacího systému tak i~název balíčků samotných (vždy s~příponou rpm). RPM se především vyznačuje nepřenosností z~jedné distribuce na druhou (na~rozdíl od deb balíčků, kde to více méně funguje). Proto se lze často setkat s~názorem, že rmp neumí pořádně řešit závislosti. Tímto názorem se většinou vyznačují lidé, kteří kombinují repozitáře různých distribucí založených na RPM.\\
 
-RPM se často vyznačuje ještě jedním specifikem a~to tím, že~na rozdíl od DPKG kde se nejčastěji používají obrovské repositáře s~obrovským množstvím balíčků se u~RPM používá velké množství repositářů s~už ne tak velkým množstvím software. Např. Debian používá jeden repozitář pro každou jeho verzi (Stable, Testing, Unstable) když~to u RPM distribucí se setkáme s repozitáři zvlášť pro~multimédia, core system, apd...
+RPM se často vyznačuje ještě jedním specifikem a~to tím, že~na rozdíl od DPKG, kde se nejčastěji používají obrovské repositáře s~obrovským množstvím balíčků se u~RPM používá velké množství repositářů s~už ne tak velkým množstvím software. Např. Debian používá jeden repozitář pro každou jeho verzi (Stable, Testing, Unstable) když~to u RPM distribucí se setkáme s repozitáři zvlášť pro~multimédia, core system, apd...
  \item[PACMAN] Jedná se pravděpodobně o~jeden s~nejrychlejších balíčkovacích systémů a~je součástí distribuce ArchLinux jejích derivátů larch, FaunOS, Archie, Chakra a~je také používán v distribuci DeLi Linux a~Frugalware Linux (ve Frugalware linux byl vytvořen fork a~jeho vývoj probíhá odděleně). Pacman má výhodu proti jiným balíčkovacím systémům nejen v~rychlosti, ale také v~tvoření balíčků. Na~rozdíl od DPKG, kde existují rozsáhlé návody jak vytvořit balíček, stačí u~Pacmana vytvořit podle jasných pravidel skript s~názvem PKGBUILD, který obsahuje všechno od licencí, závislostí, zdrojů kontrolních součtů až po návod jak postupovat při sestavení balíčku, poté stačí napsat makepkg a~balíček se sám vytvoří bez jakéhokoliv zásahu.\\
 Na tomto principu fungují jak source repoziráře v~ArchLinuxu zvané ABS tak~i~uživatelské repozitáře AUR.\\
 
-Pro pacman existuje velké množství wrapperů\footnote{wrapper je program, který funguje pouze s~jiným programem a~rozšiřuje jeho funkcionalitu} pacman-color (přidává do výstupu barvy). Defaultní Pacman také neumí pracovat uživatelským repozitáři AUR proto vzniklo několik wrapperů, které přidávají podporu vyhledávání a~instalace balíčků z~AUR např. Clyde nebo yaourt. Jiné wrappery zase přidávají podporu stahování z~více zdrojů naráz aby byl balíček stáhnut co nejdříve např. PowerPill nebo Bauerbill.\\
+Pro pacman existuje velké množství wrapperů\footnote{wrapper je program, který funguje pouze s~jiným programem a~rozšiřuje jeho funkcionalitu} pacman-color (přidává do výstupu barvy). Defaultní Pacman také neumí pracovat uživatelským repozitáři AUR proto vzniklo několik wrapperů, které přidávají podporu vyhledávání a~instalace balíčků z~AUR např. Clyde nebo yaourt. Jiné wrappery zase přidávají podporu stahování z~více zdrojů najednou aby byl balíček stáhnut co nejdříve např. PowerPill nebo Bauerbill.\\
 
-Všechny tyto programy pracují s~repozitáři a~balíčky stejně jsou tedy kompatibilní a~mají dokonce i~stejnou syntaxi.\\
+Všechny tyto programy pracují s~repozitáři a~balíčky stejně, jsou tedy kompatibilní a~mají dokonce i~stejnou syntaxi.\\
 
 Existují i~GUI pro pacman, nejznámější je asi shaman (Qt).
  \item[Portage] Portage je balíčkovací systém GNU/Linuxové distribuce Gentoo Linux, který je podobný systému portů z~FreeBSD. Portage je napsán v programovacím jazyce Python. Hlavním příkazem je zde příkaz emerge. Tento balíčkovací systém využívá balíčky ebuild, které zajistí zkompilovaní podle nastavených systémových proměnných jako jsou například USE, CFLAGS, CHOST a LINGUAS. Portage automaticky dohledá závislosti, stáhne požadované balíčky a~program nainstaluje.\\
 
 Existují různé grafické nadstavby, např. Kuroo (Qt) nebo Porthole (GTK).
- \item[Další,…] Další balíčkovací systémy je např. \b{slapt-get} (balíčkovací systém,který používá nejstarší dodnes vyvíjená distribuce Slackware a~její deriváty (BackTrack, VectorLinux,Slax,...) balíčkovací systém používá obyčejné Tar balíčky komprimované Gzipem), \b{Equo}, \b{Smart Package Manager},…
+ \item[Další,…] Další balíčkovací systémy je např. \b{slapt-get} (balíčkovací systém, který používá nejstarší dodnes vyvíjená distribuce Slackware a~její deriváty (BackTrack, VectorLinux,Slax,...) balíčkovací systém používá obyčejné Tar balíčky komprimované Gzipem), \b{Equo}, \b{Smart Package Manager},…
  \end{description}
 
 \subsubsection{Nasazení}
 Linuxové distribuce se dále liší podle druhu zařízení pro která jsou určena. Nejčastěji je to server nebo desktop, ale existují i~jiné druhy zařízení na kterých linux běží.
 \begin{description}
  \item[User choise (volba uživatele)] Některé distribuce si nedělají starosti s~určením na kterém druhu zařízení budou použity. Poskytují pouze základní sadu nástrojů (programů), které uživatel doplňuje podle svých požadavků. Toto je typická vlastnost Debianu (u debianu už dnes existují přímo různé konfigurace distribuce jako server, desktop nebo laptop), Archlinuxu, LFS nebo Gentoo.\\
-Tyto distribuce je možné většinou nasadit, na všechny níže zmíněné zařízení.
+Tyto distribuce je možné většinou nasadit na všechny níže zmíněné zařízení.
  \item[Desktop] Dalšími zařízeními pro které je linux určen jsou desktopové (personální) počítače. Tyto distribuce poskytují grafické programy pro běžné použití např. v~kanceláři. Typicky např. Ubuntu (desktop), Fedora, Mandriva,…
- \item[Server] Serverové distribuce obsahují základní nástroje pro nasazení na serverových počítačích a~neobsahují na~rozdíl desktopových distribucí grafický server Xorg, ale obsahují serverové nástroje jako je např. webový server apache. Typicky serverovou distribucí je např. Ubuntu (server), CentOS, RHEL,…
+ \item[Server] Serverové distribuce obsahují základní nástroje pro nasazení na serverových počítačích a~neobsahují na~rozdíl od~desktopových distribucí grafický server Xorg, ale obsahují serverové nástroje jako je např. webový server apache. Typicky serverovou distribucí je např. Ubuntu (server), CentOS, RHEL,…
  \item[Enterprise] Enterprise distribuce jsou distribuce určené pro podnikové nasazení a~na~rozdíl od běžných distribucí mají placenou podporu ze strany dodavatele a~delší testovací dobu např. SLED (SUSE Linux Enterprise Desktop) nebo RHEL.
- \item[Embedded] Jedná se o~distribuce směrované na určité zařízení. Nejznámější je např. openwrt což je distribuce určená pro síťové nasazení, např, routery, gatewaye apd,…\\
-Linux, ale najde i~v~embedded zařízeních jako jsou settopboxy, televize, IP kamery, pračky, mikrovlné trouby, chladničky a~jiné jednoúčelové zařízení,…
+ \item[Embedded] Jedná se o~distribuce směrované na určité zařízení. Nejznámější je např. openwrt, což je distribuce určená pro síťové nasazení, např, routery, gatewaye apd,…\\
+Linux, ale najdeme i~v~embedded zařízeních jako jsou settopboxy, televize, IP kamery, pračky, mikrovlné trouby, chladničky a~jiné jednoúčelové zařízení,…
  \item[Mobilní] Asi nejnovějším prostředí ve kterém momentálně již  systém linux dominuje, jsou mobilní telefony. Zde kraluje OS pro mobilní telefony od společnosti Google, Android. Existují, ale i~další distribuce pro mobilní telefony jako je OpenMoko používaný v~mobilu Neo FreeRunner nebo Bada od společnosti Samsung.
  \item[další,…] 
  \end{description}
@@ -495,7 +496,7 @@ Linux, ale najde i~v~embedded zařízeních jako jsou settopboxy, televize, IP k
 Linuxové distribuce jsou také směřovány na různé procesorové architektury, většinou distribuce nesměřují jenom na jednu architekturu, ale~na více architektur současně. Příkladem za všechny je distribuce Debian, která je známá také podporou pro největší množství architektur. Např. MS Windows 7 je dostupný pouze pro architektury x86 a x86\_64 (x64), zatímco Debian podporuje oficiálně 10 architektur a~neoficiálně 16 architektur. Nejčastěji však většina distribucí podporuje architektury x86 a x86\_64 a~v~poslední době také ARM.
 
 \subsubsection{Další rozdíly}
-Rozdíly, i~když ne tak zásadní, jsou v~softwarové výbavě, ta sice jde ruku v~ruce s~nasazením Linuxu, ale~ve světě desktopů a~hlavně distribuce Ubuntu se v~posledních několika letech objevují distribuce, které se odlišují pouze v~základním uživatelském prostředí. Oficiálně společnost Canonical (tvůrce Ubuntu) vytváří 4 distribuce, které se odlišují od Ubuntu pouze v~základním uživatelském prostředí a~další 4 distribuce, které se liší v~softwarové výbavě.
+Rozdíly, i~když ne tak zásadní, jsou v~softwarové výbavě. Ta sice jde ruku v~ruce s~nasazením Linuxu, ale~ve světě desktopů a~hlavně distribuce Ubuntu se v~posledních několika letech objevují distribuce, které se odlišují pouze v~základním uživatelském prostředí. Oficiálně společnost Canonical (tvůrce Ubuntu) vytváří 4 distribuce, které se odlišují od Ubuntu pouze v~základním uživatelském prostředí a~další 4 distribuce, které se liší v~softwarové výbavě.
 \b{Ubuntu, Kubuntu, Edubuntu, Xubuntu, Gobuntu, Lubuntu, Fluxbuntu, Ubuntu Netbook Edition}\\
 
 Velký rozdíl zavádí do linuxových distribucí \textbf{GoboLinux}. Tato distribuce mění základní rozdělení Linuxového filesystému na více intuitivní a~uživatelsky příznivější.V rootu distribuce GoboLinux lze nalézt pouze složky \b{Programs, Users, System, Files, Mount, Depot}. Programs je velice zajímavá složka, protože v~GoboLinuxu obsahuje všechny programy a~jejich soubory a~díky promyšlené struktuře je možné provozovat v~GoboLinuxu hned několik verzí stejného programu. Programs také zajišťuje databázi balíčkovacího systému, která je řešena pomocí složek programů. Chytrost tohoto řešení je však trochu degradována řešením zpětné kompatibility s~Linuxovým standardem, která je řešena přes velké množství symbolických adres.~\cite{GoboLinuxFilesystem}~\cite{GoboLinuxMain}
@@ -506,16 +507,16 @@ LFS je projekt poskytující návod, který vás provede krok za krokem sestaven
 \obr{./img/lfs-logo.png}{1}{Logo Linux From Scratch}
 
 \subsection{Užití Linux From Scratch}
-Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když je možné si jednoduše stáhnout už sestavenou distribuci Linuxu. Avšak i~přes některé obtíže jenž sestavování LFS skýtá, má tento proces své výhody.~\cite{LFS}
+Spousta lidí se může divit, proč se obtěžovat se sestavováním LFS, když je možné si jednoduše stáhnout už sestavenou distribuci Linuxu. Avšak i~přes některé obtíže jenž sestavování LFS skýtá, má tento proces své výhody.~\cite{LFS}
 
 %Many wonder why they should go through the hassle of building a Linux system from scratch when they could just download an existing Linux distribution. However, there are several benefits of building LFS. Consider the following:
 
 \begin{itemize}
- \item LFS učí uživatele jak Linux funguje uvnitř.
+ \item LFS učí uživatele, jak Linux funguje uvnitř.
 
 %LFS teaches people how a Linux system works internally
 
- \item Sestavování LFS učí o~všem co v~systému běží, jak jednotlivé části pracují a~závisí jedna na druhé. A~jak upravit systém dle potřeby.
+ \item Sestavování LFS učí o~všem, co v~systému běží, jak jednotlivé části pracují a~závisí jedna na druhé. A~jak upravit systém dle potřeby.
 
 %Building LFS teaches you about all that makes Linux tick, how things work together and depend on each other. And most importantly, how to customize it to your own tastes and needs.
 
@@ -532,7 +533,7 @@ Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když j
 %LFS is extremely flexible
 %Building LFS could be compared to a finished house. LFS will give you the skeleton of a house, but it's up to you to install plumbing, electrical outlets, kitchen, bath, wallpaper, etc. You have the ability to turn it into whatever type of system you need it to be, customized completely for you.
 
-\item LFS můžeme zabezpečit na míru. Nemusíme čekat, jako u binárních distribucí, až někdo sestaví balíček s~bezpečnostním patchem, který potřebujeme. Můžeme se si zkompilovat SW s~patchem sami.
+\item LFS můžeme zabezpečit na míru. Nemusíme čekat, jako u binárních distribucí, až někdo sestaví balíček s~bezpečnostním patchem, který potřebujeme. Můžeme si zkompilovat SW s~patchem sami.
 
 %LFS offers you added security
 %You will compile the entire system from source, thus allowing you to audit everything, if you wish to do so, and apply all the security patches you want or need to apply. You don't have to wait for someone else to provide a new binary package that (hopefully) fixes a security hole. Often, you never truly know whether a security hole is fixed or not unless you do it yourself.
@@ -540,12 +541,12 @@ Spousta lidí se může divit, proč se otravovat se sestavováním LFS, když j
 
 \subsection{Další projekty LFS}
 \begin{description}
- \item[BLFS] Beyond Linux From Scratch - projekt jehož cílem je vytvořit návod pro rozšíření základního sestavení LFS a~umožnit tak uživateli co nejjednodušeji dotvořit vlastní distribuci.
+ \item[BLFS] Beyond Linux From Scratch - projekt, jehož cílem je vytvořit návod pro rozšíření základního sestavení LFS a~umožnit tak uživateli co nejjednodušeji dotvořit vlastní distribuci.
  \item[ALFS] Automated Linux From Scratch - cílem projektu je vytvořit návod jakým způsobem vygenerovat kód pro automatické sestavování LFS a~BLFS
  \item[CLFS] Cross Linux From Scratch - jak už název napovídá, projekt umožňuje cross-compilaci, tedy sestavení LFS na mnoha jiných typech systémů a~architektur.
  \item[HLFS] Hardened Linux From Scratch - se snaží o~vytvoření maximálně bezpečného sestavení LFS, odolného proti hrozbám hackerů a~jiným bezpečnostním hrozbám.
  \item[Hints] jedná se o~kolekci dokumentů, které popisují jak vylepšit naše sestavení LFS jinak než je popsáno v~LFS a~BLFS.
- \item[LiveCD] projekt jehož hlavním cílem je vytvořit LiveCD vhodné jako hostitelský systém pro sestavení LFS.
+ \item[LiveCD] projekt, jehož hlavním cílem je vytvořit LiveCD vhodné jako hostitelský systém pro sestavení LFS.
  \end{description}
 
 %BLFS :: Beyond Linux From Scratch helps you extend your finished LFS installation into a more customized and usable system.
@@ -568,13 +569,13 @@ Komentáře jsou v~bashi jako v~jiných jazycích značeny znakem \# (sharp)
    # cokoliv za tímto znakem je komentář
 \end{Verbatim} 
     \end{codeframe}
-Každý skript by měl začínat komentářem, který říká jaký interpret shellu se má použít, pokud toto není uvedeno je použit defaultní interpret, což může znamenat problémy pokud jsme napsali skript např. pro bash a~v~systému je defaultně jiný odlehčený interpret.
+Každý skript by měl začínat komentářem, který říká jaký interpret shellu se má použít, pokud toto není uvedeno, je použit defaultní interpret, což může znamenat problémy pokud jsme napsali skript např. pro bash a~v~systému je defaultně jiný odlehčený interpret.
     \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
 #!/bin/bash
 \end{Verbatim} 
     \end{codeframe}
-Jaký defaultní interpret je použit můžeme zjistit pomocí příkazu:
+Jaký defaultní interpret je použit, můžeme zjistit pomocí příkazu:
      \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
 $ echo "/bin/sh -> `readlink -f /bin/sh`"
@@ -613,13 +614,13 @@ Ukázka práce s proměnnými.
       \begin{Verbatim}{frame=single} 
 $ jedna="Lokální proměnná"
 $ export DVA="Proměnná exportovaná do podřízeného shellu"
-$ readonly TRI="Proměnná pouze pro čtení, ale jen na lokální urovni"
+$ readonly TRI="Proměnná pouze pro čtení, ale jen na lokální úrovni"
 $ export TRI
 $ export
 declare -x DVA="Proměnná exportovaná do podřízeného shellu"
-declare -rx TRI="Proměnná pouze pro čtení, ale jen na lokální urovni"
+declare -rx TRI="Proměnná pouze pro čtení, ale jen na lokální úrovni"
 $ readonly
-declare -rx TRI="Proměnná pouze pro čtení, ale jen na lokální urovni"
+declare -rx TRI="Proměnná pouze pro čtení, ale jen na lokální úrovni"
 $ echo $jedna
 Lokální proměnná
 $ TRI="Nová hodnota"
@@ -794,7 +795,7 @@ esac
 \end{Verbatim} 
     \end{codeframe}
 \subsubsection{FOR}
-příkaz for funguje stejně jako v~jiných programovacích jazycích, ale jeho syntaxe je trochu jiná.
+Příkaz for funguje stejně jako v~jiných programovacích jazycích, ale jeho syntaxe je trochu jiná.
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 #příkaz bude postupně do proměnné $cislo dosazovat hodnoty 
@@ -828,7 +829,7 @@ done
 \end{Verbatim} 
     \end{codeframe}
 
-\subsection{Funkce,pole příkazy}
+\subsection{Funkce, pole, příkazy}
 \subsubsection{Speciální proměnné}
 Informace o názvu skriptu, počtu předaných argumentů a~argumenty samotné jsou uloženy ve~speciálních proměnných. Tyto proměnné se používají stejným způsobem ve~skriptech i~ve~funkcích\cite{ABC_SBASH}.
 \begin{description}
@@ -915,22 +916,22 @@ promenna = ${packagename[0]}
 \subsection{Překladač (kompilátor)}
 Překladač (též kompilátor, anglicky compiler z~to compile – sestavit, zpracovat) je~v~nejčastějším smyslu slova nástrojem používaným programátory pro vývoj softwaru. Kompilátor slouží pro překlad algoritmů zapsaných ve vyšším programovacím jazyce do~jazyka strojového, či spíše do strojového kódu. Z širšího obecného hlediska je kompilátor stroj, respektive program, provádějící překlad z nějakého vstupního jazyka do jazyka výstupního. Z~matematického hlediska je kompilátor funkce, která mapuje jeden nebo více zdrojových kódů podle překladových parametrů na kód ve výstupním jazyce.~\cite{Wkom}
 \subsection{Důležité soubory}
-Zdrojové kódy programů jsou uloženy v souborech rozličných formátů podle účelu a~jazyka v~němž je program napsán. Ale každý program by měl obsahovat i~další soubory, které mají význam pro uživatele, kteří chtějí program zkompilovat nebo ho dále upravovat. Tyto soubory jsou, ale spíše dobrým mravem a~záleží na programátorovy jestli je jeho projekt bude obsahovat.
+Zdrojové kódy programů jsou uloženy v souborech rozličných formátů podle účelu a~jazyka, v~němž je program napsán. Ale každý program by měl obsahovat i~další soubory, které mají význam pro uživatele, kteří chtějí program zkompilovat nebo ho dále upravovat. Tyto soubory jsou ale~spíše dobrým mravem a~záleží na programátorovi jestli je jeho projekt bude obsahovat.
 \subsubsection{LICENSE (COPYING)}
 Soubor obsahující licenci pod kterou je program vydán. Licence je důležitá, protože~určuje jak smí uživatel s programem nakládat. U~programů s~otevřeným zdrojovým kódem se nejčastěji používají licence GNU GPL a BSD.\\ \b{GPL} v jednoduchosti říká, že můžete s~programem libovolně nakládat, avšak pokud provedete jakékoliv modifikace, musíte zdrojové kódy opět uvolnit pod stejnou licencí \it{(jedná se o licenci tzv. virovou)}. Anglický originál licence je lze možno nalézt na \href{http://www.opensource.org/licenses/gpl-3.0}{opensource.org} Pod touto licencí je šířeno Linuxové jádro i~sada nástrojů projektu GNU, které Linuxové jádro standardně distribuováno.\\ \b{BSD} Umožňuje volné šíření licencovaného obsahu, přičemž vyžaduje pouze uvedení autora a~informace o~licenci, spolu s~upozorněním na zřeknutí se odpovědnosti za dílo.~\cite{BSDL} Anglický originál licence je lze možno nalézt na \href{http://www.opensource.org/licenses/bsd-license.php}{opensource.org}. Pod touto licencí šířeno např. jádro stejnojmenného operačního systému BSD nebo operační systém HAIKU.\\
 Často bývá licence uvedena jako součást souboru README.
 \subsubsection{INSTALL}
-Soubor INSTALL obsahuje instalační informace pro uživatele. Obsahuje informace o~tom jak program zkompilovat a~informace o~jeho nastavení. U~menších projektů bývají často tyto informace součástí souboru README, naopak u velkých projektů se často tyto informace přesunují na internet.
+Soubor INSTALL obsahuje instalační informace pro uživatele. Obsahuje informace o~tom, jak program zkompilovat a~informace o~jeho nastavení. U~menších projektů bývají často tyto informace součástí souboru README, naopak u velkých projektů se často tyto informace přesunují na internet.
 \subsubsection{Dokumnetace}
 Dokumentace obsahuje informace o~používání programů a~je velmi důležitá především u~knihoven, protože obsahuje popis funkcí, které daná knihovna poskytuje. Většina distribucí poskytuje dokumentaci v~samostatných balíčcích, protože spousta uživatelů dokumentaci nijak nevyužije a~ušetří se tím místo v~uživatelově počítači a~především se tím sníží zatížení a~množství přenesených dat z~repozitářů distribucí.
 \subsubsection{README}
-Soubor obsahuje základní informace o~programu. Může, a~často i~obsahuje informace ze všech výše uvedených souborů. Avšak někdy není vůbec, protože je vše uvedeno ve~výše uvedených souborech.
+Soubor obsahuje základní informace o~programu. Může, a~často i~obsahuje, informace ze všech výše uvedených souborů. Avšak někdy není vůbec, protože je vše uvedeno ve~výše uvedených souborech.
 \subsubsection{Configure}
-Soubor s~nastaveními pro překlad. Jedná se v~zásadě o~BASH skript, kterým můžete nastavit co a~jak se má v~programu kompilovat. Různými volbami, které jsou uvedeny v~INSTALL,README, nebo v~nějaké online dokumentaci, můžete nastavit \it{např. cesty kam se má program nebo jeho části nainstalovat nebo také které části programu se mají přeložit}. Configure je skriptem BASHe a~proto je také tak volána, výsledkem configure je vygenerovaní souboru, které řídí překlad, nejčastěji Makefil(u).
+Soubor s~nastaveními pro překlad. Jedná se v~zásadě o~BASH skript, kterým můžete nastavit co a~jak se má v~programu kompilovat. Různými volbami, které jsou uvedeny v~INSTALL,README, nebo v~nějaké online dokumentaci, můžete nastavit \it{např. cesty kam se má program nebo jeho části nainstalovat, nebo také které části programu se mají přeložit}. Configure je skriptem BASHe a~proto je také tak volána, výsledkem configure je vygenerovaní souboru, které řídí překlad, nejčastěji Makefil(u).
 \subsubsection{Další soubory a alternativy některých souborů}
 
 \subsection{Kompilace}
-Samotná kompilace sestává s~prostudování nejčastěji souborů INSTALL nebo README a~postupem podle návodu v~nich. Ale obecně ji lze zahrnout do posloupnosti tří ``příkazů''.
+Samotná kompilace sestává z~prostudování nejčastěji souborů INSTALL nebo README a~postupem podle návodu v~nich. Ale obecně ji lze zahrnout do posloupnosti tří ``příkazů''.
 
     \begin{codeframe} 
       \begin{Verbatim}{frame=single} 
@@ -959,13 +960,13 @@ Linuxovou distribuci lze vytvořit více způsoby, nejběžnějším způsobem j
 Vytvoření ze zdrojových kódů reprezentuje například použitá "distribuce" Linux From Scratch. Postup se obecně skládá z~několika částí.
 \begin{enumerate}
  \item Nejdříve je třeba oddělit systém a~vytvořit toolchain, který slouží k~sestavení nové distribuce nezávislé na předchozím hostovskému systému.
-\item sestavení vlastní sady základních nástrojů pro použití systému. Sada obsahuje překladače, nástroje pro práci se soubory a~jiné potřebné programové vybavení.
-\item nastavení bootovacího procesu systému.
-\item vytvoření tabulky souborových systémů, kompilace jádra systému, nastavení bootloaderu
+\item Sestavení vlastní sady základních nástrojů pro použití systému. Sada obsahuje překladače, nástroje pro práci se soubory a~jiné potřebné programové vybavení.
+\item Nastavení bootovacího procesu systému.
+\item Vytvoření tabulky souborových systémů, kompilace jádra systému, nastavení bootloaderu
 \end{enumerate}
 
 \subsubsection{Sestavení ze stávající linuxové distribuce} \label{sec:tvorbaDistribuce}
-Existuje hned několik nástrojů na sestavení tzv. derivátu Linuxové distribuce. Většinou jsou používány pro sestavení instalačního ISO obrazu na míru potřeb uživatele. To~zahrnuje balíčky použité při instalaci, různé nastavení, grafická témata, písma apd,… Populární se staly především deriváty distribuce Ubuntu, pro Ubuntu existuje i~nejvíce těchto nástrojů. K dispozici jsou nástroje jak pro desktop s běžným GUI nebo CLI,tak i~nástroje webové, které sestaví distribuci v~cloudu a uživatel stáhne jenom hotový obraz.
+Existuje hned několik nástrojů na sestavení tzv. derivátu Linuxové distribuce. Většinou jsou používány pro sestavení instalačního ISO obrazu na míru potřeb uživatele. To~zahrnuje balíčky použité při instalaci, různé nastavení, grafická témata, písma, apd,… Populární se staly především deriváty distribuce Ubuntu, pro Ubuntu existuje i~nejvíce těchto nástrojů. K dispozici jsou nástroje jak pro desktop s běžným GUI nebo CLI,tak i~nástroje webové, které sestaví distribuci v~cloudu a uživatel stáhne jenom hotový obraz.
 
 \nadpis{Remastersys}\\
 Remastersys je jednoduchý grafický nástroj určený pro Ubuntu, Debian a všechny jejich deriváty. Remastersys dokáže převést aktuální běžící distribuci na vašem počítači do~ISO obrazu. Je výborným nástrojem pro zálohování dat systému, protože uloží všechny vaše uživatelská data a~nastavení.\cite{Linux_Build}
@@ -1017,7 +1018,7 @@ Jedná se o webovou aplikaci a její cena je \$5.\cite{Linux_Build}
 %The browser-based tool requires no installation, but you'll need to pay a small fee before you can use all of its features.
 \newpage
 \nadpis{Revisor}\\
-Revisor je aplikace pro vytvoření vlastního instalačního CD/DVD/USB založeném na~distribuci Fedora. Má jak grafické rozhraní tak CLI. Další rozdíl je také to, že~Revisor nevytváří instalační medium z~existujícího obrazu, ale stahuje vše z~internetu, takže rychlost vytvoření média je také závislá na rychlosti vašeho připojení.\cite{Linux_Build}
+Revisor je aplikace pro vytvoření vlastního instalačního CD/DVD/USB založeném na~distribuci Fedora. Má jak grafické rozhraní, tak CLI. Další rozdíl je také to, že~Revisor nevytváří instalační medium z~existujícího obrazu, ale stahuje vše z~internetu, takže rychlost vytvoření média je také závislá na rychlosti vašeho připojení.\cite{Linux_Build}
 \begin{center}
 \obr{./img/screens/revisor.jpg}{0.7}{Grafické rozhraní programu Revisor}
 \end{center}
@@ -1026,7 +1027,7 @@ Revisor je aplikace pro vytvoření vlastního instalačního CD/DVD/USB založe
 %Instead of using ISO images, Revisor downloads packages from the internet, so it may take some time to compile depending on your connection speed and customised package selection.
 
 \nadpis{SUSE Studio}\\
-Asi nejzajímavějším programem je webová aplikace od společnosti Novell, SUSE Studio. Ne~jenomže umí nakonfigurovat velké množství nastavení. Ale velmi dobrou vlastností je testování systému přímo v~prohlížeči. Výborná je také galerie, která obsahuje obrazy vytvořené ostatními uživateli, lze tak bez práce najít už funkční obraz dle potřeb uživatele a~případně si již vytvořený obraz upravit.
+Asi nejzajímavějším programem je webová aplikace od společnosti Novell, SUSE Studio. Nejenomže umí nakonfigurovat velké množství nastavení. Ale velmi dobrou vlastností je testování systému přímo v~prohlížeči. Výborná je také galerie, která obsahuje obrazy vytvořené ostatními uživateli, lze tak bez práce najít už funkční obraz dle potřeb uživatele, a~případně si již vytvořený obraz upravit.
 
 \obr{./img/screens/suse1.png}{0.7}{Webové stránka s výběrem již existujících sestavení}
 \begin{figure}[h]
@@ -1056,7 +1057,7 @@ Pungi je nástrojem, který používají vývojáři Fedory pro sestavení ofici
 %Like Revisor, the tool gathers packages directly from the internet and then automatically splits them and creates CD-sized installable ISO images.
 
 \nadpis{Builder}\\
-Builder je série skriptů napsaných v~BASHi, které používají vývojáři derivátu distribuce Ubuntu "gNewSense" na sestavení jejich distribuce. Ke skriptům je také napsán přehledný manuál jak je používat, který je dostupný online~\cite{Linux_Build}~\cite{BuilderNavod}.
+Builder je série skriptů napsaných v~BASHi, které používají vývojáři derivátu distribuce Ubuntu "gNewSense" na sestavení jejich distribuce. Ke skriptům je také napsán přehledný manuál, jak je používat, který je dostupný online~\cite{Linux_Build}~\cite{BuilderNavod}.
 
 %Builder is a series of bash scripts that are used by the gNewSense developers to create their distro. Along with the tool they've also written a handy nine-step guide to creating a customised distro from Ubuntu Hardy. The guide is available on their site.
 
@@ -1094,13 +1095,13 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 Takto vytvořená distribuce může mít i~8MB!
 
 \section{\upc{LiveCD}}
-Ač by se mohlo zdát, že liveCD je nějaká velmi složitá věc k~vytvoření není to tak úplně pravda. Nejjednodušší forma LiveCD je taková, že vložíme CD do mechaniky, ten nabootuje a~spustí se příkazový řádek ve kterém je možné pracovat. Takto fungovaly a~často ještě fungují instalační CD různých distribucí. Dnes se velmi často používá několik druhů instalačních/live CD
+Ač by se mohlo zdát, že liveCD je nějaká velmi složitá věc k~vytvoření, není to tak úplně pravda. Nejjednodušší forma LiveCD je taková, že vložíme CD do mechaniky, ten nabootuje a~spustí se příkazový řádek, ve kterém je možné pracovat. Takto fungovaly a~často ještě fungují instalační CD různých distribucí. Dnes se velmi často používá několik druhů instalačních/live CD.
 \begin{itemize}
  \item Instalační CD s~příkazovou řádkou a~instalací pomocí textového nástroje (Archlinux,…)
  \item Instalační CD s~grafickým instalátorem (Debian,…)
- \item LiveCD ve kterém lze z~grafického Live prostředí spustit instalátor (ve většině případů lze spustit grafický isntalátor i~bez grafického live prostředí jako v~předchozí položce) (Ubuntu,…)
+ \item LiveCD, ve kterém lze z~grafického Live prostředí spustit instalátor (ve většině případů lze spustit grafický isntalátor i~bez grafického live prostředí jako v~předchozí položce) (Ubuntu,…)
  \item Čistě LiveCD, takový disk slouží pouze pro vyzkoušení většinou grafického prostředí nebo k~opravám stávajícího systému (neobsahuje instalátor) (GNOME Live Media, Gparted,…)
- \item LiveCD určené pro běžnou práci. Takové LiveCD umí např. nahrát systém do RAM, pak už není třeba číst z~CD nebo také pokud se jedná o~LiveUSB je možné uložit změny v~systému na disk a~ty jsou načteny při dalším spuštění. (Slax,Chakra,…)
+ \item LiveCD určené pro běžnou práci. Takové LiveCD umí např. nahrát systém do RAM, pak už není třeba číst z~CD nebo také pokud se jedná o~LiveUSB, je možné uložit změny v~systému na disk a~ty jsou načteny při dalším spuštění. (Slax,Chakra,…)
 \end{itemize}
 
 \subsection{Výhody/nevýhody LiveCD}
@@ -1108,7 +1109,7 @@ Vyhodou LiveCD je především možnost \textbf{vyzkoušet si celý operační s
 
 Samozřejmě LiveCD není většinou používáno k~běžně práci, jeho výhodou je vyzkoušení neznámého operačního systému nebo grafického prostředí bez nutnosti mnohdy zdlouhavé instalace, což převyšuje nad nevýhodami.
 \subsection{Možnosti tvorby LiveCD}
-Vytvořit LiveCD lze několika způsoby, nejjednodušší je způsob úpravy stávajícího LiveCD jak bylo i~popsáno \odkazNaKapitolu{sec:tvorbaDistribuce}. 
+Vytvořit LiveCD lze několika způsoby, nejjednodušší je způsob úpravy stávajícího LiveCD, jak bylo i~popsáno \odkazNaKapitolu{sec:tvorbaDistribuce}. 
 
 \subsubsection{Obecný postup tvorby LiveCD}
 Obecný postup tvorby LiveCD se dá shrnout do několika kroků.
@@ -1133,7 +1134,7 @@ Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního de
 \includegraphics[width=2in]{./img/screens/nible2.png}
 \end{array}$
 \end{center}
-\caption[Webové rozhraní s nastavením NimbleX, základní nastavení/office]{Webové rozhraní s nastavením NimbleX, v levo výběr míry nastavení, v pravo nastavení programů v sekci office}
+\caption[Webové rozhraní s nastavením NimbleX, základní nastavení/office]{Webové rozhraní s nastavením NimbleX, vlevo výběr míry nastavení, vpravo nastavení programů v sekci office}
 \end{figure}
 \begin{figure}[h]
 \begin{center}$
@@ -1142,7 +1143,7 @@ Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního de
 \includegraphics[width=2in]{./img/screens/nible4.png}
 \end{array}$
 \end{center}
-\caption[Webové rozhraní s nastavením NimbleX, wallpaper/zvuk]{Webové rozhraní s nastavením NimbleX, v levo výběr wallpaperu, v pravo nastavení zvuku}
+\caption[Webové rozhraní s nastavením NimbleX, wallpaper/zvuk]{Webové rozhraní s nastavením NimbleX, vlevo výběr wallpaperu, vpravo nastavení zvuku}
 \end{figure}
 
 \subsubsection{Linux-Live}
@@ -1152,18 +1153,18 @@ Linux-Live je sada skriptů, která není závislá na distribuci, ale lze ji po
 %The popular Slackware -based Slax Live distro is built using these scripts, which work best on Slackware but can work on other distributions as well.
 
 \subsubsection{Další možnosti tvorby LiveCD}
-\b{Linux-Live} je asi nejčastějším způsobem vytvoření LiveCD. Spousta distribucí má, ale~vlastní nástroje některé jako: The Ubuntu Customisation Kit (UCK) nebo Reconstructor, které již byly popsány \odkazNaKapitolu{sec:UCK}. Pro fedoru např. exituje nástroj \b{livecd-creator} pro tvorbu Fedora LiveCD a~podrobný návod je dostupný na~stránkách fedory~\cite{FedoraLiveCDproject}. Pro debian existuje \textbf{Debian Live Project}, který poskytuje webové rozhraní podobné nástroji Instalinux \odkazNaKapitolu{sec:Instalinux} a~je zdarma dostupný na~internetu.~\cite{DebianLiveProject}
-Další zajímavé nástroje pro tvorbu LiveCD existují např. pro~Archlinux. Jsou hned tři a~všechny jsou popsány na wiki stránkách distribuce Archlinux~\cite{ArchWiki-BuildLiveCD}. První je oficiální sada nástrojů, používaná k~tvorbě oficiálních vydání disků nazvaná \b{Archiso}. Druhým nástrojem je \b{larch}, který nepotřebuje k~sestavení jako hostitelský systém Archlinux, ale funguje v~jakémkoliv Linuxu, protože si potřebné aplikace stáhne z~repozitářů Archlinuxu. Posledním nástrojem je \textbf{poison-livecd-creator} jedná se o~opravdu jednoduchý Makefile a~několika jednoduchými kroky lze docílit vytvoření LiveCD na bázi Archlinuxu.
+\b{Linux-Live} je asi nejčastějším způsobem vytvoření LiveCD. Spousta distribucí má ale~vlastní nástroje jako: The Ubuntu Customisation Kit (UCK) nebo Reconstructor, které již byly popsány \odkazNaKapitolu{sec:UCK}. Pro fedoru např. exituje nástroj \b{livecd-creator} pro tvorbu Fedora LiveCD a~podrobný návod je dostupný na~stránkách fedory~\cite{FedoraLiveCDproject}. Pro debian existuje \textbf{Debian Live Project}, který poskytuje webové rozhraní podobné nástroji Instalinux \odkazNaKapitolu{sec:Instalinux} a~je zdarma dostupný na~internetu.~\cite{DebianLiveProject}
+Další zajímavé nástroje pro tvorbu LiveCD existují např. pro~Archlinux. Jsou hned tři a~všechny jsou popsány na wiki stránkách distribuce Archlinux~\cite{ArchWiki-BuildLiveCD}. První je oficiální sada nástrojů, používaná k~tvorbě oficiálních vydání disků nazvaná \b{Archiso}. Druhým nástrojem je \b{larch}, který nepotřebuje k~sestavení jako hostitelský systém Archlinux, ale funguje v~jakémkoliv Linuxu, protože si potřebné aplikace stáhne z~repozitářů Archlinuxu. Posledním nástrojem je \textbf{poison-livecd-creator}, jedná se o~opravdu jednoduchý Makefile a~několika jednoduchými kroky lze docílit vytvoření LiveCD na bázi Archlinuxu.
 
 
 \section{\upc{Zabezpečení Linuxového systému}}
 
-Zabezpečení OS je velice rozsáhlým a~komplexním odvětvím, které se navíc velmi rychle vyvíjí a~rozšiřuje. Jeho plné popsání by vydalo na několik desítek bakalářských prací, proto jen základní informace o~vnitřním zabezpečení systému, nástrojích jež toto zabezpečení rozšiřují a~také o~zabezpečení proti vnějšímu útoku a~bezpečném přenosu informací.
+Zabezpečení OS je velice rozsáhlým a~komplexním odvětvím, které se navíc velmi rychle vyvíjí a~rozšiřuje. Jeho plné popsání by vydalo na několik desítek bakalářských prací, proto jen základní informace o~vnitřním zabezpečení systému, nástrojích, jež toto zabezpečení rozšiřují a~také o~zabezpečení proti vnějšímu útoku a~bezpečném přenosu informací.
 
 \subsection{Bezpečnostní model Linuxu}
 Standardní bezpečnostní model, vycházející z~Discretionary Access Control (DAC) \odkazNaKapitolu{sec:DAC}, který nalezneme na většině UNIXových operačních systemů (tedy i~Linuxu) je postaven na několika bitových maskách (specifikující u souboru práva pro vlastníka, skupinu, ostatní (drwxrwxrwx) a~popř. nastavující některé speciální bity, jako je SUID (secure user identification number) či SGID (secure group identification number)). Další velmi typickou stránkou tohoto bezpečnostního modelu je uživatel root – administrátor a~uživatel s~nejvyššími možnými privilegii (jinak řečeno uživatel, jenž může vše).~\cite{LINUXZONEGrsecurity}\\
 
-Tento bezpečnostní model se v~praxi v~různých UNIXových klonech osvědčil a~používá se dodnes. Ale jsou případy kdy není zrovna nevýhodnější. Prvním problémem jsou ona již zmíněná přístupová práva k~souborům, která jsou ze své podstaty poměrně omezená a~nastavení práv tak často nutí administrátora k~různým krokům, jako je např. vytváření velkého množství uživatelských skupin (a~v~některých případech ani~to není uspokojivým řešením).
+Tento bezpečnostní model se v~praxi v~různých UNIXových klonech osvědčil a~používá se dodnes. Ale jsou případy kdy není zrovna nejvýhodnější. Prvním problémem jsou ona již zmíněná přístupová práva k~souborům, která jsou ze své podstaty poměrně omezená a~nastavení práv tak často nutí administrátora k~různým krokům, jako je např. vytváření velkého množství uživatelských skupin (a~v~některých případech ani~to není uspokojivým řešením).
 Dalším kamenem úrazu je uživatel root, kterýžto jako administrátor prakticky má veškerá možná práva. Některý software část těchto práv ovšem vyžaduje – typickým příkladem je většina síťových démonů, které poslouchají na privilegovaných síťových portech (<1024). A~mimo oněch potřebných práv tak program zcela zbytečně dostane plnou kontrolu nad systémem, což může být zneužito potenciálním útočníkem, pokud se v~onom softwaru vyskytuje nějaká bezpečnostní chyba. Standardně se tento problém řeší tak, že program zahazuje EUID 0 (effective user identification number) v~momentě, kdy již nepotřebuje speciální práva.~\cite{LINUXZONEGrsecurity}\\
 
 Dalším souvisejícím problémem je nemožnost efektivní distribuce práv k~systému mezi více administrátorů. Příkladem budiž situace, v~níž potřebujeme svěřit administraci DNS serveru jinému člověku než tomu, který se stará o~zbytek administrace systému. Nasnadě je povolení zápisu do konfiguračních souborů onoho daemonu, ale~tím vyřešíme jen část problémů. Onen administrátor též musí mít možnost např. onen server restartovat či mu alespoň poslat nějaký signál (např. pro načtení nové konfigurace), což s~sebou přináší nutnost superuživatelských práv. Jistým řešením je sudo či podobný nástroj, který umožňuje administrátorovi nastavit, jaké příkazy (a~pod jakým uživatelem) může daný uživatel spouštět ze svého normálního uživatelského účtu. Nicméně nejedná se o~dostatečně flexibilní řešení.~\cite{LINUXZONEGrsecurity}\\
@@ -1181,7 +1182,7 @@ Kontrola přístupu uvnitř systému je jedno z~nejdůležitějších zabezpeče
 Bezpečnostní model využívaný většinou mainstreamových operačních systému je založen na \b{Discretionary Access Control (DAC)}, který je založen na bezpečnosti vlastnictvím. Pokud uživatel vlastní soubor, může nastavovat práva pro čtení, zápis a~spouštění (r+w+x), pro tento soubor. V~tomto modelu uživatel kontroluje data dle vlastního uvážení. Vlastník systému\footnote{Vlastník systému (anglicky system owner nebo také administrátor) je určen při instalaci OS, oproti účtu uživatele root nemá právo měnit např. práva systémových souborů, ale má právo měnit přístupová práva široké škály uživatelů a~uživatelé nemají možnost tato ustanovení měnit.\cite{SystemOwner}} nemá totální kontrolu nad systémem, tu má uživatel.~\cite{Linux_com_MACvsDAC}
 
 
-V Mandatory (česky Povinné) Access Control (MAC), uživatelům jsou dána povolení ke~zdrojům správcem. Pouze správce může udělit oprávnění nebo právo k~objektům a~zdrojům. Přístup ke zdrojům je založený na úrovni zabezpečení objektu a uživateli je udělena bezpečnostní prověrka pro přistup k~objektu. Pouze správci mohou upravovat objektu bezpečnostní štítek nebo uživateli bezpečnostní prověrky.
+V Mandatory (česky Povinné) Access Control (MAC), uživatelům jsou dána povolení ke~zdrojům správcem. Pouze správce může udělit oprávnění nebo právo k~objektům a~zdrojům. Přístup ke zdrojům je založený na úrovni zabezpečení objektu a uživateli je udělena bezpečnostní prověrka pro přístup k~objektu. Pouze správci mohou upravovat objektu bezpečnostní štítek nebo uživateli bezpečnostní prověrky.
 
 V Role-Based Access Control (RBAC), je přístup ke zdrojům založen na \uv{roli kterou uživatel hraje}. V tomto modelu, správce přiřadí uživateli roli, která má předem přidělena určitá práva a~výsady. Vzhledem k~uživateli přidělené roli, může uživatel přístupovat k~určitým zdrojům a~plnit specifické úkoly. RBAC je také známý jako Non-Discretionary Access Control. Role přiřazené uživatelům, jsou centrálně spravovány.
 
@@ -1231,9 +1232,9 @@ Mezi hlavní přednosti Tomoyo Linux patří:
 %Very few dependencies
 %Requires no modification of existing binaries
 
-\subsubsection{grsecurity}
+\subsubsection{Grsecurity}
 
-grsecurity je inovativní přístup k~zabezpečení, využívající multi-layered (vícevrstvou) detekci, prevenci a omezení modelu. Je vyvíjen pod licencí GNU GPL.~\cite{Grsecurity}
+Grsecurity je inovativní přístup k~zabezpečení, využívající multi-layered (vícevrstvou) detekci, prevenci a omezení modelu. Je vyvíjen pod licencí GNU GPL.~\cite{Grsecurity}
 
 Nabízí mnoho funkcí:
 \begin{itemize}
@@ -1271,7 +1272,7 @@ Tak jako ve spoustě jiných odvětvích se i~v~bezpečnosti určují standardy 
 
 \subsubsection{Trusted Computer System Evaluation Criteria, TCSEC} \label{sec:TCSEC}
 
-Asi nejznámější kniha popisující požadavky pro "důvěryhodný" operační systém, vydaná v roce 1985 americkým ministerstvem obrany (Department of Defense, DoD) a je známa také jako oranžová kniha (Orange book) pro svůj oranžový přebal. Dnes se tyto hodnotící kritéria již nepoužívají, původně měla být nahrazena Federal Criteries (FC), ale tento soubor kritérií nebyl nikdy nasazen a zůstal pouze ve fázi draft\footnote{\b{Draft} se používá jako označení pro návrh}, protože jej v roce 2005 nahradil soubor Common Criteria (CC) \odkazNaKapitolu{sec:cc}\\
+Asi nejznámější kniha popisující požadavky pro "důvěryhodný" operační systém, vydaná v roce 1985 americkým ministerstvem obrany (Department of Defense, DoD), je známa také jako oranžová kniha (Orange book) pro svůj oranžový přebal. Dnes se tyto hodnotící kritéria již nepoužívají, původně měla být nahrazena Federal Criteries (FC), ale tento soubor kritérií nebyl nikdy nasazen a zůstal pouze ve fázi draft\footnote{\b{Draft} se používá jako označení pro návrh}, protože jej v roce 2005 nahradil soubor Common Criteria (CC) \odkazNaKapitolu{sec:cc}\\
 
 \vspace{4 mm}
 TCSEC, hodnotí míru splnění požadavků ve třech oblastech informační bezpečnosti~\cite{PrezentaceBIS}
@@ -1296,14 +1297,14 @@ TCSEC, hodnotí míru splnění požadavků ve třech oblastech informační bez
 \end{description}
 \item[Třída A] verifikovaná ochrana (Verified Protection)
 \begin{description}
-\item[Podtřída A1] verifikovaný návrh funkčně stejně jako B3, rozšíření míry formální specifikace a verifikace při návrhu a testování 
+\item[Podtřída A1] verifikovaný návrh, funkčně stejně jako B3, rozšíření míry formální specifikace a verifikace při návrhu a testování 
 \end{description}
 \end{description}
-Systémy třídy A se mezi komerčně dostupnými produkty nevyskytují\\
-Systémy s dostatečnou bezpečností pro běžný provoz se považují systémy minimálně třídy C2~\cite{PrezentaceBIS}\\
-Většina Linuxových distribucí dosahuje Třídy C2~\cite{LinuxDictionary}
+Systémy třídy A se mezi komerčně dostupnými produkty nevyskytují.\\
+Systémy s dostatečnou bezpečností pro běžný provoz se považují systémy minimálně třídy C2.~\cite{PrezentaceBIS}\\
+Většina Linuxových distribucí dosahuje Třídy C2.~\cite{LinuxDictionary}
 
-\subsubsection{IT Security Evaluation Criteria,ITSEC}\label{sec:ITSEC}
+\subsubsection{IT Security Evaluation Criteria, ITSEC}\label{sec:ITSEC}
 
 Evropská kritéria vytvořená v roce 1990 dnes již nahrazena kritérii Common Criteries (CC)~\odkazNaKapitolu{sec:cc}.
 
@@ -1366,7 +1367,7 @@ Common Criteria Certificates in the field of Information Technology Security”,
  \item[Část 3/ Part 3] Požadavky na záruky bezpečnosti (Security assurance requirements)
  \end{description}
 
-V~\b{prvé části} jsou uvedeny definice pojmů, je vysvětlena základní filosofie CC a~je prezentován obecný model hodnocení. Důležitou součástí je vymezení několika stavebních prvků, které slouží pro jednotné vyjádření bezpečnostních požadavků, ať již funkčních nebo na záruku.~\cite{NBUHodnoceniBezpecnostiSW}\\
+V~\b{první části} jsou uvedeny definice pojmů, je vysvětlena základní filosofie CC a~je prezentován obecný model hodnocení. Důležitou součástí je vymezení několika stavebních prvků, které slouží pro jednotné vyjádření bezpečnostních požadavků, ať již funkčních nebo na záruku.~\cite{NBUHodnoceniBezpecnostiSW}\\
 
 Jsou to:
 \begin{description}
@@ -1376,7 +1377,7 @@ Jsou to:
  \item[třída (class)]jako seskupení rodin, které pokrývají jednotlivé dílčí cíle a~dohromady tvoří konsistentní celek pro dosažení určitého cíle celkového
  \end{description}
 
-Důležitým pojmem v CC je \b{“profil ochrany” (Protection Profile, PP)}, který představuje implementačně nezávislou množinu bezpečnostních požadavků pro zajištění definovaných cílů. Tyto požadavky mohou být vybrány z~CC nebo být vyjádřeny explicitně a~mají zahrnovat i~míru záruky hodnocení (Evaluation Assurance Level, EAL). PP se obvykle vytváří tak, aby byl opakovatelně použitelný a~musí obsahovat i~zdůvodnění bezpečnostních cílů a~požadavků.~\cite{NBUHodnoceniBezpecnostiSW}
+Důležitým pojmem v CC je \b{“profil ochrany” (Protection Profile, PP)}, který představuje implementačně nezávislou množinu bezpečnostních požadavků pro zajištění definovaných cílů. Tyto požadavky mohou být vybrány z~CC nebo být vyjádřeny explicitně a~mají zahrnovat i~míru záruky hodnocení (Evaluation Assurance Level, EAL). PP se obvykle vytváří tak, aby byl opakovaně použitelný a~musí obsahovat i~zdůvodnění bezpečnostních cílů a~požadavků.~\cite{NBUHodnoceniBezpecnostiSW}
 
 Pokud jde o~specifický produkt nebo~systém, nazývaný \b{“předmět hodnocení” ( Target of Evaluation, TOE)}, vyjadřují se bezpečnostní požadavky, které~jsou v~něm realizovány, jako tzv. \b{“bezpečnostní cíl” (Security Target, ST)}. ST je množinou bezpečnostních požadavků, vyjádřených odkazem na PP, na~existující balíky, na~komponenty CC nebo explicitně.~\cite{NBUHodnoceniBezpecnostiSW}
 
@@ -1387,7 +1388,7 @@ Je definováno 11 funkčních tříd, jejichž originální anglické názvy/če
  \item Identification and Authentication/Identifikace a autentizace
  \item Resource Utilisation/Využití zdrojů
  \item Cryptographic Support/Kryptografická podpora
- \item Security Management/správa bezpečnosti
+ \item Security Management/Správa bezpečnosti
  \item TOE Access/Přístup k TOE
  \item Communications/Komunikace
  \item Privacy/Soukromí
@@ -1413,7 +1414,7 @@ Důležité je stanovení předdefinované vzestupné stupnice pro úroveň hodn
 Stručně lze jednotlivé úrovně popsat následujícím způsobem:
 \begin{description}
  \item[EAL1] je vhodná, pokud je vyžadována určitá základní důvěra ve~správnost fungování hodnoceného PP, ST nebo TOE, avšak hrozby nejsou považovány za vážné. Důvěry se dosahuje nezávislým testováním shody hodnoceného PP, ST nebo TOE s~neformální funkční specifikací a~zkoumáním předložených příruček pro uživatele.~\cite{NBUHodnoceniBezpecnostiSW}
- \item[EAL2] již vyžaduje spolupráci vývojáře, který musí v~podstatě dodat funkční specifikace, určité informace o návrhu bezpečnostních funkcí (na úrovni globálního návrhu, high-level design) a~výsledky testování, avšak vývoj si nevyžaduje více úsilí nežli je potřebné pro dodržování dobré komerční praxe, a~v~podstatě nepřináší zvýšení nákladů. Poskytuje nízkou až střední nezávisle ověřenou bezpečnost v~případě, že~není dostupná kompletní informace z~fáze vývoje. Důvěry se dosahuje analýzou vyžadované dokumentace, ověřením výsledků některých testů, analýzou síly funkcí a~analýzou zřejmých zranitelností. Pro TOE musí být sestaven seznam konfigurace a~vypracovány procedura pro bezpečnou instalaci, generování a~spouštění.~\cite{NBUHodnoceniBezpecnostiSW}
+ \item[EAL2] již vyžaduje spolupráci vývojáře, který musí v~podstatě dodat funkční specifikace, určité informace o návrhu bezpečnostních funkcí (na úrovni globálního návrhu, high-level design) a~výsledky testování, avšak vývoj si nevyžaduje více úsilí nežli je potřebné pro dodržování dobré komerční praxe, a~v~podstatě nepřináší zvýšení nákladů. Poskytuje nízkou až střední nezávisle ověřenou bezpečnost v~případě, že~není dostupná kompletní informace z~fáze vývoje. Důvěry se dosahuje analýzou vyžadované dokumentace, ověřením výsledků některých testů, analýzou síly funkcí a~analýzou zřejmých zranitelností. Pro TOE musí být sestaven seznam konfigurace a~vypracovány procedury pro bezpečnou instalaci, generování a~spouštění.~\cite{NBUHodnoceniBezpecnostiSW}
  \item[EAL3] je možno ještě dosáhnout bez podstatných změn základních existujících vývojářských praktik. Je aplikovatelná v~případě, že se vyžaduje střední úroveň nezávisle ověřené bezpečnosti a~je~opřena o~důkladné zkoumání TOE (ST, PP). Navíc oproti EAL2 se vyžaduje rozsáhlejší testování, kontroly vývojového prostředí a~zajištění správy konfigurace.~\cite{NBUHodnoceniBezpecnostiSW}
  \item[EAL4] stále umožňuje pohybovat se v~rámci dobré komerční vývojářské praxe. Jakkoliv přísné jsou tyto praktiky, nevyžadují podstatné specializované znalosti, dovednosti a~jiné zdroje. EAL4 je nejvyšší úrovní záruk, kterou lze dosáhnout (za rozumné náklady) zpětně pro již existující produkt. Poskytuje střední až vysokou úroveň záruky nezávisle ověřené bezpečnosti pro běžnou komoditu produktů a~vyžaduje ze strany vývojáře nebo~uživatelů připravenost k~pokrytí dodatečných specifických nákladů spjatých s~bezpečnostním inženýrstvím. Navíc oproti EAL3 se již vyžaduje také detailní návrh (low-level design) TOE, neformální model bezpečnostní politiky TOE a~dodání určité podmnožiny implementace (např. část zdrojového kódu bezpečnostních funkcí). Nezávislá analýza zranitelností musí demonstrovat odolnost vůči průniku útočníků s~nízkým potenciálem pro útok. Kontroly vývojového prostředí jsou doplněny modelem životního cyklu, stanovením nástrojů a~automatizovanou správou konfigurace.~\cite{NBUHodnoceniBezpecnostiSW}
  \item[EAL5]vyžaduje kromě přísného uplatnění dobré komerční vývojářské praxe aplikaci speciálních technik bezpečnostního inženýrství ve středním rozsahu. Dané TOE bude pravděpodobně již navrženo a~vyvíjeno s~cílem dosáhnout úrovně záruk EAL5. Nepředpokládá se nicméně velké zvýšení nákladů oproti EAL4. EAL5 je tak vhodná v~případech, kdy se vyžaduje vysoká úroveň záruky nezávisle ověřené bezpečnosti aniž by náklady na specializované techniky byly nerozumně vysoké. Navíc oproti EAL4 je vyžadováno dodání kompletní implementace TOE, formální model bezpečnostní politiky TOE, poloformální presentace funkčních specifikací, poloformální globální návrh (high-level design) a~poloformální demonstrace korespondence. Nezávislá analýza zranitelností musí demonstrovat odolnost vůči průniku útočníků se středním potenciálem pro útok. Vyžaduje se také analýza skrytých kanálů a~modularita návrhu.~\cite{NBUHodnoceniBezpecnostiSW}
@@ -1424,17 +1425,17 @@ Operační systém Linux dosahuje úrovně EAL4.~\cite{CCredhat}~\cite{CCsuse}
 
 \subsection{Uživatelé a přihlášení}
 
-Linux je multiuživatelským systémem a~model uživatelského oprávnění vychází z~modelu DAC \odkazNaKapitolu{sec:DAC}. Přihlášení uživatele probíhá podobně jako u~webových a~jiných služeb. Tedy uživatelské heslo není v~systému uloženo, ale~je uložen pouze jeho HASH,získaný pomocí funkce SHA1 (záleží na nastavení sytému), když se pak uživatel přihlašuje do systému, je z~jím zadaného hesla vygenerován HASH a~porovnán s~HASHem uloženým v~sytému. 
+Linux je multiuživatelským systémem a~model uživatelského oprávnění vychází z~modelu DAC \odkazNaKapitolu{sec:DAC}. Přihlášení uživatele probíhá podobně jako u~webových a~jiných služeb. Tedy uživatelské heslo není v~systému uloženo, ale~je uložen pouze jeho HASH, získaný pomocí funkce SHA1 (záleží na nastavení sytému), když se pak uživatel přihlašuje do systému, je z~jím zadaného hesla vygenerován HASH a~porovnán s~HASHem uloženým v~sytému. 
 
 \subsubsection{Uložení uživatelů a hesel}
-Uživatelské v~OS Linux jsou definováni v~souboru /etc/passwd a~jejich hesla jsou zabezpečena pomocí šifry SHA1 a~uchována v~souboru /etc/shadow, který je přístupný pouze uživateli root. 
+Uživatelské v~OS Linux jsou definováni v~souboru \textit{/etc/passwd} a~jejich hesla jsou zabezpečena pomocí šifry SHA1 a~uchována v~souboru \textit{/etc/shadow}, který je přístupný pouze uživateli root. 
 
 \nadpis{/etc/passwd}
 
-Základní databází uživatelů v~systému Linux je textový soubor /etc/passwd (angl. password file), v němž jsou uvedena platná uživatelská jména a~další k~nim přidružené informace. Každému uživateli odpovídá v~souboru jeden záznam - řádek, který je rozdělen na sedm polí, jejichž oddělovačem je dvojtečka. Význam jednotlivých položek je následující~\cite{LDP}:
+Základní databází uživatelů v~systému Linux je textový soubor \textit{/etc/passwd} (angl. password file), v němž jsou uvedena platná uživatelská jména a~další k~nim přidružené informace. Každému uživateli odpovídá v~souboru jeden záznam - řádek, který je rozdělen na sedm polí, jejichž oddělovačem je dvojtečka. Význam jednotlivých položek je následující~\cite{LDP}:
 \begin{enumerate}
  \item Uživatelské jméno.
- \item Pole pro heslo v~zakódované podobě, které se nepoužívá a~heslo se ukládá do /etc/shadow
+ \item Pole pro heslo v~zakódované podobě, které se nepoužívá a~heslo se ukládá do \textit{/etc/shadow}.
  \item Identifikační číslo uživatele.
  \item Identifikační číslo pracovní skupiny (angl. group ID, zkráceně GID).
  \item Skutečné jméno uživatele, případně popis účtu.
@@ -1442,43 +1443,43 @@ Základní databází uživatelů v~systému Linux je textový soubor /etc/passw
  \item Příkazový interpret (nebo program), který se spustí po přihlášení.
 \end{enumerate}
 
-Každý uživatel systému má k~souboru /etc/passwd přístup (může jej číst). Může tedy například zjistit přihlašovací jména ostatních uživatelů~\cite{LDP}.\\
+Každý uživatel systému má k~souboru \textit{/etc/passwd} přístup (může jej číst). Může tedy například zjistit přihlašovací jména ostatních uživatelů~\cite{LDP}.\\
 
 \nadpis{/etc/shadow}
 
-Soubor /etc/shadow (nebo také-li soubor stínových hesel) uchovává hesla uživatelů v~zašifrované podobě pomocí definovaného šifrovacího algoritmu (nejčastěji MD5, DES nebo SHA1). Často se nepoužívá přímo šifra hesla, ale tzv. salt což je ochrana proti tzv. rainbow attacku (česky duhový útok) což je útok na HASHovací funkce pomocí tabulek hesel (rainbow tables) a~podobností v~nich. Salt (česky sůl) pak rozpouští duhu a~znemožňuje tak rainbow attack, díky přidání předdefinovaných stringů do hesla, které je pak zašifrováno.~\cite{rubyOnRailTutorial}\\
+Soubor \textit{/etc/shadow} (nebo také-li soubor stínových hesel) uchovává hesla uživatelů v~zašifrované podobě pomocí definovaného šifrovacího algoritmu (nejčastěji MD5, DES nebo SHA1). Často se nepoužívá přímo šifra hesla, ale tzv. salt, což je ochrana proti tzv. rainbow attacku (česky duhový útok), což je útok na HASHovací funkce pomocí tabulek hesel (rainbow tables) a~podobností v~nich. Salt (česky sůl) pak rozpouští duhu a~znemožňuje tak rainbow attack, díky přidání předdefinovaných stringů do hesla, které je pak zašifrováno.~\cite{rubyOnRailTutorial}\\
 
 Můžou existovat tři druhy uživatelů podle možností přihlášení:
 \begin{description}
  \item[Uživatel s heslem] běžný uživatel s~nastaveným heslem. Jeho nastavení vypadá asi takto:\\
-/etc/passwd
+\textit{/etc/passwd}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 lfs:x:1002:1000::/home/lfs:/bin/bash
 \end{Verbatim} 
     \end{codeframe}
-/etc/shadow
+\textit{/etc/shadow}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 lfs:$1$MhyAxheU$Nq85ITaTmL8yJqgHXoOEK0:15111:0:99999:7:::
 \end{Verbatim} 
     \end{codeframe}
  \item[Uživatel bez hesla] Běžný uživatel jehož přihlášení nevyžaduje heslo, \b{POZOR! je rozdíl jestli je uživatel bez hesla nebo se při startu systému přihlašuje uživatel automaticky prostřednictvím správce sezení jako je GDM nebo KDM}. Nastavení uživatele bez hesla se liší pouze v~souboru /etc/shadow a~heslo je nahrazeno prázdným stringem:\\
-/etc/shadow
+\textit{/etc/shadow}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 lfs:$1$VNMbpxGH$sew7cnwH9ixU.x27UbFNn.:15111:0:99999:7:::
 \end{Verbatim} 
     \end{codeframe}
 \b{POZOR!!! takový přístup se nepoužívá! Uživatelé bez hesla se používají pouze na LiveCD!}
- \item[Uživatel bez přihlášení] uživatel bez přihlášení se používá pro služby (v~Linuxu daemony, česky někdy též démony), je to speciální druh uživatele, za kterého se nelze přihlásit a~používá se aby byla práva služeb oddělena od uživatelů a~neběžela pod oprávnění uživatele root. Jejich nastavení se liší od normálního uživatele pouze v~tom, že~v~souboru /etc/passwd je defaultní shell jako /bin/bash nahrazen /bin/nologin nebo /bin/false\\
-/etc/shadow
+ \item[Uživatel bez přihlášení] uživatel bez přihlášení se používá pro služby (v~Linuxu daemony, česky někdy též démony), je to speciální druh uživatele, za kterého se nelze přihlásit a~používá se aby byla práva služeb oddělena od uživatelů a~neběžela pod oprávnění uživatele root. Jejich nastavení se liší od normálního uživatele pouze v~tom, že~v~souboru \textit{/etc/passwd} je defaultní shell jako \textit{/bin/bash} nahrazen \textit{/bin/nologin} nebo \textit{/bin/false}\\
+\textit{/etc/shadow}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 dbus:x:81:81:System message bus:/:/bin/false
 \end{Verbatim} 
     \end{codeframe}
-a~heslo v~/etc/shadow je nahrazeno vykřičníkem
+a~heslo v~\textit{/etc/shadow} je nahrazeno vykřičníkem
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 dbus:!:15084:0:99999:7:::
@@ -1503,9 +1504,9 @@ Základní možnosti přihlášení uživatele:
 
 Firewall v Linuxu je tvořen projektem \b{Netfilter}, který pracuje na úrovni jádra a umožňuje filtrovat pakety na základě mnoha kritérií. Základním nástrojem pro nastavení paketového filtru je známý řádkový nástroj \b{iptables}.~\cite{FirewallNetfilter}
 
-IPtables jsou, ale nástrojem velice složitým a~proto vzniklo několik projektů, které se snaží nastavení Firewallu usnadnit. Nástrojem určeným pro běžné uživatele je např. grafický program \b{Firestarter}. Přístup Firestarteru je však vhodný spíše pro osobní počítače, pro větší síť a~nastavení více firewallů, je vhodným řešením nástroj ve kterém si uživatel vytvoří nastavení v~grafickém nebo textovém rozhraní a~výslednou konfiguraci firewallu pak přenese na server. Takovým nástrojem je např. \b{FirewallBuilder}, \b{FireHOL} oblíbená sada skriptů pro konfiguraci Netfilteru \b{Shorewall}.
+IPtables jsou ale nástrojem velice složitým a~proto vzniklo několik projektů, které se snaží nastavení Firewallu usnadnit. Nástrojem určeným pro běžné uživatele je např. grafický program \b{Firestarter}. Přístup Firestarteru je však vhodný spíše pro osobní počítače, pro větší síť a~nastavení více firewallů, je vhodným řešením nástroj, ve kterém si uživatel vytvoří nastavení v~grafickém nebo textovém rozhraní a~výslednou konfiguraci firewallu pak přenese na server. Takovým nástrojem je např. \b{FirewallBuilder}, \b{FireHOL} oblíbená sada skriptů pro konfiguraci Netfilteru \b{Shorewall}.
 
-Jak už je v~Linuxu dobrým zvykem vše je často přehledně a~použitelně zabaleno v~distribucích. V prostředí firewallů existuje velké množství distribucí, které nenabízejí většinou v~základu jen firewall, ale jsou určiny i~pro routery a~jiná síťová zařízení (PROXY server, gateway, VPN, IPSEC, Anti-virus, www server,…). Asi nejpoužívanější distribucí je \b{IPCop} což je derivát distribuce \b{Smoothwall}. Oblíbenou distribucí pro firewally je také router distribuce \b{OpenWRT} a~několik projektů na ní založených např. \b{FreeWRT} nebo \b{DD-WRT}.
+Jak už je v~Linuxu dobrým zvykem vše je často přehledně a~použitelně zabaleno v~distribucích. V prostředí firewallů existuje velké množství distribucí, které nenabízejí většinou v~základu jen firewall, ale jsou určiny i~pro routery a~jiná síťová zařízení (PROXY server, gateway, VPN, IPSEC, Anti-virus, www server,…). Asi nejpoužívanější distribucí je \b{IPCop}, což je derivát distribuce \b{Smoothwall}. Oblíbenou distribucí pro firewally je také router distribuce \b{OpenWRT} a~několik projektů na ní založených např. \b{FreeWRT} nebo \b{DD-WRT}.
 
 \subsubsection{Antivirus}\label{sec:antivirus}
 
@@ -1541,13 +1542,13 @@ SSH znamená kromě možnosti snadného přístupu uživatele do vzdáleného po
 \end{description}
 
 \subsection{Hypotetické bezpečnostní hrozby v Linuxu}
-Virové hrozby byli probrány~\odkazNaKapitolu{sec:antivirus} v~souvislosti s~viry a~malwarem se, ale v~Linuxu mluví o~hrozbě jménem \b{sudo}, sudo je nástroj přes který si uživatel nebo aplikace může požádat o~vyší oprávnění než jsou jí určeny, k~samotnému přidělení opravnění je třeba aby uživatel zadal heslo pro uživatele root, což zdánlivě celou situaci řeší, ale zde vstupuje nejzranitelnější část celého systému a~tou je uživatel. Neznalý uživatel zadá bez rozmyslu svoje heslo a~aplikace má plný přístup nad systémem. Samozřejmě jedná se o faktor, který vývojář nevyřeší, ale hrozba číhá i~někde jinde, celkem jednoduše jde vytvořit alias\footnote{alias je jak název napovídá taková přezdívka, uživatel si může pod řetězec uložit složitějsí příkaz, např. alias ls='ls -hF --color=always'} na program sudo a~tak spustit při zadání příkazu sudo nebezpečný kód pod oprávněním uživatele root. např. 
+Virové hrozby byli probrány~\odkazNaKapitolu{sec:antivirus} v~souvislosti s~viry a~malwarem se, ale v~Linuxu mluví o~hrozbě jménem \b{sudo}, sudo je nástroj přes který si uživatel nebo aplikace může požádat o~vyšší oprávnění než jsou jí určeny, k~samotnému přidělení oprávnění je třeba aby uživatel zadal heslo pro uživatele root, což zdánlivě celou situaci řeší, ale zde vstupuje nejzranitelnější část celého systému a~tou je uživatel. Neznalý uživatel zadá bez rozmyslu svoje heslo a~aplikace má plný přístup nad systémem. Samozřejmě jedná se o faktor, který vývojář nevyřeší, ale hrozba číhá i~někde jinde, celkem jednoduše jde vytvořit alias\footnote{alias je, jak název napovídá, taková přezdívka, uživatel si může pod řetězec uložit složitější příkaz, např. alias ls='ls -hF --color=always'} na program sudo a~tak spustit při zadání příkazu sudo nebezpečný kód pod oprávněním uživatele root. např. 
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 alias sudo='sudo rm -rf /'
 \end{Verbatim} 
     \end{codeframe} 
-při takovém aliasu by si uživatel smazal disk. Samozřejmě takový kód je jen na ukázku, ale demonstruje možnosti tohoto "útoku", daleko pravděpodobnější by bylo spuštění útočníkova skriptu a následné přepsání konfiguračních souborů, tak aby získal útočník kontrolu nad počítačem. Tomuto se dá zabránit aplikování MAC, ale využití podobného rozšíření zabezpečení, není v~Linuxu vůbec samozřejmostí.
+Při takovém aliasu by si uživatel smazal disk. Samozřejmě takový kód je jen na ukázku, ale demonstruje možnosti tohoto "útoku", daleko pravděpodobnější by bylo spuštění útočníkova skriptu a následné přepsání konfiguračních souborů, tak aby získal útočník kontrolu nad počítačem. Tomuto se dá zabránit aplikování MAC, ale využití podobného rozšíření zabezpečení, není v~Linuxu vůbec samozřejmostí.
 
 Lidský faktor přispívá ke zranitelnosti jakéhokoliv systému, ukázkou může být chyba vývojáře debianu, která způsobila, že autentizační mechanizmus u~ssh generoval předvídatelné textové řetězce, které mohl zneužít útočník pro napadení systému. Tato chyba se navíc vyskytovala v~debianu po dlouhou dobu než se na ni přišlo.~\cite{DebianSSHFail}
 
@@ -1558,9 +1559,9 @@ Repozitáře s~falešným nebo upraveným SW jsou další z reálných hrozeb v~
 Existuje ještě mnoho hrozeb, ale většinu neovlivňuje Linux samotný, ale různé aplikace třetích stran a~chyby v~nich obsažené.
 
 \section{\upc{Systém pro správu verzí git}}
-Projek git byl založen v~roce 2005 Linusem Torvaldsem, původně pro vývoj jádra Linuxu, a~jsou do něj vloženy zkušenosti, které Linus získal při vedení rozsáhlého projektu Linuxového jádra.~\cite{MailingListVznikGITu}\\
+Projekt git byl založen v~roce 2005 Linusem Torvaldsem, původně pro vývoj jádra Linuxu, a~jsou do něj vloženy zkušenosti, které Linus získal při vedení rozsáhlého projektu Linuxového jádra.~\cite{MailingListVznikGITu}\\
 
-Git je zcela zdarma, open source, \b{distribuovaný systém pro správu verzí} navržený zvládnout vše od malých až~po~velmi rozsáhlé projekty s~rychlosti a~účinnosti. Každý klon Git je full-fledged (česky plně rozvinuté) úložiště s~kompletní historií a~veškerými schopnostmi sledování revizí a~nezávislostí na přístupu k~síti nebo centrálnímu serveru. Větvení (branching) a~slučování (merging) jsou rychlé a~snadné.~\cite{GITWEB} Velmi důležité je pak slovo distribuovaný, protože git neukládá každou změnu na centrální úložiště, ale~každý klon repozitáře obsahuje i~kompletní databázi změn projektu.
+Git je zcela zdarma, open source, \b{distribuovaný systém pro správu verzí} navržený zvládnout vše od malých až~po~velmi rozsáhlé projekty s~rychlostí a~účinností. Každý klon Git je full-fledged (česky plně rozvinuté) úložiště s~kompletní historií a~veškerými schopnostmi sledování revizí a~nezávislostí na přístupu k~síti nebo centrálnímu serveru. Větvení (branching) a~slučování (merging) jsou rychlé a~snadné.~\cite{GITWEB} Velmi důležité je pak slovo distribuovaný, protože git neukládá každou změnu na centrální úložiště, ale~každý klon repozitáře obsahuje i~kompletní databázi změn projektu.
 
 \subsection{Použití git v bakalářské práci}
 Ke psaní této bakalářské práce byl zvolen sázecí systém \LaTeX, jednak pro jeho velmi kvalitní a~typograficky správný výstup, ale~i~protože je taková práce psána formou zdrojového kódu. Díky uložení zdrojového kódu do plain/text souboru je velmi snadné a~výhodné použít systému pro správu verzí. Systém git byl také použit pro správu verzí skriptů pro praktickou část \uv{LFS by BASH scripts}, které jsou uloženy také v~textových souborech.
@@ -1569,7 +1570,7 @@ Ke psaní této bakalářské práce byl zvolen sázecí systém \LaTeX, jednak 
 Ke správě jednoduchých a~malých projektů jako je např. tato bakalářská práce stačí umět opravdu jenom pár příkazů. A~díky webu github.com se stává správa malého projektu opravdu jednoduchou záležitostí.\\
 
 \subsubsection{Nastavení gitu}
-Základní nastavení gitu spočívá pouze v~nastavení Jména Příjmení a~emailu. Pokud používáme git pouze lokálně a~nenahráváme data někam na server, bude nám to stačit a~můžeme již vytvořit repozitář.\\
+Základní nastavení gitu spočívá pouze v~nastavení Jména, Příjmení a~emailu. Pokud používáme git pouze lokálně a~nenahráváme data někam na server, bude nám to stačit a~můžeme již vytvořit repozitář.\\
 
 Nastavení jména, příjmení a~emailu.~\cite{GIThelpNastaveni}
     \begin{codeframe}
@@ -1603,7 +1604,7 @@ cd projekt
 git init
 \end{Verbatim} 
     \end{codeframe}
-změny v~repozitáři jsou reprezentovány commity. Commit je vytvořen přidáním jednoho nebo více souborů a~přidáním popisku. Jako první by měl projekt obsahovat soubor README.
+Změny v~repozitáři jsou reprezentovány commity. Commit je vytvořen přidáním jednoho nebo více souborů a~přidáním popisku. Jako první by měl projekt obsahovat soubor README.
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 touch README
@@ -1612,7 +1613,7 @@ git commit -m 'přidáno README'
 \end{Verbatim} 
     \end{codeframe}
 
-Pokud chceme použít github je třeba vytvořit repozitář na webu github. Po vyplnění názvu a~popisu repozitáře, github vypíše kroky nutné k~vytvoření repozitáře. Vypíše tedy, že je třeba vytvořit složku, inicializovat git, přidat první commit (nejčastěji soubor README), přidat adresu repozitáře na serveru github a~odeslání změn v~repozitáři.~\cite{GIThelpNastaveni}
+Pokud chceme použít github, je třeba vytvořit repozitář na webu github. Po vyplnění názvu a~popisu repozitáře, github vypíše kroky nutné k~vytvoření repozitáře. Vypíše tedy, že je třeba vytvořit složku, inicializovat git, přidat první commit (nejčastěji soubor README), přidat adresu repozitáře na serveru github a~odeslání změn v~repozitáři.~\cite{GIThelpNastaveni}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 git remote add origin git@github.com:uzivatelskeJmeno/projekt.git
@@ -1648,21 +1649,21 @@ git checkout v1.0
 \end{Verbatim} 
     \end{codeframe}
 
-Další funkcí, která je užitečná je branch (větev). Branch můžeme např. použít pokud se chystáme udělat změnu, o~které nevíme jistě zda bude fungovat. Často je branch také k~oddělení prací uživatelů nebo částí projektu na kterých se pracuje.\\
+Další funkcí, která je užitečná je branch (větev). Branch můžeme např. použít pokud se chystáme udělat změnu, o~které nevíme jistě, zda bude fungovat. Často je branch také k~oddělení prací uživatelů nebo částí projektu na kterých se pracuje.\\
 Branch lze vytvořit příkazem
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 git branch <název větve>
 \end{Verbatim} 
     \end{codeframe}
-repozitář je automaticky přepnut na vytvořenou větev a~změny už se neprovádí v~hlavní větvi master, ale v~nové větvi. Vytváření commitů a~odesílání změn je pak normální. Nastane, ale čas kdy je třeba části větve nebo větev celou začlenit do větve hlavní. K~tomuto je několik příkazů: první z~nich je \it{rebase}, který stáhne změny z~hlavní větve a~aplikuje je před změny ve vytvořené větvi. Pokud v~projektu nevznikají změny souběžně v~hlavní větvi i~větvi nové, není rebase třeba. Změny aplikujeme pomocí změny větve zpět na master příkazem \it{checkout} a~odeslání změn z~vytvořené větve pomocí \it{pull}. (takto lze aplikovat změny mezi libovolnými větvemi)
+Repozitář je automaticky přepnut na vytvořenou větev a~změny už se neprovádí v~hlavní větvi master, ale v~nové větvi. Vytváření commitů a~odesílání změn je pak normální. Nastane ale čas, kdy je třeba části větve nebo větev celou začlenit do větve hlavní. K~tomuto je několik příkazů: první z~nich je \it{rebase}, který stáhne změny z~hlavní větve a~aplikuje je před změny ve vytvořené větvi. Pokud v~projektu nevznikají změny souběžně v~hlavní větvi i~větvi nové, není rebase třeba. Změny aplikujeme pomocí změny větve zpět na master příkazem \it{checkout} a~odeslání změn z~vytvořené větve pomocí \it{pull}. (takto lze aplikovat změny mezi libovolnými větvemi)
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 git checkout -f master
 git pull . <název větve>
 \end{Verbatim} 
     \end{codeframe}
-Samozřejmě může nastat čas kdy větev již není třeba a~chceme ji spojit s~hlavní větví nebo smazat.
+Samozřejmě může nastat čas, kdy větev již není třeba a~chceme ji spojit s~hlavní větví nebo smazat.
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 git merge <název větve> #spojí aktuální větev se zadanou
@@ -1681,7 +1682,7 @@ Pokud souběžně vznikají změny ve větvi hlavní i~nové větvi a~chceme pro
 %********************************* Projektová část ************************************
 \part{Projektová část}
 \section{\upc{LFS by bash scripts}}
-Účelem LFS by bash scripts je sestavení distribuce LFS za pomocí jednoduchých a~přehledných skriptů napsaných v~interpretovaném jazyce BASH \odkazNaKapitolu{sec:BASH-MAIN}. Jejich struktura je velice jednoduchá a~přehledná, tak aby ji kdokoliv mohl libovolně upravovat bez velkého zkoumání kódu.
+Účelem LFS by bash scripts je sestavení distribuce LFS za pomocí jednoduchých a~přehledných skriptů napsaných v~interpretovaném jazyce BASH \odkazNaKapitolu{sec:BASH-MAIN}. Jejich struktura je velice jednoduchá a~přehledná tak, aby ji kdokoliv mohl libovolně upravovat bez velkého zkoumání kódu.
 
 \subsection{Struktura a použití}
 V~git repozitáři LFS---by-bash-scripts je k~nalezení několik souborů a~složek.\\
@@ -1695,14 +1696,14 @@ V~git repozitáři LFS---by-bash-scripts je k~nalezení několik souborů a~slo�
  \item[ChrootIN] Obsahuje skripty pro chroot do systému v~různých fázích sestavení
  \item[FAIL\_Logs] Složka, která slouží pouze pro ukládání chybových záznamů pokud některá část kompilace selže.
  \item[include] Adresář s~funkcemi, jazykovou složkou a~verzemi programů
- \item[lfsuser] Pro usnadnění práce tento adresář obsahuje soubory potřebné pro uživatelský profil LFS
- \item[chroot\_makeall] hlavní spouštěcí skript pro sestavení kapitoly 6 v~chroot.
- \item[linker.1.test/linker.1.test64] dva soubory, které slouží pro test funkčnosti při oddělení toolchainu.
- \item[makeall] hlavní spouštěcí skript, který spustí vše potřebné až do konce kapitoly 5.
- \item[makeall\_rest] hlavní spouštěcí skript pro sestavení kapitoly 7~a~8.
- \item[onlyunpackscript] skript pro stažení a~rozbalení balíčků.
+ \item[lfsuser] Pro usnadnění práce tento adresář obsahuje soubory potřebné pro uživatelský profil LFS.
+ \item[chroot\_makeall] Hlavní spouštěcí skript pro sestavení kapitoly 6 v~chroot.
+ \item[linker.1.test/linker.1.test64] Dva soubory, které slouží pro test funkčnosti při oddělení toolchainu.
+ \item[makeall] Hlavní spouštěcí skript, který spustí vše potřebné až do konce kapitoly 5.
+ \item[makeall\_rest] Hlavní spouštěcí skript pro sestavení kapitoly 7~a~8.
+ \item[onlyunpackscript] Skript pro stažení a~rozbalení balíčků.
  \item[README.markdown] README soubor ve~značkovacím jazyce markdown
- \item[sources] Pozůstatek složky pro stahování zdrojových kódů před instalací. Už řešeno přímo před kompilací jednotlivě
+ \item[sources] Pozůstatek složky pro stahování zdrojových kódů před instalací. Už řešeno přímo před kompilací jednotlivě.
  \item[version-check.sh] Oficiální skript LFS pro test potřebných nástrojů v~systému
  \end{description}
 
@@ -1710,11 +1711,11 @@ Velmi důležitou je pak složka include, která obsahuje verze programů a~funk
 
 \b{LFS---by-bash-scripts/include}
 \begin{description}
- \item[chroot\_prepare] skript, který se stará o~kontrolu potřebných složek a~symbolických odkazů v~prostředí chroot.
- \item[functions] skript se všemi funkcemi
- \item[prepare] skript, který se stará o~kontrolu existence potřebných složek a~symbolických odkazů.
- \item[ver] skript s~poli, které obsahují informace o balíčcích
- \item[l10n-EN] už téměř nepoužívaný skript, který měl sloužit pro lokalizaci do jiných jazyků, byl zavrhnut, protože znamenal velkém množství proměnných
+ \item[chroot\_prepare] Skript, který se stará o~kontrolu potřebných složek a~symbolických odkazů v~prostředí chroot.
+ \item[functions] skript se všemi funkcemi.
+ \item[prepare] Skript, který se stará o~kontrolu existence potřebných složek a~symbolických odkazů.
+ \item[ver] Skript s~poli, které obsahují informace o balíčcích
+ \item[l10n-EN] Už téměř nepoužívaný skript, který měl sloužit pro lokalizaci do jiných jazyků, byl zavrhnut, protože znamenal velkém množství proměnných
  \end{description}
 
 \subsubsection{Důležité proměnné}
@@ -1722,32 +1723,32 @@ LFS samotná obsahuje několik proměnných, které jsou důležité pro sestave
 
 \b{jsou to především:}
 \begin{description}
- \item[TOOLS\_STRIP=0] proměnná nastavuje zda se mají odstranit některé nepotřebné soubory v~toolchainu, vhodné pro malý diskový oddíl
- \item[WAIT=1] proměnná nastavuje zda se má v~každém kroku čekat na uživatelskou interakci. Doporučena hodnota 1 (čekat)
- \item[MAKEFLAGS='-j 3'] tato proměnná nastavuje počet jader procesoru.
- \item[ROOT=/mnt/LFS] cesta na které je připojen disk
- \item[SOURCES\_DIR=\$ROOT/sources] cesta na které jsou umístěny stažené balíčky
- \item[BUILD\_DIR=\$ROOT/build] cesta do adresáře kde probíhá kompilace
- \item[TOOLS\_DIR=\$ROOT/tools] cesta do adresáře kde je instalován toolchain
- \item[SCRIPTS\_DIR=\$ROOT/scripts] cesta do adresáře kde jsou umístěny skripty
- \item[on64=0] pokud je systém sestavován na stroji s~64bitovým procesorem, ale na 32bitovém sytému je třeba nastavit na 1
+ \item[TOOLS\_STRIP=0] Proměnná nastavuje, zda se mají odstranit některé nepotřebné soubory v~toolchainu, vhodné pro malý diskový oddíl.
+ \item[WAIT=1] Proměnná nastavuje, zda se má v~každém kroku čekat na uživatelskou interakci. Doporučena hodnota 1 (čekat)
+ \item[MAKEFLAGS='-j 3'] Tato proměnná nastavuje počet jader procesoru.
+ \item[ROOT=/mnt/LFS] Cesta, na které je připojen disk
+ \item[SOURCES\_DIR=\$ROOT/sources] Cesta, na které jsou umístěny stažené balíčky
+ \item[BUILD\_DIR=\$ROOT/build] Cesta do adresáře, kde probíhá kompilace
+ \item[TOOLS\_DIR=\$ROOT/tools] Cesta do adresáře, kde je instalován toolchain
+ \item[SCRIPTS\_DIR=\$ROOT/scripts] Cesta do adresáře, kde jsou umístěny skripty
+ \item[on64=0] Pokud je systém sestavován na stroji s~64bitovým procesorem, ale na 32bitovém sytému je třeba nastavit na 1.
 \end{description}
 
-Každý skript ke kompilaci programu navíc obsahuje interní proměnné, do kterých se ukládají názvy programů jejich adresy ke stažení a~jiné informace z~polí, uložených v~souboru includes/ver. Tyto proměnné se pak většinou předávají jako parametry funkcím definovaným v souboru includes/funtions.\\
+Každý skript ke kompilaci programu navíc obsahuje interní proměnné, do kterých se ukládají názvy programů jejich adresy ke stažení a~jiné informace z~polí, uložených v~souboru \textit{includes/ver}. Tyto proměnné se pak většinou předávají jako parametry funkcím definovaným v souboru \textit{includes/funtions}.\\
 
 \b{malá ukázka ze skriptu chap5/glibc:}
 \begin{description}
  \item[NAME=]\$\{glibc[0]\} do proměnné se ukládá název programu z~první položky pole (glibc)
  \item[PROGRAM=]\$\{glibc[3]\} do proměnné se ukládá název programu i~s~jeho verzí, slouží především k~určování adresy po rozbalení programu. (glibc-2.13)
  \item[FILE=]\$\{glibc[2]\} do proměnné se ukládá název archivu s~programem (glibc-2.13.tar.bz2)
- \item[EXT=]\$\{glibc[4]\} do proměnné se ukládá druh archivu, který rozhoduje ve funkci unpack() \odkazNaKapitolu{func:unpack} o~tom jak se má rozbalit. (glibc-2.13.tar.bz2)
+ \item[EXT=]\$\{glibc[4]\} do proměnné se ukládá druh archivu, který rozhoduje ve funkci unpack() \odkazNaKapitolu{func:unpack}, o~tom jak se má rozbalit. (glibc-2.13.tar.bz2)
  \item[DLINK=]\$\{glibc[1]\} do proměnné se ukládá odkaz na stažení archivu využívaný funkcí download() \odkazNaKapitolu{func:dlink} (http://… ftp://…)
  \item[MD5=]\$\{glibc[5]\} do proměnné se ukládá kontrolní součet staženého souboru pro test správnosti stažení, využívaný funkcí check \odkazNaKapitolu{func:md5} (38808215a7…)
  \item[pDLINK/pMD5/pPatch] pro patche jsou proměnné podobné, jen pole obsahuje pouze 3 položky a~proměnná pole začíná písmenem "p". položka[0] obsahuje link pro stažení, položka[1] obsahuje název souboru s~patchem, položka[2] obsahuje kontrolní součet.
  \end{description}
 
-\subsubsection{functions}
-skript functions slouží pro automatizování stále se opakujících procedur pomocí BASH funkcí. Každá funkce obsahuje jednoduchý komentář s~popisem funkcí a~jejich parametrů v~angličtině. Pro ukázku několik funkcí z~tohoto skriptu.\\
+\subsubsection{Functions}
+Skript functions slouží pro automatizování stále se opakujících procedur pomocí BASH funkcí. Každá funkce obsahuje jednoduchý komentář s~popisem funkcí a~jejich parametrů v~angličtině. Pro ukázku několik funkcí z~tohoto skriptu.\\
 
 Pro barevný výstup jsou definovány barvy, které je třeba pro použití ve funkcích nastavovat přes program \b{tput}
     \begin{codeframe} 
@@ -1784,20 +1785,19 @@ unpackBzip() a unpackGzip() jsou prakticky stejné funkce, které rozbalují sta
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 unpackGzip (){
-	echo "$Y Starting build script $PROGRAM $DEF";
-
-	if [ -d $BUILD_DIR/$PROGRAM ]; then
-	  echo "$C Directory with source already exist $G [REMOVING] $DEF"
-	  echo "$G rm -rf $BUILD_DIR/$PROGRAM $DEF"
-	  rm -rf $BUILD_DIR/$PROGRAM
-	  echo "$C Source directory $G [UNPACKING] $DEF"
-	  echo "$G tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/ $DEF"
-	  tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/
-	else
-	  echo "$C Source directory $G [UNPACKING] $DEF"
-	  echo "$G tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/ $DEF"
-	  tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/
-	fi
+  echo "$Y Starting build script $PROGRAM $DEF";
+  if [ -d $BUILD_DIR/$PROGRAM ]; then
+    echo "$C Directory with source already exist $G [REMOVING] $DEF"
+    echo "$G rm -rf $BUILD_DIR/$PROGRAM $DEF"
+    rm -rf $BUILD_DIR/$PROGRAM
+    echo "$C Source directory $G [UNPACKING] $DEF"
+    echo "$G tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/ $DEF"
+    tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/
+  else
+    echo "$C Source directory $G [UNPACKING] $DEF"
+    echo "$G tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/ $DEF"
+    tar xzf $SOURCES_DIR/$FILE -C $BUILD_DIR/
+  fi
 }
 export -f unpackGzip
 \end{Verbatim} 
@@ -1825,7 +1825,7 @@ export -f SepBuild
 \end{Verbatim} 
     \end{codeframe}
 
-testSimLink() je funkcí pro testování existence symbolického odkazu. první parametr \$1 je testovaný odkaz a~pokud neexistuje je vytvořen symbolický odkaz parametru \$2 na adresu v~parametru \$3
+testSimLink() je funkcí pro testování existence symbolického odkazu. První parametr \$1 je testovaný odkaz a~pokud neexistuje, je vytvořen symbolický odkaz parametru \$2 na adresu v~parametru \$3
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 testSimLink (){ 
@@ -1883,7 +1883,7 @@ export -f waitUser
 \end{Verbatim} 
     \end{codeframe}
 
-Již zmíněná funkce download() stahuje z~internetu všechny potřebné soubory a~využívá k~tomu programu wget
+Již zmíněná funkce download() stahuje z~internetu všechny potřebné soubory a~využívá k~tomu programu wget.
 \label{func:dlink}
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
@@ -1911,7 +1911,7 @@ check(){
 \end{Verbatim} 
     \end{codeframe}
 
-functions obsahuje také funkce pro kompilaci, ale předávání parametrů pomocí \$\@ se ukázalo jako nešťastné řešení, způsobující množství chyb při kompilaci.
+Functions obsahuje také funkce pro kompilaci, ale předávání parametrů pomocí \$\@ se ukázalo jako nešťastné řešení, způsobující množství chyb při kompilaci.
 
 \subsection{Návod pro sestavení}
 \subsubsection{Předpříprava}
@@ -1925,10 +1925,10 @@ Co by měl uživatel udělat před sestavení LFS pomocí automatických skript�
  \item být připraven řešit spoustu problémů. Při sestavování LFS může nastat v~kterékoliv části problém, který je třeba vyřešit k~dalšímu pokračování. Kam se obrátit z~dotazem je popsáno~\odkazNaKapitolu{sec:help}
 \end{itemize}
 
-Uživatel by měl mít také dostatečné znalosti jazyka bash aby~mohl V~případě potřeby upravit skripty.
+Uživatel by měl mít také dostatečné znalosti jazyka BASH, aby~mohl v~případě potřeby upravit skripty.
 
 \subsubsection{Sestavení}\label{sec:sestaveni}
-Sestavení je díky skriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskový oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musí být provedeny pod účtem uživatele root)
+Sestavení je díky skriptům vcelku jednoduchý proces. Podle návodu v LFS uživatel vytvoří prázdný diskový oddíl nejjednodušeji zřejmě grafickým nástrojem jako gparted. Vytvoří složku do které se oddíl připojí a~vytvoří proměnnou, která definuje cestu k této složce. Pozn. /dev/sda7 musí být nahrazeno správným oddílem, k~dohledání tohoto oddílu, pokud jsme například měli již oddíl vytvořen a~nepamatujeme si jeho adresu, může pomoci program blkid. (všechny tyto kroky musí být provedeny pod účtem uživatele root),
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # mkdir /mnt/LFS
@@ -1953,7 +1953,7 @@ Dalším krokem je vytvoření uživatele a~skupiny lfs.
 # passwd lfs #nastavení hesla
 \end{Verbatim} 
     \end{codeframe}
-nyní je nutné stáhnout a~překopírovat skripty LFS by bash scripts. Nejjednodušším způsobem je stáhnutí skriptů pomocí verzovacího systému git. Repozitář můze obsahovat změny, které by mohly udělat návod nefunkčním, proto je třeba změnit branch na~tag BCv6.8, na~který návod sedí.    \begin{codeframe} 
+Nyní je nutné stáhnout a~překopírovat skripty LFS by bash scripts. Nejjednodušším způsobem je stáhnutí skriptů pomocí verzovacího systému git. Repozitář můze obsahovat změny, které by mohly udělat návod nefunkčním, proto je třeba změnit branch na~tag BCv6.8, na~který návod sedí.    \begin{codeframe} 
 \label{navod:github}
 \begin{Verbatim}{frame=single} 
 cd ~/
@@ -1964,7 +1964,7 @@ git checkout BCv6.8
 \end{Verbatim} 
     \end{codeframe}
 
-dále překopírovat soubory uživatele lfs do jeho domovského adresáře.
+Dále překopírovat soubory uživatele lfs do jeho domovského adresáře.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # cp $LFS/scripts/lfsuser/{.bash_profile,.bashrc} /home/lfs/
@@ -1980,7 +1980,7 @@ Nyní je třeba přenastavit práva tak aby uživatel lfs mohl zapisovat do slo�
 \end{Verbatim} 
     \end{codeframe}
 
-po těchto krocích je už třeba jen přihlásit se jako uživatel lfs.
+Po těchto krocích je už třeba jen přihlásit se jako uživatel lfs.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 su - lfs
@@ -1990,34 +1990,34 @@ cd $LFS
 
 Protože pro stažení balíčků se používá program wget, který v~toolchainu, respektive při sestavování kapitoly 6, nebude dostupný, je dobré stáhnou všechny balíčky skriptem onlyunpackscript~\odkazNaKapitolu{sec:only}.\\
 
-Nyní začne sestavení toolchainu, proto spustíme skript makeall
+Nyní začne sestavení toolchainu, proto spustíme skript makeall.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 sh ./scripts/makeall
 \end{Verbatim} 
     \end{codeframe}
 
-skript makeall ověří správnost nastavení a~vytvoří toolchain, který je potřebný pro další sestavení systému. Jakmile je toolchain sestaven je třeba změnit práva pro adresář /mnt/LFS/tools
+Skript makeall ověří správnost nastavení a~vytvoří toolchain, který je potřebný pro další sestavení systému. Jakmile je toolchain sestaven je třeba změnit práva pro adresář /mnt/LFS/tools
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 chown -R root:root $LFS/tools
 \end{Verbatim} 
     \end{codeframe}
 
-nyní je třeba spustit skript start6, který vytvoří potřebné složky a~virtuální souborové systému. Skript také provede přihlášení do systému prostřednictvím prostředí chroot.
+Nyní je třeba spustit skript start6, který vytvoří potřebné složky a~virtuální souborové systému. Skript také provede přihlášení do systému prostřednictvím prostředí chroot.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 # sh ./scripts/chap6/start6
 \end{Verbatim} 
     \end{codeframe}
 
-Nyní je dobré nastavit opět potřebné proměnné v~souboru \/scripts\/chroot\_prepare a~spustit skript chroot\_makeall
+Nyní je dobré nastavit opět potřebné proměnné v~souboru \/scripts\/chroot\_prepare a~spustit skript chroot\_makeall.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single} 
 ./scripts/chroot_makeall
 \end{Verbatim} 
     \end{codeframe}
-skript je přerušen po opětovné přihlášení a~je potřeba ho spustit znovu.\\
+Skript je přerušen pro opětovné přihlášení a~je potřeba ho spustit znovu.\\
 Při kompilaci balíčku \b{glibc} je skript pozastaven aby bylo možné zkontrolovat možné chyby při kompilaci, \b{tato část je velmi důležitá pro funkčnost systému.}\\
 Podobné chybové hlášení je v~pořádku. (chybový log je /build/glibc-2.13/glibc-check-log) Pokud se objeví více chyb je třeba je zkonzultovat \odkazNaKapitolu{sec:help}. Ale~i~více chyb neznamená, že bude systém nefunkční, chyby se často odvíjejí od HW.
     \begin{codeframe} 
@@ -2028,7 +2028,7 @@ make[1]: *** [rt/tests] Error 2
 make: *** [check] Error 2
 \end{Verbatim} 
     \end{codeframe}
-Po balíčku glibc proběhne oddělení systému od toolchainu, toto je \b{extrémně důležitá část} skript je několikrát přerušen, je vždy vypsána hodnota v~systému a~hodnota, která by měla být vypsána, hodnoty se liší v~závislosti na tom jestli se jedná o~systém 64bitový nebo 32bitový. \b{Ve~výpisech by se neměla objevit žádná chyba!}\\
+Po balíčku glibc proběhne oddělení systému od toolchainu, toto je \b{extrémně důležitá část}, skript je několikrát přerušen, je vždy vypsána hodnota v~systému a~hodnota, která by měla být vypsána, hodnoty se liší v~závislosti na tom jestli se jedná o~systém 64bitový nebo 32bitový. \b{Ve~výpisech by se neměla objevit žádná chyba!}\\
 
 Ihned po balíčku glibc je spuštěn skript chap6/locales, který kromě testu jazyků nastavuje i~časovou zónu. Je třeba otevřít nové terminálové okno, přihlásit se do systému pomocí skriptu:
     \begin{codeframe} 
@@ -2036,13 +2036,13 @@ Ihned po balíčku glibc je spuštěn skript chap6/locales, který kromě testu 
 ./scripts/chrootIN/chrootChap6
 \end{Verbatim} 
     \end{codeframe}
-a~v~novém terminálovém okně spustit \b{tzselect}. Tzselect se zeptá na dvě otázky a~vygeneruje časovou zónu, např. Europe/Prague, kterou je třeba zadat do předchozího terminálu a~potvrdit klávesou enter. 
+A~v~novém terminálovém okně spustit \b{tzselect}. Tzselect se zeptá na dvě otázky a~vygeneruje časovou zónu, např. Europe/Prague, kterou je třeba zadat do předchozího terminálu a~potvrdit klávesou enter. 
 
 Po testu u~balíčku \b{binutils} by měl být zkontrolován jeho log, skript k~tomu uživatele sám vyzve. Stejná situace nastane později u balíčku \b{mpfr}\\
 
 Další přerušení kvůli důležitému testu nastane při balíčku \b{qmp}, skript je opět zastaven a~na obrazovku jsou vypsány výsledky testů. Všech 162 testů by mělo být úspěšných, pokud ne je třeba tyto chyby zkonzultovat \odkazNaKapitolu{sec:help}.
 
-Balíček \b{gcc} sebou nese velké množství testů, první test trvá opravdu dlouhou dobu a~jeho výsledkem je množství hlášení. Tato hlášení je také možné konzultovat \odkazNaKapitolu{sec:help}, ale~ani vývojáři LFS většinou neví co který test přesně dělá a~proč selhal. Ve většině případů je možné tato selhání ignorovat a~pokračovat dále. O to důležitější je série testů po instalaci balíčku. \b{Tyto testy kontrolují správnost právě nainstalovaného překladače, takže je naprosto nezbytné je zkontrolovat!!!}. Probíhají úplně stejně jako testy u~oddělení systému od toolchainu.
+Balíček \b{gcc} sebou nese velké množství testů, první test trvá opravdu dlouhou dobu a~jeho výsledkem je množství hlášení. Tato hlášení je také možné konzultovat \odkazNaKapitolu{sec:help}, ale~ani vývojáři LFS většinou neví, co který test přesně dělá a~proč selhal. Ve většině případů je možné tato selhání ignorovat a~pokračovat dále. O to důležitější je série testů po instalaci balíčku. \b{Tyto testy kontrolují správnost právě nainstalovaného překladače, takže je naprosto nezbytné je zkontrolovat!!!}. Probíhají úplně stejně jako testy u~oddělení systému od toolchainu.
 
 Po nainstalování balíčku \b{bash} je skript přerušen znovu, protože je uživatel přihlášen s~právě nainstalovaným interpretem. Proto je třeba znovu spustit skript /scripts/chroot\_makeall.\\
 
@@ -2059,7 +2059,7 @@ passwd root
 \end{Verbatim} 
     \end{codeframe}
 
-Po sestavení několik dalších balíčků je skript chroot\_makeall ukončen a~je~možnost, stejně jako na~konci kapitoly 5 zmenšit velikost systému smazání debugovacích symbolů. K tomuto je třeba se přihlásit do systému a~spustit skript pro smazání debugovacích symbolů.
+Po sestavení několik dalších balíčků je skript \textit{chroot\_makeall} ukončen a~je~možnost, stejně jako na~konci kapitoly 5, zmenšit velikost systému smazání debugovacích symbolů. K tomuto je třeba se přihlásit do systému a~spustit skript pro smazání debugovacích symbolů.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single}
 ./scripts/chrootIN/chrootForStrip
@@ -2067,7 +2067,7 @@ Po sestavení několik dalších balíčků je skript chroot\_makeall ukončen a
 \end{Verbatim} 
     \end{codeframe}
 
-!!!NÁSLEDUJÍCÍ FÁZE OBSAHUJE NĚKTERÁ DŮLEŽITÁ NASTAVENÍ A~JE TŘEBA ABY JIM UŽIVATEL DOBŘE ROZUMĚL, PROTO JE DOPORUČENO NEPOUŽÍT SKRIPTY, ALE POKRAČOVAT DÁLE PODLE KNIHY!!!
+!!!NÁSLEDUJÍCÍ FÁZE OBSAHUJE NĚKTERÁ DŮLEŽITÁ NASTAVENÍ A~JE TŘEBA, ABY JIM UŽIVATEL DOBŘE ROZUMĚL, PROTO JE DOPORUČENO NEPOUŽÍT SKRIPTY, ALE POKRAČOVAT DÁLE PODLE KNIHY!!!
 
 Nyní je třeba se naposled přihlásit do systému a~spustit skript na sestavení posledních dvou kapitol.
     \begin{codeframe} 
@@ -2078,18 +2078,18 @@ Nyní je třeba se naposled přihlásit do systému a~spustit skript na sestaven
     \end{codeframe}
 Skript makeall\_rest provede uživatele kapitolami 7~a~8. Několikrát skript vyzve uživatele k~zadání potřebných údajů.
 \begin{itemize}
- \item natavení locale, je třeba aby si uživatel vybral ze seznamu jazyk a~kódování, např. en\_US.utf8.
- \item nastavení hostname, zde je třeba zvolit název pro systém (počítač).
- \item nastavení network interface, zde je třeba aby uživatel vybral z~výpisu identifikátor své síťové karty a~vepsal jej do terminálu.
- \item po skriptu s~nastavení sítě je třeba nastavit síť. V~souboru /etc/sysconfig/network-devices/ifconfig.<network interface>/ipv4. A~DNS servery v~souboru /etc/resolv.conf.
- \item skript dále vytvoří soubor /etc/fstab kde je třeba nastavit adresu root disku v~/dev/, jeho filesystém a~adresu swapu v~/dev/.
- \item dalším krokem je nastavení kernelu a~jeho kompilace. Pokud jde pouze o~to vyzkoušet LFS (pozn. musí být použit filesystém ext3, ext4 je třeba zaškrtnout v~sekci File systems), je možné použít defaultní config. Tedy v~menu, které vyskočí zvolit <exit>. Jinak je nastavení kernelu komplexní a~složitou záležitostí, které je třeba věnovat čas, uvážit naše potřeby a~HW konfiguraci zařízení na němž systém poběží.
- \item Posledním krokem ke kterému skripty navedou je pak nastavení programu grub. Uživatel musí zadat /dev adresu disku, na kterém se nachází LFS např. sdb sda. GRUB poté vygeneruje soubor /boot/grub/grub.cfg potřebný pro zavedení jádra systému.
+ \item Natavení locale, je třeba aby si uživatel vybral ze seznamu jazyk a~kódování, např. en\_US.utf8.
+ \item Nastavení hostname, zde je třeba zvolit název pro systém (počítač).
+ \item Nastavení network interface, zde je třeba aby uživatel vybral z~výpisu identifikátor své síťové karty a~vepsal jej do terminálu.
+ \item Po skriptu s~nastavení sítě je třeba nastavit síť. V~souboru \textit{/etc/sysconfig/network-devices/ifconfig.<network interface>/ipv4}. A~DNS servery v~souboru \textit{/etc/resolv.conf}.
+ \item Skript dále vytvoří soubor \textit{/etc/fstab}, kde je třeba nastavit adresu root disku v~/dev/, jeho filesystém a~adresu swapu v~\textit{/dev/}.
+ \item Dalším krokem je nastavení kernelu a~jeho kompilace. Pokud jde pouze o~to vyzkoušet LFS (pozn. musí být použit filesystém ext3, ext4, je třeba zaškrtnout v~sekci File systems), je možné použít defaultní config. Tedy v~menu, které vyskočí zvolit <exit>. Jinak je nastavení kernelu komplexní a~složitou záležitostí, které je třeba věnovat čas, uvážit naše potřeby a~HW konfiguraci zařízení na němž systém poběží.
+ \item Posledním krokem, ke kterému skripty navedou, je pak nastavení programu grub. Uživatel musí zadat \textit{/dev} adresu disku, na kterém se nachází LFS např. sdb sda. GRUB, poté vygeneruje soubor \textit{/boot/grub/grub.cfg} potřebný pro zavedení jádra systému.
 \end{itemize}
 
-Nyní je již třeba postupovat dle knihy, otestovat nastavení programu GRUB a~aktualizovat Master Boot Record. Tyto kroky však nejsou třeba pokud se chystá uživatel provozovat LFS vedle jiného systému, v~tomto případě stačí pouze přidat položku LFS do souboru nastavení programu GRUB ve stávajícím systému.
+Nyní je již třeba postupovat dle knihy, otestovat nastavení programu GRUB a~aktualizovat Master Boot Record. Tyto kroky však nejsou třeba, pokud se chystá uživatel provozovat LFS vedle jiného systému, v~tomto případě stačí pouze přidat položku LFS do souboru nastavení programu GRUB ve stávajícím systému.
 
-\b{Test GRUBu}: Pro test je třeba aby byl v~hostovském systému nainstalován GRUB Legacy.\\
+\b{Test GRUBu}: Pro test je třeba, aby byl v~hostovském systému nainstalován GRUB Legacy.\\
 Nejprve je třeba restartovat počítač. A~poté v~příkazovém řáďku GRUBu nahrát obraz GRUBu z~LFS.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single}
@@ -2102,7 +2102,7 @@ grub> boot
     \end{codeframe}
 Měl by naběhnout GRUB z~LFS.\\
 
-Posledním krokem je pak opět v~chrootu LFS nahrát MBR (Master boot record) na~disk s~LFS. Je~třeba nastavit diskovou adresu v /dev např. /dev/sda /dev/sdb, opět bez čísla oddílu.
+Posledním krokem je pak opět v~chrootu LFS nahrát MBR (Master boot record) na~disk s~LFS. Je~třeba nastavit diskovou adresu v \textit{/dev} např. \textit{/dev/sda /dev/sdb}, opět bez čísla oddílu.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single}
 ./scripts/chap6/restart
@@ -2111,7 +2111,7 @@ grub-setup /dev/sda
 \end{Verbatim} 
     \end{codeframe}
 
-teď by po restartu měl naběhnout bootloader z~LFS a~LFS by měla v~pořádku naběhnout.
+Teď by po restartu měl naběhnout bootloader z~LFS a~LFS by měla v~pořádku naběhnout.
 
 \subsubsection{Instalace xorg}
 Malým bonusem v~balíku skriptů LFS by bash scripts je pak skript pro instalaci grafického Xserveru (dále jen Xserver). K jeho spuštění je třeba nejprve v~chrootu sytému nainstalovat balíček wget.
@@ -2120,13 +2120,13 @@ Malým bonusem v~balíku skriptů LFS by bash scripts je pak skript pro instalac
 ./scripts/BLFS/wget
 \end{Verbatim} 
     \end{codeframe}
-Po instalaci wget je už možné přímo z~LFS nainstalovat Xserver. Pokud je třeba změnit nějaké proměnné, např. proměnou WAIT, která určuje zda se má skript pozastavit v~každém kroku, je možné toto provést v~souboru /scripts/BLFS/variables.
+Po instalaci wget je už možné přímo z~LFS nainstalovat Xserver. Pokud je třeba změnit nějaké proměnné, např. proměnou WAIT, která určuje zda se má skript pozastavit v~každém kroku, je možné toto provést v~souboru \textit{/scripts/BLFS/variables}.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single}
 ./scripts/BLFS/xorg
 \end{Verbatim} 
     \end{codeframe}
-Skript končí naběhnutím testu Xserveru a~vytvořením konfiguračního souboru xorg.conf. Je třeba přesunout konfigurační soubor do /etc/X11, vytvořit soubor .xinitrc, který říká Xserveru jaké aplikace při startu spustit a~vytvořit složku pro log soubor.
+Skript končí naběhnutím testu Xserveru a~vytvořením konfiguračního souboru \textit{xorg.conf}. Je třeba přesunout konfigurační soubor do \textit{/etc/X11}, vytvořit soubor \textit{.xinitrc}, který říká Xserveru jaké aplikace při startu spustit a~vytvořit složku pro log soubor.
 
     \begin{codeframe} 
 \begin{Verbatim}{frame=single}
@@ -2153,7 +2153,7 @@ cat /var/log/Xorg.0.log | grep EE
 (EE) Screen(s) found, but none have a usable configuration.
 \end{Verbatim} 
     \end{codeframe}
-Takova chyba je způsobena nastavení driveru Xserveru je třeba v~souboru /etc/X11/xorg.conf změnit v sekci Device položku Driver z~hodnoty fbdev na vesa.
+Taková chyba je způsobena nastavením driveru Xserveru je třeba v~souboru \textit{/etc/X11/xorg.conf} změnit v sekci Device položku Driver z~hodnoty fbdev na vesa.
     \begin{codeframe} 
 \begin{Verbatim}{frame=single}
 Section "Device"
@@ -2163,9 +2163,9 @@ Section "Device"
 EndSection
 \end{Verbatim} 
     \end{codeframe}
-Bohužel příčin pádu Xserveru může být spousta v~závislosti na HW a~jiných okolnostech. Nejjednodušší způsob jak najít důvod chyby a~její opravu je zadat výpis chyby do internetového vyhledávače.
+Bohužel příčin pádu Xserveru může být spousta v~závislosti na HW a~jiných okolnostech. Nejjednodušší způsob jak najít důvod chyby a~její opravu, je zadat výpis chyby do internetového vyhledávače.
 
-\subsubsection{onlyunpackscript}\label{sec:only}
+\subsubsection{Onlyunpackscript}\label{sec:only}
 Tento skript slouží pouze pro stažení, kontrolu a~rozbalení balíčků. Před jeho použitím je třeba mít vytvořený a~připojený diskový oddíl jak je popsáno \odkazNaKapitolu{sec:sestaveni}.\\
 
 Je třeba stáhnout skripty a~překopírovat na místo
@@ -2188,13 +2188,13 @@ export UNPACK=1
     \end{codeframe}
 \begin{description}
  \item[ROOT] určuje přípojný bod disku s~LFS
- \item[WAIT] určuje zda se má při každém kroku čekat až uživatel potvrdí další krok
- \item[UNPACK] určuje zda se má každý balíček rozbalit
+ \item[WAIT] určuje zda se má při každém kroku čekat, až uživatel potvrdí další krok
+ \item[UNPACK] určuje, zda se má každý balíček rozbalit
 \end{description}
-Kombinací proměnných je tak možné dosáhnout pouze stažení všech balíčků bez čekání nebo stažení balíčků a~jejich rozbalení s~čekáním na další krok. Pokud chceme sestavovat LFS manuálně podle knihy, je dobré nastavit proměnné tak, jak je uvedeno v~poli s~kódem. Balíček se stáhne rozbalí a~skript čeká až uživatel balíček sestaví a~stiskne klávesu ENTER. Pokud při sestavení nastane chyba a~je balíček třeba znovu sestavit, stačí zadat libovolný vstup a~stisknout ENTER, balíček se znovu rozbalí. \b{!!!POZOR. Pokud se balíček sestavuje odděleným buildem, tedy ve složce balíček-build, je třeba tuto složku smazat manuálně!!!}
+Kombinací proměnných je tak možné dosáhnout pouze stažení všech balíčků bez čekání nebo stažení balíčků a~jejich rozbalení s~čekáním na další krok. Pokud chceme sestavovat LFS manuálně podle knihy, je dobré nastavit proměnné tak, jak je uvedeno v~poli s~kódem. Balíček se stáhne rozbalí, a~skript čeká, až uživatel balíček sestaví a~stiskne klávesu ENTER. Pokud při sestavení nastane chyba a~je balíček třeba znovu sestavit, stačí zadat libovolný vstup a~stisknout ENTER, balíček se znovu rozbalí. \b{!!!POZOR. Pokud se balíček sestavuje odděleným buildem, tedy ve složce balíček-build, je třeba tuto složku smazat manuálně!!!}
 
 \subsubsection{Pomoc při selháních}\label{sec:help}
-Protože pravděpodobnost sestavení LFS bez jakéhokoliv problému není nikterak velká, existuje několik míst kde hledat při problému pomoc.
+Protože pravděpodobnost sestavení LFS bez jakéhokoliv problému není nikterak velká, existuje několik míst, kde hledat při problému pomoc.
 
 \begin{description}
  \item[Google] je prvním místem kam by se měl uživatel podívat, je relativně malá pravděpodobnost, že~chyba která nastala, nenastala někomu již dříve.
@@ -2206,7 +2206,7 @@ pro obecné dotazy existuje channel: \#lfs\\
  \item[Fórum] pro dotazy existuje také oddělení fóra LinuxQuestions.org speciálně pro LFS\\
   lze ho nalézt na adrese: \href{http://www.linuxquestions.org/questions/linux-from-scratch-13/}{http://www.linuxquestions.org/questions/linux-from-scratch-13/}
  \item[mailing-list] pro spoustu uživatelů také neznámá sféra, ale~co se týká linuxové komunity asi nejpoužívanější je mailing-list. Mailing-list funguje úplně jednoduše, stačí poslat email na adresu mailing-listu a~ten je následně zařazen mezi ostatní dotazy. Je dobré přihlásit se pro odběr novinek na adrese:\\ \href{http://linuxfromscratch.org/mailman/listinfo/lfs-support/}{http://linuxfromscratch.org/mailman/listinfo/lfs-support/}.\\
-adresa pro dotazy je pak: lfs-support@linuxfromscratch.org
+Adresa pro dotazy je pak: lfs-support@linuxfromscratch.org
  \end{description}
 
 \subsection{Možnosti vylepšení scriptů}
@@ -2215,9 +2215,9 @@ Tak jako u všech programů existuje mnoho možností vylepšení i~u~vytvořen�
 Možnosti vylepšení:
 \begin{itemize}
  \item Částečná změna skriptů z~jazyka BASH na scripty programu GNU/make (tzv. Makafiles). Řídící skript makeall a onlyunpackscript by se po změně na makefile staly lépe ovladatelnými, především při přerušení a~obnově práce. Případně použít menuconfig jako používá např. jádro linuxu, pro nastavení co se má kompilovat.
- \item Lepší přechody mezi login do chroot, tak aby nebylo potřeba přerušit skript, toto by šlo vyřešit přes program \b{sudo}, ale ten často v~systémech pro build není dostupný.
- \item přidání wget do toolchainu, tento krok by zajistil, že~by nebylo třeba stahovat balíčky před začátkem sestavení, ale~wget má další závislosti, které by bylo třeba vyřešit a~pravděpodobně by bylo třeba jinak zkompilovat překladač v toolchainu.
- \item Další zásadním zlepšením by bylo vytvoření jakéhosi balíčkovacího systému. Zvláště u~instalací programů z~BLFS už je třeba hlídat závislosti na jiných balíčcích a~často se může stát, že~je některý program zbytečně kompilován dvakrát. Balíčkovací systém by mohl být založen na principu, že pro každý nainstalovaný balíček je vytvořen soubor nebo složka např. ve /var/packages se stejným názvem jako balíček. Takový soubor by pak nesl informace o~tom o jaký program se jedná jaké má závislosti a~jaké soubory nainstaloval do systému (Pokud by v~základu neuměl takový systém mazat nainstalované balíčky nebylo by třeba seznamu souborů). Taková věc by se sebou nesla i~změny ve skriptech, bylo by třeba aby skript obsahoval i~seznam závislostí nejlépe v~poli aby se dalo s~těmito informacemi lépe pracovat a~jednotlivé části skriptu by se rozdělily do funkcí.
+ \item Lepší přechody mezi login do chroot tak, aby nebylo potřeba přerušit skript, toto by šlo vyřešit přes program \b{sudo}, ale ten často v~systémech pro build není dostupný.
+ \item Přidání wget do toolchainu, tento krok by zajistil, že~by nebylo třeba stahovat balíčky před začátkem sestavení, ale~wget má další závislosti, které by bylo třeba vyřešit a~pravděpodobně by bylo třeba jinak zkompilovat překladač v toolchainu.
+ \item Další zásadním zlepšením by bylo vytvoření jakéhosi balíčkovacího systému. Zvláště u~instalací programů z~BLFS už je třeba hlídat závislosti na jiných balíčcích a~často se může stát, že~je některý program zbytečně kompilován dvakrát. Balíčkovací systém by mohl být založen na principu, že pro každý nainstalovaný balíček je vytvořen soubor nebo složka např. ve \textit{/var/packages} se stejným názvem jako balíček. Takový soubor by pak nesl informace o~tom, o jaký program se jedná, jaké má závislosti a~jaké soubory nainstaloval do systému (Pokud by v~základu neuměl takový systém mazat nainstalované balíčky, nebylo by třeba seznamu souborů). Taková věc by se sebou nesla i~změny ve skriptech, bylo by třeba, aby skript obsahoval i~seznam závislostí nejlépe v~poli, aby se dalo s~těmito informacemi lépe pracovat a~jednotlivé části skriptu by se rozdělily do funkcí.
 \end{itemize}
 
 
@@ -2225,9 +2225,9 @@ Možnosti vylepšení:
 \nn{Závěr}
 Cílem této bakalářské práce bylo vytvořit sadu skriptů v~jazyce BASH pro automatické sestavení Linuxové distribuce Linux From Scratch. Pro návrh skriptů byl použit návod pro sestavení distribuce Linux From Scratch a~nemalou měrou přispěl i~verzovací systém GIT a~komunitní web pro správu git repozitářů GitHub.\\
 
-V~teoretické části bylo provedeno seznámení s~Linuxem jeho distribucemi a~možnostmi tvorby distribucí včetně kompilace zdrojových kódů a~programování v~interpretovaném jazyce BASH, což~jsou důležité znalosti pro vytvoření distribuce Linuxu. Dále bylo provedeno seznámení se zabezpečením Linuxu a~systémem hodnocení bezpečnosti Softwaru. Praktická část byla věnována skriptům v~interpretovaném jazyce BASH, jejich struktuře, obsahu a~návodu pro použití. Skripty byly otestovány jak na virtuálním počítači, vytvořeného programem VirtualBox a~s~použitím systému Ubuntu 10.10 Maverick Meerkat, tak na fyzickém počítači se~systémem ArchLinux.\\
+V~teoretické části bylo provedeno seznámení s~Linuxem, jeho distribucemi a~možnostmi tvorby distribucí včetně kompilace zdrojových kódů a~programování v~interpretovaném jazyce BASH, což~jsou důležité znalosti pro vytvoření distribuce Linuxu. Dále bylo provedeno seznámení se zabezpečením Linuxu a~systémem hodnocení bezpečnosti Softwaru. Praktická část byla věnována skriptům v~interpretovaném jazyce BASH, jejich struktuře, obsahu a~návodu pro použití. Skripty byly otestovány jak na virtuálním počítači, vytvořeného programem VirtualBox a~s~použitím systému Ubuntu 10.10 Maverick Meerkat, tak na fyzickém počítači se~systémem ArchLinux.\\
 
-Programování v~interpretovaném jazyce BASH je velmi zajímavé, zvláště vzhledem k~jeho integraci se systémem Linux. Jsem rád, že~jsem si mohl rozšířit prostřednictvím této bakalářské práce znalosti tohoto jazyka, o~tomto svědčí i~fakt, že jsem dvakrát přepsal způsob jakým skripty fungují. Také jsem rozšířil své znalosti o~tom jak funguje Operační systém Linux v~širším měřítku za~což jsem velmi rád.
+Programování v~interpretovaném jazyce BASH je velmi zajímavé, zvláště vzhledem k~jeho integraci se systémem Linux. Jsem rád, že~jsem si mohl rozšířit prostřednictvím této bakalářské práce znalosti tohoto jazyka, o~tomto svědčí i~fakt, že jsem dvakrát přepsal způsob jakým skripty fungují. Také jsem rozšířil své znalosti o~tom jak funguje Operační systém Linux v~širším měřítku, za~což jsem velmi rád.
 %********************************* Závěr anglicky************************************
 \newpage
 \nn{Závěr v Angličtině}
@@ -2301,7 +2301,7 @@ Programování v~interpretovaném jazyce BASH je velmi zajímavé, zvláště vz
 LFS & Linux From Scratch \\
 OS & Operační systém\\
 HW & Hardware\\
-SW & Sogtware\\
+SW & Software\\
 GPL & General Public License\\
 BSD & Berkeley Software Distribution\\
 EULA & End-User-License-Agreement\\
@@ -2320,7 +2320,7 @@ TCSEC & Trusted Computer System Evaluation Criteria\\
 ITSEC & IT Security Evaluation Criteria\\
 CTCPEC & Canadian Trusted Computer Product Evaluation Criteria\\
 CC & Common Criteria for Information Technology Security Evaluation\\
-FC & Federal Criteries\\
+FC & Federal Criteria\\
 CCRA & Common Criteria Recognition Arrangement\\
 EAL & Evaluation Assurance Levels\\
 SElinux & Security-Enhanced Linux\\
@@ -2360,7 +2360,7 @@ Dostupné na DVD (složka \it{LFS---by-bash-scripts}) na~portále stag a~na~inte
 
 \href{https://github.com/zajca/LFS---by-bash-scripts}{https://github.com/zajca/LFS---by-bash-scripts}\\
 
-Návod na použití skritpů \odkazNaKapitolu{sec:sestaveni} nebo anglicky v~README souboru projektu.\\
+Návod na použití skriptů \odkazNaKapitolu{sec:sestaveni} nebo anglicky v~README souboru projektu.\\
 
 Na portále STAG a~na DVD dostupná verze BCv6.8. Verze dostupná na~internetu se~může lišit, návod jak se dostat k~verzi BCv6.8 \odkazNaKapitolu{navod:github}
 
@@ -2374,7 +2374,7 @@ Funkční toolchain pro sestavení LFS na 64bitovém procesoru. Jedná se o~soub
 
 Dostupné pouze na DVD jako soubor LFS.7z (TODO doplnit bytes)\\
 
-Obraz disku je určen pro program VirtualBox. Pro~pužití stačí založit nový virtuální stroj \it{NEW -> vybrat název -> velikost RAM -> zvolit existující disk a~přidat disk LFS.vdi}\\
+Obraz disku je určen pro program VirtualBox. Pro~použití stačí založit nový virtuální stroj \it{NEW -> vybrat název -> velikost RAM -> zvolit existující disk a~přidat disk LFS.vdi}\\
 
 SW vybavení: Grafický server Xorg, window manager PekWM, programovací jazyk RUBY s~nainstalovaným gemem ShowOff~pro prezentace, webový prohlížeč opera.\\
 
