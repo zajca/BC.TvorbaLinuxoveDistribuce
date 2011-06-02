@@ -203,7 +203,7 @@
 	\clearpage
 	\refstepcounter{section}
 	\addtocontents{loa}{\protect\makebox[1.5cm][l]{P \@Roman\c@section.} #1\newline}
-{\bf PŘÍLOHA P \@Roman\c@section. \uppercase{#1}}\par}
+{\bf PŘÍLOHA P \@Roman\c@section. \uppercase{#1}}\par\vspace{0.5cm}}
 
 % v obsahu nastavím VELKÉ PÍSMENA pro styl část
 \renewcommand{\part}[1]{
@@ -240,7 +240,7 @@
 
 % ***************************** VYNULOVÁNÍ ČÍTAČŮ *****************************
 \@addtoreset{table}{section}    % vynulování čítače
-\@addtoreset{figure}{section}   % vynulování čítače
+%\@addtoreset{figure}{section}   % vynulování čítače
 \@addtoreset{footnote}{section} % vynulování čítače
 	
 \makeatother % a to je ukončení \makeatletter
@@ -408,7 +408,6 @@ Ve Zlíně &\hspace{9cm} .......................\\
 Operační systém Linux je v~dnešní době k~nalezení ve všech možných druzích elektronických zařízení od náramkových hodinek až~po automobily. Pro administrátora Linuxového operačního systému je důležité znát tento systém mnohem podrobněji než např. konkurenční Microsoft Windows, protože je vhodné si operační sytém Linux nastavit do nejmenšího detailu. Jedním z~výborných dokumentů díky kterému se dá zjistit o~Linuxu velké množství informací, je kniha Linux From Scratch, která popisuje sestavení Linuxového operačního systému. V~knize jsou uvedeny informace, postupy sestavení a~hlavně účel jednotlivých programů a~balíčků programů, díky čemuž získá uživatel větší představu o~tom, co se v~systému nachází a~k~čemu je to dobré. Automatické skripty pro sestavení jsou pak spíše určeny uživatelům, kteří již tyto informace znají a~chtějí sestavit základní systém bez zbytečného zdržování.\\
 
 Bakalářská práce je rozdělena do dvou částí - teoretické a praktické. V teoretické části jsou objasněny pojmy, jako jsou Linux, dále pak distribuce operačního systému Linux, liveCD, jazyk BASH, kompilace zdrojových kódů, způsob vytváření distribucí a~zabezpečení Linuxového operačního systému. V praktické části je pak rozebrána struktura skriptů pro tvorbu distribuce Linux From Scratch, popsány některé funkce, které jsou ve skriptech použity, popsán návod pro sestavení pomocí těchto skriptů a~také nastíněny možnosti vylepšení.
-
 
 %********************************* Vlastní obsah ************************************
 %********************************* Teoretická část ************************************
@@ -1037,7 +1036,7 @@ Asi nejzajímavějším programem je webová aplikace od společnosti Novell, SU
 \includegraphics[width=3in]{./img/screens/suse3.png}
 \end{array}$
 \end{center}
-\caption{Webové rozhraní s nastavením systému, vlevo výběr základního rozhraní, vpravo podrobnější nastavení}
+\caption[Webové rozhraní s nastavením SUSE Studio]{Webové rozhraní s nastavením systému, vlevo výběr základního rozhraní, vpravo podrobnější nastavení}
 \end{figure}
 
 %\begin{center}
@@ -1081,7 +1080,7 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 \includegraphics[scale=0.5]{./img/screens/instalinux2.png}
 \end{array}$
 \end{center}
-\caption{Webové rozhraní Instalinux, vlevo výběr distribuce, vpravo nastavení jazyka a~časové zóny}
+\caption[Webové rozhraní Instalinux, distribuce/časová zóna]{Webové rozhraní Instalinux, vlevo výběr distribuce, vpravo nastavení jazyka a~časové zóny}
 \end{figure}
 \begin{figure}[h]
 \begin{center}$
@@ -1090,7 +1089,7 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 \includegraphics[scale=0.5]{./img/screens/instalinux4.png}
 \end{array}$
 \end{center}
-\caption{Webové rozhraní Instalinux, vlevo výběr aplikací, vpravo nastavení uživatelů}
+\caption[Webové rozhraní Instalinux, aplikace/uživatelé]{Webové rozhraní Instalinux, vlevo výběr aplikací, vpravo nastavení uživatelů}
 \end{figure}
 Takto vytvořená distribuce může mít i~8MB!
 
@@ -1134,7 +1133,7 @@ Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního de
 \includegraphics[width=2in]{./img/screens/nible2.png}
 \end{array}$
 \end{center}
-\caption{Webové rozhraní s nastavením NimbleX, v levo výběr míry nastavení, v pravo nastavení programů v sekci office}
+\caption[Webové rozhraní s nastavením NimbleX, základní nastavení/office]{Webové rozhraní s nastavením NimbleX, v levo výběr míry nastavení, v pravo nastavení programů v sekci office}
 \end{figure}
 \begin{figure}[h]
 \begin{center}$
@@ -1143,7 +1142,7 @@ Dalším nástrojem je jednoduchá webová aplikace na vytvoření vlastního de
 \includegraphics[width=2in]{./img/screens/nible4.png}
 \end{array}$
 \end{center}
-\caption{Webové rozhraní s nastavením NimbleX, v levo výběr wallpaperu, v pravo nastavení zvuku}
+\caption[Webové rozhraní s nastavením NimbleX, wallpaper/zvuk]{Webové rozhraní s nastavením NimbleX, v levo výběr wallpaperu, v pravo nastavení zvuku}
 \end{figure}
 
 \subsubsection{Linux-Live}
@@ -1955,6 +1954,7 @@ Dalším krokem je vytvoření uživatele a~skupiny lfs.
 \end{Verbatim} 
     \end{codeframe}
 nyní je nutné stáhnout a~překopírovat skripty LFS by bash scripts. Nejjednodušším způsobem je stáhnutí skriptů pomocí verzovacího systému git. Repozitář můze obsahovat změny, které by mohly udělat návod nefunkčním, proto je třeba změnit branch na~tag BCv6.8, na~který návod sedí.    \begin{codeframe} 
+\label{navod:github}
 \begin{Verbatim}{frame=single} 
 cd ~/
 git clone git://github.com/zajca/LFS---by-bash-scripts.git
@@ -2342,6 +2342,48 @@ GPG & GNU Privacy Guard\\
 %********************************* Seznam příloh ************************************
 \listofappendices
 
-\priloha{Název přílohy}
+\priloha{PDF verze bakalářské práce a zdrojový kód v~jazyce LaTeX}
+
+PDF je dostupné na DVD v~portále STAG a~na~internetu\\
+
+\href{https://github.com/zajca/BC.TvorbaLinuxoveDistribuce}{https://github.com/zajca/BC.TvorbaLinuxoveDistribuce}\\
+
+Spolu se zdrojovým kódem práce je dostupná i~upravená šablona pro FAI UTB. Pro~přeložení je třeba překladač XeLaTeX.\\
+
+Na DVD dostupné ve složce \it{BC.TvorbaLinuxoveDistribuce}. BC.pdf je výstupem ve~formátu PDF. BC.tex je zdrojovým kódem v~jazyce \LaTeX. A~ve~složce \it{sablona} se~nachází soubor \it{sablona.tex} jež je šablonou pro FAI UTB.
+
+\priloha{Zdrojové kódy LFS by BASH scripts}
+
+Zdrojové kódy pro automatické sestavení distribuce LFS.\\
+
+Dostupné na DVD (složka \it{LFS---by-bash-scripts}) na~portále stag a~na~internetu na~adrese\\
+
+\href{https://github.com/zajca/LFS---by-bash-scripts}{https://github.com/zajca/LFS---by-bash-scripts}\\
+
+Návod na použití skritpů \odkazNaKapitolu{sec:sestaveni} nebo anglicky v~README souboru projektu.\\
+
+Na portále STAG a~na DVD dostupná verze BCv6.8. Verze dostupná na~internetu se~může lišit, návod jak se dostat k~verzi BCv6.8 \odkazNaKapitolu{navod:github}
+
+\priloha{Funkční toolchain pro 64bit systém}
+
+Dostupné pouze na DVD jako soubor toolchain64.tar.gz (148,970,636 bytes)\\
+
+Funkční toolchain pro sestavení LFS na 64bitovém procesoru. Jedná se o~soubory, po~dokončení kapitoly 5 knihy LFS, tedy o~obsah složky /tools.
+
+\priloha{Funkční sestavení distribuce LFS včetně X-serveru}
+
+Dostupné pouze na DVD jako soubor LFS.7z (148,970,636 bytes)\\
+
+Obraz disku je určen pro program VirtualBox. Pro~pužití stačí založit nový virtuální stroj \it{NEW -> vybrat název -> velikost RAM -> zvolit existující disk a~přidat disk LFS.vdi}\\
+
+SW vybavení: Grafický server Xorg, window manager PekWM, programovací jazyk RUBY s~nainstalovaným gemem ShowOff~pro prezentace, webový prohlížeč opera.\\
+
+Přihlášení:\\
+Uživatel: root\\
+Heslo: 1rootlfs\\
+
+Spuštění grafického serveru příkazem \it{startx}.
+
+
 %\section*{PŘÍLOHA P I: ŠABLONA SLOVNĚ.}
 \end{document}
