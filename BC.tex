@@ -356,7 +356,7 @@ This bachelor work includes the terms such as~Linux in~it's~theoretical part. Fu
 In the practical part, there is~analysed the~script structure and~the~functions written in~BASH language. Next, there is~the~manual for~compiling LFS distributions using the~generated scripts. And~at~the~end of~this part, there are~mentioned resources to~compilation errors and~the possibilities of~script improvement.
 \vspace{1cm}
 
-\emph{Keywords:}Linux, distribution, BASH, LFS, LiveCD, Linux security, compilation, DAC, MAC
+\emph{Keywords:} Linux, distribution, BASH, LFS, LiveCD, Linux security, compilation, DAC, MAC
 %********************************* poděkování, motto, úryvky knih, básní atp. ************************************
 \clearpage
 \thispagestyle{empty}
@@ -660,7 +660,7 @@ BASH rozlišuje 3 deskriptory souboru
  \item[0] standardní vstup
  \item[1] standardní výstup
  \item[2] standardní chybový výstup
- \end{description}
+ \end{description}\label{sec:sloz}
     \begin{codeframe} 
       \begin{Verbatim}{frame=single}
  {
@@ -688,6 +688,45 @@ BASH rozlišuje 3 deskriptory souboru
   \item[wc] vypíše počet písmen, slov a řádků
   \item[sort] setřídí řádky
  \end{description}
+
+\subsubsection{Kulaté a složené závorky}
+Složené závorky se používají nejen pro oddělení jména proměnné nebo pole od dalších znaků v~rámci příkazu~\odkazNaKapitolu{sec:pole}. Dokážou také seskupovat několik příkazů do~jednoho celku. To se může hodit hned v~několika případech: když chceme použít konstrukci, která umí vykonat pouze jeden element, chceme-li najednou přesměrovat výstup z~několika příkazů~\odkazNaKapitolu{sec:sloz} nebo~třeba pokud chceme nechat celou skupinu úloh provést na~pozadí.~\cite{BASHcz}\\
+Lze tak bez obav zadat:
+    \begin{codeframe} 
+      \begin{Verbatim}{frame=single}
+{ sleep 10 ; echo Budíček! ; } &
+\end{Verbatim} 
+    \end{codeframe}
+Středník za posledním příkazem je zde nutný, podobně jako mezera za~otevírací a~před~zavírací závorkou. Můžeme použít také závorky kulaté, které mezery ani~závěrečný středník nepotřebují.~\cite{BASHcz}\\ Příkaz by pak mohl vypadat takto:
+    \begin{codeframe} 
+      \begin{Verbatim}{frame=single}
+(sleep 10 ; echo Budíček!) &
+\end{Verbatim} 
+    \end{codeframe}
+
+Vedle způsobu zápisu se konstrukce s~kulatými a složenými závorkami liší ještě v~jednom – předávání hodnot proměnných prostředí. To, co uzavřeme do~složených závorek, poběží stále v~aktuálním Bashi, takže po~skončení těchto operací budou provedené změny stále platit.~\cite{BASHcz} 
+
+    \begin{codeframe} 
+      \begin{Verbatim}{frame=single}
+$ husy="5"
+$ { husy="3" ; echo $husy ; }
+> 5
+$ echo $husy
+> 3
+\end{Verbatim} 
+    \end{codeframe}
+Na~první echo (to v~závorkách) by měla být reakce 3, protože~jsme v~závorkách hodnotu proměnné změnili z~5 na~3. Na~druhé echo (za~závorkami) bude odpověď zase 3, protože příkazy provedené v~závorkách jsou platné pro aktuální shell. Jinak tomu samozřejmě bude v~případě závorek kulatých.~\cite{BASHcz}
+    \begin{codeframe} 
+      \begin{Verbatim}{frame=single}
+$ husy="5"
+$ (husy="3" ; echo $husy)
+>3
+$ echo $husy.
+>5
+\end{Verbatim} 
+    \end{codeframe}
+V~okamžiku otevření závorky se spustí nový shell, který provede pouze příkazy v~závorce. První echo tedy opět vypíše hodnotu 3, kterou nastavujeme uvnitř závorek. Potom se~závorka zavře, ukončí se~příslušný Bash a~s~ním zmizí i~hodnoty proměnných v~něm nastavené. Proto druhý shell vypíše hodnotu 5, kterou jsme v~něm nastavili před tím, než byl zavolán druhý Bash.~\cite{BASHcz}
+
 
 \subsection{Podmínky a cykly}
 \subsubsection{IF}
@@ -903,7 +942,7 @@ packagename=(name dlink archivename foldername extension md5)
 echo $packagename[0]
 \end{Verbatim} 
     \end{codeframe}
-Ukládat položky pole do proměnných lze také velmi jednoduše:
+Ukládat položky pole do proměnných lze také velmi jednoduše:\label{sec:pole}
     \begin{codeframe}
       \begin{Verbatim}{frame=single}
 promenna = ${packagename[0]}
@@ -1016,7 +1055,7 @@ Jedná se o webovou aplikaci a její cena je \$5.\cite{Linux_Build}
 
 %As the name suggests, this tool is a comprehensive suite for creating your own custom Ubuntu and Debian distros from an existing ISO image. It lets you tweak the wallpaper, themes, icons, applications, and more.
 %The browser-based tool requires no installation, but you'll need to pay a small fee before you can use all of its features.
-\newpage
+
 \nadpis{Revisor}\\
 Revisor je aplikace pro vytvoření vlastního instalačního CD/DVD/USB založeném na~distribuci Fedora. Má jak grafické rozhraní, tak CLI. Další rozdíl je také to, že~Revisor nevytváří instalační medium z~existujícího obrazu, ale stahuje vše z~internetu, takže rychlost vytvoření média je také závislá na rychlosti vašeho připojení.\cite{Linux_Build}
 \begin{center}
@@ -1025,7 +1064,7 @@ Revisor je aplikace pro vytvoření vlastního instalačního CD/DVD/USB založe
 
 %Unlike the three tools above, this app is for the RPM-based distro Fedora. Revisor has both a GUI and a command-line interface, and it can create USB Live media as well as install-only CDs and DVDs.
 %Instead of using ISO images, Revisor downloads packages from the internet, so it may take some time to compile depending on your connection speed and customised package selection.
-
+\newpage
 \nadpis{SUSE Studio}\\
 Asi nejzajímavějším programem je webová aplikace od společnosti Novell, SUSE Studio. Nejenomže umí nakonfigurovat velké množství nastavení. Ale velmi dobrou vlastností je testování systému přímo v~prohlížeči. Výborná je také galerie, která obsahuje obrazy vytvořené ostatními uživateli, lze tak bez práce najít už funkční obraz dle potřeb uživatele, a~případně si již vytvořený obraz upravit.
 
@@ -1068,7 +1107,7 @@ MySlax Creator jsou skripty určené k~úpravě distribuce Slackware, předevš�
 %It works with Slax ISO images and lets you add data to your own custom spins.
 
 %\nadpis{LinuxCOE}\\
-\newpage
+
 \nadpis{Instalinux}\\ \label{sec:Instalinux}
 Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat z několika distribucí (Debian, Ubuntu, CentOS, Fedora, OpenSUSE, Scientific) a~v~dalších krocích základní nastavení systému a~výběr aplikací. Výsledkem je ISO obraz, kterým nemusí mít ani 30MB. Pro podrobnější nastavení existuje Designer Pro, který umožňuje nastavit mnohem více. Výbornou vlastností je uložení profilu, který je možné použít znovu a~upravit si jej.\\
 
@@ -1092,6 +1131,7 @@ Jednoduchým, ale mocným nástrojem je Instalinux, umožňuje uživateli vybrat
 \end{center}
 \caption[Webové rozhraní Instalinux, aplikace/uživatelé]{Webové rozhraní Instalinux, vlevo výběr aplikací, vpravo nastavení uživatelů}
 \end{figure}
+\newpage
 Takto vytvořená distribuce může mít i~8MB!
 
 \section{\upc{LiveCD}}
@@ -2083,7 +2123,7 @@ Skript makeall\_rest provede uživatele kapitolami 7~a~8. Několikrát skript vy
  \item Nastavení network interface, zde je třeba aby uživatel vybral z~výpisu identifikátor své síťové karty a~vepsal jej do terminálu.
  \item Po skriptu s~nastavení sítě je třeba nastavit síť. V~souboru \textit{/etc/sysconfig/network-devices/ifconfig.<network interface>/ipv4}. A~DNS servery v~souboru \textit{/etc/resolv.conf}.
  \item Skript dále vytvoří soubor \textit{/etc/fstab}, kde je třeba nastavit adresu root disku v~/dev/, jeho filesystém a~adresu swapu v~\textit{/dev/}.
- \item Dalším krokem je nastavení kernelu a~jeho kompilace. Pokud jde pouze o~to vyzkoušet LFS (pozn. musí být použit filesystém ext3, ext4, je třeba zaškrtnout v~sekci File systems), je možné použít defaultní config. Tedy v~menu, které vyskočí zvolit <exit>. Jinak je nastavení kernelu komplexní a~složitou záležitostí, které je třeba věnovat čas, uvážit naše potřeby a~HW konfiguraci zařízení na němž systém poběží.
+ \item Dalším krokem je nastavení kernelu a~jeho kompilace. Pokud jde pouze o~to vyzkoušet LFS (pozn. musí být použit filesystém ext3, ext4, je třeba zaškrtnout v~sekci File systems), je možné použít defaultní config. Tedy v~menu, které vyskočí zvolit <exit>. Jinak je nastavení kernelu komplexní a~složitou záležitostí, které je třeba věnovat čas, uvážit naše potřeby a~HW konfiguraci zařízení na němž systém poběží.~\cite{KERNEL}
  \item Posledním krokem, ke kterému skripty navedou, je pak nastavení programu grub. Uživatel musí zadat \textit{/dev} adresu disku, na kterém se nachází LFS např. sdb sda. GRUB, poté vygeneruje soubor \textit{/boot/grub/grub.cfg} potřebný pro zavedení jádra systému.
 \end{itemize}
 
